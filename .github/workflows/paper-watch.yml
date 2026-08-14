@@ -1,0 +1,76 @@
+name: Paper Radar
+
+on:
+  schedule:
+    # GitHub cron uses UTC. This runs at 02:23, 08:23, 14:23, and 20:23 UTC.
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview results without sending or updating state"
+        required: true
+        type: boolean
+        default: true
+      no_ai:
+        description: "Skip optional Responses API evaluation"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-radar-state
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+      FEISHU_SIGNING_SECRET: ${{ secrets.FEISHU_SIGNING_SECRET }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-5.6-sol' }}
+      LLM_REASONING_EFFORT: ${{ vars.LLM_REASONING_EFFORT || 'low' }}
+      ARXIV_CONTACT: ${{ vars.ARXIV_CONTACT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: python -m pip install .
+      - name: Run radar
+        id: radar
+        continue-on-error: true
+        env:
+          MANUAL_DRY_RUN: ${{ inputs.dry_run }}
+          MANUAL_NO_AI: ${{ inputs.no_ai }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          args=()
+          if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_DRY_RUN" == "true" ]]; then
+            args+=(--dry-run)
+          fi
+          if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_NO_AI" == "true" ]]; then
+            args+=(--no-ai)
+          fi
+          python -m paper_radar "${args[@]}"
+      - name: Commit deduplication state
+        if: always()
+        run: |
+          if git diff --quiet -- state/seen.json; then
+            exit 0
+          fi
+          git config user.name "paper-radar[bot]"
+          git config user.email "paper-radar[bot]@users.noreply.github.com"
+          git add state/seen.json
+          git commit -m "chore: update paper radar state"
+          git push
+      - name: Propagate radar failure
+        if: steps.radar.outcome == 'failure'
+        run: exit 1
+

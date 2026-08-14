@@ -1,0 +1,136 @@
+version: 1
+
+arxiv:
+  api_url: https://export.arxiv.org/api/query
+  max_results: 75
+  lookback_days: 8
+  query_batch_size: 6
+  query_terms:
+    - 2D materials
+    - two-dimensional materials
+    - graphene
+    - transition metal dichalcogenide
+    - TMD
+    - MoS2
+    - WS2
+    - WSe2
+    - MoSe2
+    - MoTe2
+    - van der Waals heterostructure
+    - vdW heterostructure
+    - twisted heterostructure
+    - black phosphorus
+    - phosphorene
+    - hexagonal boron nitride
+    - hBN
+    - MXene
+    - moire material
+
+matching:
+  require_core_term: true
+  minimum_score: 3
+  core_term_weight: 3
+  supporting_term_weight: 1
+  core_terms:
+    - 2D materials
+    - two-dimensional materials
+    - two dimensional materials
+    - graphene
+    - monolayer graphene
+    - bilayer graphene
+    - twisted graphene
+    - magic angle graphene
+    - graphene nanoribbon
+    - graphene nanoribbons
+    - transition metal dichalcogenide
+    - transition metal dichalcogenides
+    - TMD
+    - TMDs
+    - molybdenum disulfide
+    - MoS2
+    - tungsten disulfide
+    - WS2
+    - tungsten diselenide
+    - WSe2
+    - molybdenum diselenide
+    - MoSe2
+    - molybdenum ditelluride
+    - MoTe2
+    - van der Waals
+    - vdW
+    - van der Waals heterostructure
+    - vdW heterostructure
+    - layered materials
+    - twisted heterostructure
+    - black phosphorus
+    - phosphorene
+    - hexagonal boron nitride
+    - hBN
+    - MXene
+    - moire material
+    - moire pattern
+  supporting_terms:
+    - quantum dots
+    - quantum wells
+    - quantum hall effect
+    - quantum transport
+    - quantum interference
+    - superconductivity in 2D
+    - topological insulator
+    - topological superconductor
+    - electronic properties
+    - band structure
+    - density functional theory
+    - DFT
+    - electronic band
+    - Fermi surface
+    - charge transport
+    - conductivity
+    - mobility
+    - bandgap
+    - optical properties
+    - photoluminescence
+    - Raman spectroscopy
+    - absorption
+    - emission
+    - exciton
+    - plasmon
+    - photonic
+    - field-effect transistor
+    - FET
+    - photodetector
+    - solar cell
+    - sensor
+    - nanoelectronics
+    - flexible electronics
+    - chemical vapor deposition
+    - CVD
+    - molecular beam epitaxy
+    - MBE
+    - exfoliation
+    - lithography
+    - interface engineering
+    - scanning tunneling microscopy
+    - STM
+    - atomic force microscopy
+    - AFM
+    - transmission electron microscopy
+    - TEM
+    - angle-resolved photoemission
+    - ARPES
+    - twist angle
+    - correlated electrons
+    - strongly correlated
+    - phase transition
+    - metal-insulator transition
+    - spin-orbit coupling
+    - valley physics
+  excluded_terms:
+    - 2D object detection
+    - two-dimensional image segmentation
+
+run:
+  max_papers_per_run: 10
+  ai_candidate_limit: 20
+  minimum_ai_relevance: 2
+  state_retention_days: 365
