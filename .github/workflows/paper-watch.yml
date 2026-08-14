@@ -2,8 +2,8 @@ name: Paper Radar
 
 on:
   schedule:
-    # GitHub cron uses UTC. This is 08:23 in Beijing (UTC+8).
-    - cron: "23 0 * * *"
+    # GitHub cron uses UTC. This is 19:00 in Beijing (UTC+8).
+    - cron: "0 11 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

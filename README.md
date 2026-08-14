@@ -72,7 +72,7 @@ For a manual delivery test after the day's papers have already been processed,
 enable `resend_latest`. It ignores deduplication for that run and leaves the
 saved state unchanged. Keep it disabled for scheduled and normal manual runs.
 
-The scheduled workflow runs once per day at approximately 08:23 Beijing time.
+The scheduled workflow runs once per day at approximately 19:00 Beijing time.
 GitHub cron uses UTC and can start a few minutes late during busy periods.
 
 ## Optional AI evaluation
