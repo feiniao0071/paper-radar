@@ -16,6 +16,11 @@ on:
         required: true
         type: boolean
         default: false
+      resend_latest:
+        description: "Resend the latest digest, ignoring deduplication"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -49,6 +54,7 @@ jobs:
         env:
           MANUAL_DRY_RUN: ${{ inputs.dry_run }}
           MANUAL_NO_AI: ${{ inputs.no_ai }}
+          MANUAL_RESEND_LATEST: ${{ inputs.resend_latest }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           args=()
@@ -57,6 +63,9 @@ jobs:
           fi
           if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_NO_AI" == "true" ]]; then
             args+=(--no-ai)
+          fi
+          if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_RESEND_LATEST" == "true" ]]; then
+            args+=(--resend-latest)
           fi
           python -m paper_radar "${args[@]}"
       - name: Commit deduplication state

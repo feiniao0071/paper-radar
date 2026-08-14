@@ -45,6 +45,11 @@ def _arguments(argv: list[str] | None) -> argparse.Namespace:
     )
     parser.add_argument("--dry-run", action="store_true", help="Do not send or update state")
     parser.add_argument("--no-ai", action="store_true", help="Disable optional AI evaluation")
+    parser.add_argument(
+        "--resend-latest",
+        action="store_true",
+        help="Ignore deduplication for this run and leave existing state unchanged",
+    )
     parser.add_argument("--lookback-days", type=int, help="Override the lookback window")
     parser.add_argument("--max-results", type=int, help="Override the arXiv result limit")
     parser.add_argument("--max-papers", type=int, help="Override the delivery limit")
@@ -111,14 +116,22 @@ def run(args: argparse.Namespace) -> int:
     matched_papers: list[Paper] = []
     for paper in papers:
         match = match_paper(paper, config.matching)
-        if match is not None and not state.contains(paper.paper_id):
+        if match is not None and (
+            args.resend_latest or not state.contains(paper.paper_id)
+        ):
             matches[paper.paper_id] = match
             matched_papers.append(paper)
 
-    LOGGER.info(
-        "%d unseen paper(s) matched the 2D-material rules",
-        len(matched_papers),
-    )
+    if args.resend_latest:
+        LOGGER.info(
+            "%d paper(s) matched the 2D-material rules with deduplication bypassed",
+            len(matched_papers),
+        )
+    else:
+        LOGGER.info(
+            "%d unseen paper(s) matched the 2D-material rules",
+            len(matched_papers),
+        )
     if not matched_papers:
         return 0
 
@@ -169,6 +182,10 @@ def run(args: argparse.Namespace) -> int:
             LOGGER.exception("Failed to send the Feishu paper digest")
     else:
         LOGGER.info("No papers met the delivery threshold; no digest was sent")
+
+    if args.resend_latest:
+        LOGGER.info("Resend mode left the deduplication state unchanged")
+        return 1 if failures else 0
 
     now = datetime.now(UTC)
     selected_ids = {item.paper.paper_id for item in selected}

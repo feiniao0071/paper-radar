@@ -68,6 +68,10 @@ Never commit webhook URLs, signing secrets, or API keys to the repository.
 5. Add the Feishu secrets, run again with `dry_run` disabled, and confirm the
    digest card in the group.
 
+For a manual delivery test after the day's papers have already been processed,
+enable `resend_latest`. It ignores deduplication for that run and leaves the
+saved state unchanged. Keep it disabled for scheduled and normal manual runs.
+
 The scheduled workflow runs once per day at approximately 08:23 Beijing time.
 GitHub cron uses UTC and can start a few minutes late during busy periods.
 
