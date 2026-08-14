@@ -68,8 +68,8 @@ def valid_evaluation() -> dict[str, object]:
     return {
         "paper_id": "2508.00001",
         "score": 3,
-        "reason": "Directly relevant to two-dimensional exciton research.",
-        "key_relevance": ["two-dimensional semiconductor", "exciton"],
+        "reason": "与课题组的二维材料激子研究直接相关。",
+        "key_relevance": ["二维半导体", "激子"],
         "title_zh": "二维半导体中的激子",
         "summary_zh": "本文研究单层半导体中的激子性质。该工作与二维材料光学直接相关。",
     }
@@ -161,7 +161,7 @@ def test_evaluate_retries_incomplete_evaluation() -> None:
 
     assert request_modes == [True, False]
     assert result.used_ai is True
-    assert result.key_relevance == ("two-dimensional semiconductor", "exciton")
+    assert result.key_relevance == ("二维半导体", "激子")
 
 
 def test_evaluate_accepts_relay_field_aliases() -> None:
@@ -179,7 +179,31 @@ def test_evaluate_accepts_relay_field_aliases() -> None:
     assert result.used_ai is True
     assert result.title_zh == "二维半导体中的激子"
     assert result.summary_zh
-    assert result.key_relevance == ("two-dimensional semiconductor", "exciton")
+    assert result.key_relevance == ("二维半导体", "激子")
+
+
+def test_evaluate_retries_when_reason_is_not_chinese() -> None:
+    recommender = make_recommender()
+    english = valid_evaluation()
+    english["reason"] = "Directly relevant to two-dimensional exciton research."
+    outputs = iter(
+        [
+            json.dumps({"evaluations": [english]}),
+            json.dumps({"evaluations": [valid_evaluation()]}),
+        ]
+    )
+    request_modes: list[bool] = []
+
+    def fake_request(prompt: str, *, structured: bool) -> str:
+        request_modes.append(structured)
+        return next(outputs)
+
+    recommender._request = fake_request
+
+    result = recommender.evaluate([make_paper()], {})[0]
+
+    assert request_modes == [True, False]
+    assert result.reason == "与课题组的二维材料激子研究直接相关。"
 
 
 def test_evaluate_rejects_incomplete_json_mode_result() -> None:

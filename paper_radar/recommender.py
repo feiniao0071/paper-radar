@@ -23,7 +23,13 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
                 "properties": {
                     "paper_id": {"type": "string"},
                     "score": {"type": "integer", "enum": [1, 2, 3]},
-                    "reason": {"type": "string"},
+                    "reason": {
+                        "type": "string",
+                        "description": (
+                            "A concise Simplified Chinese explanation of how the paper "
+                            "relates to the laboratory"
+                        ),
+                    },
                     "key_relevance": {"type": "array", "items": {"type": "string"}},
                     "title_zh": {"type": "string"},
                     "summary_zh": {"type": "string"},
@@ -48,7 +54,7 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
 def fallback_recommendation(paper: Paper, match: MatchResult) -> Recommendation:
     relevance_score = 3 if match.score >= 6 or len(match.core_terms) >= 2 else 2
     matched = match.matched_terms[:6]
-    reason = "Matched configured 2D-material research terms: " + ", ".join(matched)
+    reason = "命中课题组关注的二维材料研究关键词：" + ", ".join(matched)
     return Recommendation(
         paper=paper,
         relevance_score=relevance_score,
@@ -94,6 +100,10 @@ def _extract_json(value: str) -> dict[str, Any]:
     if not isinstance(parsed, dict):
         raise ValueError("AI response must be a JSON object")
     return parsed
+
+
+def _contains_chinese(value: str) -> bool:
+    return re.search(r"[\u3400-\u9fff]", value) is not None
 
 
 class AIRecommender:
@@ -215,7 +225,13 @@ class AIRecommender:
             summary_zh = str(
                 evaluation.get("summary_zh") or evaluation.get("chinese_summary", "")
             ).strip()
-            if not reason or not key_relevance or not title_zh or not summary_zh:
+            if (
+                not reason
+                or not _contains_chinese(reason)
+                or not key_relevance
+                or not title_zh
+                or not summary_zh
+            ):
                 continue
 
             recommendations[paper_id] = Recommendation(
@@ -251,6 +267,7 @@ class AIRecommender:
                 prompt
                 + "\n\nReturn exactly one JSON object with an evaluations array. "
                 "Include exactly one complete evaluation for every supplied paper. "
+                "The reason for each paper must be written in Simplified Chinese. "
                 "Do not return a bare array or wrap the JSON in commentary."
             )
             output_text = self._request(fallback_prompt, structured=False)
