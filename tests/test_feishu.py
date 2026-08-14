@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from paper_radar.feishu import build_card, build_digest_card, build_signature
+from paper_radar.feishu import build_alert_card, build_card, build_digest_card, build_signature
 from paper_radar.models import MatchResult, Paper, Recommendation
 
 
@@ -94,6 +94,14 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
         title_zh="单层半导体中的应变可调激子",
         summary_zh="本文研究应变对单层半导体激子和光学性质的影响。",
         used_ai=True,
+        priority_score=86,
+        group_fit_score=5,
+        novelty_score=4,
+        method_value_score=4,
+        evidence_score=3,
+        study_type="实验",
+        reading_action="精读",
+        quality_signals=("包含具体实验方法", "给出了明确物理结果"),
     )
 
     card = build_digest_card(
@@ -113,6 +121,9 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
     assert recommendation.title_zh in content
     assert paper.abstract_url in content
     assert paper.pdf_url in content
+    assert "综合 86/100" in content
+    assert "方向 5/5" in content
+    assert "质量信号" in content
 
 
 def test_digest_card_rejects_empty_recommendations() -> None:
@@ -122,3 +133,9 @@ def test_digest_card_rejects_empty_recommendations() -> None:
         assert "empty" in str(error)
     else:
         raise AssertionError("Expected an empty digest to be rejected")
+
+
+def test_alert_card_uses_fatal_template() -> None:
+    card = build_alert_card("论文雷达运行失败", "请检查日志", fatal=True)
+    assert card["header"]["template"] == "red"
+    assert "请检查日志" in card["elements"][0]["text"]["content"]

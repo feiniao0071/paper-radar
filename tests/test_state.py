@@ -1,3 +1,4 @@
+import json
 from datetime import UTC, datetime, timedelta
 
 from paper_radar.models import Paper
@@ -33,3 +34,38 @@ def test_state_round_trip_and_prune(tmp_path) -> None:
     assert not loaded.contains("old")
     assert loaded.contains("new")
 
+
+def test_deferred_paper_is_reconsidered() -> None:
+    store = StateStore.__new__(StateStore)
+    store.path = None
+    store.data = {"version": 2, "papers": {}}
+    paper = make_paper("deferred")
+
+    store.mark(paper, "deferred")
+
+    assert store.contains(paper.paper_id)
+    assert store.should_consider(paper.paper_id)
+    store.mark(paper, "sent")
+    assert not store.should_consider(paper.paper_id)
+
+
+def test_version_one_skipped_records_migrate_to_deferred(tmp_path) -> None:
+    path = tmp_path / "seen.json"
+    path.write_text(
+        json.dumps(
+            {
+                "version": 1,
+                "papers": {
+                    "old-skipped": {"status": "skipped"},
+                    "already-sent": {"status": "sent"},
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    store = StateStore(path)
+
+    assert store.data["version"] == 2
+    assert store.status("old-skipped") == "deferred"
+    assert store.status("already-sent") == "sent"

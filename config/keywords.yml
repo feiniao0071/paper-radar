@@ -26,6 +26,25 @@ arxiv:
     - MXene
     - moire material
 
+crossref:
+  enabled: true
+  api_url: https://api.crossref.org/works
+  max_results_per_query: 20
+  lookback_days: 8
+  query_terms:
+    - two-dimensional materials
+    - graphene
+    - transition metal dichalcogenide
+    - van der Waals heterostructure
+    - twisted heterostructure
+    - moire materials
+    - MXene
+
+semantic_scholar:
+  enabled: true
+  api_url: https://api.semanticscholar.org/graph/v1
+  batch_size: 100
+
 matching:
   require_core_term: true
   minimum_score: 3
@@ -133,4 +152,5 @@ run:
   max_papers_per_run: 10
   ai_candidate_limit: 20
   minimum_ai_relevance: 2
+  max_high_priority_per_run: 3
   state_retention_days: 365

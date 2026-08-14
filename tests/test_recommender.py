@@ -5,7 +5,7 @@ from types import SimpleNamespace
 import pytest
 
 from paper_radar.models import Paper
-from paper_radar.recommender import AIRecommender, _extract_json
+from paper_radar.recommender import AIRecommender, _extract_json, calculate_priority
 
 
 class FakeStream:
@@ -67,9 +67,14 @@ def make_paper() -> Paper:
 def valid_evaluation() -> dict[str, object]:
     return {
         "paper_id": "2508.00001",
-        "score": 3,
+        "group_fit_score": 5,
+        "novelty_score": 4,
+        "method_value_score": 4,
+        "evidence_score": 4,
+        "study_type": "实验",
         "reason": "与课题组的二维材料激子研究直接相关。",
         "key_relevance": ["二维半导体", "激子"],
+        "quality_signals": ["给出了明确实验方法", "报告了具体激子调控结果"],
         "title_zh": "二维半导体中的激子",
         "summary_zh": "本文研究单层半导体中的激子性质。该工作与二维材料光学直接相关。",
     }
@@ -93,6 +98,7 @@ def test_request_uses_streaming_message_input() -> None:
     ]
     assert responses.request["reasoning"] == {"effort": "high"}
     assert responses.request["text"]["format"]["type"] == "json_schema"
+    assert responses.request["text"]["format"]["strict"] is True
 
 
 def test_request_uses_json_mode_for_retry() -> None:
@@ -138,6 +144,9 @@ def test_evaluate_retries_invalid_structured_output_with_json_mode() -> None:
     assert result.used_ai is True
     assert result.title_zh == "二维半导体中的激子"
     assert result.summary_zh
+    assert result.relevance_score == 3
+    assert result.priority_score == 88
+    assert result.reading_action == "精读"
 
 
 def test_evaluate_retries_incomplete_evaluation() -> None:
@@ -212,3 +221,9 @@ def test_evaluate_rejects_incomplete_json_mode_result() -> None:
 
     with pytest.raises(ValueError, match="1 paper evaluation"):
         recommender.evaluate([make_paper()], {})
+
+
+def test_priority_requires_direct_fit_and_actionable_value() -> None:
+    assert calculate_priority(5, 4, 4, 4) == (3, 88)
+    assert calculate_priority(4, 3, 3, 3) == (2, 68)
+    assert calculate_priority(2, 5, 5, 5) == (1, 76)

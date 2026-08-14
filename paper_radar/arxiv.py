@@ -14,6 +14,7 @@ from paper_radar.models import Paper
 
 LOGGER = logging.getLogger(__name__)
 ATOM = "http://www.w3.org/2005/Atom"
+ARXIV = "http://arxiv.org/schemas/atom"
 
 
 def build_search_query(terms: tuple[str, ...]) -> str:
@@ -71,6 +72,7 @@ def parse_feed(xml_text: str) -> list[Paper]:
             ),
             abstract_url.replace("/abs/", "/pdf/"),
         )
+        doi = entry.findtext(f"{{{ARXIV}}}doi", default="").strip().lower()
         papers.append(
             Paper(
                 paper_id=paper_id,
@@ -82,6 +84,8 @@ def parse_feed(xml_text: str) -> list[Paper]:
                 categories=categories,
                 abstract_url=abstract_url,
                 pdf_url=pdf_url,
+                source="arXiv",
+                doi=doi,
             )
         )
     return papers

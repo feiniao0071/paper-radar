@@ -37,6 +37,7 @@ jobs:
       FEISHU_SIGNING_SECRET: ${{ secrets.FEISHU_SIGNING_SECRET }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
       LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-5.6-sol' }}
       LLM_REASONING_EFFORT: ${{ vars.LLM_REASONING_EFFORT || 'low' }}
       ARXIV_CONTACT: ${{ vars.ARXIV_CONTACT }}

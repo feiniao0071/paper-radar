@@ -1,31 +1,34 @@
 # Paper Radar
 
-Paper Radar watches arXiv for new work related to two-dimensional materials,
-ranks matching papers, optionally generates a structured AI recommendation,
-and sends the best results to a Feishu group bot.
+Paper Radar watches arXiv and Crossref for new work related to two-dimensional
+materials, enriches available metadata through Semantic Scholar, ranks matching
+papers, and sends the best results to a Feishu group bot.
 
 The project is designed for GitHub Actions. It does not require a continuously
 running Windows, WSL, or Docker host.
 
 ## Pipeline
 
-1. Query the official arXiv Atom API in rate-limited high-signal term batches.
-2. Require at least one core term and score supporting research terms locally.
-3. Remove papers already recorded in `state/seen.json`.
-4. Optionally evaluate the strongest candidates with the Responses API.
-5. Send one Chinese daily digest containing up to ten recommended papers.
-6. Commit the updated deduplication state back to the repository.
+1. Query the official arXiv Atom API and Crossref Works API with polite rate limits.
+2. Merge duplicate preprints and journal records by DOI and normalized title.
+3. Add venue, publication type, and citation metadata from Semantic Scholar when available.
+4. Require at least one core term and score supporting research terms locally.
+5. Reconsider papers marked `deferred` before newly discovered papers.
+6. Evaluate up to twenty candidates with a strict Responses API JSON schema.
+7. Send one Chinese daily digest containing up to ten recommended papers.
+8. Commit the updated delivery state back to the repository.
 
 AI evaluation is optional. If it is disabled or fails, deterministic keyword
-ranking still produces useful results and the delivery pipeline continues.
+ranking keeps the pipeline running and the digest visibly reports the degraded
+mode. Source and fatal runtime failures are also reported to Feishu.
 
 ## Repository configuration
 
 The initial research profile was built from the supplied interest and prompt
 files. Edit these files to tune it:
 
-- `config/keywords.yml`: arXiv query terms, required core terms, supporting
-  terms, exclusions, thresholds, and run limits.
+- `config/keywords.yml`: arXiv and Crossref query terms, required core terms,
+  supporting terms, exclusions, source settings, thresholds, and run limits.
 - `config/recommender_prompt.txt`: laboratory interests and AI scoring rules.
 
 Broad phrases such as `DFT`, `sensor`, and `band structure` are supporting
@@ -48,6 +51,7 @@ Add these repository secrets:
 | `FEISHU_SIGNING_SECRET` | Recommended | Feishu webhook signature secret |
 | `LLM_API_KEY` | No | Enables AI recommendation and Chinese summaries |
 | `LLM_BASE_URL` | No | Responses-compatible API base URL |
+| `SEMANTIC_SCHOLAR_API_KEY` | No | Raises Semantic Scholar rate limits if available |
 
 Optional repository variables:
 
@@ -55,7 +59,7 @@ Optional repository variables:
 | --- | --- | --- |
 | `LLM_MODEL` | `gpt-5.6-sol` | Responses API model |
 | `LLM_REASONING_EFFORT` | `low` | Evaluation reasoning effort |
-| `ARXIV_CONTACT` | empty | Contact text appended to the arXiv User-Agent |
+| `ARXIV_CONTACT` | empty | Contact email sent to arXiv and Crossref |
 
 Never commit webhook URLs, signing secrets, or API keys to the repository.
 
@@ -77,8 +81,12 @@ GitHub cron uses UTC and can start a few minutes late during busy periods.
 
 ## Optional AI evaluation
 
-The evaluator calls only the Responses API and requests schema-constrained JSON
-for paper ID, score, reason, key relevance, Chinese title, and Chinese summary.
+The evaluator calls the Responses API and requests schema-constrained JSON for
+group fit, novelty, method value, abstract evidence, study type, concrete
+quality signals, Chinese title, summary, and recommendation reason. The final
+priority is computed in application code rather than accepted directly from the
+model. At most three papers per digest can retain the `3/3` label.
+
 The implementation follows the OpenAI Structured Outputs guidance:
 
 <https://developers.openai.com/api/docs/guides/structured-outputs>
@@ -110,9 +118,12 @@ dry-run mode and does not modify the deduplication state.
 ## State behavior
 
 `state/seen.json` is deliberately small and reviewable. Successfully delivered
-papers are marked `sent`; lower-ranked matches beyond the delivery limit are
-marked `skipped`. Failed deliveries are not marked, so the next scheduled run
-can retry them. Records older than the configured retention window are removed.
+papers are marked `sent`; papers explicitly rated below the threshold are marked
+`skipped`; papers that only missed a candidate or delivery limit are marked
+`deferred` and receive priority in the next run. Failed deliveries remain
+eligible for retry. Version-one state files are migrated once so historical
+`skipped` records are reconsidered as `deferred`. Records older than the
+configured retention window are removed.
 
 GitHub Actions uses a concurrency group so two runs cannot update this state at
 the same time.

@@ -22,7 +22,17 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
                 "type": "object",
                 "properties": {
                     "paper_id": {"type": "string"},
-                    "score": {"type": "integer", "enum": [1, 2, 3]},
+                    "group_fit_score": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
+                    "novelty_score": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
+                    "method_value_score": {
+                        "type": "integer",
+                        "enum": [1, 2, 3, 4, 5],
+                    },
+                    "evidence_score": {"type": "integer", "enum": [1, 2, 3, 4, 5]},
+                    "study_type": {
+                        "type": "string",
+                        "enum": ["实验", "理论", "计算", "综述", "混合", "其他"],
+                    },
                     "reason": {
                         "type": "string",
                         "description": (
@@ -31,14 +41,23 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
                         ),
                     },
                     "key_relevance": {"type": "array", "items": {"type": "string"}},
+                    "quality_signals": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
                     "title_zh": {"type": "string"},
                     "summary_zh": {"type": "string"},
                 },
                 "required": [
                     "paper_id",
-                    "score",
+                    "group_fit_score",
+                    "novelty_score",
+                    "method_value_score",
+                    "evidence_score",
+                    "study_type",
                     "reason",
                     "key_relevance",
+                    "quality_signals",
                     "title_zh",
                     "summary_zh",
                 ],
@@ -51,8 +70,50 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
 }
 
 
+def calculate_priority(
+    group_fit_score: int,
+    novelty_score: int,
+    method_value_score: int,
+    evidence_score: int,
+) -> tuple[int, int]:
+    priority_score = round(
+        (
+            group_fit_score * 40
+            + novelty_score * 25
+            + method_value_score * 20
+            + evidence_score * 15
+        )
+        / 5
+    )
+    if (
+        group_fit_score >= 4
+        and priority_score >= 78
+        and (novelty_score >= 4 or method_value_score >= 4)
+        and evidence_score >= 3
+    ):
+        relevance_score = 3
+    elif group_fit_score >= 3 and priority_score >= 50:
+        relevance_score = 2
+    else:
+        relevance_score = 1
+    return relevance_score, priority_score
+
+
+def _reading_action(relevance_score: int) -> str:
+    return {3: "精读", 2: "速读", 1: "收藏"}[relevance_score]
+
+
 def fallback_recommendation(paper: Paper, match: MatchResult) -> Recommendation:
-    relevance_score = 3 if match.score >= 6 or len(match.core_terms) >= 2 else 2
+    group_fit_score = 5 if len(match.core_terms) >= 2 else 4
+    novelty_score = 2
+    method_value_score = 3 if len(match.supporting_terms) >= 2 else 2
+    evidence_score = 2
+    relevance_score, priority_score = calculate_priority(
+        group_fit_score,
+        novelty_score,
+        method_value_score,
+        evidence_score,
+    )
     matched = match.matched_terms[:6]
     reason = "命中课题组关注的二维材料研究关键词：" + ", ".join(matched)
     return Recommendation(
@@ -63,6 +124,14 @@ def fallback_recommendation(paper: Paper, match: MatchResult) -> Recommendation:
         title_zh="",
         summary_zh="",
         used_ai=False,
+        priority_score=priority_score,
+        group_fit_score=group_fit_score,
+        novelty_score=novelty_score,
+        method_value_score=method_value_score,
+        evidence_score=evidence_score,
+        study_type="未判断",
+        reading_action=_reading_action(relevance_score),
+        quality_signals=("AI 不可用，仅完成关键词相关性判断",),
     )
 
 
@@ -147,7 +216,7 @@ class AIRecommender:
                 }
             ],
             "reasoning": {"effort": self.reasoning_effort},
-            "max_output_tokens": 6000,
+            "max_output_tokens": 10000,
             "store": False,
             "stream": True,
         }
@@ -204,11 +273,21 @@ class AIRecommender:
             if paper is None:
                 continue
             try:
-                score = int(evaluation.get("score", 0))
+                dimensions = tuple(
+                    int(evaluation.get(field, 0))
+                    for field in (
+                        "group_fit_score",
+                        "novelty_score",
+                        "method_value_score",
+                        "evidence_score",
+                    )
+                )
             except (TypeError, ValueError):
                 continue
-            if score not in {1, 2, 3}:
+            if any(score not in {1, 2, 3, 4, 5} for score in dimensions):
                 continue
+            group_fit, novelty, method_value, evidence = dimensions
+            relevance_score, priority_score = calculate_priority(*dimensions)
 
             relevance = evaluation.get("key_relevance") or evaluation.get(
                 "key_relevance_items", []
@@ -218,6 +297,13 @@ class AIRecommender:
             key_relevance = tuple(
                 str(item).strip() for item in relevance if str(item).strip()
             )
+            signals = evaluation.get("quality_signals", [])
+            if not isinstance(signals, list):
+                continue
+            quality_signals = tuple(
+                str(item).strip() for item in signals if str(item).strip()
+            )
+            study_type = str(evaluation.get("study_type", "")).strip()
             reason = str(evaluation.get("reason", "")).strip()
             title_zh = str(
                 evaluation.get("title_zh") or evaluation.get("chinese_title", "")
@@ -229,6 +315,8 @@ class AIRecommender:
                 not reason
                 or not _contains_chinese(reason)
                 or not key_relevance
+                or not quality_signals
+                or study_type not in {"实验", "理论", "计算", "综述", "混合", "其他"}
                 or not title_zh
                 or not summary_zh
             ):
@@ -236,12 +324,20 @@ class AIRecommender:
 
             recommendations[paper_id] = Recommendation(
                 paper=paper,
-                relevance_score=score,
+                relevance_score=relevance_score,
                 reason=reason,
                 key_relevance=key_relevance,
                 title_zh=title_zh,
                 summary_zh=summary_zh,
                 used_ai=True,
+                priority_score=priority_score,
+                group_fit_score=group_fit,
+                novelty_score=novelty,
+                method_value_score=method_value,
+                evidence_score=evidence,
+                study_type=study_type,
+                reading_action=_reading_action(relevance_score),
+                quality_signals=quality_signals,
             )
 
         missing_ids = set(by_id) - set(recommendations)
