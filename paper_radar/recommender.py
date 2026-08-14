@@ -105,10 +105,16 @@ class AIRecommender:
     def _request(self, prompt: str, *, structured: bool) -> str:
         request: dict[str, Any] = {
             "model": self.model,
-            "input": prompt,
+            "input": [
+                {
+                    "role": "user",
+                    "content": [{"type": "input_text", "text": prompt}],
+                }
+            ],
             "reasoning": {"effort": self.reasoning_effort},
             "max_output_tokens": 6000,
             "store": False,
+            "stream": True,
         }
         if structured:
             request["text"] = {
@@ -119,10 +125,19 @@ class AIRecommender:
                     "schema": RECOMMENDATION_SCHEMA,
                 }
             }
-        response = self.client.responses.create(**request)
-        if response.status != "completed":
-            raise RuntimeError(f"AI response was not completed: {response.status}")
-        return response.output_text
+        output_parts: list[str] = []
+        completed_response = None
+        with self.client.responses.create(**request) as stream:
+            for event in stream:
+                if event.type == "response.output_text.delta":
+                    output_parts.append(event.delta)
+                elif event.type == "response.completed":
+                    completed_response = event.response
+
+        if completed_response is None or completed_response.status != "completed":
+            status = getattr(completed_response, "status", "stream ended early")
+            raise RuntimeError(f"AI response was not completed: {status}")
+        return "".join(output_parts) or completed_response.output_text
 
     def evaluate(
         self,
