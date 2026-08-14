@@ -5,14 +5,13 @@ import json
 import logging
 import os
 import sys
-import time
 from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 
 from paper_radar.arxiv import fetch_recent_papers
 from paper_radar.config import RadarConfig, load_config
-from paper_radar.feishu import FeishuClient
+from paper_radar.feishu import FeishuClient, build_digest_card
 from paper_radar.matcher import match_paper
 from paper_radar.models import MatchResult, Paper, Recommendation
 from paper_radar.recommender import AIRecommender, fallback_recommendation
@@ -90,21 +89,7 @@ def _evaluate(
 
 
 def _print_preview(recommendations: list[Recommendation], matches: dict[str, MatchResult]) -> None:
-    preview = []
-    for recommendation in recommendations:
-        paper = recommendation.paper
-        preview.append(
-            {
-                "paper_id": paper.paper_id,
-                "title": paper.title,
-                "published": paper.published.date().isoformat(),
-                "relevance_score": recommendation.relevance_score,
-                "reason": recommendation.reason,
-                "matched_terms": matches[paper.paper_id].matched_terms,
-                "abstract_url": paper.abstract_url,
-                "used_ai": recommendation.used_ai,
-            }
-        )
+    preview = build_digest_card(recommendations, matches) if recommendations else None
     print(json.dumps(preview, ensure_ascii=False, indent=2))
 
 
@@ -174,16 +159,16 @@ def run(args: argparse.Namespace) -> int:
     )
     sent_ids: set[str] = set()
     failures = 0
-    for recommendation in selected:
-        paper = recommendation.paper
+    if selected:
         try:
-            client.send(recommendation, matches[paper.paper_id])
-            sent_ids.add(paper.paper_id)
-            LOGGER.info("Sent %s to Feishu", paper.paper_id)
-            time.sleep(0.35)
+            client.send_digest(selected, matches)
+            sent_ids.update(item.paper.paper_id for item in selected)
+            LOGGER.info("Sent a Feishu digest containing %d paper(s)", len(selected))
         except Exception:
-            failures += 1
-            LOGGER.exception("Failed to send %s to Feishu", paper.paper_id)
+            failures = 1
+            LOGGER.exception("Failed to send the Feishu paper digest")
+    else:
+        LOGGER.info("No papers met the delivery threshold; no digest was sent")
 
     now = datetime.now(UTC)
     selected_ids = {item.paper.paper_id for item in selected}

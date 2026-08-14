@@ -13,7 +13,7 @@ running Windows, WSL, or Docker host.
 2. Require at least one core term and score supporting research terms locally.
 3. Remove papers already recorded in `state/seen.json`.
 4. Optionally evaluate the strongest candidates with the Responses API.
-5. Send up to ten interactive cards through a Feishu custom-bot webhook.
+5. Send one Chinese daily digest containing up to ten recommended papers.
 6. Commit the updated deduplication state back to the repository.
 
 AI evaluation is optional. If it is disabled or fails, deterministic keyword
@@ -66,10 +66,10 @@ Never commit webhook URLs, signing secrets, or API keys to the repository.
 3. Leave `dry_run` enabled for the first run.
 4. Inspect the JSON preview in the workflow log.
 5. Add the Feishu secrets, run again with `dry_run` disabled, and confirm the
-   cards in the group.
+   digest card in the group.
 
-The scheduled workflow runs every six hours. GitHub cron uses UTC and can start
-a few minutes late during busy periods.
+The scheduled workflow runs once per day at approximately 08:23 Beijing time.
+GitHub cron uses UTC and can start a few minutes late during busy periods.
 
 ## Optional AI evaluation
 
