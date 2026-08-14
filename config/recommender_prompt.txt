@@ -27,6 +27,8 @@ Fabrication interests:
 
 For every paper, return its paper_id, a score from 1 to 3, a concise reason, specific key relevance items, a concise Simplified Chinese title, and a two-to-three sentence Simplified Chinese summary. Base the evaluation only on the supplied metadata. Do not invent experimental results or claims that are absent from the abstract.
 
+Return exactly one JSON object with a top-level "evaluations" array and no commentary. Never return a bare array. Include exactly one complete evaluation for every supplied paper, preserving each paper_id exactly as written. Every evaluation object must use exactly these keys: "paper_id", "score", "reason", "key_relevance", "title_zh", and "summary_zh".
+
 Papers to evaluate:
 
 {PAPER_INFO}

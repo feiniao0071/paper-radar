@@ -62,10 +62,35 @@ def fallback_recommendation(paper: Paper, match: MatchResult) -> Recommendation:
 
 def _extract_json(value: str) -> dict[str, Any]:
     text = value.strip()
+    if not text:
+        raise ValueError("AI response was empty")
     if text.startswith("```"):
         text = re.sub(r"^```(?:json)?\s*", "", text)
         text = re.sub(r"\s*```$", "", text)
-    parsed = json.loads(text)
+
+    try:
+        parsed: Any = json.loads(text)
+    except json.JSONDecodeError as original_error:
+        parsed = None
+        decoder = json.JSONDecoder()
+        for index, character in enumerate(text):
+            if character not in "[{":
+                continue
+            try:
+                parsed, _ = decoder.raw_decode(text[index:])
+                break
+            except json.JSONDecodeError:
+                continue
+        if parsed is None:
+            raise ValueError("AI response did not contain valid JSON") from original_error
+
+    # Some compatible relays JSON-encode the result twice or return the array directly.
+    for _ in range(2):
+        if not isinstance(parsed, str):
+            break
+        parsed = json.loads(parsed.strip())
+    if isinstance(parsed, list):
+        parsed = {"evaluations": parsed}
     if not isinstance(parsed, dict):
         raise ValueError("AI response must be a JSON object")
     return parsed
@@ -125,38 +150,35 @@ class AIRecommender:
                     "schema": RECOMMENDATION_SCHEMA,
                 }
             }
+        else:
+            request["text"] = {"format": {"type": "json_object"}}
         output_parts: list[str] = []
+        refusal_parts: list[str] = []
         completed_response = None
         with self.client.responses.create(**request) as stream:
             for event in stream:
                 if event.type == "response.output_text.delta":
                     output_parts.append(event.delta)
+                elif event.type == "response.refusal.delta":
+                    refusal_parts.append(event.delta)
                 elif event.type == "response.completed":
                     completed_response = event.response
 
+        if refusal_parts:
+            raise RuntimeError("AI refused the paper evaluation request")
         if completed_response is None or completed_response.status != "completed":
             status = getattr(completed_response, "status", "stream ended early")
             raise RuntimeError(f"AI response was not completed: {status}")
-        return "".join(output_parts) or completed_response.output_text
+        output_text = "".join(output_parts) or completed_response.output_text
+        if not output_text.strip():
+            raise ValueError("AI response contained no output text")
+        return output_text
 
-    def evaluate(
-        self,
+    @staticmethod
+    def _parse_recommendations(
+        output_text: str,
         papers: list[Paper],
-        matches: dict[str, MatchResult],
-    ) -> list[Recommendation]:
-        paper_info = "\n\n---\n\n".join(paper.prompt_text() for paper in papers)
-        prompt = self.prompt_template.replace("{PAPER_INFO}", paper_info)
-        try:
-            output_text = self._request(prompt, structured=True)
-        except Exception as error:
-            LOGGER.warning("Structured AI evaluation failed; retrying with plain JSON: %s", error)
-            fallback_prompt = (
-                prompt
-                + "\n\nReturn exactly one JSON object with an evaluations array. "
-                "Do not wrap it in commentary."
-            )
-            output_text = self._request(fallback_prompt, structured=False)
-
+    ) -> dict[str, Recommendation]:
         raw = _extract_json(output_text)
         evaluations = raw.get("evaluations")
         if not isinstance(evaluations, list):
@@ -167,28 +189,71 @@ class AIRecommender:
         for evaluation in evaluations:
             if not isinstance(evaluation, dict):
                 continue
-            paper_id = str(evaluation.get("paper_id", ""))
+            paper_id = str(evaluation.get("paper_id", "")).strip()
             paper = by_id.get(paper_id)
             if paper is None:
                 continue
-            score = int(evaluation.get("score", 1))
+            try:
+                score = int(evaluation.get("score", 0))
+            except (TypeError, ValueError):
+                continue
             if score not in {1, 2, 3}:
-                score = 1
-            relevance = evaluation.get("key_relevance", [])
+                continue
+
+            relevance = evaluation.get("key_relevance") or evaluation.get(
+                "key_relevance_items", []
+            )
             if not isinstance(relevance, list):
-                relevance = []
+                continue
+            key_relevance = tuple(
+                str(item).strip() for item in relevance if str(item).strip()
+            )
+            reason = str(evaluation.get("reason", "")).strip()
+            title_zh = str(
+                evaluation.get("title_zh") or evaluation.get("chinese_title", "")
+            ).strip()
+            summary_zh = str(
+                evaluation.get("summary_zh") or evaluation.get("chinese_summary", "")
+            ).strip()
+            if not reason or not key_relevance or not title_zh or not summary_zh:
+                continue
+
             recommendations[paper_id] = Recommendation(
                 paper=paper,
                 relevance_score=score,
-                reason=str(evaluation.get("reason", "")).strip(),
-                key_relevance=tuple(str(item).strip() for item in relevance if str(item).strip()),
-                title_zh=str(evaluation.get("title_zh", "")).strip(),
-                summary_zh=str(evaluation.get("summary_zh", "")).strip(),
+                reason=reason,
+                key_relevance=key_relevance,
+                title_zh=title_zh,
+                summary_zh=summary_zh,
                 used_ai=True,
             )
 
-        return [
-            recommendations.get(paper.paper_id)
-            or fallback_recommendation(paper, matches[paper.paper_id])
-            for paper in papers
-        ]
+        missing_ids = set(by_id) - set(recommendations)
+        if missing_ids:
+            raise ValueError(
+                f"AI response omitted or invalidated {len(missing_ids)} paper evaluation(s)"
+            )
+        return recommendations
+
+    def evaluate(
+        self,
+        papers: list[Paper],
+        matches: dict[str, MatchResult],
+    ) -> list[Recommendation]:
+        paper_info = "\n\n---\n\n".join(paper.prompt_text() for paper in papers)
+        prompt = self.prompt_template.replace("{PAPER_INFO}", paper_info)
+        try:
+            output_text = self._request(prompt, structured=True)
+            recommendations = self._parse_recommendations(output_text, papers)
+        except Exception as error:
+            LOGGER.warning("Structured AI evaluation failed; retrying with JSON mode: %s", error)
+            fallback_prompt = (
+                prompt
+                + "\n\nReturn exactly one JSON object with an evaluations array. "
+                "Include exactly one complete evaluation for every supplied paper. "
+                "Do not return a bare array or wrap the JSON in commentary."
+            )
+            output_text = self._request(fallback_prompt, structured=False)
+            recommendations = self._parse_recommendations(output_text, papers)
+
+        return [recommendations[paper.paper_id] for paper in papers]
