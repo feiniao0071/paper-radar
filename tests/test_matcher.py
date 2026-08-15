@@ -203,3 +203,77 @@ def test_quantum_ai_rejects_generic_customer_support_agent_workflow() -> None:
         "The AI agent handles business conversations and ticket routing.",
     )
     assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_matches_ai_for_twisted_mote2_fractional_chern_physics() -> None:
+    paper = make_paper(
+        "Machine learning for fractional Chern insulators in twisted MoTe2",
+        "A neural network resolves correlated topological phases and quantum transport.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "machine learning" in result.core_terms
+    assert "twisted MoTe2" in result.focus_terms
+    assert "fractional Chern insulators" in result.focus_terms
+
+
+def test_quantum_ai_matches_llm_agent_for_quantum_sensing_instruments() -> None:
+    paper = make_paper(
+        "An LLM instrument-control agent for autonomous quantum sensing",
+        "The scientific agent operates an NV center measurement loop.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "LLM" in result.core_terms
+    assert "quantum sensing" in result.focus_terms
+    assert "NV center" in result.focus_terms
+
+
+def test_quantum_ai_matches_learned_charge_density_for_defect_physics() -> None:
+    paper = make_paper(
+        "Machine-learned charge density for large-supercell defects",
+        "The model predicts defect formation energies in solid-state materials.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "machine learned" in result.core_terms
+    assert "charge density" in result.focus_terms
+
+
+def test_quantum_ai_matches_scientific_agent_benchmark_with_physics_tasks() -> None:
+    paper = make_paper(
+        "A physics benchmark for scientific AI agents",
+        "Expert physics tasks evaluate instrument control and scientific reasoning.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "scientific AI agents" in result.core_terms
+    assert "physics benchmark" in result.focus_terms
+
+
+def test_quantum_ai_rejects_protein_ligand_binding_free_energy() -> None:
+    paper = make_paper(
+        "Machine learning for protein-ligand relative binding free energy",
+        "An interatomic potential accelerates molecular dynamics for drug binding.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_rejects_autonomous_biology_laboratory() -> None:
+    paper = make_paper(
+        "A scientific AI agent for an autonomous biology laboratory",
+        "The agent controls an experimental workflow for gene expression.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_rejects_foundation_model_for_drug_discovery() -> None:
+    paper = make_paper(
+        "A foundation model for drug discovery",
+        "The model predicts protein interactions for pharmaceutical screening.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None

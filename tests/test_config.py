@@ -34,7 +34,14 @@ def test_quantum_ai_configuration_loads() -> None:
     assert "materials discovery" in config.matching.focus_terms
     assert "agentic AI" in config.matching.core_terms
     assert "instrument control" in config.matching.focus_terms
-    assert "LLM scientific workflow" in config.arxiv.query_terms
+    assert "twisted MoTe2" in config.matching.focus_terms
+    assert "quantum sensing" in config.matching.focus_terms
+    assert "relative binding free energy" in config.matching.excluded_terms
+    assert "protein" in config.matching.excluded_terms
+    assert "molecule" not in config.matching.focus_terms
+    assert "quantum chemistry" not in config.matching.focus_terms
+    assert "machine learning condensed matter physics" in config.arxiv.query_terms
+    assert "AI quantum sensing experiment" in config.crossref.query_terms
     assert config.matching.require_core_term is True
     assert config.matching.require_focus_term is True
     assert config.run.deep_read_enabled is True

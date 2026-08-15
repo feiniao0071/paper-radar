@@ -3,7 +3,7 @@ version: 1
 profile:
   name: Quantum AI Materials
   digest_title: Quantum AI Materials 论文速递
-  digest_intro: 量子科学、人工智能与材料研究的交叉方向
+  digest_intro: 量子材料、凝聚态物理、物理实验与科学智能的交叉方向
 
 arxiv:
   api_url: https://export.arxiv.org/api/query
@@ -24,17 +24,25 @@ arxiv:
     - machine learning electronic structure
     - machine learning density functional theory
     - artificial intelligence quantum materials
-    - quantum machine learning chemistry
+    - machine learning condensed matter physics
     - machine learning superconductivity
     - machine learning topological materials
+    - machine learning quantum transport
+    - machine learning moire quantum materials
+    - AI quantum sensing
+    - AI quantum control
     - autonomous materials laboratory
     - active learning materials
     - Bayesian optimization materials synthesis
     - AI agent scientific discovery
     - agentic AI quantum materials
     - AI agent physics laboratory
+    - LLM physics laboratory
     - large language model instrument control
     - autonomous quantum experiment
+    - autonomous quantum measurement
+    - AI scientific agent microscopy
+    - scientific agent physics benchmark
     - LLM scientific workflow
 
 crossref:
@@ -45,16 +53,20 @@ crossref:
   query_terms:
     - artificial intelligence materials discovery
     - machine learning quantum materials
+    - machine learning condensed matter physics
+    - machine learning quantum transport
+    - machine learning moire quantum materials
     - graph neural network materials science
-    - foundation model chemistry materials
+    - foundation model solid state materials
     - generative AI crystal design
     - machine learned interatomic potential
     - neural quantum state many body
-    - quantum machine learning chemistry
+    - AI quantum sensing experiment
     - active learning materials synthesis
     - autonomous laboratory materials
     - agentic AI scientific laboratory
     - AI agent physics experiment
+    - scientific agent physics laboratory
     - instrument control language model
     - AI for science quantum materials
 
@@ -146,9 +158,10 @@ matching:
     - quantum materials
     - quantum matter
     - condensed matter
-    - quantum chemistry
-    - computational chemistry
+    - condensed matter physics
+    - solid state physics
     - electronic structure
+    - charge density
     - band structure
     - crystal structure
     - crystal structures
@@ -156,10 +169,6 @@ matching:
     - crystalline materials
     - solid-state materials
     - solid state materials
-    - molecule
-    - molecules
-    - molecular design
-    - molecular discovery
     - atomistic
     - interatomic potential
     - interatomic potentials
@@ -168,28 +177,50 @@ matching:
     - ab initio
     - molecular dynamics
     - phase diagram
+    - phase transition
+    - lattice dynamics
+    - phonon
+    - defect physics
     - superconductivity
     - superconducting materials
     - topological materials
     - magnetic materials
     - spin systems
+    - quantum transport
+    - quantum sensing
+    - NV center
+    - NV centers
+    - moire
+    - twisted MoTe2
+    - fractional quantum anomalous Hall
+    - fractionally quantized anomalous Hall
+    - FQAH
+    - FQAHE
+    - fractional Chern insulator
+    - fractional Chern insulators
+    - FCI
+    - MnBi2Te4
+    - MATBG
+    - TDBG
+    - quantum geometry
+    - Chern insulator
+    - topological magnetism
+    - Hofstadter
+    - orbital magnetism
     - two-dimensional materials
     - 2D materials
     - graphene
     - semiconductor
     - semiconductors
-    - catalyst
-    - catalysis
-    - battery materials
-    - energy materials
-    - polymer
-    - polymers
     - alloy
     - alloys
     - ceramics
     - materials synthesis
     - spectroscopy
     - microscopy
+    - microwave impedance microscopy
+    - scanning SQUID
+    - magnetic imaging
     - photonic materials
     - metamaterials
     - quantum computing
@@ -207,6 +238,7 @@ matching:
     - physics experiment
     - quantum experiment
     - condensed matter experiment
+    - low-temperature experiment
     - materials experiment
     - scientific workflow
     - research workflow
@@ -216,6 +248,7 @@ matching:
     - quantum-device measurement
     - microscope control
     - scanning probe microscopy
+    - physics benchmark
     - scientific discovery
   supporting_terms:
     - property prediction
@@ -276,9 +309,36 @@ matching:
     - provenance
     - safety evaluation
   excluded_terms:
+    - biology
+    - biological
+    - biomedical
+    - biomolecule
+    - biomolecules
+    - protein
+    - proteins
+    - protein-ligand
+    - drug discovery
+    - drug design
+    - drug-target
+    - drug binding
+    - relative binding free energy
+    - binding free energy calculation
+    - molecular docking
+    - pharmaceutical
     - medical diagnosis
+    - healthcare
+    - clinical
     - clinical trial
     - patient outcome
+    - patient
+    - genomics
+    - genome
+    - gene expression
+    - DNA
+    - RNA
+    - antibody
+    - peptide
+    - enzyme
     - autonomous driving
     - traffic prediction
     - stock market
