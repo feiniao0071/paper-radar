@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 import httpx
 
-from paper_radar.models import MatchResult, Recommendation
+from paper_radar.models import DeepRead, MatchResult, Recommendation
 
 BEIJING_TIMEZONE = ZoneInfo("Asia/Shanghai")
 
@@ -175,6 +175,76 @@ def build_digest_card(
     }
 
 
+def _deep_read_section(title: str, items: tuple[str, ...], limit: int) -> dict[str, Any]:
+    content = "\n".join(f"- {_truncate(item, limit)}" for item in items)
+    return {
+        "tag": "div",
+        "text": {
+            "tag": "lark_md",
+            "content": f"**{title}**\n{content}",
+        },
+    }
+
+
+def build_deep_read_card(deep_read: DeepRead) -> dict[str, Any]:
+    paper = deep_read.paper
+    links = f"[原文]({paper.abstract_url})"
+    if paper.pdf_url and paper.pdf_url != paper.abstract_url:
+        links += f" · [PDF]({paper.pdf_url})"
+    authors = _truncate(", ".join(paper.authors), 700)
+    overview = (
+        f"**英文题目：** {_truncate(paper.title, 240)}\n"
+        f"**链接：** {links}\n"
+        f"**作者：** {authors}\n\n"
+        f"**入选理由：** {_truncate(deep_read.selection_reason, 360)}\n\n"
+        f"**一句话概括：** {_truncate(deep_read.one_sentence_summary, 420)}"
+    )
+    elements: list[dict[str, Any]] = [
+        {"tag": "div", "text": {"tag": "lark_md", "content": overview}},
+        {"tag": "hr"},
+        _deep_read_section("技术路线", deep_read.technical_route[:6], 520),
+        {"tag": "hr"},
+        _deep_read_section("Takeaway", deep_read.takeaways[:5], 420),
+        {"tag": "hr"},
+        _deep_read_section("先进在哪里", deep_read.advances[:5], 420),
+        {"tag": "hr"},
+        _deep_read_section("我对局限的判断", deep_read.limitations[:4], 420),
+    ]
+    if deep_read.author_context:
+        elements.extend(
+            [
+                {"tag": "hr"},
+                _deep_read_section("作者信息", deep_read.author_context[:4], 420),
+            ]
+        )
+    elements.extend(
+        [
+            {"tag": "hr"},
+            _deep_read_section("对我们组的启发", deep_read.group_inspirations[:4], 460),
+            {
+                "tag": "note",
+                "elements": [
+                    {
+                        "tag": "plain_text",
+                        "content": "速读基于论文 PDF 与元数据生成；关键结论请以原文为准。",
+                    }
+                ],
+            },
+        ]
+    )
+    return {
+        "config": {"wide_screen_mode": True},
+        "header": {
+            "template": "red",
+            "title": {
+                "tag": "plain_text",
+                "content": f"论文速读｜{_truncate(deep_read.title_zh, 90)}",
+            },
+        },
+        "elements": elements,
+    }
+
+
 def build_alert_card(title: str, message: str, *, fatal: bool = False) -> dict[str, Any]:
     return {
         "config": {"wide_screen_mode": True},
@@ -236,6 +306,9 @@ class FeishuClient:
                 digest_intro=digest_intro,
             )
         )
+
+    def send_deep_read(self, deep_read: DeepRead) -> None:
+        self._send_card(build_deep_read_card(deep_read))
 
     def send_alert(self, title: str, message: str, *, fatal: bool = False) -> None:
         self._send_card(build_alert_card(title, message, fatal=fatal))

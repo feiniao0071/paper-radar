@@ -296,4 +296,6 @@ run:
   ai_candidate_limit: 20
   minimum_ai_relevance: 2
   max_high_priority_per_run: 3
+  deep_read_enabled: true
+  deep_read_min_priority_score: 82
   state_retention_days: 365

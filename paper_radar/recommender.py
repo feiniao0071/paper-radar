@@ -9,7 +9,7 @@ from typing import Any
 
 from openai import OpenAI
 
-from paper_radar.models import MatchResult, Paper, Recommendation
+from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 
 LOGGER = logging.getLogger(__name__)
 
@@ -66,6 +66,33 @@ RECOMMENDATION_SCHEMA: dict[str, Any] = {
         }
     },
     "required": ["evaluations"],
+    "additionalProperties": False,
+}
+
+DEEP_READ_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "title_zh": {"type": "string"},
+        "selection_reason": {"type": "string"},
+        "one_sentence_summary": {"type": "string"},
+        "technical_route": {"type": "array", "items": {"type": "string"}},
+        "takeaways": {"type": "array", "items": {"type": "string"}},
+        "advances": {"type": "array", "items": {"type": "string"}},
+        "limitations": {"type": "array", "items": {"type": "string"}},
+        "group_inspirations": {"type": "array", "items": {"type": "string"}},
+        "author_context": {"type": "array", "items": {"type": "string"}},
+    },
+    "required": [
+        "title_zh",
+        "selection_reason",
+        "one_sentence_summary",
+        "technical_route",
+        "takeaways",
+        "advances",
+        "limitations",
+        "group_inspirations",
+        "author_context",
+    ],
     "additionalProperties": False,
 }
 
@@ -206,27 +233,34 @@ class AIRecommender:
             prompt_path=prompt_path,
         )
 
-    def _request(self, prompt: str, *, structured: bool) -> str:
+    def _request_content(
+        self,
+        content: list[dict[str, Any]],
+        *,
+        schema: dict[str, Any] | None,
+        schema_name: str,
+        max_output_tokens: int,
+    ) -> str:
         request: dict[str, Any] = {
             "model": self.model,
             "input": [
                 {
                     "role": "user",
-                    "content": [{"type": "input_text", "text": prompt}],
+                    "content": content,
                 }
             ],
             "reasoning": {"effort": self.reasoning_effort},
-            "max_output_tokens": 10000,
+            "max_output_tokens": max_output_tokens,
             "store": False,
             "stream": True,
         }
-        if structured:
+        if schema is not None:
             request["text"] = {
                 "format": {
                     "type": "json_schema",
-                    "name": "paper_recommendations",
+                    "name": schema_name,
                     "strict": True,
-                    "schema": RECOMMENDATION_SCHEMA,
+                    "schema": schema,
                 }
             }
         else:
@@ -252,6 +286,14 @@ class AIRecommender:
         if not output_text.strip():
             raise ValueError("AI response contained no output text")
         return output_text
+
+    def _request(self, prompt: str, *, structured: bool) -> str:
+        return self._request_content(
+            [{"type": "input_text", "text": prompt}],
+            schema=RECOMMENDATION_SCHEMA if structured else None,
+            schema_name="paper_recommendations",
+            max_output_tokens=10000,
+        )
 
     @staticmethod
     def _parse_recommendations(
@@ -370,3 +412,91 @@ class AIRecommender:
             recommendations = self._parse_recommendations(output_text, papers)
 
         return [recommendations[paper.paper_id] for paper in papers]
+
+    @staticmethod
+    def _parse_deep_read(output_text: str, paper: Paper) -> DeepRead:
+        raw = _extract_json(output_text)
+
+        def required_text(field: str) -> str:
+            value = str(raw.get(field, "")).strip()
+            if not value or not _contains_chinese(value):
+                raise ValueError(f"Deep-read field {field} must contain Chinese text")
+            return value
+
+        def string_items(field: str, *, allow_empty: bool = False) -> tuple[str, ...]:
+            value = raw.get(field)
+            if not isinstance(value, list):
+                raise ValueError(f"Deep-read field {field} must be an array")
+            items = tuple(str(item).strip() for item in value if str(item).strip())
+            if not items and not allow_empty:
+                raise ValueError(f"Deep-read field {field} cannot be empty")
+            if items and not any(_contains_chinese(item) for item in items):
+                raise ValueError(f"Deep-read field {field} must contain Chinese text")
+            return items
+
+        return DeepRead(
+            paper=paper,
+            title_zh=required_text("title_zh"),
+            selection_reason=required_text("selection_reason"),
+            one_sentence_summary=required_text("one_sentence_summary"),
+            technical_route=string_items("technical_route"),
+            takeaways=string_items("takeaways"),
+            advances=string_items("advances"),
+            limitations=string_items("limitations"),
+            group_inspirations=string_items("group_inspirations"),
+            author_context=string_items("author_context", allow_empty=True),
+        )
+
+    def generate_deep_read(
+        self,
+        paper: Paper,
+        *,
+        profile_name: str,
+        prompt_path: Path,
+    ) -> DeepRead:
+        if not paper.pdf_url or paper.pdf_url == paper.abstract_url:
+            raise ValueError("A distinct PDF URL is required for a deep read")
+
+        prompt = prompt_path.read_text(encoding="utf-8")
+        prompt = prompt.replace("{PROFILE_NAME}", profile_name)
+        prompt = prompt.replace("{PAPER_METADATA}", paper.prompt_text())
+        file_input = {
+            "type": "input_file",
+            "file_url": paper.pdf_url,
+            "detail": "low",
+        }
+        content = [
+            file_input,
+            {"type": "input_text", "text": prompt},
+        ]
+        try:
+            output_text = self._request_content(
+                content,
+                schema=DEEP_READ_SCHEMA,
+                schema_name="paper_deep_read",
+                max_output_tokens=12000,
+            )
+            return self._parse_deep_read(output_text, paper)
+        except Exception as error:
+            LOGGER.warning(
+                "Structured PDF deep read failed; retrying with JSON mode: %s",
+                error,
+            )
+            fallback_content = [
+                file_input,
+                {
+                    "type": "input_text",
+                    "text": (
+                        prompt
+                        + "\n\nReturn only the requested complete JSON object. "
+                        "Do not wrap it in Markdown or commentary."
+                    ),
+                },
+            ]
+            output_text = self._request_content(
+                fallback_content,
+                schema=None,
+                schema_name="paper_deep_read",
+                max_output_tokens=12000,
+            )
+            return self._parse_deep_read(output_text, paper)

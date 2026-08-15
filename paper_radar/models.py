@@ -74,3 +74,17 @@ class Recommendation:
     study_type: str = "未判断"
     reading_action: str = "速读"
     quality_signals: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class DeepRead:
+    paper: Paper
+    title_zh: str
+    selection_reason: str
+    one_sentence_summary: str
+    technical_route: tuple[str, ...]
+    takeaways: tuple[str, ...]
+    advances: tuple[str, ...]
+    limitations: tuple[str, ...]
+    group_inspirations: tuple[str, ...]
+    author_context: tuple[str, ...] = ()

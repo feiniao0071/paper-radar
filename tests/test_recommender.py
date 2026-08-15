@@ -80,6 +80,20 @@ def valid_evaluation() -> dict[str, object]:
     }
 
 
+def valid_deep_read() -> dict[str, object]:
+    return {
+        "title_zh": "二维半导体激子论文速读",
+        "selection_reason": "方法具有直接实验启发，且证据链完整。",
+        "one_sentence_summary": "论文结合光谱与输运测量研究单层半导体中的激子。",
+        "technical_route": ["样品制备：单层材料 -> 器件加工 -> 低温测量"],
+        "takeaways": ["激子响应可以被外场连续调控。"],
+        "advances": ["把光谱观测与输运证据放在同一器件中比较。"],
+        "limitations": ["结论目前只在一种材料和有限温区验证。"],
+        "group_inspirations": ["可在组内二维器件上复现实验对照流程。"],
+        "author_context": [],
+    }
+
+
 def test_request_uses_streaming_message_input() -> None:
     responses = FakeResponses()
     recommender = make_recommender()
@@ -221,6 +235,51 @@ def test_evaluate_rejects_incomplete_json_mode_result() -> None:
 
     with pytest.raises(ValueError, match="1 paper evaluation"):
         recommender.evaluate([make_paper()], {})
+
+
+def test_generate_deep_read_uses_pdf_file_input(tmp_path) -> None:
+    recommender = make_recommender()
+    request: dict[str, object] = {}
+
+    def fake_request_content(
+        content,
+        *,
+        schema,
+        schema_name,
+        max_output_tokens,
+    ) -> str:
+        request.update(
+            content=content,
+            schema=schema,
+            schema_name=schema_name,
+            max_output_tokens=max_output_tokens,
+        )
+        return json.dumps(valid_deep_read())
+
+    recommender._request_content = fake_request_content
+    prompt_path = tmp_path / "deep_read.txt"
+    prompt_path.write_text(
+        "Profile: {PROFILE_NAME}\n\n{PAPER_METADATA}",
+        encoding="utf-8",
+    )
+
+    result = recommender.generate_deep_read(
+        make_paper(),
+        profile_name="二维量子材料",
+        prompt_path=prompt_path,
+    )
+
+    content = request["content"]
+    assert content[0] == {
+        "type": "input_file",
+        "file_url": "https://arxiv.org/pdf/2508.00001",
+        "detail": "low",
+    }
+    assert "二维量子材料" in content[1]["text"]
+    assert request["schema_name"] == "paper_deep_read"
+    assert request["max_output_tokens"] == 12000
+    assert result.paper.paper_id == "2508.00001"
+    assert result.technical_route
 
 
 def test_priority_requires_direct_fit_and_actionable_value() -> None:

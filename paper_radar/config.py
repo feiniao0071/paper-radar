@@ -59,6 +59,8 @@ class RunConfig:
     ai_candidate_limit: int
     minimum_ai_relevance: int
     max_high_priority_per_run: int
+    deep_read_enabled: bool
+    deep_read_min_priority_score: int
     state_retention_days: int
 
 
@@ -170,6 +172,10 @@ def load_config(path: Path) -> RadarConfig:
             max_high_priority_per_run=int(
                 run_raw.get("max_high_priority_per_run", 3)
             ),
+            deep_read_enabled=bool(run_raw.get("deep_read_enabled", True)),
+            deep_read_min_priority_score=int(
+                run_raw.get("deep_read_min_priority_score", 82)
+            ),
             state_retention_days=int(run_raw.get("state_retention_days", 365)),
         ),
     )
@@ -194,6 +200,7 @@ def load_config(path: Path) -> RadarConfig:
         or config.semantic_scholar.batch_size < 1
         or config.matching.focus_term_weight < 1
         or config.run.max_high_priority_per_run < 0
+        or not 50 <= config.run.deep_read_min_priority_score <= 100
     ):
-        raise ValueError("source and priority limits must be positive")
+        raise ValueError("source and priority settings are invalid")
     return config

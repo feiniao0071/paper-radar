@@ -108,6 +108,50 @@ def test_calibration_caps_high_priority_recommendations() -> None:
     assert calibrated[-1].reading_action == "速读"
 
 
+def test_deep_read_candidate_requires_inspiring_ai_evaluation() -> None:
+    paper = _paper()
+    routine = app.Recommendation(
+        paper=paper,
+        relevance_score=3,
+        reason="相关",
+        key_relevance=("石墨烯",),
+        title_zh="常规论文",
+        summary_zh="摘要",
+        used_ai=True,
+        priority_score=86,
+        method_value_score=3,
+        evidence_score=4,
+    )
+    inspiring = app.Recommendation(
+        paper=paper,
+        relevance_score=3,
+        reason="高度相关",
+        key_relevance=("石墨烯",),
+        title_zh="启发性论文",
+        summary_zh="摘要",
+        used_ai=True,
+        priority_score=84,
+        method_value_score=4,
+        evidence_score=3,
+    )
+
+    selected = app._select_deep_read_candidate(
+        [routine, inspiring],
+        enabled=True,
+        minimum_priority_score=82,
+    )
+
+    assert selected is inspiring
+    assert (
+        app._select_deep_read_candidate(
+            [inspiring],
+            enabled=False,
+            minimum_priority_score=82,
+        )
+        is None
+    )
+
+
 def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) -> None:
     older = _paper()
     newer = Paper(

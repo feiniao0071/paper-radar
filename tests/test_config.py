@@ -19,6 +19,8 @@ def test_project_configuration_loads() -> None:
     assert config.semantic_scholar.enabled is True
     assert config.run.max_papers_per_run == 10
     assert config.run.max_high_priority_per_run == 3
+    assert config.run.deep_read_enabled is True
+    assert config.run.deep_read_min_priority_score == 82
     assert config.profile.digest_title == "二维量子材料论文速递"
 
 
@@ -35,3 +37,5 @@ def test_quantum_ai_configuration_loads() -> None:
     assert "LLM scientific workflow" in config.arxiv.query_terms
     assert config.matching.require_core_term is True
     assert config.matching.require_focus_term is True
+    assert config.run.deep_read_enabled is True
+    assert config.run.deep_read_min_priority_score == 82

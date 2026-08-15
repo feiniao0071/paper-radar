@@ -1,7 +1,13 @@
 from datetime import UTC, datetime
 
-from paper_radar.feishu import build_alert_card, build_card, build_digest_card, build_signature
-from paper_radar.models import MatchResult, Paper, Recommendation
+from paper_radar.feishu import (
+    build_alert_card,
+    build_card,
+    build_deep_read_card,
+    build_digest_card,
+    build_signature,
+)
+from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 
 
 def test_signature_is_stable() -> None:
@@ -175,6 +181,48 @@ def test_digest_card_rejects_empty_recommendations() -> None:
         assert "empty" in str(error)
     else:
         raise AssertionError("Expected an empty digest to be rejected")
+
+
+def test_deep_read_card_contains_pdf_grounded_sections() -> None:
+    now = datetime(2026, 8, 14, tzinfo=UTC)
+    paper = Paper(
+        paper_id="2608.00005",
+        title="Consensus mapping for superconductivity",
+        authors=("A. Researcher", "B. Scientist"),
+        abstract="We map scientific consensus.",
+        published=now,
+        updated=now,
+        categories=("cond-mat.supr-con",),
+        abstract_url="https://arxiv.org/abs/2608.00005",
+        pdf_url="https://arxiv.org/pdf/2608.00005",
+    )
+    deep_read = DeepRead(
+        paper=paper,
+        title_zh="高温超导科学共识图谱",
+        selection_reason="为量子材料文献智能体提供了可迁移的方法范式。",
+        one_sentence_summary="论文使用大模型抽取超导机制支持并构建引用图谱。",
+        technical_route=("文献池：摘要 -> 机制抽取 -> 共识图谱",),
+        takeaways=("共识随材料族和时间演化。",),
+        advances=("从文献总结推进到动态共识建模。",),
+        limitations=("高被引筛选可能放大主流叙事。",),
+        group_inspirations=("先用千篇论文验证量子材料 ontology。",),
+        author_context=("通讯作者单位由论文首页确认。",),
+    )
+
+    card = build_deep_read_card(deep_read)
+    serialized = str(card)
+
+    assert card["header"]["title"]["content"].startswith("论文速读｜")
+    assert paper.abstract_url in serialized
+    assert paper.pdf_url in serialized
+    assert "A. Researcher, B. Scientist" in serialized
+    assert "技术路线" in serialized
+    assert "Takeaway" in serialized
+    assert "先进在哪里" in serialized
+    assert "我对局限的判断" in serialized
+    assert "作者信息" in serialized
+    assert "对我们组的启发" in serialized
+    assert "关键结论请以原文为准" in serialized
 
 
 def test_alert_card_uses_fatal_template() -> None:

@@ -8,11 +8,12 @@ import sys
 from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 from paper_radar.config import RadarConfig, load_config
-from paper_radar.feishu import FeishuClient, build_digest_card
+from paper_radar.feishu import FeishuClient, build_deep_read_card, build_digest_card
 from paper_radar.matcher import match_paper
-from paper_radar.models import MatchResult, Paper, Recommendation
+from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 from paper_radar.recommender import AIRecommender, fallback_recommendation
 from paper_radar.sources import fetch_all_papers
 from paper_radar.state import StateStore
@@ -42,6 +43,12 @@ def _arguments(argv: list[str] | None) -> argparse.Namespace:
         type=Path,
         default=PROJECT_ROOT / "state" / "seen.json",
         help="Persistent deduplication state",
+    )
+    parser.add_argument(
+        "--deep-read-prompt",
+        type=Path,
+        default=PROJECT_ROOT / "config" / "deep_read_prompt.txt",
+        help="AI prompt used for the optional Top 1 PDF deep read",
     )
     parser.add_argument("--dry-run", action="store_true", help="Do not send or update state")
     parser.add_argument("--no-ai", action="store_true", help="Disable optional AI evaluation")
@@ -81,10 +88,8 @@ def _evaluate(
     papers: list[Paper],
     matches: dict[str, MatchResult],
     *,
-    prompt_path: Path,
-    no_ai: bool,
+    recommender: AIRecommender | None,
 ) -> tuple[list[Recommendation], tuple[str, ...]]:
-    recommender = None if no_ai else AIRecommender.from_environment(prompt_path)
     if recommender is None:
         LOGGER.info("AI evaluation is disabled; using deterministic keyword ranking")
         return (
@@ -134,15 +139,65 @@ def _calibrate_priorities(
     return calibrated
 
 
+def _select_deep_read_candidate(
+    recommendations: list[Recommendation],
+    *,
+    enabled: bool,
+    minimum_priority_score: int,
+) -> Recommendation | None:
+    if not enabled:
+        return None
+    return next(
+        (
+            item
+            for item in recommendations
+            if item.used_ai
+            and item.relevance_score == 3
+            and item.priority_score >= minimum_priority_score
+            and item.method_value_score >= 4
+            and item.evidence_score >= 3
+            and bool(item.paper.pdf_url)
+            and item.paper.pdf_url != item.paper.abstract_url
+        ),
+        None,
+    )
+
+
+def _generate_deep_read(
+    candidate: Recommendation | None,
+    recommender: AIRecommender | None,
+    *,
+    profile_name: str,
+    prompt_path: Path,
+) -> DeepRead | None:
+    if candidate is None or recommender is None:
+        return None
+    try:
+        deep_read = recommender.generate_deep_read(
+            candidate.paper,
+            profile_name=profile_name,
+            prompt_path=prompt_path,
+        )
+        LOGGER.info("Generated a PDF deep read for %s", candidate.paper.paper_id)
+        return deep_read
+    except Exception:
+        LOGGER.exception(
+            "Optional PDF deep read failed for %s; continuing with the digest",
+            candidate.paper.paper_id,
+        )
+        return None
+
+
 def _print_preview(
     recommendations: list[Recommendation],
     matches: dict[str, MatchResult],
     notices: tuple[str, ...],
     *,
+    deep_read: DeepRead | None,
     digest_title: str,
     digest_intro: str,
 ) -> None:
-    preview = (
+    digest = (
         build_digest_card(
             recommendations,
             matches,
@@ -153,6 +208,12 @@ def _print_preview(
         if recommendations
         else None
     )
+    preview: Any = digest
+    if deep_read is not None:
+        preview = {
+            "digest": digest,
+            "deep_read": build_deep_read_card(deep_read),
+        }
     output = json.dumps(preview, ensure_ascii=False, indent=2) + "\n"
     if hasattr(sys.stdout, "buffer"):
         sys.stdout.buffer.write(output.encode("utf-8"))
@@ -235,11 +296,11 @@ def run(args: argparse.Namespace) -> int:
 
     ranked = _rank_matches(matched_papers, matches, state)
     candidates = ranked[: config.run.ai_candidate_limit]
+    recommender = None if args.no_ai else AIRecommender.from_environment(args.prompt)
     recommendations, evaluation_notices = _evaluate(
         candidates,
         matches,
-        prompt_path=args.prompt,
-        no_ai=args.no_ai,
+        recommender=recommender,
     )
     notices.extend(evaluation_notices)
     recommendations = _calibrate_priorities(
@@ -253,6 +314,17 @@ def run(args: argparse.Namespace) -> int:
         for recommendation in recommendations
         if recommendation.relevance_score >= config.run.minimum_ai_relevance
     ][:max_papers]
+    deep_read_candidate = _select_deep_read_candidate(
+        selected,
+        enabled=config.run.deep_read_enabled,
+        minimum_priority_score=config.run.deep_read_min_priority_score,
+    )
+    deep_read = _generate_deep_read(
+        deep_read_candidate,
+        recommender,
+        profile_name=config.profile.name,
+        prompt_path=args.deep_read_prompt,
+    )
 
     client = _feishu_client()
     effective_dry_run = args.dry_run or client is None
@@ -263,6 +335,7 @@ def run(args: argparse.Namespace) -> int:
             selected,
             matches,
             tuple(notices),
+            deep_read=deep_read,
             digest_title=config.profile.digest_title,
             digest_intro=config.profile.digest_intro,
         )
@@ -281,6 +354,14 @@ def run(args: argparse.Namespace) -> int:
             )
             sent_ids.update(item.paper.paper_id for item in selected)
             LOGGER.info("Sent a Feishu digest containing %d paper(s)", len(selected))
+            if deep_read is not None:
+                try:
+                    client.send_deep_read(deep_read)
+                    LOGGER.info("Sent the optional Top 1 paper deep read")
+                except Exception:
+                    LOGGER.exception(
+                        "Failed to send the optional paper deep read; digest was sent"
+                    )
         except Exception:
             failures = 1
             LOGGER.exception("Failed to send the Feishu paper digest")

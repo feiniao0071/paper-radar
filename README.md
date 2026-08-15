@@ -21,8 +21,10 @@ do not need to remain online.
 4. Require both a profile-specific core term and a profile-specific focus term.
 5. Reconsider papers marked `deferred` before newly discovered papers.
 6. Evaluate up to twenty candidates with a strict Responses API JSON schema.
-7. Send one Chinese daily digest containing up to ten recommended papers.
-8. Commit that profile's independent delivery state back to the repository.
+7. Send one concise Chinese daily digest containing up to ten recommended papers.
+8. When a PDF-backed paper clears the strict Top 1 threshold, append one structured
+   deep read covering its route, findings, advances, limitations, and lab takeaways.
+9. Commit that profile's independent delivery state back to the repository.
 
 AI evaluation is optional. If it is disabled or fails, deterministic keyword
 ranking keeps the pipeline running and the digest reports the degraded mode.
@@ -35,6 +37,9 @@ group.
 | --- | --- | --- | --- | --- |
 | 2D Quantum Materials | `config/keywords.yml` | `config/recommender_prompt.txt` | `state/seen.json` | `2D Quantum Materials Radar` |
 | Quantum AI Materials | `config/quantum_ai_keywords.yml` | `config/quantum_ai_recommender_prompt.txt` | `state/quantum_ai_seen.json` | `Quantum AI Materials Radar` |
+
+Both profiles share `config/deep_read_prompt.txt` for the optional PDF-grounded
+Top 1 paper deep read.
 
 The 2D profile requires a 2D-material term plus a quantum-physics term such as
 quantum transport, superconductivity, topology, correlation, magnetism,
@@ -107,9 +112,21 @@ quality signals, Chinese title, summary, and recommendation reason. The final
 priority is computed in application code rather than accepted directly from the
 model. At most three papers per digest can retain the `3/3` label.
 
+The optional deep read is stricter: it requires a successful AI evaluation,
+`3/3` priority, a composite score of at least 82, method value of at least 4/5,
+abstract evidence of at least 3/5, and a distinct PDF URL. Only the highest
+qualifying paper is processed. PDF or relay failures skip the deep read without
+blocking the daily digest. Author context is restricted to affiliations and
+contribution information stated in the PDF; the model is not asked to invent
+biographies or recent publication lists.
+
 The implementation follows the official OpenAI Structured Outputs guidance:
 
 <https://developers.openai.com/api/docs/guides/structured-outputs>
+
+PDF deep reads use Responses API file inputs:
+
+<https://developers.openai.com/api/docs/guides/file-inputs>
 
 For the configured Responses-compatible relay, use:
 
