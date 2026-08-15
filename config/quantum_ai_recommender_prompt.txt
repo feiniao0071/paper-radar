@@ -8,6 +8,11 @@ The application computes the final 1-to-3 reading priority from four dimensions.
 
 Use the full scale and calibrate strictly. Most relevant papers should receive an eventual medium priority. Reserve the highest priority for unusually direct, novel, actionable, and well-supported work. Do not reward journal prestige, famous authors, parameter count, or raw citation count as proof of quality. Zero citations is neutral for recent papers.
 
+Apply this hard group-fit rule before assigning the other scores:
+- If the paper does not itself develop, use, or rigorously evaluate an AI, machine-learning, learned-model, or autonomous-research method, group_fit_score must be 1. Merely mentioning machine learning as background, a comparison, or a possible alternative does not qualify.
+- If the AI contribution has no concrete materials, chemistry, physics, or quantum-science target, group_fit_score must be 1.
+- A routine off-the-shelf AI application with a real scientific target may receive 2 or 3, but it cannot receive 4 or 5 unless the method, workflow, validation, or scientific result is directly valuable to the laboratory.
+
 Primary interests:
 - machine learning, foundation models, graph neural networks, generative models, and scientific agents for materials discovery, property prediction, inverse design, synthesis, and characterization
 - learned interatomic potentials, atomistic foundation models, accelerated electronic-structure methods, surrogate models, and uncertainty-aware simulation
