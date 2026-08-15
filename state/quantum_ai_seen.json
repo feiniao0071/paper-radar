@@ -1,4 +1,104 @@
 {
-  "papers": {},
+  "papers": {
+    "2608.06895": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-07",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Local Structure Dictates Ionic Transport and Mechanical Properties in Glassy Solid Electrolytes for Lithium Batteries"
+    },
+    "2608.06902": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-07",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Fast Isotropic Li-Ion Diffusion in Zeolitic Imidazolate Framework Glass Electrolytes for Batteries"
+    },
+    "2608.07081": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-07",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Local lattice dynamics of hcp zinc from EXAFS and machine-learning interatomic potentials"
+    },
+    "2608.07997": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-08",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Predicting large-supercell defect formation energies from machine-learning charge density models trained on small supercells"
+    },
+    "2608.08295": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-08",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Universality of PVDF-Li$^+$ Ion Interface Chemistry in Lead-free Perovskite Energy Storage Devices"
+    },
+    "2608.08798": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-09",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Symmetry Constraints Regularize Neural Quantum State Learning"
+    },
+    "2608.11558": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-12",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Simulating Ionic Liquid Fragmentation in Electrospray Thrusters with Foundation Models"
+    },
+    "2608.12787": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-13",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Finite-Temperature Thermodynamics of Cu(100) Oxidation: Missing-Row Reconstruction, Defect States, and Order-Disorder Transition from Nested Sampling"
+    },
+    "2608.13038": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-13",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Machine-learned interatomic potential for sputtering of tungsten-boron surfaces"
+    },
+    "2608.13355": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-13",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Evaluating Electrostatic Embedding MLIP/MM for Relative Binding Free Energy Calculations"
+    },
+    "crossref:10.1021/acs.jpcc.6c03940": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "published": "2026-08-15",
+      "seen_at": "2026-08-15T06:04:22.590553+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    }
+  },
   "version": 2
 }
