@@ -21,6 +21,9 @@ Primary interests:
 - autonomous or self-driving laboratories, active learning, Bayesian optimization, closed-loop experiments, and robotic materials workflows
 - multimodal systems that connect scientific text, crystal or molecular structure, spectra, microscopy, simulation, and experimental data
 - reusable research-agent infrastructure for literature, experiment planning, provenance, knowledge graphs, or scientifically accountable automation
+- agentic AI for laboratories, including safe LLM instrument control, microscope or stage operation, quantum-device measurement, closed measurement loops, and instrument-data integration
+- scientific-agent evaluation with expert STEM tasks, criterion-based rubrics, multimodal harnesses, reproducible benchmarks, and evidence-grounded evaluation
+- verifiable multi-agent research workflows using projected views, progressive disclosure, structured updates, explicit workflow contracts, authorized write regions, and runtime verification
 
 Secondary interests:
 - AI-enabled catalyst, battery, polymer, alloy, semiconductor, photonic, and energy-material discovery when the method or finding is broadly useful
@@ -32,6 +35,9 @@ Out of scope for this radar:
 - ordinary materials calculations or experiments that merely mention automation but contain no substantive AI method
 - generic quantum algorithms with no plausible scientific, chemistry, materials, or experimental application
 - routine application of an off-the-shelf model to a small dataset when neither the method nor the scientific conclusion is meaningful
+- generic customer-service, coding, office, or daily-life agent workflows and benchmarks without a concrete scientific-research contribution
+
+A general-purpose agent benchmark or workflow may receive at most group_fit_score 3 only when its abstract demonstrates a clear, reusable capability for scientific agents, such as rigorous STEM evaluation, verifiable shared-state collaboration, safe tool use, or reproducible delegation. Author identity alone is never evidence of relevance. Without that explicit scientific transfer value, apply the hard group-fit rule and score it 1.
 
 For every paper, classify study_type as exactly one of: 实验, 理论, 计算, 综述, 混合, 其他. Return two or three concise quality_signals in Simplified Chinese identifying concrete strengths or limitations visible in the metadata, such as an external benchmark, ablation, uncertainty estimate, open dataset, experimental validation, discovered candidate, missing baseline, data leakage risk, missing abstract, or lack of actionable detail. Do not use vague praise.
 

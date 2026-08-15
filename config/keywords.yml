@@ -30,6 +30,10 @@ arxiv:
     - hBN
     - MXene
     - moire material
+    - twisted MoTe2 fractional Chern
+    - MnBi2Te4 Chern insulator
+    - magic angle graphene quantum geometry
+    - moire topological magnetism
 
 crossref:
   enabled: true
@@ -45,6 +49,12 @@ crossref:
     - two-dimensional magnetism
     - TMD excitons
     - spin valley two-dimensional materials
+    - twisted MoTe2 fractional Chern
+    - MnBi2Te4 Chern insulator
+    - magic angle graphene quantum geometry
+    - moire topological magnetism
+    - magnetic topological insulator superconductivity
+    - moire exciton Fermi polaron
 
 semantic_scholar:
   enabled: true
@@ -83,6 +93,17 @@ matching:
     - MoSe2
     - molybdenum ditelluride
     - MoTe2
+    - twisted MoTe2
+    - twisted bilayer MoTe2
+    - tMoTe2
+    - MnBi2Te4
+    - magic-angle twisted bilayer graphene
+    - MATBG
+    - twisted double bilayer graphene
+    - TDBG
+    - Bi2Se3
+    - monolayer NbSe2
+    - Bi2Se3/NbSe2
     - van der Waals
     - vdW
     - van der Waals heterostructure
@@ -141,6 +162,37 @@ matching:
     - quasiparticle
     - plasmon
     - polariton
+    - fractional quantum anomalous Hall
+    - fractionally quantized anomalous Hall
+    - FQAH
+    - FQAHE
+    - fractional Chern insulator
+    - fractional Chern insulators
+    - FCI
+    - quantum anomalous Hall
+    - composite Fermi liquid
+    - Chern insulator
+    - Chern magnet
+    - moire Chern magnet
+    - topological magnetism
+    - orbital magnetism
+    - canted antiferromagnet
+    - canted-antiferromagnetic
+    - intervalley coherent
+    - topological Hall effect
+    - noncoplanar spin texture
+    - Hofstadter
+    - Hofstadter states
+    - Rydberg exciton
+    - exciton Fermi polaron
+    - Fermi polaron
+    - Ising superconductivity
+    - Rashba superconductivity
+    - chiral edge state
+    - chiral interface channel
+    - magnetoelectric control
+    - circular photogalvanic effect
+    - elastoresistance
     - quantum phase transition
     - electronic phase transition
   supporting_terms:
@@ -196,6 +248,22 @@ matching:
     - metal-insulator transition
     - spin-orbit coupling
     - valley physics
+    - magnetic circular dichroism
+    - reflective magnetic circular dichroism
+    - microwave impedance microscopy
+    - MIM
+    - scanning SQUID
+    - magnetic imaging
+    - second harmonic generation
+    - SHG
+    - uniaxial strain
+    - strain control
+    - gate-defined junction
+    - Chern junction
+    - Chern circuit
+    - current divider
+    - optical control
+    - layer pseudospin
   excluded_terms:
     - 2D object detection
     - two-dimensional image segmentation

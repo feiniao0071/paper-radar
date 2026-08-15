@@ -11,6 +11,9 @@ def test_project_configuration_loads() -> None:
     assert config.matching.require_core_term is True
     assert config.matching.require_focus_term is True
     assert "quantum transport" in config.matching.focus_terms
+    assert "MnBi2Te4" in config.matching.core_terms
+    assert "fractional Chern insulator" in config.matching.focus_terms
+    assert "twisted MoTe2 fractional Chern" in config.arxiv.query_terms
     assert config.arxiv.query_batch_size == 6
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
@@ -27,5 +30,8 @@ def test_quantum_ai_configuration_loads() -> None:
     assert config.profile.digest_title == "Quantum AI Materials 论文速递"
     assert "machine learning" in config.matching.core_terms
     assert "materials discovery" in config.matching.focus_terms
+    assert "agentic AI" in config.matching.core_terms
+    assert "instrument control" in config.matching.focus_terms
+    assert "LLM scientific workflow" in config.arxiv.query_terms
     assert config.matching.require_core_term is True
     assert config.matching.require_focus_term is True

@@ -31,6 +31,11 @@ arxiv:
     - active learning materials
     - Bayesian optimization materials synthesis
     - AI agent scientific discovery
+    - agentic AI quantum materials
+    - AI agent physics laboratory
+    - large language model instrument control
+    - autonomous quantum experiment
+    - LLM scientific workflow
 
 crossref:
   enabled: true
@@ -48,6 +53,10 @@ crossref:
     - quantum machine learning chemistry
     - active learning materials synthesis
     - autonomous laboratory materials
+    - agentic AI scientific laboratory
+    - AI agent physics experiment
+    - instrument control language model
+    - AI for science quantum materials
 
 semantic_scholar:
   enabled: true
@@ -100,6 +109,27 @@ matching:
     - self-driving laboratory
     - AI agent
     - scientific agent
+    - AI for science
+    - AI for labs
+    - agentic AI
+    - agentic system
+    - agentic systems
+    - agentic workflow
+    - agentic workflows
+    - scientific AI agent
+    - scientific AI agents
+    - laboratory agent
+    - laboratory agents
+    - experiment agent
+    - experiment agents
+    - instrument control agent
+    - instrument control agents
+    - LLM workflow
+    - LLM workflows
+    - shared-state LLM workflow
+    - shared-state LLM workflows
+    - agent harness
+    - agentic harness
     - neural quantum state
     - neural quantum states
     - quantum machine learning
@@ -171,6 +201,22 @@ matching:
     - Hamiltonian
     - qubit
     - qubits
+    - scientific reasoning
+    - scientific benchmark
+    - STEM benchmark
+    - physics experiment
+    - quantum experiment
+    - condensed matter experiment
+    - materials experiment
+    - scientific workflow
+    - research workflow
+    - laboratory automation
+    - instrument control
+    - measurement automation
+    - quantum-device measurement
+    - microscope control
+    - scanning probe microscopy
+    - scientific discovery
   supporting_terms:
     - property prediction
     - structure prediction
@@ -204,6 +250,31 @@ matching:
     - quantum algorithms
     - force field
     - force fields
+    - progressive disclosure
+    - projected view
+    - projected views
+    - structured patch
+    - structured patches
+    - verified update
+    - verified updates
+    - workflow contract
+    - workflow contracts
+    - authorized write region
+    - runtime verification
+    - delegation
+    - sub-workflow
+    - tool use
+    - agent planning
+    - agent evaluation
+    - LLM-as-a-jury
+    - criterion-based rubric
+    - multimodal agent
+    - instrument integration
+    - measurement loop
+    - measurement loops
+    - literature triage
+    - provenance
+    - safety evaluation
   excluded_terms:
     - medical diagnosis
     - clinical trial

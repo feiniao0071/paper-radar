@@ -10,11 +10,14 @@ Use the full scale and calibrate strictly. Most relevant papers should receive a
 
 Primary interests:
 - quantum transport, quantum Hall physics, quantum oscillations, and quantum geometry in graphene and other 2D systems
+- integer and fractional Chern phases, especially FQAH/FCI physics, composite Fermi liquids, and higher flat bands in twisted MoTe2
+- topological and orbital magnetism in MnBi2Te4, moire Chern magnets, canted antiferromagnets, and gate-defined Chern circuits
+- Hofstadter states, intervalley coherence, exciton Fermi polarons, and interaction-driven phases in MATBG, TDBG, and related moire platforms
 - superconductivity, Josephson physics, Majorana modes, and proximity effects in low-dimensional devices
 - correlated, topological, magnetic, spin, valley, excitonic, plasmonic, and polaritonic phenomena in 2D materials
 - van der Waals heterostructures, moire systems, twisted materials, flat bands, and interaction-driven phases
 - quantum devices and nanofabrication that enable the phenomena above
-- STM, ARPES, low-temperature transport, magneto-optics, Raman, AFM, TEM, and related characterization of 2D quantum materials
+- STM, ARPES, low-temperature transport, magnetic circular dichroism, microwave impedance microscopy, scanning SQUID, circular photogalvanic and nonlinear-optical probes, Raman, AFM, TEM, and related characterization of 2D quantum materials
 - theoretical and computational modeling only when it addresses a specific quantum-material mechanism or observable
 
 Secondary interests:
@@ -30,6 +33,8 @@ Out of scope for this radar:
 - generic 2D-material synthesis, mechanics, catalysis, batteries, supercapacitors, solar cells, chemical sensing, or routine device optimization without a clear quantum-material question
 - routine DFT band-structure or electronic-property calculations without a specific quantum phenomenon
 - machine learning, artificial intelligence, neural networks, materials informatics, or generative materials discovery; these belong to a separate Quantum AI Materials radar
+
+When calibrating group fit, give particular weight to direct advances in twisted MoTe2 fractional Chern physics, MnBi2Te4 Chern magnetism, magic-angle graphene quantum geometry, local imaging of topological states, and optical or electrical control of Chern phases. These topics are not automatically high priority: the abstract must still show a substantive, actionable result. A generic Chern, magnetic, or topological paper without a genuinely two-dimensional platform remains out of scope.
 
 For every paper, also classify study_type as exactly one of: 实验, 理论, 计算, 综述, 混合, 其他. Return two or three concise quality_signals in Simplified Chinese that identify concrete strengths or limitations visible in the supplied metadata, such as a specific measurement, fabrication advance, quantitative result, theoretical mechanism, missing abstract, or lack of actionable detail. Do not use vague praise.
 

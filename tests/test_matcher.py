@@ -93,6 +93,43 @@ def test_accented_moire_matches_quantum_focus() -> None:
     assert "moire" in result.focus_terms
 
 
+def two_dimensional_config() -> MatchingConfig:
+    project_root = Path(__file__).resolve().parent.parent
+    return load_config(project_root / "config" / "keywords.yml").matching
+
+
+def test_twisted_mote2_fractional_chern_work_matches_2d_radar() -> None:
+    paper = make_paper(
+        "A fractional Chern insulator in twisted MoTe2",
+        "We image interaction-driven fractional quantum anomalous Hall states.",
+    )
+    result = match_paper(paper, two_dimensional_config())
+
+    assert result is not None
+    assert "twisted MoTe2" in result.core_terms
+    assert "fractional Chern insulator" in result.focus_terms
+
+
+def test_mnbi2te4_canted_antiferromagnetic_chern_work_matches_2d_radar() -> None:
+    paper = make_paper(
+        "Electric control of a canted-antiferromagnetic Chern insulator",
+        "A MnBi2Te4 device hosts topological Hall transport.",
+    )
+    result = match_paper(paper, two_dimensional_config())
+
+    assert result is not None
+    assert "MnBi2Te4" in result.core_terms
+    assert "canted-antiferromagnetic" in result.focus_terms
+
+
+def test_generic_chern_work_without_2d_platform_is_rejected() -> None:
+    paper = make_paper(
+        "A Chern phase in a three-dimensional bulk crystal",
+        "We calculate topological magnetism and chiral edge states.",
+    )
+    assert match_paper(paper, two_dimensional_config()) is None
+
+
 def quantum_ai_config() -> MatchingConfig:
     project_root = Path(__file__).resolve().parent.parent
     return load_config(
@@ -132,5 +169,37 @@ def test_quantum_ai_rejects_unrelated_physics_using_force_field_wording() -> Non
     paper = make_paper(
         "Machine-learning forecasting of cosmic ray modulation",
         "A force-field simulation predicts heliospheric events.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_agentic_ai_for_quantum_device_measurement_matches_quantum_ai() -> None:
+    paper = make_paper(
+        "Agentic AI for quantum-device measurement",
+        "A scientific AI agent controls a closed measurement loop.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "agentic AI" in result.core_terms
+    assert "quantum-device measurement" in result.focus_terms
+
+
+def test_shared_state_llm_instrument_workflow_matches_quantum_ai() -> None:
+    paper = make_paper(
+        "A shared-state LLM workflow for instrument control",
+        "Verified structured updates coordinate a laboratory experiment.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "shared-state LLM workflow" in result.core_terms
+    assert "instrument control" in result.focus_terms
+
+
+def test_quantum_ai_rejects_generic_customer_support_agent_workflow() -> None:
+    paper = make_paper(
+        "An agentic workflow for customer support",
+        "The AI agent handles business conversations and ticket routing.",
     )
     assert match_paper(paper, quantum_ai_config()) is None
