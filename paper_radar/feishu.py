@@ -94,10 +94,7 @@ def build_digest_card(
 
     digest_date = (generated_at or datetime.now(UTC)).astimezone(BEIJING_TIMEZONE).date()
     high_priority_count = sum(item.relevance_score == 3 for item in recommendations)
-    if high_priority_count:
-        priority_note = f"其中 {high_priority_count} 篇建议优先阅读。"
-    else:
-        priority_note = "本期均为值得关注的相关工作。"
+    digest_topic = digest_title.removesuffix("论文速递").strip() or digest_title
 
     elements: list[dict[str, Any]] = [
         {
@@ -105,20 +102,20 @@ def build_digest_card(
             "text": {
                 "tag": "lark_md",
                 "content": (
-                    f"本期筛选出 **{len(recommendations)}** 篇与{digest_intro}相关的新论文，"
-                    f"{priority_note}"
+                    f"今天 Top {len(recommendations)} 里对 "
+                    f"**{digest_topic}** 比较值得看的："
                 ),
             },
         }
     ]
     if notices:
-        notice_text = "\n".join(f"- {item}" for item in notices)
+        notice_text = "；".join(notices)
         elements.append(
             {
                 "tag": "div",
                 "text": {
                     "tag": "lark_md",
-                    "content": f"**运行提示：**\n{_truncate(notice_text, 700)}",
+                    "content": f"**提示：** {_truncate(notice_text, 300)}",
                 },
             }
         )
@@ -128,41 +125,25 @@ def build_digest_card(
         match = matches[paper.paper_id]
         display_title = _truncate(recommendation.title_zh or paper.title, 100)
         summary = recommendation.summary_zh or paper.abstract
-        relevance = _truncate(", ".join(recommendation.key_relevance[:6]), 180)
-        if not relevance:
-            relevance = _truncate(", ".join(match.matched_terms[:6]), 180)
-        categories = _truncate(", ".join(paper.categories[:3]), 100)
-        authors = _truncate(", ".join(paper.authors), 160)
         links = f"[原文]({paper.abstract_url})"
         if paper.pdf_url and paper.pdf_url != paper.abstract_url:
             links += f" · [PDF]({paper.pdf_url})"
-        source_line = paper.source
+        source_parts = [paper.source]
         if paper.venue:
-            source_line += f" · {paper.venue}"
+            source_parts.append(paper.venue)
         if paper.citation_count is not None and paper.citation_count > 0:
-            source_line += f" · 引用 {paper.citation_count}"
-        dimensions = (
-            f"方向 {recommendation.group_fit_score}/5 · "
-            f"新颖性 {recommendation.novelty_score}/5 · "
-            f"方法价值 {recommendation.method_value_score}/5 · "
-            f"摘要证据 {recommendation.evidence_score}/5"
+            source_parts.append(f"引用 {paper.citation_count}")
+        source_line = _truncate(" · ".join(source_parts), 120)
+        reason = recommendation.reason or (
+            "命中本雷达关注方向：" + ", ".join(match.matched_terms[:5])
         )
-        quality_signals = _truncate("；".join(recommendation.quality_signals[:3]), 240)
         content = (
             f"**{index}. {display_title}**\n"
-            f"{links} · "
-            f"{paper.published.date().isoformat()} · 优先级 {recommendation.relevance_score}/3 "
-            f"· 综合 {recommendation.priority_score}/100 · 建议{recommendation.reading_action}\n"
-            f"**英文题目：** {_truncate(paper.title, 220)}\n"
-            f"**作者：** {authors}\n"
-            f"**来源：** {_truncate(source_line, 160)}\n"
-            f"**分类：** {categories}\n"
-            f"**研究类型：** {recommendation.study_type}\n"
-            f"**评分依据：** {dimensions}\n\n"
-            f"**做什么：** {_truncate(summary, 320)}\n\n"
-            f"**和我们组的关系：** {_truncate(recommendation.reason, 200)}\n\n"
-            f"**质量信号：** {quality_signals}\n\n"
-            f"**关键词：** {relevance}"
+            f"{links}\n"
+            f"{source_line} · {paper.published.date().isoformat()} · "
+            f"优先级 {recommendation.relevance_score}/3 · 建议{recommendation.reading_action}\n\n"
+            f"**做什么：** {_truncate(summary, 240)}\n\n"
+            f"**和我们组的关系：** {_truncate(reason, 160)}"
         )
         elements.append({"tag": "hr"})
         elements.append({"tag": "div", "text": {"tag": "lark_md", "content": content}})
@@ -175,7 +156,7 @@ def build_digest_card(
                 "elements": [
                     {
                         "tag": "plain_text",
-                        "content": "仅推送新增或延后且达到推荐阈值的论文；没有候选时保持安静。",
+                        "content": "仅推送达到推荐阈值的新论文；无新增时保持安静。",
                     }
                 ],
             },
