@@ -108,6 +108,106 @@ def test_calibration_caps_high_priority_recommendations() -> None:
     assert calibrated[-1].reading_action == "速读"
 
 
+def test_delivery_selection_caps_non_preferred_machine_learning() -> None:
+    papers = [
+        Paper(
+            paper_id=f"paper-{index}",
+            title=f"Paper {index}",
+            authors=("Author",),
+            abstract="Physics AI",
+            published=datetime(2026, 8, 14, index, tzinfo=UTC),
+            updated=datetime(2026, 8, 14, index, tzinfo=UTC),
+            categories=(),
+            abstract_url="https://example.test",
+            pdf_url="https://example.test/paper.pdf",
+        )
+        for index in range(6)
+    ]
+    recommendations = [
+        app.Recommendation(
+            paper=paper,
+            relevance_score=2,
+            reason="相关",
+            key_relevance=("凝聚态物理",),
+            title_zh="论文",
+            summary_zh="摘要",
+            used_ai=True,
+        )
+        for paper in papers
+    ]
+    matches = {
+        paper.paper_id: MatchResult(
+            10,
+            ("large language model",) if index < 2 else ("machine learning",),
+            (),
+            ("condensed matter",),
+            ("large language model",) if index < 2 else (),
+        )
+        for index, paper in enumerate(papers)
+    }
+
+    selected, quota_skipped = app._select_for_delivery(
+        recommendations,
+        matches,
+        minimum_relevance=2,
+        max_papers=10,
+        max_non_preferred_papers=2,
+    )
+
+    assert [item.paper.paper_id for item in selected] == [
+        "paper-0",
+        "paper-1",
+        "paper-2",
+        "paper-3",
+    ]
+    assert quota_skipped == {"paper-4", "paper-5"}
+
+    traditional_matches = {
+        paper.paper_id: MatchResult(
+            5,
+            ("machine learning",),
+            (),
+            ("condensed matter",),
+        )
+        for paper in papers
+    }
+    selected, quota_skipped = app._select_for_delivery(
+        recommendations,
+        traditional_matches,
+        minimum_relevance=2,
+        max_papers=10,
+        max_non_preferred_papers=2,
+    )
+
+    assert [item.paper.paper_id for item in selected] == ["paper-0", "paper-1"]
+    assert quota_skipped == {"paper-2", "paper-3", "paper-4", "paper-5"}
+
+
+def test_delivery_selection_preserves_profiles_without_preferred_terms() -> None:
+    paper = _paper()
+    recommendation = app.Recommendation(
+        paper=paper,
+        relevance_score=2,
+        reason="相关",
+        key_relevance=("二维材料",),
+        title_zh="论文",
+        summary_zh="摘要",
+        used_ai=True,
+    )
+    matches = {paper.paper_id: MatchResult(5, ("graphene",), ())}
+
+    selected, quota_skipped = app._select_for_delivery(
+        [recommendation],
+        matches,
+        minimum_relevance=2,
+        max_papers=10,
+        max_non_preferred_papers=10,
+    )
+
+    assert selected == [recommendation]
+    assert quota_skipped == set()
+
+
 def test_deep_read_candidate_requires_inspiring_ai_evaluation() -> None:
     paper = _paper()
     routine = app.Recommendation(

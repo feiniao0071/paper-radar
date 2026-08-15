@@ -229,6 +229,8 @@ def test_quantum_ai_matches_llm_agent_for_quantum_sensing_instruments() -> None:
     assert "LLM" in result.core_terms
     assert "quantum sensing" in result.focus_terms
     assert "NV center" in result.focus_terms
+    assert "LLM" in result.preferred_terms
+    assert "scientific agent" in result.preferred_terms
 
 
 def test_quantum_ai_matches_learned_charge_density_for_defect_physics() -> None:
@@ -277,3 +279,15 @@ def test_quantum_ai_rejects_foundation_model_for_drug_discovery() -> None:
         "The model predicts protein interactions for pharmaceutical screening.",
     )
     assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_keeps_traditional_ml_as_non_preferred_supplement() -> None:
+    paper = make_paper(
+        "Machine learning for condensed matter phase transitions",
+        "A neural network identifies a magnetic phase transition.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "machine learning" in result.core_terms
+    assert result.preferred_terms == ()

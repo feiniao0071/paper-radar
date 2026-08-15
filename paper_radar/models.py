@@ -50,10 +50,16 @@ class MatchResult:
     core_terms: tuple[str, ...]
     supporting_terms: tuple[str, ...]
     focus_terms: tuple[str, ...] = ()
+    preferred_terms: tuple[str, ...] = ()
 
     @property
     def matched_terms(self) -> tuple[str, ...]:
-        ordered = self.core_terms + self.focus_terms + self.supporting_terms
+        ordered = (
+            self.preferred_terms
+            + self.core_terms
+            + self.focus_terms
+            + self.supporting_terms
+        )
         return tuple(dict.fromkeys(ordered))
 
 

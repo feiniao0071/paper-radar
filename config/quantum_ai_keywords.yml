@@ -11,39 +11,42 @@ arxiv:
   lookback_days: 8
   query_batch_size: 5
   query_terms:
-    - machine learning materials discovery
-    - deep learning materials science
-    - graph neural network materials
-    - foundation model materials science
+    - large language model condensed matter
+    - large language model physics
+    - large language model quantum materials
     - large language model materials science
-    - generative model materials discovery
-    - diffusion model crystal generation
-    - machine learned interatomic potential
-    - neural network quantum many-body
-    - neural quantum state
-    - machine learning electronic structure
-    - machine learning density functional theory
-    - artificial intelligence quantum materials
-    - machine learning condensed matter physics
-    - machine learning superconductivity
-    - machine learning topological materials
-    - machine learning quantum transport
-    - machine learning moire quantum materials
-    - AI quantum sensing
-    - AI quantum control
-    - autonomous materials laboratory
-    - active learning materials
-    - Bayesian optimization materials synthesis
-    - AI agent scientific discovery
-    - agentic AI quantum materials
-    - AI agent physics laboratory
-    - LLM physics laboratory
+    - large language model materials physics
+    - large language model physics experiment
     - large language model instrument control
+    - LLM condensed matter physics
+    - LLM physics
+    - LLM quantum experiment
+    - LLM electronic structure
+    - LLM scientific literature physics
+    - foundation model condensed matter physics
+    - foundation model materials science
+    - foundation model quantum materials
+    - foundation model atomistic simulation
+    - multimodal foundation model materials characterization
+    - vision language model microscopy
+    - retrieval augmented generation materials science
+    - knowledge graph quantum materials
+    - scientific agent condensed matter physics
+    - scientific agent quantum materials
+    - scientific agent physics benchmark
+    - AI agent quantum experiment
+    - AI agent physics laboratory
+    - agentic AI quantum materials
+    - agentic AI physics laboratory
+    - LLM scientific workflow physics
     - autonomous quantum experiment
     - autonomous quantum measurement
     - AI scientific agent microscopy
-    - scientific agent physics benchmark
-    - LLM scientific workflow
+    - neural quantum state
+    - machine learning condensed matter physics
+    - machine learning electronic structure
+    - machine learning quantum transport
+    - machine learned interatomic potential
 
 crossref:
   enabled: true
@@ -51,24 +54,26 @@ crossref:
   max_results_per_query: 20
   lookback_days: 8
   query_terms:
-    - artificial intelligence materials discovery
-    - machine learning quantum materials
-    - machine learning condensed matter physics
-    - machine learning quantum transport
-    - machine learning moire quantum materials
-    - graph neural network materials science
-    - foundation model solid state materials
-    - generative AI crystal design
-    - machine learned interatomic potential
-    - neural quantum state many body
-    - AI quantum sensing experiment
-    - active learning materials synthesis
-    - autonomous laboratory materials
-    - agentic AI scientific laboratory
-    - AI agent physics experiment
+    - large language model condensed matter physics
+    - large language model quantum materials
+    - large language model materials science
+    - large language model physics experiment
+    - foundation model condensed matter physics
+    - foundation model quantum materials
+    - multimodal foundation model materials characterization
+    - vision language model microscopy materials
+    - retrieval augmented generation materials physics
+    - knowledge graph quantum materials
     - scientific agent physics laboratory
+    - scientific agent quantum materials
+    - AI agent quantum experiment
+    - agentic AI condensed matter
     - instrument control language model
-    - AI for science quantum materials
+    - autonomous quantum experiment
+    - neural quantum state many body
+    - machine learning condensed matter physics
+    - machine learning electronic structure
+    - machine learned interatomic potential
 
 semantic_scholar:
   enabled: true
@@ -82,6 +87,44 @@ matching:
   core_term_weight: 3
   focus_term_weight: 2
   supporting_term_weight: 1
+  preferred_term_weight: 6
+  preferred_terms:
+    - foundation model
+    - foundation models
+    - large language model
+    - large language models
+    - LLM
+    - LLMs
+    - multimodal foundation model
+    - multimodal foundation models
+    - multimodal large language model
+    - multimodal large language models
+    - large multimodal model
+    - large multimodal models
+    - vision language model
+    - vision language models
+    - scientific language model
+    - scientific language models
+    - retrieval augmented generation
+    - retrieval-augmented generation
+    - RAG
+    - AI agent
+    - scientific agent
+    - scientific AI agent
+    - scientific AI agents
+    - laboratory agent
+    - laboratory agents
+    - experiment agent
+    - experiment agents
+    - instrument control agent
+    - instrument control agents
+    - agentic AI
+    - autonomous laboratory
+    - self-driving laboratory
+    - LLM workflow
+    - LLM workflows
+    - shared-state LLM workflow
+    - shared-state LLM workflows
   core_terms:
     - machine learning
     - machine learned
@@ -106,6 +149,19 @@ matching:
     - diffusion models
     - transformer model
     - transformer models
+    - multimodal foundation model
+    - multimodal foundation models
+    - multimodal large language model
+    - multimodal large language models
+    - large multimodal model
+    - large multimodal models
+    - vision language model
+    - vision language models
+    - scientific language model
+    - scientific language models
+    - retrieval augmented generation
+    - retrieval-augmented generation
+    - RAG
     - reinforcement learning
     - active learning
     - Bayesian optimization
@@ -356,6 +412,7 @@ run:
   ai_candidate_limit: 20
   minimum_ai_relevance: 2
   max_high_priority_per_run: 3
+  max_non_preferred_papers: 3
   deep_read_enabled: true
   deep_read_min_priority_score: 82
   state_retention_days: 365

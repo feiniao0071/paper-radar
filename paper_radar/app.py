@@ -139,6 +139,34 @@ def _calibrate_priorities(
     return calibrated
 
 
+def _select_for_delivery(
+    recommendations: list[Recommendation],
+    matches: dict[str, MatchResult],
+    *,
+    minimum_relevance: int,
+    max_papers: int,
+    max_non_preferred_papers: int,
+) -> tuple[list[Recommendation], set[str]]:
+    eligible = [
+        item for item in recommendations if item.relevance_score >= minimum_relevance
+    ]
+    selected: list[Recommendation] = []
+    quota_skipped: set[str] = set()
+    non_preferred_count = 0
+    for recommendation in eligible:
+        if len(selected) >= max_papers:
+            break
+        paper_id = recommendation.paper.paper_id
+        is_preferred = bool(matches[paper_id].preferred_terms)
+        if not is_preferred and non_preferred_count >= max_non_preferred_papers:
+            quota_skipped.add(paper_id)
+            continue
+        selected.append(recommendation)
+        if not is_preferred:
+            non_preferred_count += 1
+    return selected, quota_skipped
+
+
 def _select_deep_read_candidate(
     recommendations: list[Recommendation],
     *,
@@ -309,11 +337,13 @@ def run(args: argparse.Namespace) -> int:
         max_high_priority=config.run.max_high_priority_per_run,
     )
     max_papers = args.max_papers or config.run.max_papers_per_run
-    selected = [
-        recommendation
-        for recommendation in recommendations
-        if recommendation.relevance_score >= config.run.minimum_ai_relevance
-    ][:max_papers]
+    selected, quota_skipped_ids = _select_for_delivery(
+        recommendations,
+        matches,
+        minimum_relevance=config.run.minimum_ai_relevance,
+        max_papers=max_papers,
+        max_non_preferred_papers=config.run.max_non_preferred_papers,
+    )
     deep_read_candidate = _select_deep_read_candidate(
         selected,
         enabled=config.run.deep_read_enabled,
@@ -387,8 +417,11 @@ def run(args: argparse.Namespace) -> int:
             continue
         elif (
             paper.paper_id in recommendations_by_id
-            and recommendations_by_id[paper.paper_id].relevance_score
-            < config.run.minimum_ai_relevance
+            and (
+                recommendations_by_id[paper.paper_id].relevance_score
+                < config.run.minimum_ai_relevance
+                or paper.paper_id in quota_skipped_ids
+            )
         ):
             state.mark(paper, "skipped", now=now)
         else:

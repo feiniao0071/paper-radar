@@ -51,6 +51,8 @@ class MatchingConfig:
     require_focus_term: bool = False
     focus_term_weight: int = 2
     focus_terms: tuple[str, ...] = ()
+    preferred_term_weight: int = 0
+    preferred_terms: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -59,6 +61,7 @@ class RunConfig:
     ai_candidate_limit: int
     minimum_ai_relevance: int
     max_high_priority_per_run: int
+    max_non_preferred_papers: int
     deep_read_enabled: bool
     deep_read_min_priority_score: int
     state_retention_days: int
@@ -164,6 +167,14 @@ def load_config(path: Path) -> RadarConfig:
                 matching_raw.get("focus_terms", ["quantum"]),
                 "matching.focus_terms",
             ),
+            preferred_term_weight=int(
+                matching_raw.get("preferred_term_weight", 0)
+            ),
+            preferred_terms=tuple(
+                str(item).strip()
+                for item in matching_raw.get("preferred_terms", [])
+                if str(item).strip()
+            ),
         ),
         run=RunConfig(
             max_papers_per_run=int(run_raw.get("max_papers_per_run", 10)),
@@ -171,6 +182,12 @@ def load_config(path: Path) -> RadarConfig:
             minimum_ai_relevance=int(run_raw.get("minimum_ai_relevance", 2)),
             max_high_priority_per_run=int(
                 run_raw.get("max_high_priority_per_run", 3)
+            ),
+            max_non_preferred_papers=int(
+                run_raw.get(
+                    "max_non_preferred_papers",
+                    run_raw.get("max_papers_per_run", 10),
+                )
             ),
             deep_read_enabled=bool(run_raw.get("deep_read_enabled", True)),
             deep_read_min_priority_score=int(
@@ -199,7 +216,9 @@ def load_config(path: Path) -> RadarConfig:
         or config.crossref.lookback_days < 1
         or config.semantic_scholar.batch_size < 1
         or config.matching.focus_term_weight < 1
+        or config.matching.preferred_term_weight < 0
         or config.run.max_high_priority_per_run < 0
+        or config.run.max_non_preferred_papers < 0
         or not 50 <= config.run.deep_read_min_priority_score <= 100
     ):
         raise ValueError("source and priority settings are invalid")

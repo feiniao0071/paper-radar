@@ -40,6 +40,7 @@ def match_paper(paper: Paper, config: MatchingConfig) -> MatchResult | None:
 
     core_terms = _matched_terms(searchable, config.core_terms)
     focus_terms = _matched_terms(searchable, config.focus_terms)
+    preferred_terms = _matched_terms(searchable, config.preferred_terms)
     focus_normalized = {normalize_text(term) for term in focus_terms}
     supporting_terms = tuple(
         term
@@ -55,6 +56,7 @@ def match_paper(paper: Paper, config: MatchingConfig) -> MatchResult | None:
         min(len(core_terms), 3) * config.core_term_weight
         + min(len(focus_terms), 3) * config.focus_term_weight
         + min(len(supporting_terms), 5) * config.supporting_term_weight
+        + min(len(preferred_terms), 3) * config.preferred_term_weight
     )
     if score < config.minimum_score:
         return None
@@ -63,4 +65,5 @@ def match_paper(paper: Paper, config: MatchingConfig) -> MatchResult | None:
         core_terms=core_terms,
         supporting_terms=supporting_terms,
         focus_terms=focus_terms,
+        preferred_terms=preferred_terms,
     )
