@@ -41,6 +41,9 @@ class MatchingConfig:
     core_terms: tuple[str, ...]
     supporting_terms: tuple[str, ...]
     excluded_terms: tuple[str, ...]
+    require_focus_term: bool = False
+    focus_term_weight: int = 2
+    focus_terms: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -131,6 +134,14 @@ def load_config(path: Path) -> RadarConfig:
                 for item in matching_raw.get("excluded_terms", [])
                 if str(item).strip()
             ),
+            require_focus_term=bool(
+                matching_raw.get("require_focus_term", False)
+            ),
+            focus_term_weight=int(matching_raw.get("focus_term_weight", 2)),
+            focus_terms=_strings(
+                matching_raw.get("focus_terms", ["quantum"]),
+                "matching.focus_terms",
+            ),
         ),
         run=RunConfig(
             max_papers_per_run=int(run_raw.get("max_papers_per_run", 10)),
@@ -155,6 +166,7 @@ def load_config(path: Path) -> RadarConfig:
         config.crossref.max_results_per_query < 1
         or config.crossref.lookback_days < 1
         or config.semantic_scholar.batch_size < 1
+        or config.matching.focus_term_weight < 1
         or config.run.max_high_priority_per_run < 0
     ):
         raise ValueError("source and priority limits must be positive")

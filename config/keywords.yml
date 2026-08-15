@@ -32,13 +32,14 @@ crossref:
   max_results_per_query: 20
   lookback_days: 8
   query_terms:
-    - two-dimensional materials
-    - graphene
-    - transition metal dichalcogenide
-    - van der Waals heterostructure
-    - twisted heterostructure
-    - moire materials
-    - MXene
+    - graphene quantum transport
+    - two-dimensional superconductivity
+    - two-dimensional topological materials
+    - van der Waals quantum materials
+    - moire correlated electrons
+    - two-dimensional magnetism
+    - TMD excitons
+    - spin valley two-dimensional materials
 
 semantic_scholar:
   enabled: true
@@ -47,8 +48,10 @@ semantic_scholar:
 
 matching:
   require_core_term: true
-  minimum_score: 3
+  require_focus_term: true
+  minimum_score: 5
   core_term_weight: 3
+  focus_term_weight: 2
   supporting_term_weight: 1
   core_terms:
     - 2D materials
@@ -79,7 +82,6 @@ matching:
     - vdW
     - van der Waals heterostructure
     - vdW heterostructure
-    - layered materials
     - twisted heterostructure
     - black phosphorus
     - phosphorene
@@ -88,6 +90,54 @@ matching:
     - MXene
     - moire material
     - moire pattern
+  focus_terms:
+    - quantum dots
+    - quantum wells
+    - quantum Hall effect
+    - fractional quantum Hall
+    - quantum transport
+    - quantum interference
+    - quantum oscillation
+    - quantum geometry
+    - superconductivity
+    - superconducting
+    - Josephson
+    - Majorana
+    - topological
+    - Chern
+    - Berry curvature
+    - Dirac
+    - Weyl
+    - correlated electrons
+    - strongly correlated
+    - many-body
+    - Mott
+    - flat band
+    - charge density wave
+    - charge-density-wave
+    - metal-insulator transition
+    - Kondo
+    - RKKY
+    - spin-orbit coupling
+    - spin transport
+    - spintronics
+    - valley physics
+    - valleytronics
+    - exciton
+    - excitonic
+    - moire
+    - twist angle
+    - magnetism
+    - magnetic
+    - ferromagnet
+    - antiferromagnet
+    - magnon
+    - Landau level
+    - quasiparticle
+    - plasmon
+    - polariton
+    - quantum phase transition
+    - electronic phase transition
   supporting_terms:
     - quantum dots
     - quantum wells
@@ -118,10 +168,7 @@ matching:
     - field-effect transistor
     - FET
     - photodetector
-    - solar cell
-    - sensor
     - nanoelectronics
-    - flexible electronics
     - chemical vapor deposition
     - CVD
     - molecular beam epitaxy
@@ -147,6 +194,26 @@ matching:
   excluded_terms:
     - 2D object detection
     - two-dimensional image segmentation
+    - machine learning
+    - deep learning
+    - artificial intelligence
+    - neural network
+    - graph neural network
+    - large language model
+    - materials informatics
+    - generative model
+    - photocatalysis
+    - electrocatalysis
+    - oxygen reduction reaction
+    - oxygen evolution reaction
+    - hydrogen evolution reaction
+    - supercapacitor
+    - lithium-ion battery
+    - sodium-ion battery
+    - gas sensor
+    - biosensor
+    - solar cell
+    - water splitting
 
 run:
   max_papers_per_run: 10

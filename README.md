@@ -1,6 +1,6 @@
 # Paper Radar
 
-Paper Radar watches arXiv and Crossref for new work related to two-dimensional
+Paper Radar watches arXiv and Crossref for new work on two-dimensional quantum
 materials, enriches available metadata through Semantic Scholar, ranks matching
 papers, and sends the best results to a Feishu group bot.
 
@@ -31,10 +31,12 @@ files. Edit these files to tune it:
   supporting terms, exclusions, source settings, thresholds, and run limits.
 - `config/recommender_prompt.txt`: laboratory interests and AI scoring rules.
 
-Broad phrases such as `DFT`, `sensor`, and `band structure` are supporting
-terms. They cannot select a paper unless the title or abstract also contains a
-core 2D-material term. This prevents unrelated general-purpose papers from
-dominating the feed.
+Broad phrases such as `DFT`, `band structure`, and `CVD` are supporting
+terms. A paper must independently match both a core 2D-material term and a
+quantum-focus term such as quantum transport, superconductivity, topology,
+correlation, magnetism, spin/valley physics, excitons, or moire physics.
+Generic catalysis, energy storage, sensing, and AI/materials-informatics work is
+excluded so it can be handled by a separate Quantum AI Materials radar.
 
 ## GitHub and Feishu setup
 

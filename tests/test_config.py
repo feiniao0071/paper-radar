@@ -9,6 +9,8 @@ def test_project_configuration_loads() -> None:
     assert "graphene" in config.matching.core_terms
     assert "DFT" in config.matching.supporting_terms
     assert config.matching.require_core_term is True
+    assert config.matching.require_focus_term is True
+    assert "quantum transport" in config.matching.focus_terms
     assert config.arxiv.query_batch_size == 6
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True

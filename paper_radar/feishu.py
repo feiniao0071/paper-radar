@@ -103,7 +103,7 @@ def build_digest_card(
             "text": {
                 "tag": "lark_md",
                 "content": (
-                    f"本期筛选出 **{len(recommendations)}** 篇与二维材料、量子器件和"
+                    f"本期筛选出 **{len(recommendations)}** 篇与二维量子材料、量子器件和"
                     f"纳米加工相关的新论文，{priority_note}"
                 ),
             },
@@ -185,7 +185,7 @@ def build_digest_card(
             "template": "orange" if notices else ("red" if high_priority_count else "blue"),
             "title": {
                 "tag": "plain_text",
-                "content": f"二维材料论文速递 | {digest_date.isoformat()}",
+                "content": f"二维量子材料论文速递 | {digest_date.isoformat()}",
             },
         },
         "elements": elements,

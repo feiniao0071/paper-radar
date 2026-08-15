@@ -110,7 +110,7 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
         generated_at=now,
     )
 
-    assert card["header"]["title"]["content"] == "二维材料论文速递 | 2026-08-14"
+    assert card["header"]["title"]["content"] == "二维量子材料论文速递 | 2026-08-14"
     assert card["header"]["template"] == "red"
     intro = card["elements"][0]["text"]["content"]
     assert "1" in intro

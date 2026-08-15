@@ -23,12 +23,15 @@ def make_paper(title: str, abstract: str) -> Paper:
 def config() -> MatchingConfig:
     return MatchingConfig(
         require_core_term=True,
-        minimum_score=3,
+        minimum_score=5,
         core_term_weight=3,
         supporting_term_weight=1,
         core_terms=("graphene", "MoS2", "two-dimensional materials"),
-        supporting_terms=("DFT", "sensor", "quantum transport"),
-        excluded_terms=("2D object detection",),
+        supporting_terms=("DFT", "sensor"),
+        excluded_terms=("2D object detection", "machine learning", "gas sensor"),
+        require_focus_term=True,
+        focus_term_weight=2,
+        focus_terms=("quantum transport", "moire", "superconductivity"),
     )
 
 
@@ -36,8 +39,9 @@ def test_core_and_supporting_terms_match() -> None:
     paper = make_paper("Quantum transport in graphene", "A DFT study of a graphene device.")
     result = match_paper(paper, config())
     assert result is not None
-    assert result.score == 5
+    assert result.score == 6
     assert "graphene" in result.core_terms
+    assert "quantum transport" in result.focus_terms
     assert "DFT" in result.supporting_terms
 
 
@@ -56,7 +60,33 @@ def test_exclusion_wins() -> None:
 
 def test_hyphenated_two_dimensional_phrase_matches() -> None:
     paper = make_paper(
-        "Two-dimensional materials for electronics",
-        "Electronic transport is measured.",
+        "Two-dimensional materials for quantum electronics",
+        "Quantum transport is measured.",
     )
     assert match_paper(paper, config()) is not None
+
+
+def test_generic_2d_application_is_rejected_without_quantum_focus() -> None:
+    paper = make_paper(
+        "Graphene field-effect transistor",
+        "We optimize room-temperature mobility for a flexible device.",
+    )
+    assert match_paper(paper, config()) is None
+
+
+def test_quantum_ai_materials_are_reserved_for_separate_radar() -> None:
+    paper = make_paper(
+        "Machine learning for graphene quantum transport",
+        "A neural network predicts correlated transport.",
+    )
+    assert match_paper(paper, config()) is None
+
+
+def test_accented_moire_matches_quantum_focus() -> None:
+    paper = make_paper(
+        "Moiré bands in graphene",
+        "We study interaction-driven phases.",
+    )
+    result = match_paper(paper, config())
+    assert result is not None
+    assert "moire" in result.focus_terms

@@ -204,12 +204,12 @@ def run(args: argparse.Namespace) -> int:
 
     if args.resend_latest:
         LOGGER.info(
-            "%d paper(s) matched the 2D-material rules with deduplication bypassed",
+            "%d paper(s) matched the 2D-quantum-material rules with deduplication bypassed",
             len(matched_papers),
         )
     else:
         LOGGER.info(
-            "%d pending paper(s) matched the 2D-material rules",
+            "%d pending paper(s) matched the 2D-quantum-material rules",
             len(matched_papers),
         )
     if not matched_papers:
