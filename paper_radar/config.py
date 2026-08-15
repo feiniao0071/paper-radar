@@ -8,6 +8,13 @@ import yaml
 
 
 @dataclass(frozen=True, slots=True)
+class ProfileConfig:
+    name: str
+    digest_title: str
+    digest_intro: str
+
+
+@dataclass(frozen=True, slots=True)
 class ArxivConfig:
     api_url: str
     max_results: int
@@ -57,6 +64,7 @@ class RunConfig:
 
 @dataclass(frozen=True, slots=True)
 class RadarConfig:
+    profile: ProfileConfig
     arxiv: ArxivConfig
     crossref: CrossrefConfig
     semantic_scholar: SemanticScholarConfig
@@ -83,6 +91,7 @@ def load_config(path: Path) -> RadarConfig:
     with path.open("r", encoding="utf-8") as handle:
         raw = _mapping(yaml.safe_load(handle), "configuration")
 
+    profile_raw = _mapping(raw.get("profile", {}), "profile")
     arxiv_raw = _mapping(raw.get("arxiv"), "arxiv")
     crossref_raw = _mapping(raw.get("crossref", {}), "crossref")
     semantic_scholar_raw = _mapping(
@@ -92,6 +101,17 @@ def load_config(path: Path) -> RadarConfig:
     run_raw = _mapping(raw.get("run"), "run")
 
     config = RadarConfig(
+        profile=ProfileConfig(
+            name=str(profile_raw.get("name", "二维量子材料")).strip(),
+            digest_title=str(
+                profile_raw.get("digest_title", "二维量子材料论文速递")
+            ).strip(),
+            digest_intro=str(
+                profile_raw.get(
+                    "digest_intro", "二维量子材料、量子器件和纳米加工"
+                )
+            ).strip(),
+        ),
         arxiv=ArxivConfig(
             api_url=str(arxiv_raw["api_url"]),
             max_results=int(arxiv_raw["max_results"]),
@@ -154,6 +174,12 @@ def load_config(path: Path) -> RadarConfig:
         ),
     )
 
+    if (
+        not config.profile.name
+        or not config.profile.digest_title
+        or not config.profile.digest_intro
+    ):
+        raise ValueError("profile fields must be non-empty")
     if (
         config.arxiv.max_results < 1
         or config.arxiv.lookback_days < 1

@@ -138,9 +138,18 @@ def _print_preview(
     recommendations: list[Recommendation],
     matches: dict[str, MatchResult],
     notices: tuple[str, ...],
+    *,
+    digest_title: str,
+    digest_intro: str,
 ) -> None:
     preview = (
-        build_digest_card(recommendations, matches, notices=notices)
+        build_digest_card(
+            recommendations,
+            matches,
+            notices=notices,
+            digest_title=digest_title,
+            digest_intro=digest_intro,
+        )
         if recommendations
         else None
     )
@@ -204,17 +213,22 @@ def run(args: argparse.Namespace) -> int:
 
     if args.resend_latest:
         LOGGER.info(
-            "%d paper(s) matched the 2D-quantum-material rules with deduplication bypassed",
+            "%d paper(s) matched the %s rules with deduplication bypassed",
             len(matched_papers),
+            config.profile.name,
         )
     else:
         LOGGER.info(
-            "%d pending paper(s) matched the 2D-quantum-material rules",
+            "%d pending paper(s) matched the %s rules",
             len(matched_papers),
+            config.profile.name,
         )
     if not matched_papers:
         if notices and not args.dry_run:
-            _send_alert("论文雷达降级运行", "\n".join(f"- {item}" for item in notices))
+            _send_alert(
+                f"{config.profile.name}雷达降级运行",
+                "\n".join(f"- {item}" for item in notices),
+            )
         if state.migrated and not args.dry_run and not args.resend_latest:
             state.save()
         return 0
@@ -245,14 +259,26 @@ def run(args: argparse.Namespace) -> int:
     if client is None and not args.dry_run:
         LOGGER.warning("FEISHU_WEBHOOK_URL is missing; switching to dry-run mode")
     if effective_dry_run:
-        _print_preview(selected, matches, tuple(notices))
+        _print_preview(
+            selected,
+            matches,
+            tuple(notices),
+            digest_title=config.profile.digest_title,
+            digest_intro=config.profile.digest_intro,
+        )
         return 0
 
     sent_ids: set[str] = set()
     failures = 0
     if selected:
         try:
-            client.send_digest(selected, matches, notices=tuple(notices))
+            client.send_digest(
+                selected,
+                matches,
+                notices=tuple(notices),
+                digest_title=config.profile.digest_title,
+                digest_intro=config.profile.digest_intro,
+            )
             sent_ids.update(item.paper.paper_id for item in selected)
             LOGGER.info("Sent a Feishu digest containing %d paper(s)", len(selected))
         except Exception:
@@ -262,7 +288,7 @@ def run(args: argparse.Namespace) -> int:
         LOGGER.info("No papers met the delivery threshold; no digest was sent")
         if notices:
             _send_alert(
-                "论文雷达降级运行",
+                f"{config.profile.name}雷达降级运行",
                 "\n".join(f"- {item}" for item in notices),
             )
 

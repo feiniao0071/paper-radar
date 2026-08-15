@@ -1,63 +1,79 @@
 # Paper Radar
 
-Paper Radar watches arXiv and Crossref for new work on two-dimensional quantum
-materials, enriches available metadata through Semantic Scholar, ranks matching
-papers, and sends the best results to a Feishu group bot.
+Paper Radar runs two independent research feeds from one GitHub repository:
 
-The project is designed for GitHub Actions. It does not require a continuously
-running Windows, WSL, or Docker host.
+- **2D Quantum Materials** watches quantum phenomena in genuinely two-dimensional
+  materials.
+- **Quantum AI Materials** watches AI for materials and quantum science,
+  scientific agents, autonomous laboratories, and quantum machine learning with
+  a concrete scientific application.
+
+Both feeds query arXiv and Crossref, enrich available metadata through Semantic
+Scholar, rank matching papers, and send a Chinese digest to a dedicated Feishu
+group bot. GitHub Actions hosts the scheduled jobs, so Windows, WSL, and Docker
+do not need to remain online.
 
 ## Pipeline
 
 1. Query the official arXiv Atom API and Crossref Works API with polite rate limits.
 2. Merge duplicate preprints and journal records by DOI and normalized title.
 3. Add venue, publication type, and citation metadata from Semantic Scholar when available.
-4. Require at least one core term and score supporting research terms locally.
+4. Require both a profile-specific core term and a profile-specific focus term.
 5. Reconsider papers marked `deferred` before newly discovered papers.
 6. Evaluate up to twenty candidates with a strict Responses API JSON schema.
 7. Send one Chinese daily digest containing up to ten recommended papers.
-8. Commit the updated delivery state back to the repository.
+8. Commit that profile's independent delivery state back to the repository.
 
 AI evaluation is optional. If it is disabled or fails, deterministic keyword
-ranking keeps the pipeline running and the digest visibly reports the degraded
-mode. Source and fatal runtime failures are also reported to Feishu.
+ranking keeps the pipeline running and the digest reports the degraded mode.
+Source and fatal runtime failures are also reported to the corresponding Feishu
+group.
 
-## Repository configuration
+## Radar profiles
 
-The initial research profile was built from the supplied interest and prompt
-files. Edit these files to tune it:
+| Profile | Keywords | AI prompt | State | GitHub workflow |
+| --- | --- | --- | --- | --- |
+| 2D Quantum Materials | `config/keywords.yml` | `config/recommender_prompt.txt` | `state/seen.json` | `2D Quantum Materials Radar` |
+| Quantum AI Materials | `config/quantum_ai_keywords.yml` | `config/quantum_ai_recommender_prompt.txt` | `state/quantum_ai_seen.json` | `Quantum AI Materials Radar` |
 
-- `config/keywords.yml`: arXiv and Crossref query terms, required core terms,
-  supporting terms, exclusions, source settings, thresholds, and run limits.
-- `config/recommender_prompt.txt`: laboratory interests and AI scoring rules.
+The 2D profile requires a 2D-material term plus a quantum-physics term such as
+quantum transport, superconductivity, topology, correlation, magnetism,
+spin/valley physics, excitons, or moire physics. It explicitly excludes AI and
+materials-informatics papers.
 
-Broad phrases such as `DFT`, `band structure`, and `CVD` are supporting
-terms. A paper must independently match both a core 2D-material term and a
-quantum-focus term such as quantum transport, superconductivity, topology,
-correlation, magnetism, spin/valley physics, excitons, or moire physics.
-Generic catalysis, energy storage, sensing, and AI/materials-informatics work is
-excluded so it can be handled by a separate Quantum AI Materials radar.
+The Quantum AI profile requires an AI-method term plus a materials, chemistry,
+condensed-matter, or quantum-science term. Generic business, medical, finance,
+traffic, and consumer AI is excluded. A plain materials paper without a
+substantive AI method is also rejected, so the two feeds do not duplicate one
+another.
+
+Each YAML profile also controls the Feishu title and introduction through its
+`profile` section. This keeps presentation, matching, AI review, and state
+isolated while sharing the source and delivery code.
 
 ## GitHub and Feishu setup
 
-Create a Feishu custom bot in the target group and enable signature
+Create one Feishu custom bot in each target group and enable signature
 verification. Then open:
 
 `Repository Settings > Secrets and variables > Actions`
 
-Add these repository secrets:
+Add the following delivery secrets. The existing 2D values stay unchanged; the
+Quantum AI values must come from the new group's bot.
 
-| Name | Required | Purpose |
+| Secret | Required | Purpose |
 | --- | --- | --- |
-| `FEISHU_WEBHOOK_URL` | Yes for delivery | Feishu custom-bot webhook |
-| `FEISHU_SIGNING_SECRET` | Recommended | Feishu webhook signature secret |
-| `LLM_API_KEY` | No | Enables AI recommendation and Chinese summaries |
-| `LLM_BASE_URL` | No | Responses-compatible API base URL |
+| `FEISHU_WEBHOOK_URL` | Yes for 2D delivery | 2D group's custom-bot webhook |
+| `FEISHU_SIGNING_SECRET` | Recommended | 2D group's signature secret |
+| `QUANTUM_AI_FEISHU_WEBHOOK_URL` | Yes for Quantum AI delivery | Quantum AI group's custom-bot webhook |
+| `QUANTUM_AI_FEISHU_SIGNING_SECRET` | Recommended | Quantum AI group's signature secret |
+| `LLM_API_KEY` | No | Shared AI recommendation and Chinese summaries |
+| `LLM_BASE_URL` | No | Shared Responses-compatible API base URL |
 | `SEMANTIC_SCHOLAR_API_KEY` | No | Raises Semantic Scholar rate limits if available |
 
-Optional repository variables:
+Optional repository variables are shared by both feeds:
 
-| Name | Default | Purpose |
+| Variable | Default | Purpose |
 | --- | --- | --- |
 | `LLM_MODEL` | `gpt-5.6-sol` | Responses API model |
 | `LLM_REASONING_EFFORT` | `low` | Evaluation reasoning effort |
@@ -65,21 +81,23 @@ Optional repository variables:
 
 Never commit webhook URLs, signing secrets, or API keys to the repository.
 
-## First run
+## First Quantum AI run
 
 1. Open the repository's **Actions** tab.
-2. Select **Paper Radar** and choose **Run workflow**.
-3. Leave `dry_run` enabled for the first run.
+2. Select **Quantum AI Materials Radar** and choose **Run workflow**.
+3. Keep `dry_run` enabled, `no_ai` disabled, and enable `resend_latest` for a
+   complete preview that ignores the empty or existing state.
 4. Inspect the JSON preview in the workflow log.
-5. Add the Feishu secrets, run again with `dry_run` disabled, and confirm the
-   digest card in the group.
+5. Add the two `QUANTUM_AI_FEISHU_*` secrets from the new Feishu group.
+6. Run again with `dry_run` disabled and confirm the digest card in that group.
 
-For a manual delivery test after the day's papers have already been processed,
-enable `resend_latest`. It ignores deduplication for that run and leaves the
-saved state unchanged. Keep it disabled for scheduled and normal manual runs.
+`resend_latest` leaves state unchanged. Keep it disabled for scheduled and
+normal manual runs.
 
-The scheduled workflow runs once per day at approximately 19:00 Beijing time.
-GitHub cron uses UTC and can start a few minutes late during busy periods.
+The 2D workflow runs daily at approximately 19:00 Beijing time. The Quantum AI
+workflow runs at approximately 19:10. The ten-minute offset and shared
+concurrency group prevent simultaneous state commits. GitHub cron can start a
+few minutes late during busy periods.
 
 ## Optional AI evaluation
 
@@ -89,11 +107,11 @@ quality signals, Chinese title, summary, and recommendation reason. The final
 priority is computed in application code rather than accepted directly from the
 model. At most three papers per digest can retain the `3/3` label.
 
-The implementation follows the OpenAI Structured Outputs guidance:
+The implementation follows the official OpenAI Structured Outputs guidance:
 
 <https://developers.openai.com/api/docs/guides/structured-outputs>
 
-For the previously configured Responses-compatible relay, use:
+For the configured Responses-compatible relay, use:
 
 ```text
 LLM_BASE_URL=https://bench.physcai.com/openai
@@ -109,23 +127,32 @@ the local Codex `auth.json` file to this repository.
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e ".[dev]"
+
+# 2D Quantum Materials preview
 python -m paper_radar --dry-run --no-ai --max-results 20
+
+# Quantum AI Materials preview
+python -m paper_radar \
+  --config config/quantum_ai_keywords.yml \
+  --prompt config/quantum_ai_recommender_prompt.txt \
+  --state state/quantum_ai_seen.json \
+  --dry-run --no-ai --max-results 20
+
 ruff check .
 pytest -q
 ```
 
-If `FEISHU_WEBHOOK_URL` is missing, the command automatically switches to
-dry-run mode and does not modify the deduplication state.
+If the selected workflow's `FEISHU_WEBHOOK_URL` is missing, the command
+automatically switches to dry-run mode and does not modify state.
 
 ## State behavior
 
-`state/seen.json` is deliberately small and reviewable. Successfully delivered
-papers are marked `sent`; papers explicitly rated below the threshold are marked
-`skipped`; papers that only missed a candidate or delivery limit are marked
-`deferred` and receive priority in the next run. Failed deliveries remain
-eligible for retry. Version-one state files are migrated once so historical
-`skipped` records are reconsidered as `deferred`. Records older than the
-configured retention window are removed.
+Each radar has its own small, reviewable JSON state. Successfully delivered
+papers are marked `sent`; papers explicitly rated below the threshold are
+marked `skipped`; papers that only missed a candidate or delivery limit are
+marked `deferred` and receive priority in the next run. Failed deliveries
+remain eligible for retry. Records older than the configured retention window
+are removed.
 
-GitHub Actions uses a concurrency group so two runs cannot update this state at
-the same time.
+Both GitHub Actions workflows share one concurrency group so only one can update
+repository state at a time.

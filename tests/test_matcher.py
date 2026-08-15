@@ -1,6 +1,7 @@
 from datetime import UTC, datetime
+from pathlib import Path
 
-from paper_radar.config import MatchingConfig
+from paper_radar.config import MatchingConfig, load_config
 from paper_radar.matcher import match_paper
 from paper_radar.models import Paper
 
@@ -90,3 +91,46 @@ def test_accented_moire_matches_quantum_focus() -> None:
     result = match_paper(paper, config())
     assert result is not None
     assert "moire" in result.focus_terms
+
+
+def quantum_ai_config() -> MatchingConfig:
+    project_root = Path(__file__).resolve().parent.parent
+    return load_config(
+        project_root / "config" / "quantum_ai_keywords.yml"
+    ).matching
+
+
+def test_quantum_ai_requires_both_ai_and_scientific_domain() -> None:
+    paper = make_paper(
+        "Graph neural networks for superconducting materials discovery",
+        "We predict candidate superconductors and validate electronic structures.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "graph neural networks" in result.core_terms
+    assert "materials discovery" in result.focus_terms
+
+
+def test_quantum_ai_rejects_generic_ai_without_materials_or_quantum_science() -> None:
+    paper = make_paper(
+        "A large language model for customer support",
+        "The model improves response quality on a business conversation benchmark.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_rejects_materials_paper_without_ai_method() -> None:
+    paper = make_paper(
+        "Density functional theory of a topological material",
+        "We calculate its electronic structure and superconducting phase diagram.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
+def test_quantum_ai_rejects_unrelated_physics_using_force_field_wording() -> None:
+    paper = make_paper(
+        "Machine-learning forecasting of cosmic ray modulation",
+        "A force-field simulation predicts heliospheric events.",
+    )
+    assert match_paper(paper, quantum_ai_config()) is None

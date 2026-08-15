@@ -1,0 +1,228 @@
+version: 1
+
+profile:
+  name: Quantum AI Materials
+  digest_title: Quantum AI Materials 论文速递
+  digest_intro: 量子科学、人工智能与材料研究的交叉方向
+
+arxiv:
+  api_url: https://export.arxiv.org/api/query
+  max_results: 75
+  lookback_days: 8
+  query_batch_size: 5
+  query_terms:
+    - machine learning materials discovery
+    - deep learning materials science
+    - graph neural network materials
+    - foundation model materials science
+    - large language model materials science
+    - generative model materials discovery
+    - diffusion model crystal generation
+    - machine learned interatomic potential
+    - neural network quantum many-body
+    - neural quantum state
+    - machine learning electronic structure
+    - machine learning density functional theory
+    - artificial intelligence quantum materials
+    - quantum machine learning chemistry
+    - machine learning superconductivity
+    - machine learning topological materials
+    - autonomous materials laboratory
+    - active learning materials
+    - Bayesian optimization materials synthesis
+    - AI agent scientific discovery
+
+crossref:
+  enabled: true
+  api_url: https://api.crossref.org/works
+  max_results_per_query: 20
+  lookback_days: 8
+  query_terms:
+    - artificial intelligence materials discovery
+    - machine learning quantum materials
+    - graph neural network materials science
+    - foundation model chemistry materials
+    - generative AI crystal design
+    - machine learned interatomic potential
+    - neural quantum state many body
+    - quantum machine learning chemistry
+    - active learning materials synthesis
+    - autonomous laboratory materials
+
+semantic_scholar:
+  enabled: true
+  api_url: https://api.semanticscholar.org/graph/v1
+  batch_size: 100
+
+matching:
+  require_core_term: true
+  require_focus_term: true
+  minimum_score: 5
+  core_term_weight: 3
+  focus_term_weight: 2
+  supporting_term_weight: 1
+  core_terms:
+    - machine learning
+    - machine learned
+    - machine-learned
+    - deep learning
+    - artificial intelligence
+    - generative AI
+    - neural network
+    - neural networks
+    - graph neural network
+    - graph neural networks
+    - GNN
+    - foundation model
+    - foundation models
+    - large language model
+    - large language models
+    - LLM
+    - LLMs
+    - generative model
+    - generative models
+    - diffusion model
+    - diffusion models
+    - transformer model
+    - transformer models
+    - reinforcement learning
+    - active learning
+    - Bayesian optimization
+    - symbolic regression
+    - neural operator
+    - neural operators
+    - equivariant neural network
+    - scientific machine learning
+    - materials informatics
+    - neural network potential
+    - machine learning potential
+    - autonomous laboratory
+    - self-driving laboratory
+    - AI agent
+    - scientific agent
+    - neural quantum state
+    - neural quantum states
+    - quantum machine learning
+    - quantum neural network
+  focus_terms:
+    - materials discovery
+    - material discovery
+    - materials design
+    - material design
+    - materials science
+    - material science
+    - materials informatics
+    - computational materials
+    - quantum materials
+    - quantum matter
+    - condensed matter
+    - quantum chemistry
+    - computational chemistry
+    - electronic structure
+    - band structure
+    - crystal structure
+    - crystal structures
+    - crystal generation
+    - crystalline materials
+    - solid-state materials
+    - solid state materials
+    - molecule
+    - molecules
+    - molecular design
+    - molecular discovery
+    - atomistic
+    - interatomic potential
+    - interatomic potentials
+    - density functional theory
+    - DFT
+    - ab initio
+    - molecular dynamics
+    - phase diagram
+    - superconductivity
+    - superconducting materials
+    - topological materials
+    - magnetic materials
+    - spin systems
+    - two-dimensional materials
+    - 2D materials
+    - graphene
+    - semiconductor
+    - semiconductors
+    - catalyst
+    - catalysis
+    - battery materials
+    - energy materials
+    - polymer
+    - polymers
+    - alloy
+    - alloys
+    - ceramics
+    - materials synthesis
+    - spectroscopy
+    - microscopy
+    - photonic materials
+    - metamaterials
+    - quantum computing
+    - quantum circuit
+    - quantum circuits
+    - quantum state
+    - quantum states
+    - quantum many-body
+    - Hamiltonian
+    - qubit
+    - qubits
+  supporting_terms:
+    - property prediction
+    - structure prediction
+    - crystal prediction
+    - inverse design
+    - representation learning
+    - self-supervised learning
+    - transfer learning
+    - multimodal
+    - high-throughput screening
+    - virtual screening
+    - synthesis planning
+    - experiment planning
+    - autonomous experiment
+    - closed-loop
+    - robotic laboratory
+    - robotic experiment
+    - uncertainty quantification
+    - interpretability
+    - explainable AI
+    - surrogate model
+    - surrogate models
+    - optimization
+    - phase identification
+    - spectroscopy analysis
+    - microscopy analysis
+    - Hamiltonian learning
+    - quantum control
+    - quantum simulation
+    - quantum algorithm
+    - quantum algorithms
+    - force field
+    - force fields
+  excluded_terms:
+    - medical diagnosis
+    - clinical trial
+    - patient outcome
+    - autonomous driving
+    - traffic prediction
+    - stock market
+    - financial forecasting
+    - credit scoring
+    - social media
+    - recommender system
+    - speech recognition
+    - face recognition
+    - intrusion detection
+    - network traffic classification
+
+run:
+  max_papers_per_run: 10
+  ai_candidate_limit: 20
+  minimum_ai_relevance: 2
+  max_high_priority_per_run: 3
+  state_retention_days: 365

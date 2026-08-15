@@ -126,6 +126,43 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
     assert "质量信号" in content
 
 
+def test_digest_card_uses_quantum_ai_profile_text() -> None:
+    now = datetime(2026, 8, 14, tzinfo=UTC)
+    paper = Paper(
+        paper_id="2608.00004",
+        title="A foundation model for materials discovery",
+        authors=("A. Researcher",),
+        abstract="A materials model.",
+        published=now,
+        updated=now,
+        categories=("cond-mat.mtrl-sci",),
+        abstract_url="https://arxiv.org/abs/2608.00004",
+        pdf_url="https://arxiv.org/pdf/2608.00004",
+    )
+    recommendation = Recommendation(
+        paper=paper,
+        relevance_score=2,
+        reason="与课题组的材料智能研究直接相关。",
+        key_relevance=("材料基础模型",),
+        title_zh="用于材料发现的基础模型",
+        summary_zh="本文提出用于材料发现的基础模型。",
+        used_ai=True,
+    )
+
+    card = build_digest_card(
+        [recommendation],
+        {paper.paper_id: MatchResult(5, ("foundation model",), (), ("materials",))},
+        generated_at=now,
+        digest_title="Quantum AI Materials 论文速递",
+        digest_intro="量子科学、人工智能与材料研究的交叉方向",
+    )
+
+    assert card["header"]["title"]["content"] == (
+        "Quantum AI Materials 论文速递 | 2026-08-14"
+    )
+    assert "量子科学、人工智能与材料研究" in card["elements"][0]["text"]["content"]
+
+
 def test_digest_card_rejects_empty_recommendations() -> None:
     try:
         build_digest_card([], {})

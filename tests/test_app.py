@@ -45,7 +45,9 @@ def test_resend_latest_includes_seen_paper_without_changing_state(
     monkeypatch.setattr(
         app,
         "_print_preview",
-        lambda recommendations, matches, notices: previewed.extend(recommendations),
+        lambda recommendations, matches, notices, **kwargs: previewed.extend(
+            recommendations
+        ),
     )
 
     args = app._arguments(
@@ -121,7 +123,15 @@ def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) ->
     )
 
     class FakeClient:
-        def send_digest(self, recommendations, matches, *, notices=()) -> None:
+        def send_digest(
+            self,
+            recommendations,
+            matches,
+            *,
+            notices=(),
+            digest_title="",
+            digest_intro="",
+        ) -> None:
             return None
 
     monkeypatch.setattr(

@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - "state/seen.json"
+      - "state/*.json"
   pull_request:
 
 permissions:

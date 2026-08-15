@@ -86,6 +86,8 @@ def build_digest_card(
     *,
     generated_at: datetime | None = None,
     notices: tuple[str, ...] = (),
+    digest_title: str = "二维量子材料论文速递",
+    digest_intro: str = "二维量子材料、量子器件和纳米加工",
 ) -> dict[str, Any]:
     if not recommendations:
         raise ValueError("Cannot build an empty paper digest")
@@ -103,8 +105,8 @@ def build_digest_card(
             "text": {
                 "tag": "lark_md",
                 "content": (
-                    f"本期筛选出 **{len(recommendations)}** 篇与二维量子材料、量子器件和"
-                    f"纳米加工相关的新论文，{priority_note}"
+                    f"本期筛选出 **{len(recommendations)}** 篇与{digest_intro}相关的新论文，"
+                    f"{priority_note}"
                 ),
             },
         }
@@ -185,7 +187,7 @@ def build_digest_card(
             "template": "orange" if notices else ("red" if high_priority_count else "blue"),
             "title": {
                 "tag": "plain_text",
-                "content": f"二维量子材料论文速递 | {digest_date.isoformat()}",
+                "content": f"{digest_title} | {digest_date.isoformat()}",
             },
         },
         "elements": elements,
@@ -241,8 +243,18 @@ class FeishuClient:
         matches: dict[str, MatchResult],
         *,
         notices: tuple[str, ...] = (),
+        digest_title: str = "二维量子材料论文速递",
+        digest_intro: str = "二维量子材料、量子器件和纳米加工",
     ) -> None:
-        self._send_card(build_digest_card(recommendations, matches, notices=notices))
+        self._send_card(
+            build_digest_card(
+                recommendations,
+                matches,
+                notices=notices,
+                digest_title=digest_title,
+                digest_intro=digest_intro,
+            )
+        )
 
     def send_alert(self, title: str, message: str, *, fatal: bool = False) -> None:
         self._send_card(build_alert_card(title, message, fatal=fatal))

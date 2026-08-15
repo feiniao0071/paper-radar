@@ -115,7 +115,7 @@ def fallback_recommendation(paper: Paper, match: MatchResult) -> Recommendation:
         evidence_score,
     )
     matched = match.matched_terms[:6]
-    reason = "命中课题组关注的二维材料研究关键词：" + ", ".join(matched)
+    reason = "命中本雷达关注的核心与交叉研究关键词：" + ", ".join(matched)
     return Recommendation(
         paper=paper,
         relevance_score=relevance_score,

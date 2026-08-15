@@ -1,5 +1,10 @@
 version: 1
 
+profile:
+  name: 二维量子材料
+  digest_title: 二维量子材料论文速递
+  digest_intro: 二维量子材料、量子器件和纳米加工
+
 arxiv:
   api_url: https://export.arxiv.org/api/query
   max_results: 75
