@@ -98,6 +98,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    },
+    "crossref:10.1177/03093247261476563": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-15T11:32:49.063449+00:00",
+      "published": "2026-08-15",
+      "seen_at": "2026-08-15T11:32:49.063449+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Fracture prediction of 5052 aluminum alloy sheet forming using machine learning-calibrated DF-2013 uncoupled ductile fracture criterion"
     }
   },
   "version": 2
