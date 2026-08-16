@@ -23,11 +23,18 @@ arxiv:
     - LLM quantum experiment
     - LLM electronic structure
     - LLM scientific literature physics
+    - LLM mesoscopic physics
+    - LLM strongly correlated electrons
+    - LLM quantum magnetism
+    - LLM quantum criticality
+    - large language model superconductivity
     - foundation model condensed matter physics
     - foundation model materials science
     - foundation model quantum materials
     - foundation model atomistic simulation
+    - foundation model strongly correlated electrons
     - multimodal foundation model materials characterization
+    - multimodal model condensed matter spectroscopy
     - vision language model microscopy
     - retrieval augmented generation materials science
     - knowledge graph quantum materials
@@ -58,9 +65,15 @@ crossref:
     - large language model quantum materials
     - large language model materials science
     - large language model physics experiment
+    - large language model superconductivity
+    - large language model strongly correlated electrons
+    - large language model quantum magnetism
+    - large language model mesoscopic physics
     - foundation model condensed matter physics
     - foundation model quantum materials
+    - foundation model strongly correlated electrons
     - multimodal foundation model materials characterization
+    - multimodal model condensed matter spectroscopy
     - vision language model microscopy materials
     - retrieval augmented generation materials physics
     - knowledge graph quantum materials
@@ -216,6 +229,8 @@ matching:
     - condensed matter
     - condensed matter physics
     - solid state physics
+    - mesoscopic physics
+    - nanoscale physics
     - electronic structure
     - charge density
     - band structure
@@ -234,6 +249,7 @@ matching:
     - molecular dynamics
     - phase diagram
     - phase transition
+    - structural phase transition
     - lattice dynamics
     - phonon
     - defect physics
@@ -242,7 +258,35 @@ matching:
     - topological materials
     - magnetic materials
     - spin systems
+    - strongly correlated electrons
+    - quantum magnetism
+    - non-Fermi liquid
+    - non-Fermi liquids
+    - spin liquid
+    - spin liquids
+    - quantum criticality
+    - quantum critical point
+    - charge density wave
+    - charge density waves
+    - metal-insulator transition
+    - disordered system
+    - disordered systems
+    - Anderson localization
+    - many-body localization
+    - quasiperiodic system
+    - quasiperiodic systems
+    - spin glass
     - quantum transport
+    - mesoscopic transport
+    - two-dimensional electron gas
+    - 2D electron gas
+    - 2DEG
+    - quantum dot
+    - quantum dots
+    - quantum wire
+    - quantum wires
+    - quantum well
+    - quantum wells
     - quantum sensing
     - NV center
     - NV centers
@@ -295,6 +339,10 @@ matching:
     - quantum experiment
     - condensed matter experiment
     - low-temperature experiment
+    - non-equilibrium physics
+    - nonequilibrium physics
+    - renormalization group
+    - scaling theory
     - materials experiment
     - scientific workflow
     - research workflow

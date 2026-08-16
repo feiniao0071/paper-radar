@@ -13,7 +13,15 @@ def test_project_configuration_loads() -> None:
     assert "quantum transport" in config.matching.focus_terms
     assert "MnBi2Te4" in config.matching.core_terms
     assert "fractional Chern insulator" in config.matching.focus_terms
+    assert "strongly correlated electrons" in config.matching.focus_terms
+    assert "quantum magnetism" in config.matching.focus_terms
+    assert "spin liquid" in config.matching.focus_terms
+    assert "quantum criticality" in config.matching.focus_terms
+    assert "Anderson localization" in config.matching.focus_terms
+    assert "2DEG" in config.matching.focus_terms
+    assert "structural phase transition" in config.matching.focus_terms
     assert "twisted MoTe2 fractional Chern" in config.arxiv.query_terms
+    assert "2D quantum criticality" in config.arxiv.query_terms
     assert config.arxiv.query_batch_size == 6
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
@@ -38,6 +46,11 @@ def test_quantum_ai_configuration_loads() -> None:
     assert "instrument control" in config.matching.focus_terms
     assert "twisted MoTe2" in config.matching.focus_terms
     assert "quantum sensing" in config.matching.focus_terms
+    assert "strongly correlated electrons" in config.matching.focus_terms
+    assert "non-Fermi liquid" in config.matching.focus_terms
+    assert "mesoscopic physics" in config.matching.focus_terms
+    assert "LLM strongly correlated electrons" in config.arxiv.query_terms
+    assert "large language model superconductivity" in config.crossref.query_terms
     assert "relative binding free energy" in config.matching.excluded_terms
     assert "protein" in config.matching.excluded_terms
     assert "molecule" not in config.matching.focus_terms

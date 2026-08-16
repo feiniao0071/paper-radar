@@ -34,6 +34,14 @@ arxiv:
     - MnBi2Te4 Chern insulator
     - magic angle graphene quantum geometry
     - moire topological magnetism
+    - 2D strongly correlated electrons
+    - 2D quantum magnetism
+    - 2D spin liquid
+    - 2D quantum criticality
+    - 2D non-Fermi liquid
+    - 2D electron gas mesoscopic transport
+    - 2D Anderson localization
+    - 2D structural phase transition phonon
 
 crossref:
   enabled: true
@@ -55,6 +63,14 @@ crossref:
     - moire topological magnetism
     - magnetic topological insulator superconductivity
     - moire exciton Fermi polaron
+    - two-dimensional strongly correlated electrons
+    - two-dimensional quantum magnetism
+    - two-dimensional spin liquid
+    - two-dimensional quantum criticality
+    - two-dimensional non-Fermi liquid
+    - two-dimensional electron gas mesoscopic transport
+    - two-dimensional Anderson localization
+    - two-dimensional structural phase transition phonon
 
 semantic_scholar:
   enabled: true
@@ -136,12 +152,28 @@ matching:
     - Weyl
     - correlated electrons
     - strongly correlated
+    - strongly correlated electrons
+    - quantum magnetism
+    - non-Fermi liquid
+    - non-Fermi liquids
+    - spin liquid
+    - spin liquids
+    - quantum criticality
+    - quantum critical point
     - many-body
     - Mott
     - flat band
     - charge density wave
     - charge-density-wave
+    - charge density waves
     - metal-insulator transition
+    - Anderson localization
+    - many-body localization
+    - disordered system
+    - disordered systems
+    - quasiperiodic system
+    - quasiperiodic systems
+    - spin glass
     - Kondo
     - RKKY
     - spin-orbit coupling
@@ -159,6 +191,10 @@ matching:
     - antiferromagnet
     - magnon
     - Landau level
+    - two-dimensional electron gas
+    - 2D electron gas
+    - 2DEG
+    - mesoscopic transport
     - quasiparticle
     - plasmon
     - polariton
@@ -195,9 +231,20 @@ matching:
     - elastoresistance
     - quantum phase transition
     - electronic phase transition
+    - structural phase transition
+    - non-equilibrium physics
+    - nonequilibrium physics
+    - renormalization group
   supporting_terms:
     - quantum dots
     - quantum wells
+    - quantum wire
+    - quantum wires
+    - two-dimensional electron gas
+    - 2DEG
+    - mesoscopic transport
+    - Coulomb blockade
+    - single-electron tunneling
     - quantum hall effect
     - quantum transport
     - quantum interference
@@ -210,6 +257,15 @@ matching:
     - DFT
     - electronic band
     - Fermi surface
+    - phonon
+    - phonons
+    - defect physics
+    - point defect
+    - point defects
+    - adsorbate
+    - adsorbates
+    - interface state
+    - interface states
     - charge transport
     - conductivity
     - mobility

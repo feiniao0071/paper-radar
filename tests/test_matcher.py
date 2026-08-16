@@ -130,6 +130,31 @@ def test_generic_chern_work_without_2d_platform_is_rejected() -> None:
     assert match_paper(paper, two_dimensional_config()) is None
 
 
+def test_2d_radar_matches_quantum_critical_spin_liquid() -> None:
+    paper = make_paper(
+        "Quantum critical spin liquid in monolayer graphene",
+        "We study strongly correlated electrons near a quantum critical point.",
+    )
+    result = match_paper(paper, two_dimensional_config())
+
+    assert result is not None
+    assert "graphene" in result.core_terms
+    assert "spin liquid" in result.focus_terms
+    assert "quantum critical point" in result.focus_terms
+
+
+def test_2d_radar_matches_anderson_localization_in_graphene() -> None:
+    paper = make_paper(
+        "Anderson localization in disordered graphene",
+        "Mesoscopic transport reveals a disorder-driven transition.",
+    )
+    result = match_paper(paper, two_dimensional_config())
+
+    assert result is not None
+    assert "graphene" in result.core_terms
+    assert "Anderson localization" in result.focus_terms
+
+
 def quantum_ai_config() -> MatchingConfig:
     project_root = Path(__file__).resolve().parent.parent
     return load_config(
@@ -291,3 +316,16 @@ def test_quantum_ai_keeps_traditional_ml_as_non_preferred_supplement() -> None:
     assert result is not None
     assert "machine learning" in result.core_terms
     assert result.preferred_terms == ()
+
+
+def test_quantum_ai_matches_llm_for_strongly_correlated_electrons() -> None:
+    paper = make_paper(
+        "An LLM for strongly correlated electrons",
+        "The large language model reasons about spin liquids and quantum criticality.",
+    )
+    result = match_paper(paper, quantum_ai_config())
+
+    assert result is not None
+    assert "LLM" in result.preferred_terms
+    assert "strongly correlated electrons" in result.focus_terms
+    assert "quantum criticality" in result.focus_terms
