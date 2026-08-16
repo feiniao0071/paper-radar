@@ -139,6 +139,9 @@ def build_digest_card(
             match.matched_terms[:8]
         )
         content = (
+            f"**{index}. {_truncate(display_title, 180)}**\n"
+            f"优先级 {recommendation.relevance_score}/3 · "
+            f"建议{recommendation.reading_action}\n\n"
             f"**英文题目：** {_truncate(paper.title, 300)}\n"
             f"**作者：** {authors}\n"
             f"**来源：** {source_line} · {paper.published.date().isoformat()}\n\n"
@@ -163,34 +166,12 @@ def build_digest_card(
                     "type": "default",
                 }
             )
-        panel_title = _truncate(
-            f"{index}. [{recommendation.relevance_score}/3 · "
-            f"{recommendation.reading_action}] {display_title}",
-            120,
-        )
-        elements.append(
-            {
-                "tag": "collapsible_panel",
-                "expanded": False,
-                "header": {
-                    "title": {"tag": "plain_text", "content": panel_title},
-                    "background_color": "grey",
-                    "vertical_align": "center",
-                    "icon": {
-                        "tag": "standard_icon",
-                        "token": "down-small-ccm_outlined",
-                    },
-                    "icon_position": "right",
-                    "icon_expanded_angle": -180,
-                },
-                "border": {"color": "grey", "corner_radius": "5px"},
-                "vertical_spacing": "8px",
-                "padding": "10px 10px 10px 10px",
-                "elements": [
-                    {"tag": "div", "text": {"tag": "lark_md", "content": content}},
-                    {"tag": "action", "actions": actions},
-                ],
-            }
+        elements.extend(
+            [
+                {"tag": "hr"},
+                {"tag": "div", "text": {"tag": "lark_md", "content": content}},
+                {"tag": "action", "actions": actions},
+            ]
         )
 
     elements.extend(
@@ -207,6 +188,9 @@ def build_digest_card(
             },
         ]
     )
+    panel_title = (
+        f"今日 Top {len(recommendations)} · 高优先级 {high_priority_count} 篇 · 展开全文"
+    )
     return {
         "schema": "2.0",
         "config": {"wide_screen_mode": True},
@@ -217,7 +201,29 @@ def build_digest_card(
                 "content": f"{digest_title} | {digest_date.isoformat()}",
             },
         },
-        "body": {"elements": elements},
+        "body": {
+            "elements": [
+                {
+                    "tag": "collapsible_panel",
+                    "expanded": False,
+                    "header": {
+                        "title": {"tag": "plain_text", "content": panel_title},
+                        "background_color": "grey",
+                        "vertical_align": "center",
+                        "icon": {
+                            "tag": "standard_icon",
+                            "token": "down-small-ccm_outlined",
+                        },
+                        "icon_position": "right",
+                        "icon_expanded_angle": -180,
+                    },
+                    "border": {"color": "grey", "corner_radius": "5px"},
+                    "vertical_spacing": "8px",
+                    "padding": "10px 10px 10px 10px",
+                    "elements": elements,
+                }
+            ]
+        },
     }
 
 
