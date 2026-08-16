@@ -29,6 +29,11 @@ def _truncate(value: str, limit: int) -> str:
     return value[: limit - 3].rstrip() + "..."
 
 
+def _markdown_link(label: str, url: str) -> str:
+    escaped_label = label.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
+    return f"[{escaped_label}]({url})"
+
+
 def build_card(recommendation: Recommendation, match: MatchResult) -> dict[str, Any]:
     paper = recommendation.paper
     display_title = recommendation.title_zh or paper.title
@@ -94,7 +99,9 @@ def build_digest_card(
 
     digest_date = (generated_at or datetime.now(UTC)).astimezone(BEIJING_TIMEZONE).date()
     high_priority_count = sum(item.relevance_score == 3 for item in recommendations)
-    digest_topic = digest_title.removesuffix("论文速递").strip() or digest_title
+    digest_topic = (
+        digest_title.removesuffix("论文速递").strip() or digest_intro or digest_title
+    )
 
     elements: list[dict[str, Any]] = [
         {
@@ -103,7 +110,7 @@ def build_digest_card(
                 "tag": "lark_md",
                 "content": (
                     f"今天 Top {len(recommendations)} 里对 "
-                    f"**{digest_topic}** 比较值得看的："
+                    f"{digest_topic} 比较值得看的："
                 ),
             },
         }
@@ -128,49 +135,30 @@ def build_digest_card(
         source_parts = [paper.source]
         if paper.venue:
             source_parts.append(paper.venue)
+        source_parts.append(paper.published.date().isoformat())
         if paper.citation_count is not None and paper.citation_count > 0:
             source_parts.append(f"引用 {paper.citation_count}")
-        source_line = _truncate(" · ".join(source_parts), 120)
+        source_line = _truncate(" / ".join(source_parts), 140)
         reason = recommendation.reason or (
             "命中本雷达关注方向：" + ", ".join(match.matched_terms[:5])
         )
-        authors = _truncate(", ".join(paper.authors), 500)
-        relevance = ", ".join(recommendation.key_relevance[:8]) or ", ".join(
-            match.matched_terms[:8]
+        original_title_link = _markdown_link(
+            _truncate(paper.title, 300), paper.abstract_url
         )
-        content = (
-            f"**{index}. {_truncate(display_title, 180)}**\n"
-            f"优先级 {recommendation.relevance_score}/3 · "
-            f"建议{recommendation.reading_action}\n\n"
-            f"**英文题目：** {_truncate(paper.title, 300)}\n"
-            f"**作者：** {authors}\n"
-            f"**来源：** {source_line} · {paper.published.date().isoformat()}\n\n"
-            f"**做什么：** {_truncate(summary, 1200)}\n\n"
-            f"**和我们组的关系：** {_truncate(reason, 600)}\n\n"
-            f"**关键相关性：** {_truncate(relevance, 300)}"
-        )
-        actions = [
-            {
-                "tag": "button",
-                "text": {"tag": "plain_text", "content": "打开原文"},
-                "url": paper.abstract_url,
-                "type": "primary",
-            }
-        ]
+        pdf_link = ""
         if paper.pdf_url and paper.pdf_url != paper.abstract_url:
-            actions.append(
-                {
-                    "tag": "button",
-                    "text": {"tag": "plain_text", "content": "打开 PDF"},
-                    "url": paper.pdf_url,
-                    "type": "default",
-                }
-            )
+            pdf_link = f" / {_markdown_link('PDF', paper.pdf_url)}"
+        content = (
+            f"**{_truncate(display_title, 180)}（推荐 #{index}）**\n"
+            f"{original_title_link}\n"
+            f"{source_line}{pdf_link}\n\n"
+            f"**做什么：** {_truncate(summary, 360)}\n\n"
+            f"**和我们组的关系：** {_truncate(reason, 260)}"
+        )
         elements.extend(
             [
                 {"tag": "hr"},
                 {"tag": "div", "text": {"tag": "lark_md", "content": content}},
-                {"tag": "action", "actions": actions},
             ]
         )
 
@@ -182,15 +170,13 @@ def build_digest_card(
                 "elements": [
                     {
                         "tag": "plain_text",
-                        "content": "仅推送达到推荐阈值的新论文；无新增时保持安静。",
+                        "content": "如果明天没有新增值得看的论文，我会保持安静。",
                     }
                 ],
             },
         ]
     )
-    panel_title = (
-        f"今日 Top {len(recommendations)} · 高优先级 {high_priority_count} 篇 · 展开全文"
-    )
+    panel_title = f"今日精选 {len(recommendations)} 篇 · 展开全文"
     return {
         "schema": "2.0",
         "config": {"wide_screen_mode": True},

@@ -121,9 +121,12 @@ contribution information stated in the PDF; the model is not asked to invent
 biographies or recent publication lists.
 
 Daily Feishu digests use one Card JSON 2.0 collapsible panel for the entire
-delivery. The card defaults to a single Top-N summary row; expanding it once
-reveals all paper recommendations, metadata, and source/PDF actions. Individual
-papers are not nested in separate panels, and the delivery quota is unchanged.
+delivery. The card defaults to one compact summary row; expanding it once
+reveals every recommendation in the same concise format: recommendation rank,
+linked original title, source/date, “做什么”, and “和我们组的关系”. Internal scores,
+authors, and keyword diagnostics stay out of the group-facing digest. Individual
+papers are not nested in separate panels, and a day with no new qualifying paper
+remains silent.
 
 The implementation follows the official OpenAI Structured Outputs guidance:
 

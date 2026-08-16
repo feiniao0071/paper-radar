@@ -125,11 +125,9 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
     assert panel["tag"] == "collapsible_panel"
     assert panel["expanded"] is False
     assert panel["header"]["icon_position"] == "right"
-    assert panel["header"]["title"]["content"] == (
-        "今日 Top 1 · 高优先级 1 篇 · 展开全文"
-    )
+    assert panel["header"]["title"]["content"] == "今日精选 1 篇 · 展开全文"
     intro = panel["elements"][0]["text"]["content"]
-    assert intro == "今天 Top 1 里对 **二维量子材料** 比较值得看的："
+    assert intro == "今天 Top 1 里对 二维量子材料 比较值得看的："
     detail_blocks = [
         element
         for element in panel["elements"]
@@ -139,18 +137,17 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
     assert len(detail_blocks) == 1
     content = detail_blocks[0]["text"]["content"]
     assert recommendation.title_zh in content
+    assert "（推荐 #1）" in content
     assert "**做什么：**" in content
     assert "**和我们组的关系：**" in content
-    assert "**关键相关性：**" in content
-    assert "arXiv · 2026-08-14" in content
-    assert "英文题目" in content
-    assert "作者：" in content
-    action_blocks = [
-        element for element in panel["elements"] if element["tag"] == "action"
-    ]
-    buttons = action_blocks[0]["actions"]
-    assert buttons[0]["url"] == paper.abstract_url
-    assert buttons[1]["url"] == paper.pdf_url
+    assert "arXiv / 2026-08-14" in content
+    assert f"[{paper.title}]({paper.abstract_url})" in content
+    assert f"[PDF]({paper.pdf_url})" in content
+    assert "关键相关性" not in content
+    assert "英文题目" not in content
+    assert "作者：" not in content
+    assert "优先级" not in content
+    assert not any(element["tag"] == "action" for element in panel["elements"])
     assert "分类：" not in content
     assert "评分依据" not in content
     assert "质量信号" not in content
@@ -165,7 +162,7 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
     digest_panel = multi_card["body"]["elements"][0]
     assert digest_panel["tag"] == "collapsible_panel"
     assert digest_panel["expanded"] is False
-    assert "今日 Top 2" in digest_panel["header"]["title"]["content"]
+    assert "今日精选 2 篇" in digest_panel["header"]["title"]["content"]
     detail_blocks = [
         element
         for element in digest_panel["elements"]
@@ -173,6 +170,8 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
         and "**做什么：**" in element["text"]["content"]
     ]
     assert len(detail_blocks) == 2
+    footer = digest_panel["elements"][-1]["elements"][0]["content"]
+    assert footer == "如果明天没有新增值得看的论文，我会保持安静。"
 
 
 def test_digest_card_uses_quantum_ai_profile_text() -> None:
@@ -210,7 +209,7 @@ def test_digest_card_uses_quantum_ai_profile_text() -> None:
         "Quantum AI Materials 论文速递 | 2026-08-14"
     )
     assert card["body"]["elements"][0]["elements"][0]["text"]["content"] == (
-        "今天 Top 1 里对 **Quantum AI Materials** 比较值得看的："
+        "今天 Top 1 里对 Quantum AI Materials 比较值得看的："
     )
 
 
