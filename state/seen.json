@@ -115,12 +115,12 @@
       "title": "Relaxation-driven flat bands and topology in moir\u00e9 transition metal dichalcogenide heterobilayers"
     },
     "2608.08923": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-09",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Hyperbolic exciton-plasmon polaritons in MoS$_2$/MoOCl$_2$ van der Waals heterostructures"
     },
     "2608.08991": {
@@ -145,12 +145,12 @@
       "title": "Polarization engineered all 2D Graphene/Ferroelectric hybrid for persistence-free photoresponse"
     },
     "2608.09309": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-10",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Magnetically induced Circular Photogalvanic Effect in Symmetric Two-dimensional Materials"
     },
     "2608.09466": {
@@ -199,12 +199,12 @@
       "title": "Strongly Coupled Soft Functions"
     },
     "2608.10122": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-10",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "MXene with Janus Structure at Transition metal site -A route to Emergent Properties"
     },
     "2608.10486": {
@@ -229,12 +229,12 @@
       "title": "Enhanced Screening in Epitaxial Graphene via Nearly Free-Electron Metal Intercalation"
     },
     "2608.10631": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-11",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Geometric Phonon Energy Pumping in a Layer-Hybridized Moir\u00e9 Exciton Manifold"
     },
     "2608.10638": {
@@ -247,21 +247,21 @@
       "title": "From Zero to Mega-Gauss Fields: Comprehensive Magnetophotonic Spectroscopy of Graphene Dirac Cones"
     },
     "2608.10895": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-11",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Boosting self hybridized exciton polaritons with metal clad WS2 waveguides"
     },
     "2608.11389": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-11",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Large bias-tunable magnetoresistance from spin-dependent interlayer hybridization in van der Waals antiferromagnet CrSBr-based heterostructures"
     },
     "2608.11450": {
@@ -280,12 +280,12 @@
       "title": "Advances and opportunities for automated robotic preparation of 2D materials and fabrication of 2D heterostructures"
     },
     "2608.11615": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Spin lifetime anisotropy in graphene induced by the SiO2 interface"
     },
     "2608.11751": {
@@ -328,10 +328,10 @@
       "title": "Emergent heavy fermion and superconductivity near Mott transition in twisted bilayer graphene"
     },
     "2608.12427": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Is the Aharonov-Casher phase geometrical or dynamical?"
@@ -381,49 +381,58 @@
       "status": "sent",
       "title": "Thermal Hall tomography of chiral superconductivity in rhombohedral graphene"
     },
-    "crossref:10.1007/s11468-026-03430-z": {
+    "crossref:10.1002/advs.77179": {
       "attempts": 1,
+      "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
+      "published": "2026-08-15",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Dynamically Tunable Exciton\u2010Photon Coupling via Multi\u2010Physics Field in Transition Metal Dichalcogenide Microcavities"
+    },
+    "crossref:10.1007/s11468-026-03430-z": {
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-15",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "skipped",
       "title": "Plasmonic Enhancement by TiO\u2082\u2013Au\u2013graphene Nanostructure in PCF-SPR Magnetic Field Sensor"
     },
     "crossref:10.1038/s41567-026-03412-2": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "sent",
       "title": "Quantum Hall antidot as a fractional coulombmeter"
     },
     "crossref:10.1038/s41699-026-00723-z": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-13",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "skipped",
       "title": "Challenges and opportunities in proximity-driven exciton-spin engineering in van der Waals heterostructures"
     },
     "crossref:10.1038/s43246-026-01331-6": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "skipped",
       "title": "Metastable MnBi2Te4 enabled by magnetic-field-assisted synthesis"
     },
     "crossref:10.1088/1361-648x/ae9a22": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "sent",
       "title": "Twisted bilayer hexagonal boron nitride: From stacking and lattice reconstruction to emergent quantum phenomena"
     },
     "crossref:10.1088/2632-959x/ae93e4": {
@@ -436,22 +445,31 @@
       "title": "Dependence of the exciton energies in WSe 2 /WSe 2 bilayer structures on the twisting angle"
     },
     "crossref:10.1103/247k-5r4c": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "skipped",
       "title": "Strain-tunable quasi-one-dimensional magnetism in van der Waals layered FePd 2 Te 2"
     },
     "crossref:10.1103/jl7j-g835": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-15T11:16:29.811442+00:00",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "skipped",
       "title": "Magnetic-Field-Tunable Repulsive Exciton-Exciton Interaction in the van der Waals Antiferromagnet NiPS 3"
+    },
+    "crossref:10.4279/pip.180004": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
+      "published": "2026-08-15",
+      "seen_at": "2026-08-16T11:16:13.043903+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Power flux in a three-layer slab waveguide with graphene interfaces and a metamaterial core"
     }
   },
   "version": 2
