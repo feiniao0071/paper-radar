@@ -123,11 +123,8 @@ def build_digest_card(
     for index, recommendation in enumerate(recommendations, start=1):
         paper = recommendation.paper
         match = matches[paper.paper_id]
-        display_title = _truncate(recommendation.title_zh or paper.title, 100)
+        display_title = recommendation.title_zh or paper.title
         summary = recommendation.summary_zh or paper.abstract
-        links = f"[原文]({paper.abstract_url})"
-        if paper.pdf_url and paper.pdf_url != paper.abstract_url:
-            links += f" · [PDF]({paper.pdf_url})"
         source_parts = [paper.source]
         if paper.venue:
             source_parts.append(paper.venue)
@@ -137,16 +134,64 @@ def build_digest_card(
         reason = recommendation.reason or (
             "命中本雷达关注方向：" + ", ".join(match.matched_terms[:5])
         )
-        content = (
-            f"**{index}. {display_title}**\n"
-            f"{links}\n"
-            f"{source_line} · {paper.published.date().isoformat()} · "
-            f"优先级 {recommendation.relevance_score}/3 · 建议{recommendation.reading_action}\n\n"
-            f"**做什么：** {_truncate(summary, 240)}\n\n"
-            f"**和我们组的关系：** {_truncate(reason, 160)}"
+        authors = _truncate(", ".join(paper.authors), 500)
+        relevance = ", ".join(recommendation.key_relevance[:8]) or ", ".join(
+            match.matched_terms[:8]
         )
-        elements.append({"tag": "hr"})
-        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": content}})
+        content = (
+            f"**英文题目：** {_truncate(paper.title, 300)}\n"
+            f"**作者：** {authors}\n"
+            f"**来源：** {source_line} · {paper.published.date().isoformat()}\n\n"
+            f"**做什么：** {_truncate(summary, 1200)}\n\n"
+            f"**和我们组的关系：** {_truncate(reason, 600)}\n\n"
+            f"**关键相关性：** {_truncate(relevance, 300)}"
+        )
+        actions = [
+            {
+                "tag": "button",
+                "text": {"tag": "plain_text", "content": "打开原文"},
+                "url": paper.abstract_url,
+                "type": "primary",
+            }
+        ]
+        if paper.pdf_url and paper.pdf_url != paper.abstract_url:
+            actions.append(
+                {
+                    "tag": "button",
+                    "text": {"tag": "plain_text", "content": "打开 PDF"},
+                    "url": paper.pdf_url,
+                    "type": "default",
+                }
+            )
+        panel_title = _truncate(
+            f"{index}. [{recommendation.relevance_score}/3 · "
+            f"{recommendation.reading_action}] {display_title}",
+            120,
+        )
+        elements.append(
+            {
+                "tag": "collapsible_panel",
+                "expanded": False,
+                "header": {
+                    "title": {"tag": "plain_text", "content": panel_title},
+                    "background_color": "grey",
+                    "vertical_align": "center",
+                    "icon": {
+                        "tag": "standard_icon",
+                        "token": "down-small-ccm_outlined",
+                    },
+                    "icon_position": "right",
+                    "icon_expanded_angle": -180,
+                },
+                "border": {"color": "grey", "corner_radius": "5px"},
+                "vertical_spacing": "8px",
+                "padding": "10px 10px 10px 10px",
+                "elements": [
+                    {"tag": "div", "text": {"tag": "lark_md", "content": content}},
+                    {"tag": "action", "actions": actions},
+                ],
+            }
+        )
 
     elements.extend(
         [
@@ -163,6 +208,7 @@ def build_digest_card(
         ]
     )
     return {
+        "schema": "2.0",
         "config": {"wide_screen_mode": True},
         "header": {
             "template": "orange" if notices else ("red" if high_priority_count else "blue"),
@@ -171,7 +217,7 @@ def build_digest_card(
                 "content": f"{digest_title} | {digest_date.isoformat()}",
             },
         },
-        "elements": elements,
+        "body": {"elements": elements},
     }
 
 

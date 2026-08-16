@@ -120,6 +120,11 @@ blocking the daily digest. Author context is restricted to affiliations and
 contribution information stated in the PDF; the model is not asked to invent
 biographies or recent publication lists.
 
+Daily Feishu digests use Card JSON 2.0 collapsible panels. Every paper is
+collapsed by default to one title/priority row; expanding it reveals the full
+recommendation summary, group relevance, metadata, and source/PDF actions. This
+keeps a ten-paper digest compact without reducing the delivery quota.
+
 The implementation follows the official OpenAI Structured Outputs guidance:
 
 <https://developers.openai.com/api/docs/guides/structured-outputs>

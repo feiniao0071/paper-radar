@@ -118,21 +118,42 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
 
     assert card["header"]["title"]["content"] == "二维量子材料论文速递 | 2026-08-14"
     assert card["header"]["template"] == "red"
-    intro = card["elements"][0]["text"]["content"]
+    assert card["schema"] == "2.0"
+    elements = card["body"]["elements"]
+    intro = elements[0]["text"]["content"]
     assert intro == "今天 Top 1 里对 **二维量子材料** 比较值得看的："
-    content = card["elements"][2]["text"]["content"]
+    panel = elements[1]
+    assert panel["tag"] == "collapsible_panel"
+    assert panel["expanded"] is False
+    assert panel["header"]["icon_position"] == "right"
+    assert recommendation.title_zh in panel["header"]["title"]["content"]
+    content = panel["elements"][0]["text"]["content"]
     assert "**做什么：**" in content
     assert "**和我们组的关系：**" in content
-    assert recommendation.title_zh in content
-    assert paper.abstract_url in content
-    assert paper.pdf_url in content
-    assert "arXiv · 2026-08-14 · 优先级 3/3 · 建议精读" in content
-    assert "英文题目" not in content
-    assert "作者：" not in content
+    assert "**关键相关性：**" in content
+    assert "arXiv · 2026-08-14" in content
+    assert "英文题目" in content
+    assert "作者：" in content
+    buttons = panel["elements"][1]["actions"]
+    assert buttons[0]["url"] == paper.abstract_url
+    assert buttons[1]["url"] == paper.pdf_url
     assert "分类：" not in content
     assert "评分依据" not in content
     assert "质量信号" not in content
     assert "关键词：" not in content
+
+    multi_card = build_digest_card(
+        [recommendation, recommendation],
+        {paper.paper_id: MatchResult(8, ("monolayer",), ("exciton",))},
+        generated_at=now,
+    )
+    panels = [
+        element
+        for element in multi_card["body"]["elements"]
+        if element["tag"] == "collapsible_panel"
+    ]
+    assert len(panels) == 2
+    assert all(panel["expanded"] is False for panel in panels)
 
 
 def test_digest_card_uses_quantum_ai_profile_text() -> None:
@@ -169,7 +190,7 @@ def test_digest_card_uses_quantum_ai_profile_text() -> None:
     assert card["header"]["title"]["content"] == (
         "Quantum AI Materials 论文速递 | 2026-08-14"
     )
-    assert card["elements"][0]["text"]["content"] == (
+    assert card["body"]["elements"][0]["text"]["content"] == (
         "今天 Top 1 里对 **Quantum AI Materials** 比较值得看的："
     )
 
