@@ -390,6 +390,15 @@
       "status": "sent",
       "title": "Dynamically Tunable Exciton\u2010Photon Coupling via Multi\u2010Physics Field in Transition Metal Dichalcogenide Microcavities"
     },
+    "crossref:10.1002/elt2.70064": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Ni Nanoparticle\u2010Decorated Reduced Graphene Oxide Hybrids With Tunable Dielectric\u2013Magnetic Synergy for Efficient Microwave Absorption"
+    },
     "crossref:10.1007/s11468-026-03430-z": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -398,6 +407,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Plasmonic Enhancement by TiO\u2082\u2013Au\u2013graphene Nanostructure in PCF-SPR Magnetic Field Sensor"
+    },
+    "crossref:10.1021/acsami.6c08798": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Enhancing Zeolite X\u2212Polyamide Compatibility in Thin-Film Nanocomposite Forward Osmosis Membranes via Decoration with N-Doped Graphene Quantum Dots"
     },
     "crossref:10.1038/s41567-026-03412-2": {
       "attempts": 2,
@@ -425,6 +443,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Metastable MnBi2Te4 enabled by magnetic-field-assisted synthesis"
+    },
+    "crossref:10.1088/1361-648x/ae8fad": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-17T11:20:32.900763+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Magnetic, structural, and electronic properties of CrOCl with the PBE functional"
     },
     "crossref:10.1088/1361-648x/ae9a22": {
       "attempts": 2,
