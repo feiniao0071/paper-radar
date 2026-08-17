@@ -90,6 +90,15 @@
       "status": "sent",
       "title": "Evaluating Electrostatic Embedding MLIP/MM for Relative Binding Free Energy Calculations"
     },
+    "2608.14153": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-17T11:39:28.462650+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-17T11:39:28.462650+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Electrostatic Phenomenology Benchmarks for Machine-Learned Interatomic Potentials in Electrochemistry: Beyond the Energy-Force Metric"
+    },
     "crossref:10.1021/acs.jpcc.6c03940": {
       "attempts": 1,
       "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
@@ -107,6 +116,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Fracture prediction of 5052 aluminum alloy sheet forming using machine learning-calibrated DF-2013 uncoupled ductile fracture criterion"
+    },
+    "crossref:10.3389/fchbi.2026.1894245": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-17T11:39:28.462650+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-17T11:39:28.462650+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Molecular dynamics simulation of the truncated NMDA receptor in a partially restrained active-like state"
     }
   },
   "version": 2
