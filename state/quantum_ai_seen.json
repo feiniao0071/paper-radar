@@ -99,6 +99,51 @@
       "status": "skipped",
       "title": "Electrostatic Phenomenology Benchmarks for Machine-Learned Interatomic Potentials in Electrochemistry: Beyond the Energy-Force Metric"
     },
+    "2608.14476": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "A Fixed Universal Determinant is Variationally Complete for Continuum Fermions"
+    },
+    "2608.15806": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "published": "2026-08-16",
+      "seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Longitudinal-Field-Driven Transition in a non-integrable Non-Hermitian Transverse-Field Ising Chain via RBMs"
+    },
+    "2608.16329": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Unlocking Multi-Component Bulk-Materials Molecular Dynamics with a Small-Footprint Machine Learning Interatomic Potential"
+    },
+    "2608.16418": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "ChemReporter: A Framework for Curating and Exporting Large-Scale Chemical Datasets for MLIP Training"
+    },
+    "crossref:10.1021/acs.jcim.6c01056": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "published": "2026-08-18",
+      "seen_at": "2026-08-18T11:37:34.083694+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Improving Quantum-Chemical Prediction of 19F NMR Chemical Shifts via Machine Learning"
+    },
     "crossref:10.1021/acs.jpcc.6c03940": {
       "attempts": 1,
       "first_seen_at": "2026-08-15T06:04:22.590553+00:00",
