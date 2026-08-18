@@ -328,10 +328,10 @@
       "title": "Emergent heavy fermion and superconductivity near Mott transition in twisted bilayer graphene"
     },
     "2608.12427": {
-      "attempts": 2,
+      "attempts": 3,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-16T11:16:13.043903+00:00",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Is the Aharonov-Casher phase geometrical or dynamical?"
@@ -381,6 +381,69 @@
       "status": "sent",
       "title": "Thermal Hall tomography of chiral superconductivity in rhombohedral graphene"
     },
+    "2608.13811": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-13",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Strong photoresponse of edge two-dimensional electrons in a magnetic field"
+    },
+    "2608.13912": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Thermal effect on the anomaly-induced electromechanical response in gapped graphene"
+    },
+    "2608.14535": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Skyrmion Fractional Chern Insulator: An Intrinsically Multiband Route to Fractionalization in Rhombohedral Graphene"
+    },
+    "2608.14805": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Interaction driven charge transfer transitions in closely spaced graphene double layers"
+    },
+    "2608.14850": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Exact Thermoelectric Transport Coefficients and Figure of Merit for Graphene Photothermoelectric Devices from a Finite Zeta-Function Mott Series"
+    },
+    "2608.15529": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-16",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Weak localization in magnetic Euler bands"
+    },
+    "2608.16232": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Toward the Ultimate Limit: Elemental Metals in One Dimension"
+    },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
       "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
@@ -398,6 +461,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Ni Nanoparticle\u2010Decorated Reduced Graphene Oxide Hybrids With Tunable Dielectric\u2013Magnetic Synergy for Efficient Microwave Absorption"
+    },
+    "crossref:10.1002/lpor.71759": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-18",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Emergent Self\u2010Trapped Excitonic Behavior Arising From the Interplay of Size, Solvent, and Dopants in Black Phosphorus Quantum Dots"
     },
     "crossref:10.1007/s11468-026-03430-z": {
       "attempts": 2,
@@ -488,6 +560,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Magnetic-Field-Tunable Repulsive Exciton-Exciton Interaction in the van der Waals Antiferromagnet NiPS 3"
+    },
+    "crossref:10.3390/electronics15163679": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-18",
+      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Valley-Polarized Transport in Graphene Induced by Asymmetric Strain and Ferromagnetic Modulation"
     },
     "crossref:10.4279/pip.180004": {
       "attempts": 1,
