@@ -207,6 +207,15 @@
       "status": "sent",
       "title": "Quantum Geometric Tensor Preconditioning for Stable Training of Recurrent Neural Quantum States"
     },
+    "crossref:10.1007/s11831-026-10681-w": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T11:39:45.359631+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-20T11:39:45.359631+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "A Comprehensive Survey on Symbolic Regression: State-of-the-Art Approaches, Key Applications, Benchmark Evaluations, and Future Research Directions"
+    },
     "crossref:10.1021/acs.jcim.6c01056": {
       "attempts": 1,
       "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
@@ -242,6 +251,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Molecular dynamics simulation of the truncated NMDA receptor in a partially restrained active-like state"
+    },
+    "crossref:10.3390/app16168291": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T11:39:45.359631+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-20T11:39:45.359631+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "ChemAutoAgent: A Multi-Agent System for Evidence-Controlled Laboratory Instrument Driver Generation from Text-Based Manuals"
     }
   },
   "version": 2
