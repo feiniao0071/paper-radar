@@ -328,10 +328,10 @@
       "title": "Emergent heavy fermion and superconductivity near Mott transition in twisted bilayer graphene"
     },
     "2608.12427": {
-      "attempts": 3,
+      "attempts": 4,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
       "published": "2026-08-12",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Is the Aharonov-Casher phase geometrical or dynamical?"
@@ -382,22 +382,49 @@
       "title": "Thermal Hall tomography of chiral superconductivity in rhombohedral graphene"
     },
     "2608.13811": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
       "published": "2026-08-13",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Strong photoresponse of edge two-dimensional electrons in a magnetic field"
     },
     "2608.13912": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Thermal effect on the anomaly-induced electromechanical response in gapped graphene"
+    },
+    "2608.14158": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Simplified Silicon Nitride Nanomembrane Circuits for van der Waals Integration"
+    },
+    "2608.14383": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Floquet Superlattices and Edge States in Graphene Nanoribbons"
+    },
+    "2608.14503": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Chiral spin liquid and chiral antiferromagnetism in half-filled moir\u00e9 Hubbard model: possible applications to twisted bilayer TMDs"
     },
     "2608.14535": {
       "attempts": 1,
@@ -418,31 +445,76 @@
       "title": "Interaction driven charge transfer transitions in closely spaced graphene double layers"
     },
     "2608.14850": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Exact Thermoelectric Transport Coefficients and Figure of Merit for Graphene Photothermoelectric Devices from a Finite Zeta-Function Mott Series"
     },
     "2608.15529": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
       "published": "2026-08-16",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Weak localization in magnetic Euler bands"
     },
-    "2608.16232": {
+    "2608.15622": {
       "attempts": 1,
-      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
-      "published": "2026-08-17",
-      "seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-16",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
       "source": "arXiv",
       "status": "deferred",
+      "title": "Electrode-tunable nonlocal Rashba-Edelstein effect and layer-selective chirality switch in WSe$_2$-intercalated bilayer graphene"
+    },
+    "2608.16028": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Transport-Noise Witnesses of Electronic Multipartite Entanglement"
+    },
+    "2608.16105": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Topologically Configurable Nonlinear Vortex Generation at van der Waals Heterostructures"
+    },
+    "2608.16232": {
+      "attempts": 2,
+      "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "skipped",
       "title": "Toward the Ultimate Limit: Elemental Metals in One Dimension"
+    },
+    "2608.16413": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Tuning electronic properties and Schottky contact in graphene-based van der Waals heterostructures by electric gating and interlayer coupling"
+    },
+    "2608.18885": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-19",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Spectral Fingerprints of Resonant Defect Scattering by Substitutional Mn in Graphene"
     },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
@@ -489,6 +561,15 @@
       "status": "skipped",
       "title": "Enhancing Zeolite X\u2212Polyamide Compatibility in Thin-Film Nanocomposite Forward Osmosis Membranes via Decoration with N-Doped Graphene Quantum Dots"
     },
+    "crossref:10.1021/acsnano.6c10508": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-19",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Strong Coupling between Topological Surface States and Localized Surface Plasmonic Resonance in a Dual Antenna-Reactor for Enhanced N2 Photofixation"
+    },
     "crossref:10.1038/s41567-026-03412-2": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -515,6 +596,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Metastable MnBi2Te4 enabled by magnetic-field-assisted synthesis"
+    },
+    "crossref:10.1073/pnas.2616584123": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:11:29.672285+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Manipulation of localized excitons in CrPS 4 by temperature and magnetic field"
     },
     "crossref:10.1088/1361-648x/ae8fad": {
       "attempts": 1,
