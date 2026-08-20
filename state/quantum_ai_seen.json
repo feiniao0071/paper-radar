@@ -99,6 +99,15 @@
       "status": "skipped",
       "title": "Electrostatic Phenomenology Benchmarks for Machine-Learned Interatomic Potentials in Electrochemistry: Beyond the Energy-Force Metric"
     },
+    "2608.14208": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Foundation Neural Effective Hamiltonian for Strongly Correlated Quantum Materials"
+    },
     "2608.14476": {
       "attempts": 1,
       "first_seen_at": "2026-08-18T11:37:34.083694+00:00",
@@ -107,6 +116,24 @@
       "source": "arXiv",
       "status": "skipped",
       "title": "A Fixed Universal Determinant is Variationally Complete for Continuum Fermions"
+    },
+    "2608.14899": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-14",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Data-Efficient Construction of Material-Specific Machine-Learning Interatomic Potentials from Ab Initio Molecular Dynamics Trajectories"
+    },
+    "2608.15776": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-16",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "ALKEMIE Agent: an autonomous platform for computational materials design"
     },
     "2608.15806": {
       "attempts": 1,
@@ -134,6 +161,51 @@
       "source": "arXiv",
       "status": "skipped",
       "title": "ChemReporter: A Framework for Curating and Exporting Large-Scale Chemical Datasets for MLIP Training"
+    },
+    "2608.16652": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "A nuclear-quantum-corrected machine-learning potential reveals quantum-enhanced hydrogen segregation at general grain boundaries in alpha-iron"
+    },
+    "2608.17149": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Temperature-Induced Reorganization of Supported Zn$_3$ Clusters on Cu(111): From Minimum-Energy Structures to Finite-Temperature Ensembles"
+    },
+    "2608.17200": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-17",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Discovery of novel magnetic Y-Mn-B compounds via advanced machine learning guided framework"
+    },
+    "2608.17716": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-18",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Atomistic Structure Generation and Neural-Network Screening of Hard Carbons to Identify High-Capacity Sodium Storage"
+    },
+    "2608.18065": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "published": "2026-08-18",
+      "seen_at": "2026-08-20T05:26:40.435286+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Quantum Geometric Tensor Preconditioning for Stable Training of Recurrent Neural Quantum States"
     },
     "crossref:10.1021/acs.jcim.6c01056": {
       "attempts": 1,
