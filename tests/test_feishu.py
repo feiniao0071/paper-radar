@@ -170,8 +170,9 @@ def test_digest_card_groups_recommendations_in_chinese() -> None:
         and "**做什么：**" in element["text"]["content"]
     ]
     assert len(detail_blocks) == 2
-    footer = digest_panel["elements"][-1]["elements"][0]["content"]
+    footer = digest_panel["elements"][-1]["text"]["content"]
     assert footer == "如果明天没有新增值得看的论文，我会保持安静。"
+    assert not any(element["tag"] == "note" for element in digest_panel["elements"])
 
 
 def test_digest_card_uses_quantum_ai_profile_text() -> None:

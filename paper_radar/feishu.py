@@ -166,13 +166,11 @@ def build_digest_card(
         [
             {"tag": "hr"},
             {
-                "tag": "note",
-                "elements": [
-                    {
-                        "tag": "plain_text",
-                        "content": "如果明天没有新增值得看的论文，我会保持安静。",
-                    }
-                ],
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": "如果明天没有新增值得看的论文，我会保持安静。",
+                },
             },
         ]
     )
