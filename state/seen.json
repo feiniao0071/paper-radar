@@ -445,12 +445,12 @@
       "title": "Interaction driven charge transfer transitions in closely spaced graphene double layers"
     },
     "2608.14850": {
-      "attempts": 4,
+      "attempts": 5,
       "first_seen_at": "2026-08-18T11:16:56.309765+00:00",
       "published": "2026-08-14",
-      "seen_at": "2026-08-20T11:21:14.743698+00:00",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Exact Thermoelectric Transport Coefficients and Figure of Merit for Graphene Photothermoelectric Devices from a Finite Zeta-Function Mott Series"
     },
     "2608.15529": {
@@ -579,6 +579,15 @@
       "status": "sent",
       "title": "Flat and Topological Floquet Minibands from Patterned Light in Untwisted Bilayer Graphene"
     },
+    "2608.19343": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-19",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Self-calibrating thermal interferometry of vortex parity in a two-dimensional chiral superconductor"
+    },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
       "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
@@ -605,6 +614,24 @@
       "source": "Crossref",
       "status": "deferred",
       "title": "Emergent Self\u2010Trapped Excitonic Behavior Arising From the Interplay of Size, Solvent, and Dopants in Black Phosphorus Quantum Dots"
+    },
+    "crossref:10.1002/smll.75377": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Magnetic Field Tuning of Modulated Magnetic Orders in CrOCl at the Two\u2010Dimensional Limit"
+    },
+    "crossref:10.1007/s00339-026-10113-3": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Sulfur-vacancies-assisted enhancing the magnetism of Fe-doped MoS2/graphene heterostructures*"
     },
     "crossref:10.1007/s11468-026-03430-z": {
       "attempts": 2,
@@ -642,6 +669,33 @@
       "status": "skipped",
       "title": "Synthesis and Characterization of Graphene Quantum Dots/Trititanate Nanotube Composites for Enhanced Fluorescence and Biomedical Imaging Applications"
     },
+    "crossref:10.1038/s41377-026-02439-7": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Excitons make quantum leap in just 2.5 femtoseconds"
+    },
+    "crossref:10.1038/s41377-026-02445-9": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "A magnetic dial for exciton-polaritons"
+    },
+    "crossref:10.1038/s41467-026-77017-x": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Suppressed excitonic effects enable high mobility and high-yield photoconductivity in a pyridine-coordinated two-dimensional polymer crystal"
+    },
     "crossref:10.1038/s41567-026-03412-2": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -651,6 +705,24 @@
       "status": "sent",
       "title": "Quantum Hall antidot as a fractional coulombmeter"
     },
+    "crossref:10.1038/s41598-026-64545-1": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Distance-based topological indices of chevron-like graphene nanoribbons with applications to electronic parameters"
+    },
+    "crossref:10.1038/s41598-026-67015-w": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Mechanical strain induced topological phase changes of monolayer and bilayer ZrTe5"
+    },
     "crossref:10.1038/s41699-026-00723-z": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -659,6 +731,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Challenges and opportunities in proximity-driven exciton-spin engineering in van der Waals heterostructures"
+    },
+    "crossref:10.1038/s42005-026-02813-2": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Exciton dynamics in monolayer WSe2 probed by ultrafast valley-selective second-harmonic microscopy"
     },
     "crossref:10.1038/s43246-026-01331-6": {
       "attempts": 2,
@@ -705,6 +786,15 @@
       "status": "sent",
       "title": "Twisted bilayer hexagonal boron nitride: From stacking and lattice reconstruction to emergent quantum phenomena"
     },
+    "crossref:10.1088/2040-8986/ae9c52": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Mode-order engineering of Tamm-plasmon exciton-polaritons in monolayer WS2"
+    },
     "crossref:10.1088/2053-1583/ae977a": {
       "attempts": 1,
       "first_seen_at": "2026-08-20T11:21:14.743698+00:00",
@@ -740,6 +830,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Magnetic-Field-Tunable Repulsive Exciton-Exciton Interaction in the van der Waals Antiferromagnet NiPS 3"
+    },
+    "crossref:10.20517/microstructures.2026.40": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-21T11:20:39.754120+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Gradient microcellular materials for broadband microwave absorption and multifunctional integration"
     },
     "crossref:10.3390/electronics15163679": {
       "attempts": 1,
