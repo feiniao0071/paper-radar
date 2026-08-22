@@ -822,6 +822,15 @@
       "status": "skipped",
       "title": "Strain-tunable quasi-one-dimensional magnetism in van der Waals layered FePd 2 Te 2"
     },
+    "crossref:10.1103/hdrv-l7kl": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-22T11:12:28.106688+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-22T11:12:28.106688+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "p -wave magnetism and gate-tunable Edelstein response in van der Waals heterostructures"
+    },
     "crossref:10.1103/jl7j-g835": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -830,6 +839,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Magnetic-Field-Tunable Repulsive Exciton-Exciton Interaction in the van der Waals Antiferromagnet NiPS 3"
+    },
+    "crossref:10.1126/sciadv.aef5458": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-22T11:12:28.106688+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-22T11:12:28.106688+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Multidimensional spectro-temporal imaging of exciton dynamics under propagating acoustic strain in two-dimensional semiconductors"
     },
     "crossref:10.20517/microstructures.2026.40": {
       "attempts": 1,
