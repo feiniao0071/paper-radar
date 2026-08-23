@@ -216,6 +216,15 @@
       "status": "skipped",
       "title": "Dynamic Ensembles of Phosphine-Stabilized Gold Nanoclusters"
     },
+    "crossref:10.1002/adfm.77894": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "published": "2026-08-22",
+      "seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Quantum Bi\u2010Stability and Robust Room\u2010Temperature Spin Excitation in a Single\u2010Ion Magnet"
+    },
     "crossref:10.1007/s11831-026-10681-w": {
       "attempts": 1,
       "first_seen_at": "2026-08-20T11:39:45.359631+00:00",
@@ -224,6 +233,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "A Comprehensive Survey on Symbolic Regression: State-of-the-Art Approaches, Key Applications, Benchmark Evaluations, and Future Research Directions"
+    },
+    "crossref:10.1007/s13738-026-03606-8": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "published": "2026-08-23",
+      "seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Machine learning-assisted prediction of cesium adsorption using metal\u2013organic frameworks/reduced graphene oxide composite"
     },
     "crossref:10.1021/acs.jcim.6c01056": {
       "attempts": 1,
@@ -242,6 +260,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    },
+    "crossref:10.1145/3827610": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "published": "2026-08-22",
+      "seen_at": "2026-08-23T11:33:55.222111+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Quantum Artificial Intelligence for Software Engineering: The Road Ahead"
     },
     "crossref:10.1177/03093247261476563": {
       "attempts": 1,
