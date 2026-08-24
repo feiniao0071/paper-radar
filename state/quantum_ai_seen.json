@@ -216,6 +216,42 @@
       "status": "skipped",
       "title": "Dynamic Ensembles of Phosphine-Stabilized Gold Nanoclusters"
     },
+    "2608.20596": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Machine Learning Guided Discovery of Corundum High Entropy Oxides"
+    },
+    "2608.20994": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Scalable photoexcitation-induced molecular dynamics with machine-learned Hamiltonians"
+    },
+    "2608.21291": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Neural quantum states in condensed matter: advances, best practices, and prospects"
+    },
+    "2608.21313": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:42:06.741864+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Machine-Learned NMR Shieldings in Molecular Solids with Built-In Hybrid-Functional Molecular Corrections"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
