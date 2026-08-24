@@ -588,6 +588,69 @@
       "status": "sent",
       "title": "Self-calibrating thermal interferometry of vortex parity in a two-dimensional chiral superconductor"
     },
+    "2608.20502": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Real-time ESR tracking for sub-micron 3D magnetic mapping with VB- quantum sensors in hexagonal boron nitride"
+    },
+    "2608.20560": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-20",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Interband plasmons due to Mexican hat dispersion in two-dimensional materials with inverted bands"
+    },
+    "2608.20694": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Distinguishing Mott and strain-induced anisotropic semimetals in magic-angle twisted bilayer graphene using Landau level spectroscopy"
+    },
+    "2608.20833": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Coherence-Based Identification of Carbon-Based Spin Qubits in Hexagonal Boron Nitride from First Principles"
+    },
+    "2608.20862": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Time-Resolved Thermal Susceptibility Mapping via Low-Temperature Scanning Laser Microscopy"
+    },
+    "2608.20973": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Scalable Cyclic Olefin Copolymer Encapsulation for High Optical Quality of TMD Monolayers"
+    },
+    "2608.21228": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "The Continuum Model for Uniaxially Strained Bilayer Graphene Moir\u00e9 Systems"
+    },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
       "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
@@ -705,6 +768,15 @@
       "status": "sent",
       "title": "Quantum Hall antidot as a fractional coulombmeter"
     },
+    "crossref:10.1038/s41567-026-03425-x": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Real-space imaging of moir\u00e9-confined excitons in twisted bilayer MoS2"
+    },
     "crossref:10.1038/s41598-026-64545-1": {
       "attempts": 1,
       "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
@@ -767,6 +839,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Boundary condition induced topological transitions in graphene quantum pumps: from finite to infinite"
+    },
+    "crossref:10.1088/1361-6463/ae96ba": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-24T11:22:06.034822+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Low energy electron beam doping on graphene with enhanced carrier mobility"
     },
     "crossref:10.1088/1361-648x/ae8fad": {
       "attempts": 1,
