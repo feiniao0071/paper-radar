@@ -252,6 +252,42 @@
       "status": "sent",
       "title": "Machine-Learned NMR Shieldings in Molecular Solids with Built-In Hybrid-Functional Molecular Corrections"
     },
+    "2608.21624": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "published": "2026-08-21",
+      "seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Vibrational, structural, and chemical fingerprints of ion diffusion in crystalline solids"
+    },
+    "2608.21695": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "published": "2026-08-22",
+      "seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Comparative Assessment of Thermal Transport Theories: Dual-Channel Mechanism Dictates Heat Transport in Ultralow-$\u03ba$ Materials"
+    },
+    "2608.22404": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "published": "2026-08-23",
+      "seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Error Propagation Theory for Variational Non-Markovian Open Quantum Dynamics"
+    },
+    "2608.22933": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Generalizing Abell-Tersoff bond-order potential with explicit high-order many-body correlations for robust extrapolation of potential energy surfaces"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -260,6 +296,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Quantum Bi\u2010Stability and Robust Room\u2010Temperature Spin Excitation in a Single\u2010Ion Magnet"
+    },
+    "crossref:10.1007/s11694-026-04856-z": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-25T11:40:46.158600+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Raman spectroscopy integrated with deep learning for rapid and sensitive detection of edible oil adulteration"
     },
     "crossref:10.1007/s11831-026-10681-w": {
       "attempts": 1,
