@@ -651,6 +651,51 @@
       "status": "sent",
       "title": "The Continuum Model for Uniaxially Strained Bilayer Graphene Moir\u00e9 Systems"
     },
+    "2608.22206": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-23",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Unified Bonding Entropy Model for Kekul\u00e9 Graphene Nanoflakes"
+    },
+    "2608.23083": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Three-dimensional Ising superconductors designed via inversion-symmetry breaking in intercalated NbSe$_2$ and NbTe$_2$"
+    },
+    "2608.23289": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Quantum Geometry Driven Optical Responses in 1T-MX$_2$ Monolayers: A Symmetry-Constrained Slater-Koster Tight-Binding Approach"
+    },
+    "2608.23403": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "The principle of detailed balance between electrons and phonons in presence of excitonic effects"
+    },
+    "crossref:10.1002/adfm.77866": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Probing Intrinsic Magnetic Phases in Low\u2010Dimensional Nearly Twin\u2010Free NiPS 3 Single Crystals"
+    },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
       "first_seen_at": "2026-08-16T11:16:13.043903+00:00",
@@ -920,6 +965,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Magnetic-Field-Tunable Repulsive Exciton-Exciton Interaction in the van der Waals Antiferromagnet NiPS 3"
+    },
+    "crossref:10.1103/xr1t-173x": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-25T11:19:13.357361+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Tuning correlated states of twisted mono-bilayer graphene with proximity-induced spin-orbit coupling"
     },
     "crossref:10.1126/sciadv.aef5458": {
       "attempts": 1,
