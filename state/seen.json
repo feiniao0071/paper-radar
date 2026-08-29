@@ -688,30 +688,30 @@
       "title": "The principle of detailed balance between electrons and phonons in presence of excitonic effects"
     },
     "2608.23832": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-24",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Spectrally Programmable Spin-Polarized Photocurrents in WSe$_2$-NiPS$_3$ Magnetic van der Waals Heterostructures"
     },
     "2608.23884": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-24",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Hartree--Fock coercivity for twisted bilayer graphene"
     },
     "2608.24006": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-25",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Engineering Dirac interface states"
     },
     "2608.24059": {
@@ -724,19 +724,19 @@
       "title": "Composite fermions in the $\u03bd=3$ fractional quantum spin Hall effect"
     },
     "2608.24408": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-25",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Altermagnetic Anomalous Hall Effect and Spin--Edge-Locked Chiral Modes in a Modified Kane--Mele--Hubbard Model"
     },
     "2608.24581": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-25",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Intervalley Magnetotrions Tunable by Electric and Magnetic Fields in Buckled Two-Dimensional Materials"
@@ -778,21 +778,21 @@
       "title": "Metastable magnetic domains and the anomalous $B_\\parallel=0$ resistance peak in twisted double bilayer graphene"
     },
     "2608.25482": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-26",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Parity-controlled electron-hole interference in exciton-phonon coupling"
     },
     "2608.25931": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-26",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Size and Impurity Effects on Scattering of Valley Hall Modes in Gate-Defined Bilayer Graphene Superlattices"
     },
     "2608.26026": {
@@ -805,21 +805,21 @@
       "title": "Electron spin resonance driven photogalvanic effect in graphene-based structures"
     },
     "2608.26102": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-26",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Viscochiral Transport: Chiral Selection of Hydrodynamic Vortices by Berry Curvature"
     },
     "2608.26104": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-26",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Multicomponent Magnetic Domain Walls in Rhombohedral Graphene"
     },
     "2608.26252": {
@@ -832,12 +832,12 @@
       "title": "Quantized Transport through a Supermoir\u00e9 Chern Mosaic"
     },
     "2608.26864": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-27",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Observation of dodecagonal replica bands in 30$^{\\circ}$-twisted bilayer WSe$_2$"
     },
     "2608.26869": {
@@ -850,12 +850,12 @@
       "title": "Switchable giant room-temperature nonlinear Hall effect in Bilayer Graphene"
     },
     "2608.27383": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-27",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Scalable, Simple, and Versatile Encapsulation of 2D Materials and Devices"
     },
     "2608.27444": {
@@ -1147,12 +1147,12 @@
       "title": "Strain-tunable quasi-one-dimensional magnetism in van der Waals layered FePd 2 Te 2"
     },
     "crossref:10.1103/bc4t-fzc3": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-25",
-      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "seen_at": "2026-08-29T15:27:22.879371+00:00",
       "source": "Crossref",
-      "status": "deferred",
+      "status": "sent",
       "title": "Transient photoexcited state of the small-gap quasi-two-dimensional Mott-Hubbard insulator Sn / Si ( 111 ) \u2212 ( \u221a 3 \u00d7 \u221a 3 ) \u2212 R 30 \u2218"
     },
     "crossref:10.1103/hdrv-l7kl": {
