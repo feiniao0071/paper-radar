@@ -315,6 +315,15 @@
       "status": "sent",
       "title": "Grain-Boundary Premelting in High-Entropy Transition Metal Carbides"
     },
+    "2608.27277": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T15:37:05.617986+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T15:37:05.617986+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Benchmarking of Fast and Interpretable UF Machine Learning Potentials"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -368,6 +377,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    },
+    "crossref:10.1049/enc2.70049": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T15:37:05.617986+00:00",
+      "published": "2026-08-29",
+      "seen_at": "2026-08-29T15:37:05.617986+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Power system\u2010oriented extreme weather scenario identification: Hybrid classical\u2010quantum learning"
     },
     "crossref:10.1145/3827610": {
       "attempts": 1,
