@@ -687,6 +687,186 @@
       "status": "sent",
       "title": "The principle of detailed balance between electrons and phonons in presence of excitonic effects"
     },
+    "2608.23832": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Spectrally Programmable Spin-Polarized Photocurrents in WSe$_2$-NiPS$_3$ Magnetic van der Waals Heterostructures"
+    },
+    "2608.23884": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-24",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Hartree--Fock coercivity for twisted bilayer graphene"
+    },
+    "2608.24006": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Engineering Dirac interface states"
+    },
+    "2608.24059": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Composite fermions in the $\u03bd=3$ fractional quantum spin Hall effect"
+    },
+    "2608.24408": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Altermagnetic Anomalous Hall Effect and Spin--Edge-Locked Chiral Modes in a Modified Kane--Mele--Hubbard Model"
+    },
+    "2608.24581": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Intervalley Magnetotrions Tunable by Electric and Magnetic Fields in Buckled Two-Dimensional Materials"
+    },
+    "2608.24619": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Engineering Plasmons in Oxide/Graphene Heterostructures via Interfacial Charge Transfer"
+    },
+    "2608.24684": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Visualizing flat-band spatial renormalization in rhombohedral graphene superlattices"
+    },
+    "2608.25257": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Signatures of a ferro-Josephson effect in twisted graphene"
+    },
+    "2608.25263": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Metastable magnetic domains and the anomalous $B_\\parallel=0$ resistance peak in twisted double bilayer graphene"
+    },
+    "2608.25482": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Parity-controlled electron-hole interference in exciton-phonon coupling"
+    },
+    "2608.25931": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Size and Impurity Effects on Scattering of Valley Hall Modes in Gate-Defined Bilayer Graphene Superlattices"
+    },
+    "2608.26026": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Electron spin resonance driven photogalvanic effect in graphene-based structures"
+    },
+    "2608.26102": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Viscochiral Transport: Chiral Selection of Hydrodynamic Vortices by Berry Curvature"
+    },
+    "2608.26104": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Multicomponent Magnetic Domain Walls in Rhombohedral Graphene"
+    },
+    "2608.26252": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Quantized Transport through a Supermoir\u00e9 Chern Mosaic"
+    },
+    "2608.26864": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Observation of dodecagonal replica bands in 30$^{\\circ}$-twisted bilayer WSe$_2$"
+    },
+    "2608.26869": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Switchable giant room-temperature nonlinear Hall effect in Bilayer Graphene"
+    },
+    "2608.27383": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Scalable, Simple, and Versatile Encapsulation of 2D Materials and Devices"
+    },
+    "2608.27444": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Trapping $e/4$ quasiparticles in bilayer graphene"
+    },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
       "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
@@ -695,6 +875,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Probing Intrinsic Magnetic Phases in Low\u2010Dimensional Nearly Twin\u2010Free NiPS 3 Single Crystals"
+    },
+    "crossref:10.1002/adma.74842": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Fabrication of High Magnetic Susceptibility Nano\u2010FeS 2 via Electronic Reconstruction Induced by Alternating Magnetic Field"
     },
     "crossref:10.1002/advs.77179": {
       "attempts": 1,
@@ -885,6 +1074,15 @@
       "status": "sent",
       "title": "Boundary condition induced topological transitions in graphene quantum pumps: from finite to infinite"
     },
+    "crossref:10.1088/0256-307x/43/9/090708": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Charge imprinting biases topology of correlated insulator in hBN-aligned rhombohedral multilayer graphene"
+    },
     "crossref:10.1088/1361-6463/ae96ba": {
       "attempts": 1,
       "first_seen_at": "2026-08-24T11:22:06.034822+00:00",
@@ -947,6 +1145,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Strain-tunable quasi-one-dimensional magnetism in van der Waals layered FePd 2 Te 2"
+    },
+    "crossref:10.1103/bc4t-fzc3": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:10:25.788893+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Transient photoexcited state of the small-gap quasi-two-dimensional Mott-Hubbard insulator Sn / Si ( 111 ) \u2212 ( \u221a 3 \u00d7 \u221a 3 ) \u2212 R 30 \u2218"
     },
     "crossref:10.1103/hdrv-l7kl": {
       "attempts": 1,
