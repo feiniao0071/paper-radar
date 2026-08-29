@@ -288,6 +288,33 @@
       "status": "sent",
       "title": "Generalizing Abell-Tersoff bond-order potential with explicit high-order many-body correlations for robust extrapolation of potential energy surfaces"
     },
+    "2608.24513": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "published": "2026-08-25",
+      "seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Structure-Agnostic Prediction of the Electronic Density of States with a Chemical Language Model"
+    },
+    "2608.25270": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "published": "2026-08-26",
+      "seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "High-throughput Discovery of Magnetic Rare Earth Transition Metal Alloys"
+    },
+    "2608.27273": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-29T14:13:32.551756+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Grain-Boundary Premelting in High-Entropy Transition Metal Carbides"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",

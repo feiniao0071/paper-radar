@@ -42,7 +42,11 @@ jobs:
       LLM_REASONING_EFFORT: ${{ vars.LLM_REASONING_EFFORT || 'low' }}
       ARXIV_CONTACT: ${{ vars.ARXIV_CONTACT }}
     steps:
+      # Scheduled/queued runs must start from the latest state commit, not the
+      # event SHA captured before another radar run updates the branch.
       - uses: actions/checkout@v5
+        with:
+          ref: main
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -83,6 +87,7 @@ jobs:
           git config user.email "paper-radar[bot]@users.noreply.github.com"
           git add state/quantum_ai_seen.json
           git commit -m "chore: update Quantum AI radar state"
+          git pull --rebase origin main
           git push
       - name: Propagate radar failure
         if: steps.radar.outcome == 'failure'

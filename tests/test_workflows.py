@@ -14,3 +14,15 @@ def test_quantum_ai_workflow_is_isolated_from_2d_radar() -> None:
     assert "secrets.QUANTUM_AI_FEISHU_SIGNING_SECRET" in workflow
     assert 'cron: "10 11 * * *"' in workflow
     assert "group: paper-radar-state" in workflow
+    assert "ref: main" in workflow
+    assert "git pull --rebase origin main" in workflow
+
+
+def test_2d_workflow_updates_state_from_latest_main() -> None:
+    project_root = Path(__file__).resolve().parent.parent
+    workflow = (project_root / ".github/workflows/paper-watch.yml").read_text(
+        encoding="utf-8"
+    )
+
+    assert "ref: main" in workflow
+    assert "git pull --rebase origin main" in workflow
