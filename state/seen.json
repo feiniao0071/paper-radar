@@ -697,12 +697,12 @@
       "title": "Spectrally Programmable Spin-Polarized Photocurrents in WSe$_2$-NiPS$_3$ Magnetic van der Waals Heterostructures"
     },
     "2608.23884": {
-      "attempts": 2,
+      "attempts": 3,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-24",
-      "seen_at": "2026-08-29T15:27:22.879371+00:00",
+      "seen_at": "2026-08-30T15:08:52.214335+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Hartree--Fock coercivity for twisted bilayer graphene"
     },
     "2608.24006": {
@@ -733,12 +733,12 @@
       "title": "Altermagnetic Anomalous Hall Effect and Spin--Edge-Locked Chiral Modes in a Modified Kane--Mele--Hubbard Model"
     },
     "2608.24581": {
-      "attempts": 2,
+      "attempts": 3,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
       "published": "2026-08-25",
-      "seen_at": "2026-08-29T15:27:22.879371+00:00",
+      "seen_at": "2026-08-30T15:08:52.214335+00:00",
       "source": "arXiv",
-      "status": "deferred",
+      "status": "sent",
       "title": "Intervalley Magnetotrions Tunable by Electric and Magnetic Fields in Buckled Two-Dimensional Materials"
     },
     "2608.24619": {
@@ -911,6 +911,15 @@
       "source": "Crossref",
       "status": "deferred",
       "title": "Emergent Self\u2010Trapped Excitonic Behavior Arising From the Interplay of Size, Solvent, and Dopants in Black Phosphorus Quantum Dots"
+    },
+    "crossref:10.1002/slct.74303": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-30T15:08:52.214335+00:00",
+      "published": "2026-08-30",
+      "seen_at": "2026-08-30T15:08:52.214335+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Photodynamic Inactivation of Bacteria by a Monosubstituted 3\u2010[4\u2010(Sodium sulfonate)phenoxy] Zinc Phthalocyanine/Nitrogen\u2010Doped Graphene Quantum Dot Nanoconjugate"
     },
     "crossref:10.1002/smll.75377": {
       "attempts": 1,
