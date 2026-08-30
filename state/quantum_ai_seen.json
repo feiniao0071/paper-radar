@@ -378,6 +378,24 @@
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
     },
+    "crossref:10.1038/s41598-026-67691-8": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-30T15:20:39.048253+00:00",
+      "published": "2026-08-30",
+      "seen_at": "2026-08-30T15:20:39.048253+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Multiscale insights into the diffusion of SF6/N2 mixtures via machine-learning interatomic potentials"
+    },
+    "crossref:10.1038/s41598-026-68469-8": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-30T15:20:39.048253+00:00",
+      "published": "2026-08-30",
+      "seen_at": "2026-08-30T15:20:39.048253+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Machine learning-based prediction of bead geometry in AZ31 magnesium alloy using robotic cold metal transfer WAAM"
+    },
     "crossref:10.1049/enc2.70049": {
       "attempts": 1,
       "first_seen_at": "2026-08-29T15:37:05.617986+00:00",
