@@ -19,7 +19,9 @@ FIELDS = (
     "publicationTypes,fieldsOfStudy"
 )
 RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
-MAX_ATTEMPTS = 4
+# Semantic Scholar can temporarily throttle a valid key without Retry-After.
+# This gives the shared quota window about one minute to recover.
+MAX_ATTEMPTS = 7
 
 
 def _batches(papers: list[Paper], size: int) -> list[list[Paper]]:
