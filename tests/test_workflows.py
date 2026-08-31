@@ -12,7 +12,7 @@ def test_quantum_ai_workflow_is_isolated_from_2d_radar() -> None:
     assert "state/quantum_ai_seen.json" in workflow
     assert "secrets.QUANTUM_AI_FEISHU_WEBHOOK_URL" in workflow
     assert "secrets.QUANTUM_AI_FEISHU_SIGNING_SECRET" in workflow
-    assert 'cron: "23 10 * * *"' in workflow
+    assert 'cron: "33 10 * * *"' in workflow
     assert "group: paper-radar-state" in workflow
     assert "ref: main" in workflow
     assert "git pull --rebase origin main" in workflow
@@ -26,3 +26,4 @@ def test_2d_workflow_updates_state_from_latest_main() -> None:
 
     assert "ref: main" in workflow
     assert "git pull --rebase origin main" in workflow
+    assert 'cron: "23 10 * * *"' in workflow

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -202,6 +203,34 @@ def _contains_chinese(value: str) -> bool:
     return re.search(r"[\u3400-\u9fff]", value) is not None
 
 
+def _get_field(value: Any, name: str) -> Any:
+    if isinstance(value, dict):
+        return value.get(name)
+    return getattr(value, name, None)
+
+
+def _usage_value(value: Any) -> str:
+    return str(value) if value is not None else "unknown"
+
+
+def _log_response_usage(response: Any, schema_name: str) -> None:
+    usage = _get_field(response, "usage")
+    if usage is None:
+        return
+
+    input_details = _get_field(usage, "input_tokens_details")
+    output_details = _get_field(usage, "output_tokens_details")
+    LOGGER.info(
+        "LLM usage for %s: input=%s output=%s reasoning=%s cached_input=%s total=%s",
+        schema_name,
+        _usage_value(_get_field(usage, "input_tokens")),
+        _usage_value(_get_field(usage, "output_tokens")),
+        _usage_value(_get_field(output_details, "reasoning_tokens")),
+        _usage_value(_get_field(input_details, "cached_tokens")),
+        _usage_value(_get_field(usage, "total_tokens")),
+    )
+
+
 class AIRecommender:
     def __init__(
         self,
@@ -285,7 +314,25 @@ class AIRecommender:
         output_text = "".join(output_parts) or completed_response.output_text
         if not output_text.strip():
             raise ValueError("AI response contained no output text")
+        _log_response_usage(completed_response, schema_name)
         return output_text
+
+    def evaluation_cache_key(self, paper: Paper, *, profile_name: str) -> str:
+        payload = {
+            "version": 1,
+            "profile_name": profile_name,
+            "model": self.model,
+            "reasoning_effort": self.reasoning_effort,
+            "prompt_sha256": hashlib.sha256(
+                self.prompt_template.encode("utf-8")
+            ).hexdigest(),
+            "paper_id": paper.paper_id,
+            "paper_prompt_sha256": hashlib.sha256(
+                paper.prompt_text().encode("utf-8")
+            ).hexdigest(),
+        }
+        serialized = json.dumps(payload, ensure_ascii=True, sort_keys=True)
+        return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
     def _request(self, prompt: str, *, structured: bool) -> str:
         return self._request_content(

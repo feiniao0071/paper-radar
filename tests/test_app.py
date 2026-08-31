@@ -252,6 +252,80 @@ def test_deep_read_candidate_requires_inspiring_ai_evaluation() -> None:
     )
 
 
+def test_evaluate_reuses_cached_ai_recommendations(tmp_path) -> None:
+    cached_paper = _paper()
+    fresh_paper = Paper(
+        paper_id="2608.00002",
+        title="Fresh graphene transport",
+        authors=cached_paper.authors,
+        abstract=cached_paper.abstract,
+        published=cached_paper.published,
+        updated=cached_paper.updated,
+        categories=cached_paper.categories,
+        abstract_url="https://arxiv.org/abs/2608.00002",
+        pdf_url="https://arxiv.org/pdf/2608.00002",
+    )
+    matches = {
+        cached_paper.paper_id: MatchResult(3, ("graphene",), ()),
+        fresh_paper.paper_id: MatchResult(3, ("graphene",), ()),
+    }
+    state = StateStore(tmp_path / "seen.json")
+    state.cache_ai_evaluation(
+        "cache:2608.00001",
+        app.Recommendation(
+            paper=cached_paper,
+            relevance_score=3,
+            reason="cached",
+            key_relevance=("graphene",),
+            title_zh="cached",
+            summary_zh="cached",
+            used_ai=True,
+            priority_score=88,
+        ),
+    )
+
+    class FakeRecommender:
+        def __init__(self) -> None:
+            self.calls = []
+
+        def evaluation_cache_key(self, paper, *, profile_name):
+            return f"cache:{paper.paper_id}"
+
+        def evaluate(self, papers, matches):
+            self.calls.append([paper.paper_id for paper in papers])
+            return [
+                app.Recommendation(
+                    paper=paper,
+                    relevance_score=2,
+                    reason="fresh",
+                    key_relevance=("graphene",),
+                    title_zh="fresh",
+                    summary_zh="fresh",
+                    used_ai=True,
+                    priority_score=68,
+                )
+                for paper in papers
+            ]
+
+    recommender = FakeRecommender()
+
+    recommendations, notices = app._evaluate(
+        [cached_paper, fresh_paper],
+        matches,
+        recommender=recommender,
+        state=state,
+        profile_name="test",
+    )
+
+    assert notices == ()
+    assert recommender.calls == [["2608.00002"]]
+    assert [recommendation.reason for recommendation in recommendations] == [
+        "cached",
+        "fresh",
+    ]
+    assert state.cached_ai_evaluation(fresh_paper, "cache:2608.00002") is not None
+
+
 def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) -> None:
     older = _paper()
     newer = Paper(

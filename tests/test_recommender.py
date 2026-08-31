@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
@@ -23,12 +24,16 @@ class FakeStream:
 
 
 class FakeResponses:
-    def __init__(self) -> None:
+    def __init__(self, response: SimpleNamespace | None = None) -> None:
         self.request = None
+        self.response = response
 
     def create(self, **request: object) -> FakeStream:
         self.request = request
-        response = SimpleNamespace(status="completed", output_text='{"evaluations": []}')
+        response = self.response or SimpleNamespace(
+            status="completed",
+            output_text='{"evaluations": []}',
+        )
         return FakeStream(
             [
                 SimpleNamespace(
@@ -124,6 +129,50 @@ def test_request_uses_json_mode_for_retry() -> None:
 
     assert responses.request is not None
     assert responses.request["text"] == {"format": {"type": "json_object"}}
+
+
+def test_request_logs_token_usage(caplog) -> None:
+    response = SimpleNamespace(
+        status="completed",
+        output_text='{"evaluations": []}',
+        usage=SimpleNamespace(
+            input_tokens=120,
+            output_tokens=34,
+            total_tokens=154,
+            input_tokens_details=SimpleNamespace(cached_tokens=20),
+            output_tokens_details=SimpleNamespace(reasoning_tokens=12),
+        ),
+    )
+    responses = FakeResponses(response)
+    recommender = make_recommender()
+    recommender.client = SimpleNamespace(responses=responses)
+
+    with caplog.at_level(logging.INFO, logger="paper_radar.recommender"):
+        recommender._request("Evaluate this paper", structured=True)
+
+    assert "LLM usage for paper_recommendations" in caplog.text
+    assert "input=120" in caplog.text
+    assert "output=34" in caplog.text
+    assert "reasoning=12" in caplog.text
+    assert "cached_input=20" in caplog.text
+    assert "total=154" in caplog.text
+
+
+def test_evaluation_cache_key_changes_with_prompt() -> None:
+    paper = make_paper()
+    recommender = make_recommender()
+    original_key = recommender.evaluation_cache_key(
+        paper,
+        profile_name="2D Quantum Materials",
+    )
+    recommender.prompt_template += "\nNew rubric."
+
+    updated_key = recommender.evaluation_cache_key(
+        paper,
+        profile_name="2D Quantum Materials",
+    )
+
+    assert updated_key != original_key
 
 
 @pytest.mark.parametrize(

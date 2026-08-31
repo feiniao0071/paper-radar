@@ -89,6 +89,8 @@ def _evaluate(
     matches: dict[str, MatchResult],
     *,
     recommender: AIRecommender | None,
+    state: StateStore | None = None,
+    profile_name: str = "",
 ) -> tuple[list[Recommendation], tuple[str, ...]]:
     if recommender is None:
         LOGGER.info("AI evaluation is disabled; using deterministic keyword ranking")
@@ -97,14 +99,57 @@ def _evaluate(
             ("AI 评估未启用，本期使用关键词兜底排序。",),
         )
 
+    cached_by_id: dict[str, Recommendation] = {}
+    cache_keys: dict[str, str] = {}
+    pending_papers: list[Paper] = []
+    if state is not None and profile_name:
+        for paper in papers:
+            cache_key = recommender.evaluation_cache_key(
+                paper,
+                profile_name=profile_name,
+            )
+            cache_keys[paper.paper_id] = cache_key
+            cached = state.cached_ai_evaluation(paper, cache_key)
+            if cached is None:
+                pending_papers.append(paper)
+            else:
+                cached_by_id[paper.paper_id] = cached
+    else:
+        pending_papers = papers
+
+    if cached_by_id:
+        LOGGER.info("Reused %d cached AI paper evaluation(s)", len(cached_by_id))
+    if not pending_papers:
+        return [cached_by_id[paper.paper_id] for paper in papers], ()
+
     try:
-        recommendations = recommender.evaluate(papers, matches)
-        LOGGER.info("AI evaluated %d paper(s)", len(recommendations))
-        return recommendations, ()
+        recommendations = recommender.evaluate(pending_papers, matches)
+        LOGGER.info("AI evaluated %d new paper(s)", len(recommendations))
+        if state is not None:
+            for recommendation in recommendations:
+                cache_key = cache_keys.get(recommendation.paper.paper_id)
+                if cache_key:
+                    state.cache_ai_evaluation(cache_key, recommendation)
+        recommendations_by_id = {
+            recommendation.paper.paper_id: recommendation
+            for recommendation in recommendations
+        }
+        recommendations_by_id.update(cached_by_id)
+        return [recommendations_by_id[paper.paper_id] for paper in papers], ()
     except Exception as error:
         LOGGER.exception("AI evaluation failed; using deterministic keyword ranking")
+        recommendations_by_id = {
+            paper_id: recommendation
+            for paper_id, recommendation in cached_by_id.items()
+        }
+        recommendations_by_id.update(
+            {
+                paper.paper_id: fallback_recommendation(paper, matches[paper.paper_id])
+                for paper in pending_papers
+            }
+        )
         return (
-            [fallback_recommendation(paper, matches[paper.paper_id]) for paper in papers],
+            [recommendations_by_id[paper.paper_id] for paper in papers],
             (f"AI 评估失败（{type(error).__name__}），本期使用关键词兜底排序。",),
         )
 
@@ -329,6 +374,8 @@ def run(args: argparse.Namespace) -> int:
         candidates,
         matches,
         recommender=recommender,
+        state=state,
+        profile_name=config.profile.name,
     )
     notices.extend(evaluation_notices)
     recommendations = _calibrate_priorities(

@@ -20,7 +20,7 @@ do not need to remain online.
 3. Add venue, publication type, and citation metadata from Semantic Scholar when available.
 4. Require both a profile-specific core term and a profile-specific focus term.
 5. Reconsider papers marked `deferred` before newly discovered papers.
-6. Evaluate up to twenty candidates with a strict Responses API JSON schema.
+6. Evaluate up to twenty uncached candidates with a strict Responses API JSON schema.
 7. Send one concise Chinese daily digest containing up to ten recommended papers.
 8. When a PDF-backed paper clears the strict Top 1 threshold, append one structured
    deep read covering its route, findings, advances, limitations, and lab takeaways.
@@ -99,8 +99,8 @@ Never commit webhook URLs, signing secrets, or API keys to the repository.
 `resend_latest` leaves state unchanged. Keep it disabled for scheduled and
 normal manual runs.
 
-The 2D workflow runs daily at approximately 19:00 Beijing time. The Quantum AI
-workflow runs at approximately 19:10. The ten-minute offset and shared
+The 2D workflow runs daily at approximately 18:23 Beijing time. The Quantum AI
+workflow runs at approximately 18:33. The ten-minute offset and shared
 concurrency group prevent simultaneous state commits. GitHub cron can start a
 few minutes late during busy periods.
 
@@ -110,7 +110,11 @@ The evaluator calls the Responses API and requests schema-constrained JSON for
 group fit, novelty, method value, abstract evidence, study type, concrete
 quality signals, Chinese title, summary, and recommendation reason. The final
 priority is computed in application code rather than accepted directly from the
-model. At most three papers per digest can retain the `3/3` label.
+model. Successful evaluations are cached in the selected state file using the
+paper metadata, profile, model, reasoning effort, and prompt hash, so deferred
+papers are not re-evaluated unless the prompt or inputs change. Each completed
+model response logs token usage when the relay returns usage metadata. At most
+three papers per digest can retain the `3/3` label.
 
 The optional deep read is stricter: it requires a successful AI evaluation,
 `3/3` priority, a composite score of at least 82, method value of at least 4/5,
@@ -177,7 +181,8 @@ papers are marked `sent`; papers explicitly rated below the threshold are
 marked `skipped`; papers that only missed a candidate or delivery limit are
 marked `deferred` and receive priority in the next run. Failed deliveries
 remain eligible for retry. Records older than the configured retention window
-are removed.
+are removed. Cached AI evaluations are pruned with their corresponding paper
+records.
 
 Both GitHub Actions workflows share one concurrency group so only one can update
 repository state at a time.

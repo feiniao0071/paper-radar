@@ -3,8 +3,9 @@ from __future__ import annotations
 import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from typing import Any
 
-from paper_radar.models import Paper
+from paper_radar.models import Paper, Recommendation
 
 CURRENT_VERSION = 2
 
@@ -17,10 +18,12 @@ class StateStore:
 
     def _load(self) -> dict:
         if not self.path.exists():
-            return {"version": CURRENT_VERSION, "papers": {}}
+            return {"version": CURRENT_VERSION, "papers": {}, "ai_evaluations": {}}
         with self.path.open("r", encoding="utf-8") as handle:
             data = json.load(handle)
         if not isinstance(data.get("papers"), dict):
+            raise ValueError(f"Unsupported or malformed state file: {self.path}")
+        if not isinstance(data.get("ai_evaluations", {}), dict):
             raise ValueError(f"Unsupported or malformed state file: {self.path}")
         if data.get("version") == 1:
             for record in data["papers"].values():
@@ -30,6 +33,7 @@ class StateStore:
             self.migrated = True
         if data.get("version") != CURRENT_VERSION:
             raise ValueError(f"Unsupported or malformed state file: {self.path}")
+        data.setdefault("ai_evaluations", {})
         return data
 
     def contains(self, paper_id: str) -> bool:
@@ -60,6 +64,59 @@ class StateStore:
             "source": paper.source,
         }
 
+    def cached_ai_evaluation(
+        self, paper: Paper, cache_key: str
+    ) -> Recommendation | None:
+        record = self.data.get("ai_evaluations", {}).get(cache_key)
+        if not isinstance(record, dict) or record.get("paper_id") != paper.paper_id:
+            return None
+        try:
+            return Recommendation(
+                paper=paper,
+                relevance_score=int(record["relevance_score"]),
+                reason=str(record["reason"]),
+                key_relevance=_strings(record.get("key_relevance")),
+                title_zh=str(record.get("title_zh", "")),
+                summary_zh=str(record.get("summary_zh", "")),
+                used_ai=True,
+                priority_score=int(record.get("priority_score", 0)),
+                group_fit_score=int(record.get("group_fit_score", 0)),
+                novelty_score=int(record.get("novelty_score", 0)),
+                method_value_score=int(record.get("method_value_score", 0)),
+                evidence_score=int(record.get("evidence_score", 0)),
+                study_type=str(record.get("study_type", "未判断")),
+                reading_action=str(record.get("reading_action", "速读")),
+                quality_signals=_strings(record.get("quality_signals")),
+            )
+        except (KeyError, TypeError, ValueError):
+            return None
+
+    def cache_ai_evaluation(
+        self,
+        cache_key: str,
+        recommendation: Recommendation,
+        *,
+        now: datetime | None = None,
+    ) -> None:
+        timestamp = (now or datetime.now(UTC)).astimezone(UTC).isoformat()
+        self.data.setdefault("ai_evaluations", {})[cache_key] = {
+            "paper_id": recommendation.paper.paper_id,
+            "created_at": timestamp,
+            "relevance_score": recommendation.relevance_score,
+            "reason": recommendation.reason,
+            "key_relevance": list(recommendation.key_relevance),
+            "title_zh": recommendation.title_zh,
+            "summary_zh": recommendation.summary_zh,
+            "priority_score": recommendation.priority_score,
+            "group_fit_score": recommendation.group_fit_score,
+            "novelty_score": recommendation.novelty_score,
+            "method_value_score": recommendation.method_value_score,
+            "evidence_score": recommendation.evidence_score,
+            "study_type": recommendation.study_type,
+            "reading_action": recommendation.reading_action,
+            "quality_signals": list(recommendation.quality_signals),
+        }
+
     def prune(self, retention_days: int, *, now: datetime | None = None) -> None:
         current_time = (now or datetime.now(UTC)).astimezone(UTC)
         cutoff = current_time - timedelta(days=retention_days)
@@ -72,6 +129,12 @@ class StateStore:
             if seen_at.astimezone(UTC) >= cutoff:
                 retained[paper_id] = record
         self.data["papers"] = retained
+        retained_paper_ids = set(retained)
+        self.data["ai_evaluations"] = {
+            key: record
+            for key, record in self.data.get("ai_evaluations", {}).items()
+            if isinstance(record, dict) and record.get("paper_id") in retained_paper_ids
+        }
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -80,3 +143,9 @@ class StateStore:
             json.dump(self.data, handle, ensure_ascii=True, indent=2, sort_keys=True)
             handle.write("\n")
         temporary_path.replace(self.path)
+
+
+def _strings(value: Any) -> tuple[str, ...]:
+    if not isinstance(value, list):
+        return ()
+    return tuple(str(item).strip() for item in value if str(item).strip())
