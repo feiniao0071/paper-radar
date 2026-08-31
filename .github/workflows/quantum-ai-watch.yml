@@ -2,8 +2,8 @@ name: Quantum AI Materials Radar
 
 on:
   schedule:
-    # Offset from the 2D radar to avoid simultaneous state commits. 19:10 Beijing (UTC+8).
-    - cron: "10 11 * * *"
+    # Offset from the top of the hour to reduce GitHub schedule delays. 18:23 Beijing (UTC+8).
+    - cron: "23 10 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
