@@ -324,6 +324,33 @@
       "status": "sent",
       "title": "Benchmarking of Fast and Interpretable UF Machine Learning Potentials"
     },
+    "2608.27533": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Ab initio Modeling of MoS2/Oxide Device Interfaces with Machine Learned Electronic Structures"
+    },
+    "2608.27806": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "OrbGNN: A Wave function-based Machine Learning Interelectronic Representation"
+    },
+    "2608.28100": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "uMOF: A Universal Database, Benchmark, and Machine Learning Interatomic Potentials for Metal-Organic Frameworks"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -332,6 +359,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Quantum Bi\u2010Stability and Robust Room\u2010Temperature Spin Excitation in a Single\u2010Ion Magnet"
+    },
+    "crossref:10.1002/adom.71722": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "published": "2026-08-31",
+      "seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Bias\u2010Tunable Optoelectronic Synapse via a Graphene\u2010Gated Dual\u2010Gate Transistor"
     },
     "crossref:10.1007/s11694-026-04856-z": {
       "attempts": 1,
@@ -440,6 +476,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "ChemAutoAgent: A Multi-Agent System for Evidence-Controlled Laboratory Instrument Driver Generation from Text-Based Manuals"
+    },
+    "crossref:10.3390/nano16171082": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "published": "2026-08-31",
+      "seen_at": "2026-08-31T11:43:14.423926+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Pre-Reduction-Activated Carbon-Based Zinc Vanadate Nanosheet Composite with Zn\u2013O\u2013V Performance Synergy for Machine Learning-Enabled Multiplex Pesticide Detection"
     }
   },
   "version": 2
