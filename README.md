@@ -20,7 +20,8 @@ do not need to remain online.
 3. Add venue, publication type, and citation metadata from Semantic Scholar when available.
 4. Require both a profile-specific core term and a profile-specific focus term.
 5. Reconsider papers marked `deferred` before newly discovered papers.
-6. Evaluate up to twenty uncached candidates with a strict Responses API JSON schema.
+6. Evaluate up to twenty candidates with a strict Responses API JSON schema,
+   reusing cached AI evaluations when possible.
 7. Send one concise Chinese daily digest containing up to ten recommended papers.
 8. When a PDF-backed paper clears the strict Top 1 threshold, append one structured
    deep read covering its route, findings, advances, limitations, and lab takeaways.
