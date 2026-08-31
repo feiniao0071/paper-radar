@@ -867,6 +867,78 @@
       "status": "sent",
       "title": "Trapping $e/4$ quasiparticles in bilayer graphene"
     },
+    "2608.27533": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Ab initio Modeling of MoS2/Oxide Device Interfaces with Machine Learned Electronic Structures"
+    },
+    "2608.27588": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-27",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Topological signatures in the quench dynamics of periodically driven quantum systems"
+    },
+    "2608.28231": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Quantum Geometric Origin of Nonlinear Current Induced Orbital Magnetization"
+    },
+    "2608.28338": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Evidence for Three-component Interlayer Coherent Exciton Condensation"
+    },
+    "2608.28381": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Electrically Tunable Two-Component Exciton Condensate in a Coulomb-Coupled Graphene Trilayer"
+    },
+    "2608.28398": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Quantum transport and unified scaling law in graphene with polyadic Cantor electrostatic barriers"
+    },
+    "2608.28521": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Modifying van der Waals Materials via Cavity Vacuum Fluctuations"
+    },
+    "2608.28583": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-28",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Layer-Controlled Intermolecular Coupling and Many-Body Effects in C$_{60}$ Films"
+    },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
       "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
@@ -894,6 +966,15 @@
       "status": "sent",
       "title": "Dynamically Tunable Exciton\u2010Photon Coupling via Multi\u2010Physics Field in Transition Metal Dichalcogenide Microcavities"
     },
+    "crossref:10.1002/bio.70614": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-31",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Photoluminescence Mechanisms and Optical Sensing Applications of MXene Quantum Dots for Pesticide Detection in Vegetable Matrices"
+    },
     "crossref:10.1002/elt2.70064": {
       "attempts": 1,
       "first_seen_at": "2026-08-17T11:20:32.900763+00:00",
@@ -902,6 +983,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Ni Nanoparticle\u2010Decorated Reduced Graphene Oxide Hybrids With Tunable Dielectric\u2013Magnetic Synergy for Efficient Microwave Absorption"
+    },
+    "crossref:10.1002/jnm.70199": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-31",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Investigation of a Tunable Ultra\u2010Broadband Terahertz Absorber Based on Composite\u2010Patterned Monolayer Graphene"
     },
     "crossref:10.1002/lpor.71759": {
       "attempts": 1,
@@ -1019,6 +1109,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Real-space imaging of moir\u00e9-confined excitons in twisted bilayer MoS2"
+    },
+    "crossref:10.1038/s41567-026-03429-7": {
+      "attempts": 1,
+      "first_seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "published": "2026-08-31",
+      "seen_at": "2026-08-31T11:38:18.395526+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Optical control of electrons in a Floquet topological insulator"
     },
     "crossref:10.1038/s41598-026-64545-1": {
       "attempts": 1,
