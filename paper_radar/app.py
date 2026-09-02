@@ -15,6 +15,7 @@ from paper_radar.feishu import FeishuClient, build_deep_read_card, build_digest_
 from paper_radar.matcher import match_paper
 from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 from paper_radar.recommender import AIRecommender, fallback_recommendation
+from paper_radar.semantic_scholar import enrich_papers
 from paper_radar.sources import fetch_all_papers
 from paper_radar.state import StateStore
 
@@ -261,6 +262,27 @@ def _generate_deep_read(
         return None
 
 
+def _enrich_candidates(
+    candidates: list[Paper],
+    config: RadarConfig,
+) -> tuple[list[Paper], tuple[str, ...]]:
+    if not config.semantic_scholar.enabled or not candidates:
+        return candidates, ()
+    try:
+        enriched = enrich_papers(candidates, config.semantic_scholar)
+        LOGGER.info("Semantic Scholar enriched %d candidate paper(s)", len(enriched))
+        return enriched, ()
+    except Exception as error:
+        LOGGER.exception("Semantic Scholar candidate enrichment failed")
+        return (
+            candidates,
+            (
+                "Semantic Scholar 元数据补充失败"
+                f"（{type(error).__name__}），本期使用基础来源元数据。",
+            ),
+        )
+
+
 def _print_preview(
     recommendations: list[Recommendation],
     matches: dict[str, MatchResult],
@@ -332,7 +354,7 @@ def run(args: argparse.Namespace) -> int:
         )
 
     state = StateStore(args.state)
-    fetch_result = fetch_all_papers(config)
+    fetch_result = fetch_all_papers(config, enrich_semantic_scholar=False)
     papers = fetch_result.papers
     notices = list(fetch_result.warnings)
     matches: dict[str, MatchResult] = {}
@@ -369,6 +391,8 @@ def run(args: argparse.Namespace) -> int:
 
     ranked = _rank_matches(matched_papers, matches, state)
     candidates = ranked[: config.run.ai_candidate_limit]
+    candidates, enrichment_notices = _enrich_candidates(candidates, config)
+    notices.extend(enrichment_notices)
     recommender = None if args.no_ai else AIRecommender.from_environment(args.prompt)
     recommendations, evaluation_notices = _evaluate(
         candidates,

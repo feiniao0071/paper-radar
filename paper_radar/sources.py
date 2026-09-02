@@ -68,6 +68,7 @@ def fetch_all_papers(
     config: RadarConfig,
     *,
     now: datetime | None = None,
+    enrich_semantic_scholar: bool = True,
 ) -> FetchResult:
     papers: list[Paper] = []
     warnings: list[str] = []
@@ -94,7 +95,7 @@ def fetch_all_papers(
         raise RuntimeError("All configured paper sources failed")
 
     papers = deduplicate_papers(papers)
-    if config.semantic_scholar.enabled:
+    if enrich_semantic_scholar and config.semantic_scholar.enabled:
         try:
             papers = enrich_papers(papers, config.semantic_scholar)
         except Exception as error:

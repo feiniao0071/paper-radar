@@ -35,7 +35,7 @@ def test_resend_latest_includes_seen_paper_without_changing_state(
     monkeypatch.setattr(
         app,
         "fetch_all_papers",
-        lambda config: FetchResult(papers=[paper], warnings=()),
+        lambda config, **kwargs: FetchResult(papers=[paper], warnings=()),
     )
     monkeypatch.setattr(
         app,
@@ -63,6 +63,55 @@ def test_resend_latest_includes_seen_paper_without_changing_state(
     assert app.run(args) == 0
     assert [item.paper.paper_id for item in previewed] == [paper.paper_id]
     assert state_path.read_bytes() == original_state
+
+
+def test_run_enriches_only_ranked_candidates(tmp_path, monkeypatch) -> None:
+    now = datetime(2026, 8, 14, tzinfo=UTC)
+    papers = [
+        Paper(
+            paper_id=f"paper-{index:02d}",
+            title=f"Graphene transport {index}",
+            authors=("Author",),
+            abstract="Quantum transport in graphene.",
+            published=now + timedelta(seconds=index),
+            updated=now + timedelta(seconds=index),
+            categories=("cond-mat.mes-hall",),
+            abstract_url="https://example.test",
+            pdf_url="https://example.test/paper.pdf",
+        )
+        for index in range(25)
+    ]
+    fetch_kwargs = []
+    enriched_ids = []
+
+    def fake_fetch_all_papers(config, **kwargs):
+        fetch_kwargs.append(kwargs)
+        return FetchResult(papers=papers, warnings=())
+
+    def fake_enrich_papers(candidates, semantic_config):
+        enriched_ids.extend(paper.paper_id for paper in candidates)
+        return candidates
+
+    monkeypatch.setattr(app, "fetch_all_papers", fake_fetch_all_papers)
+    monkeypatch.setattr(app, "enrich_papers", fake_enrich_papers)
+    monkeypatch.setattr(
+        app,
+        "match_paper",
+        lambda candidate, config: MatchResult(5, ("graphene",), ()),
+    )
+    monkeypatch.setattr(
+        app,
+        "_print_preview",
+        lambda recommendations, matches, notices, **kwargs: None,
+    )
+
+    args = app._arguments(["--state", str(tmp_path / "seen.json"), "--dry-run", "--no-ai"])
+
+    assert app.run(args) == 0
+    assert fetch_kwargs == [{"enrich_semantic_scholar": False}]
+    assert len(enriched_ids) == 20
+    assert enriched_ids[0] == "paper-24"
+    assert enriched_ids[-1] == "paper-05"
 
 
 def test_calibration_caps_high_priority_recommendations() -> None:
@@ -355,7 +404,7 @@ def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) ->
     monkeypatch.setattr(
         app,
         "fetch_all_papers",
-        lambda config: FetchResult(papers=[newer, older], warnings=()),
+        lambda config, **kwargs: FetchResult(papers=[newer, older], warnings=()),
     )
     monkeypatch.setattr(
         app,

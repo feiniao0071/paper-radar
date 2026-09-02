@@ -92,6 +92,8 @@ semantic_scholar:
   enabled: true
   api_url: https://api.semanticscholar.org/graph/v1
   batch_size: 100
+  request_interval_seconds: 1.5
+  max_retry_delay_seconds: 60
 
 matching:
   require_core_term: true

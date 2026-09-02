@@ -25,6 +25,8 @@ def test_project_configuration_loads() -> None:
     assert config.arxiv.query_batch_size == 6
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
+    assert config.semantic_scholar.request_interval_seconds == 1.5
+    assert config.semantic_scholar.max_retry_delay_seconds == 60
     assert config.run.max_papers_per_run == 10
     assert config.run.max_high_priority_per_run == 3
     assert config.run.deep_read_enabled is True

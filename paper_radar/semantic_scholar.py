@@ -20,8 +20,8 @@ FIELDS = (
 )
 RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
 # Semantic Scholar can temporarily throttle a valid key without Retry-After.
-# This gives the shared quota window about one minute to recover.
-MAX_ATTEMPTS = 7
+# This gives the shared quota window about two minutes to recover.
+MAX_ATTEMPTS = 8
 
 
 def _batches(papers: list[Paper], size: int) -> list[list[Paper]]:
@@ -65,14 +65,19 @@ def _enrich(paper: Paper, metadata: dict[str, Any]) -> Paper:
     )
 
 
-def _retry_delay(response: httpx.Response, attempt: int) -> float:
+def _retry_delay(
+    response: httpx.Response,
+    attempt: int,
+    *,
+    max_retry_delay_seconds: float,
+) -> float:
     retry_after = response.headers.get("Retry-After", "").strip()
     if retry_after:
         try:
-            return min(max(float(retry_after), 0.0), 60.0)
+            return min(max(float(retry_after), 0.0), max_retry_delay_seconds)
         except ValueError:
             pass
-    return min(2.0**attempt, 30.0)
+    return min(2.0**attempt, max_retry_delay_seconds)
 
 
 def _fetch_batch(
@@ -80,6 +85,7 @@ def _fetch_batch(
     api_url: str,
     identifiers: list[str],
     headers: dict[str, str],
+    max_retry_delay_seconds: float,
     sleep: Callable[[float], None],
 ) -> list[Any]:
     for attempt in range(MAX_ATTEMPTS):
@@ -98,7 +104,11 @@ def _fetch_batch(
 
         if attempt == MAX_ATTEMPTS - 1:
             response.raise_for_status()
-        delay = _retry_delay(response, attempt)
+        delay = _retry_delay(
+            response,
+            attempt,
+            max_retry_delay_seconds=max_retry_delay_seconds,
+        )
         LOGGER.warning(
             "Semantic Scholar request returned %d; retrying in %.1fs (%d/%d)",
             response.status_code,
@@ -129,16 +139,20 @@ def enrich_papers(
     http_client = client or httpx.Client(timeout=45)
     enriched: list[Paper] = []
     try:
-        for batch in _batches(papers, config.batch_size):
+        batches = _batches(papers, config.batch_size)
+        for batch_index, batch in enumerate(batches):
             identified = [(paper, _identifier(paper)) for paper in batch]
             request_items = [(paper, identifier) for paper, identifier in identified if identifier]
+            made_request = False
             metadata_by_id: dict[str, dict[str, Any]] = {}
             if request_items:
+                made_request = True
                 payload = _fetch_batch(
                     http_client,
                     config.api_url,
                     [identifier for _, identifier in request_items],
                     headers,
+                    config.max_retry_delay_seconds,
                     sleep,
                 )
                 for (_, identifier), item in zip(request_items, payload, strict=False):
@@ -147,6 +161,12 @@ def enrich_papers(
             for paper, identifier in identified:
                 metadata = metadata_by_id.get(identifier)
                 enriched.append(_enrich(paper, metadata) if metadata else paper)
+            if (
+                made_request
+                and config.request_interval_seconds > 0
+                and batch_index < len(batches) - 1
+            ):
+                sleep(config.request_interval_seconds)
         return enriched
     finally:
         if owns_client:

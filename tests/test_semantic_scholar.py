@@ -1,3 +1,4 @@
+import json
 from datetime import UTC, datetime
 
 import httpx
@@ -121,3 +122,39 @@ def test_enrichment_retries_rate_limit() -> None:
     assert attempts == 2
     assert delays == [2.5]
     assert enriched.citation_count == 7
+
+
+def test_enrichment_waits_between_batches() -> None:
+    now = datetime(2026, 8, 14, tzinfo=UTC)
+    papers = [
+        Paper(
+            paper_id=f"2608.0000{index}",
+            title=f"Graphene paper {index}",
+            authors=("Author",),
+            abstract="Abstract",
+            published=now,
+            updated=now,
+            categories=(),
+            abstract_url=f"https://arxiv.org/abs/2608.0000{index}",
+            pdf_url=f"https://arxiv.org/pdf/2608.0000{index}",
+        )
+        for index in range(2)
+    ]
+    requests: list[list[str]] = []
+    delays: list[float] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        requests.append(json.loads(request.content)["ids"])
+        return httpx.Response(200, json=[None], request=request)
+
+    config = SemanticScholarConfig(
+        enabled=True,
+        api_url="https://example.test/graph/v1",
+        batch_size=1,
+        request_interval_seconds=1.5,
+    )
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        enrich_papers(papers, config, client=client, sleep=delays.append)
+
+    assert requests == [["ARXIV:2608.00000"], ["ARXIV:2608.00001"]]
+    assert delays == [1.5]

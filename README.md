@@ -17,9 +17,9 @@ do not need to remain online.
 
 1. Query the official arXiv Atom API and Crossref Works API with polite rate limits.
 2. Merge duplicate preprints and journal records by DOI and normalized title.
-3. Add venue, publication type, and citation metadata from Semantic Scholar when available.
-4. Require both a profile-specific core term and a profile-specific focus term.
-5. Reconsider papers marked `deferred` before newly discovered papers.
+3. Require both a profile-specific core term and a profile-specific focus term.
+4. Reconsider papers marked `deferred` before newly discovered papers.
+5. Add venue, publication type, and citation metadata from Semantic Scholar for the shortlisted candidates when available.
 6. Evaluate up to twenty candidates with a strict Responses API JSON schema,
    reusing cached AI evaluations when possible.
 7. Send one concise Chinese daily digest containing up to ten recommended papers.

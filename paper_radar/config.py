@@ -37,6 +37,8 @@ class SemanticScholarConfig:
     enabled: bool
     api_url: str
     batch_size: int
+    request_interval_seconds: float = 1.2
+    max_retry_delay_seconds: float = 60.0
 
 
 @dataclass(frozen=True, slots=True)
@@ -144,6 +146,12 @@ def load_config(path: Path) -> RadarConfig:
                 )
             ),
             batch_size=int(semantic_scholar_raw.get("batch_size", 100)),
+            request_interval_seconds=float(
+                semantic_scholar_raw.get("request_interval_seconds", 1.2)
+            ),
+            max_retry_delay_seconds=float(
+                semantic_scholar_raw.get("max_retry_delay_seconds", 60.0)
+            ),
         ),
         matching=MatchingConfig(
             require_core_term=bool(matching_raw.get("require_core_term", True)),
@@ -215,6 +223,8 @@ def load_config(path: Path) -> RadarConfig:
         config.crossref.max_results_per_query < 1
         or config.crossref.lookback_days < 1
         or config.semantic_scholar.batch_size < 1
+        or config.semantic_scholar.request_interval_seconds < 0
+        or config.semantic_scholar.max_retry_delay_seconds < 1
         or config.matching.focus_term_weight < 1
         or config.matching.preferred_term_weight < 0
         or config.run.max_high_priority_per_run < 0
