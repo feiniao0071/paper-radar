@@ -5,10 +5,12 @@ import json
 import logging
 import os
 import sys
+import time as time_module
 from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from paper_radar.config import RadarConfig, load_config
 from paper_radar.feishu import FeishuClient, build_deep_read_card, build_digest_card
@@ -21,6 +23,7 @@ from paper_radar.state import StateStore
 
 LOGGER = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+BEIJING_TIMEZONE = ZoneInfo("Asia/Shanghai")
 
 
 def _arguments(argv: list[str] | None) -> argparse.Namespace:
@@ -57,6 +60,11 @@ def _arguments(argv: list[str] | None) -> argparse.Namespace:
         "--resend-latest",
         action="store_true",
         help="Ignore deduplication for this run and leave existing state unchanged",
+    )
+    parser.add_argument(
+        "--deliver-not-before",
+        metavar="HH:MM",
+        help="Delay Feishu delivery until this Beijing time if the run finishes early",
     )
     parser.add_argument("--lookback-days", type=int, help="Override the lookback window")
     parser.add_argument("--max-results", type=int, help="Override the arXiv result limit")
@@ -283,6 +291,41 @@ def _enrich_candidates(
         )
 
 
+def _seconds_until_beijing_time(
+    target_time: str,
+    *,
+    now: datetime | None = None,
+) -> float:
+    try:
+        hour_text, minute_text = target_time.split(":", maxsplit=1)
+        hour = int(hour_text)
+        minute = int(minute_text)
+    except ValueError as error:
+        raise ValueError("--deliver-not-before must use HH:MM format") from error
+    if not (0 <= hour <= 23 and 0 <= minute <= 59):
+        raise ValueError("--deliver-not-before must use a valid 24-hour time")
+
+    current_time = (now or datetime.now(UTC)).astimezone(BEIJING_TIMEZONE)
+    target = current_time.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    if current_time >= target:
+        return 0.0
+    return (target - current_time).total_seconds()
+
+
+def _wait_for_delivery_window(target_time: str | None) -> None:
+    if not target_time:
+        return
+    seconds = _seconds_until_beijing_time(target_time)
+    if seconds <= 0:
+        return
+    LOGGER.info(
+        "Waiting %.0f second(s) until %s Beijing time before Feishu delivery",
+        seconds,
+        target_time,
+    )
+    time_module.sleep(seconds)
+
+
 def _print_preview(
     recommendations: list[Recommendation],
     matches: dict[str, MatchResult],
@@ -441,6 +484,9 @@ def run(args: argparse.Namespace) -> int:
             digest_intro=config.profile.digest_intro,
         )
         return 0
+
+    if selected or notices:
+        _wait_for_delivery_window(args.deliver_not_before)
 
     sent_ids: set[str] = set()
     failures = 0

@@ -100,10 +100,12 @@ Never commit webhook URLs, signing secrets, or API keys to the repository.
 `resend_latest` leaves state unchanged. Keep it disabled for scheduled and
 normal manual runs.
 
-The 2D workflow runs daily at approximately 18:23 Beijing time. The Quantum AI
-workflow runs at approximately 18:33. The ten-minute offset and shared
-concurrency group prevent simultaneous state commits. GitHub cron can start a
-few minutes late during busy periods.
+The 2D workflow starts daily at approximately 18:23 Beijing time. The Quantum AI
+workflow starts at approximately 18:33. Scheduled runs may finish early, but
+Feishu delivery waits until 19:00 Beijing time for a cleaner daily cadence. If
+GitHub cron starts or finishes late, the digest is sent immediately after the
+run completes. Manual delivery still sends immediately unless
+`--deliver-not-before HH:MM` is passed explicitly.
 
 ## Optional AI evaluation
 
@@ -185,5 +187,6 @@ remain eligible for retry. Records older than the configured retention window
 are removed. Cached AI evaluations are pruned with their corresponding paper
 records.
 
-Both GitHub Actions workflows share one concurrency group so only one can update
-repository state at a time.
+Each GitHub Actions workflow serializes runs for its own profile. State commits
+pull and push with retry so the two profiles can prepare in parallel and still
+land their independent state files safely.

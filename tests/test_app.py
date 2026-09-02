@@ -114,6 +114,22 @@ def test_run_enriches_only_ranked_candidates(tmp_path, monkeypatch) -> None:
     assert enriched_ids[-1] == "paper-05"
 
 
+def test_delivery_window_waits_until_same_beijing_day() -> None:
+    seconds = app._seconds_until_beijing_time(
+        "19:00",
+        now=datetime(2026, 9, 2, 10, 59, 30, tzinfo=UTC),
+    )
+
+    assert seconds == 30
+    assert (
+        app._seconds_until_beijing_time(
+            "19:00",
+            now=datetime(2026, 9, 2, 11, 0, 1, tzinfo=UTC),
+        )
+        == 0
+    )
+
+
 def test_calibration_caps_high_priority_recommendations() -> None:
     papers = [
         Paper(

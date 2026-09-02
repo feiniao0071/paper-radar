@@ -26,7 +26,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: paper-radar-state
+  group: paper-radar-quantum-ai-state
   cancel-in-progress: false
 
 jobs:
@@ -76,6 +76,9 @@ jobs:
           if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_RESEND_LATEST" == "true" ]]; then
             args+=(--resend-latest)
           fi
+          if [[ "$EVENT_NAME" == "schedule" ]]; then
+            args+=(--deliver-not-before 19:00)
+          fi
           python -m paper_radar "${args[@]}"
       - name: Commit Quantum AI deduplication state
         if: always()
@@ -87,8 +90,14 @@ jobs:
           git config user.email "paper-radar[bot]@users.noreply.github.com"
           git add state/quantum_ai_seen.json
           git commit -m "chore: update Quantum AI radar state"
-          git pull --rebase origin main
-          git push
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push; then
+              exit 0
+            fi
+            sleep $((attempt * 5))
+          done
+          exit 1
       - name: Propagate radar failure
         if: steps.radar.outcome == 'failure'
         run: exit 1
