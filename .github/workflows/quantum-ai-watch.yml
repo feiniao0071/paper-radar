@@ -2,8 +2,8 @@ name: Quantum AI Materials Radar
 
 on:
   schedule:
-    # Staggered after the 2D radar. This is 18:33 in Beijing (UTC+8).
-    - cron: "33 10 * * *"
+    # Staggered after the 2D radar. This is 16:33 in Beijing (UTC+8).
+    - cron: "33 8 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

@@ -100,8 +100,8 @@ Never commit webhook URLs, signing secrets, or API keys to the repository.
 `resend_latest` leaves state unchanged. Keep it disabled for scheduled and
 normal manual runs.
 
-The 2D workflow starts daily at approximately 18:23 Beijing time. The Quantum AI
-workflow starts at approximately 18:33. Scheduled runs may finish early, but
+The 2D workflow starts daily at approximately 16:23 Beijing time. The Quantum AI
+workflow starts at approximately 16:33. Scheduled runs may finish early, but
 Feishu delivery waits until 19:00 Beijing time for a cleaner daily cadence. If
 GitHub cron starts or finishes late, the digest is sent immediately after the
 run completes. Manual delivery still sends immediately unless
