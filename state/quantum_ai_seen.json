@@ -1,5 +1,30 @@
 {
   "ai_evaluations": {
+    "06c3f2c7df36df0f62d3553bc584f91d5f9a01888e526e79b9bbb287e8559db3": {
+      "created_at": "2026-09-04T12:55:36.599633+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u975e\u6613\u5931\u5149\u7a81\u89e6",
+        "\u5171\u8f6d\u805a\u5408\u7269\u8f7d\u6d41\u5b50\u9677\u9631",
+        "\u795e\u7ecf\u5f62\u6001\u89c6\u89c9\u5668\u4ef6"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 4,
+      "paper_id": "crossref:10.1002/adma.74890",
+      "priority_score": 51,
+      "quality_signals": [
+        "\u5236\u5907\u5e76\u6d4b\u8bd58\u00d78\u67d4\u6027\u7a81\u89e6\u9635\u5217",
+        "\u62a5\u544a137\u00b11%\u7684PPF\u6307\u6570\u548c93.3%\u8bc6\u522b\u7387",
+        "\u672a\u4ea4\u4ee3\u8ba1\u7b97\u7b5b\u9009\u65b9\u6cd5\u53caANN\u57fa\u7ebf\u6bd4\u8f83"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u805a\u5408\u7269\u5149\u7a81\u89e6\u53caANN\u89c6\u89c9\u8bc6\u522b\u504f\u5411\u795e\u7ecf\u5f62\u6001\u5668\u4ef6\uff0c\u672a\u53d1\u5c55\u9762\u5411\u51dd\u805a\u6001\u7814\u7a76\u7684\u5927\u6a21\u578b\u6216\u79d1\u5b66\u4ee3\u7406\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u4ee5\u8ba1\u7b97\u7b5b\u9009\u8bbe\u8ba1\u975e\u5bf9\u79f0\u8f7d\u6d41\u5b50\u9677\u9631\u805a\u5408\u7269\uff0c\u5236\u6210\u67d4\u6027\u5149\u7a81\u89e6\u9635\u5217\uff0cANN\u56fe\u50cf\u8bc6\u522b\u51c6\u786e\u7387\u8fbe93.3%\u3002",
+      "title_zh": "\u672c\u5f81\u975e\u6613\u5931n\u578b\u805a\u5408\u7269\u5149\u7a81\u89e6"
+    },
     "1293ef8a1830c25b2234c4cfb0e0d6d69843219ab5bb52a1243862b271827203": {
       "created_at": "2026-09-02T11:22:11.888653+00:00",
       "evidence_score": 3,
@@ -184,6 +209,81 @@
       "study_type": "\u8ba1\u7b97",
       "summary_zh": "\u4ee5\u7b1b\u5361\u5c14\u5f20\u91cf\u7b49\u53d8\u6d88\u606f\u4f20\u9012\u5b66\u4e60\u78c1\u6027\u80fd\u91cf\u3001\u539f\u5b50\u529b\u548c\u6709\u6548\u78c1\u573a\uff0c\u5e76\u5728VSe2\u81ea\u65cb\u52a8\u529b\u5b66\u4e2d\u590d\u73b0\u5b9e\u9a8c\u78c1\u5e8f\u4ea4\u53c9\u6e29\u5ea6\u3002",
       "title_zh": "\u7528\u4e8e\u81ea\u65cb\u4f9d\u8d56\u539f\u5b50\u6a21\u62df\u7684\u7b1b\u5361\u5c14\u5f20\u91cf\u7b49\u53d8\u673a\u5668\u5b66\u4e60\u529b\u573a"
+    },
+    "73100fb0116be3fde6e88fb97590ec2d13c840af053607d747b74c7ab679b7bc": {
+      "created_at": "2026-09-04T12:55:36.599637+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "VQE\u8bef\u5dee\u6821\u6b63",
+        "\u7269\u7406\u4fe1\u606f\u7279\u5f81\u5de5\u7a0b",
+        "\u91cf\u5b50\u5316\u5b66\u8de8\u5206\u5b50\u6cdb\u5316"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.1021/acsomega.6c04374",
+      "priority_score": 66,
+      "quality_signals": [
+        "\u76f8\u5bf9CASCI\u62a5\u544a3\u81f3640\u500d\u8bef\u5dee\u6539\u5584",
+        "\u5305\u542b\u672a\u8bad\u7ec3\u5206\u5b50\u7684\u96f6\u6837\u672c\u6cdb\u5316\u6d4b\u8bd5",
+        "\u4ec5\u4f7f\u7528STO-3G\u3001\u72b6\u6001\u77e2\u91cf\u6a21\u62df\u5668\u548c\u5c11\u91cf\u5c0f\u5206\u5b50"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "\u53ef\u89e3\u91ca\u5cad\u56de\u5f52\u6821\u6b63VQE\u80fd\u91cf\uff0c\u80fd\u542f\u53d1\u91cf\u5b50\u6a21\u62df\u8bef\u5dee\u4fee\u6b63\uff0c\u4f46\u4ec5\u4e3a\u5c0f\u5206\u5b50\u6a21\u62df\u4e0e\u5e38\u89c4\u673a\u5668\u5b66\u4e60\u3002",
+      "relevance_score": 2,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u7528\u7269\u7406\u7279\u5f81\u5cad\u56de\u5f52\u540e\u5904\u7406\u5c0f\u5206\u5b50VQE\u80fd\u91cf\uff0c\u76f8\u5bf9CASCI\u5c06\u8bef\u5dee\u6539\u55843\u81f3640\u500d\uff0c\u5e76\u6d4b\u8bd5\u8de8\u5206\u5b50\u8fc1\u79fb\u3002",
+      "title_zh": "\u7269\u7406\u4fe1\u606f\u673a\u5668\u5b66\u4e60\u6821\u6b63VQE\u57fa\u6001\u80fd\u91cf"
+    },
+    "790b69e9ae33205c2cd47c55ab27fd473ae7e4c9065484ec304725740f7229f7": {
+      "created_at": "2026-09-04T12:55:36.599640+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "\u673a\u5668\u5b66\u4e60\u539f\u5b50\u95f4\u52bf",
+        "\u5364\u5316\u7269\u9499\u949b\u77ff\u7ed3\u6784\u52a8\u529b\u5b66",
+        "\u5c40\u57df\u6781\u5316\u4e0e\u5206\u5b50\u53d6\u5411\u8026\u5408"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 4,
+      "paper_id": "2609.03510",
+      "priority_score": 68,
+      "quality_signals": [
+        "\u8986\u76d6\u5b8c\u6574Ge/Sn\u7ec4\u5206\u8303\u56f4\u53ca\u6e29\u5ea6\u6f14\u5316",
+        "\u8bc6\u522b\u7ea665% Sn\u9644\u8fd1\u7684\u7ed3\u6784\u884c\u4e3a\u8f6c\u53d8",
+        "\u6458\u8981\u672a\u63d0\u4f9b\u52bf\u51fd\u6570\u8bef\u5dee\u3001\u57fa\u7ebf\u6216\u5b9e\u9a8c\u9a8c\u8bc1"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "\u673a\u5668\u5b66\u4e60\u52bf\u652f\u6301\u6df7\u5408\u5364\u5316\u7269\u9499\u949b\u77ff\u7684\u5927\u5c3a\u5ea6\u52a8\u529b\u5b66\uff0c\u53ef\u8865\u5145\u7ed3\u6784\u76f8\u53d8\u7814\u7a76\uff0c\u4f46\u4e0d\u5c5e\u4e8e\u5927\u6a21\u578b\u4e3b\u7ebf\u3002",
+      "relevance_score": 2,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u4ee5\u673a\u5668\u5b66\u4e60\u52bf\u9a71\u52a8\u5927\u5c3a\u5ea6\u5206\u5b50\u52a8\u529b\u5b66\uff0c\u63ed\u793aMAGe1-xSnxI3\u4e2d\u504f\u5fc3\u3001\u503e\u8f6c\u4e0e\u5206\u5b50\u53d6\u5411\u7684\u7ec4\u5206\u8026\u5408\u3002",
+      "title_zh": "\u6df7\u5408\u9499\u949b\u77ff\u4e2d\u504f\u5fc3\u4e0e\u5206\u5b50\u53d6\u5411\u8026\u5408"
+    },
+    "798643cdd49bf822e0adbdf6eaaa2539ab8098e5fb578b181dcc6b135d2ebd9e": {
+      "created_at": "2026-09-04T12:55:36.599615+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u4e3b\u52a8\u5b66\u4e60\u6750\u6599\u7b5b\u9009",
+        "\u6210\u5206\u68af\u5ea6\u5408\u91d1\u8bbe\u8ba1",
+        "\u950c\u7535\u6c60\u754c\u9762\u52a8\u529b\u5b66"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 4,
+      "paper_id": "crossref:10.1002/ange.5246689",
+      "priority_score": 51,
+      "quality_signals": [
+        "\u7ed9\u51fa\u5bf9\u79f0\u7535\u6c60\u3001\u5168\u7535\u6c60\u53ca\u8f6f\u5305\u7535\u6c60\u591a\u5c42\u7ea7\u9a8c\u8bc1",
+        "\u62a5\u544a\u5faa\u73af\u5bff\u547d\u3001\u7535\u6d41\u5bc6\u5ea6\u3001\u9762\u5bb9\u91cf\u4e0e\u5bb9\u91cf\u4fdd\u6301\u7387",
+        "\u6458\u8981\u672a\u8bf4\u660e\u4e3b\u52a8\u5b66\u4e60\u6a21\u578b\u3001\u6570\u636e\u89c4\u6a21\u6216\u7b5b\u9009\u589e\u76ca"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u4e3b\u52a8\u5b66\u4e60\u7528\u4e8e\u950c\u5408\u91d1\u8d1f\u6781\u7b5b\u9009\uff0c\u4f46\u5c5e\u4e8e\u5e38\u89c4\u7535\u6c60\u6750\u6599\u4f18\u5316\uff0c\u672a\u6d89\u53ca\u5927\u6a21\u578b\u6216\u53ef\u8fc1\u79fb\u7684\u91cf\u5b50\u6750\u6599\u65b9\u6cd5\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u7ed3\u5408\u4e3b\u52a8\u5b66\u4e60\u7b5b\u9009\u4e0e\u68af\u5ea6\u5408\u91d1\u8d1f\u6781\u8bbe\u8ba1\uff0c\u5236\u5f97\u9ad8\u500d\u7387\u950c\u8f6f\u5305\u7535\u6c60\uff0c\u5e76\u9a8c\u8bc1\u957f\u5faa\u73af\u548c\u9ad8\u5bb9\u91cf\u4fdd\u6301\u6027\u80fd\u3002",
+      "title_zh": "\u4e3b\u52a8\u5b66\u4e60\u9a71\u52a8\u7684\u9ad8\u500d\u7387\u950c\u5408\u91d1\u8d1f\u6781"
     },
     "a2d68452e059e7a5003598daec63d7f38fafdab60dc0b3bec357c6ed54a72fe9": {
       "created_at": "2026-09-03T13:04:49.656354+00:00",
@@ -663,6 +763,15 @@
       "status": "skipped",
       "title": "A Generalized Approach for Incorporating Geometry and Directionality into Coarse-Grained Machine-Learned Potentials"
     },
+    "2609.03510": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "published": "2026-09-03",
+      "seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Interplay of B-Site Off-Centering and Molecular Orientations in the Mixed Hybrid Perovskite MAGe1xSnxI3"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -672,6 +781,15 @@
       "status": "sent",
       "title": "Quantum Bi\u2010Stability and Robust Room\u2010Temperature Spin Excitation in a Single\u2010Ion Magnet"
     },
+    "crossref:10.1002/adma.74890": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "published": "2026-09-04",
+      "seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Intrinsically Nonvolatile n\u2010Type Polymer Synapses for Neuromorphic Vision"
+    },
     "crossref:10.1002/adom.71722": {
       "attempts": 1,
       "first_seen_at": "2026-08-31T11:43:14.423926+00:00",
@@ -680,6 +798,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Bias\u2010Tunable Optoelectronic Synapse via a Graphene\u2010Gated Dual\u2010Gate Transistor"
+    },
+    "crossref:10.1002/ange.5246689": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "published": "2026-09-04",
+      "seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Machine Learning\u2010Driven Alloy Anode Accompanied by Interfacial Kinetic Compensation Design Toward High\u2010Rate Zinc Pouch Cells"
     },
     "crossref:10.1007/s11694-026-04856-z": {
       "attempts": 1,
@@ -725,6 +852,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    },
+    "crossref:10.1021/acsomega.6c04374": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "published": "2026-09-04",
+      "seen_at": "2026-09-04T12:55:37.847919+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Physics-Informed Machine Learning Correction of Variational Quantum Eigensolver Energies for Molecular Ground States"
     },
     "crossref:10.1038/s41524-026-02300-w": {
       "attempts": 1,
