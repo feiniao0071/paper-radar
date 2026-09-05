@@ -285,6 +285,31 @@
       "summary_zh": "\u7ed3\u5408\u4e3b\u52a8\u5b66\u4e60\u7b5b\u9009\u4e0e\u68af\u5ea6\u5408\u91d1\u8d1f\u6781\u8bbe\u8ba1\uff0c\u5236\u5f97\u9ad8\u500d\u7387\u950c\u8f6f\u5305\u7535\u6c60\uff0c\u5e76\u9a8c\u8bc1\u957f\u5faa\u73af\u548c\u9ad8\u5bb9\u91cf\u4fdd\u6301\u6027\u80fd\u3002",
       "title_zh": "\u4e3b\u52a8\u5b66\u4e60\u9a71\u52a8\u7684\u9ad8\u500d\u7387\u950c\u5408\u91d1\u8d1f\u6781"
     },
+    "9a6b1a51289ba616f1cfe9911c354a092e0a6101bc365651b0d12c2aac718e5f": {
+      "created_at": "2026-09-05T12:00:38.302165+00:00",
+      "evidence_score": 1,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u91cf\u5b50\u4eba\u5de5\u667a\u80fd\u6982\u5ff5",
+        "\u91cf\u5b50-\u7ecf\u5178\u6df7\u5408\u7b97\u6cd5",
+        "\u91cf\u5b50\u8ba1\u7b97\u7cfb\u7edf\u7684AI\u8f85\u52a9"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 1,
+      "paper_id": "crossref:10.34257/ljrcst230653uk",
+      "priority_score": 20,
+      "quality_signals": [
+        "\u6458\u8981\u672a\u7ed9\u51fa\u5177\u4f53\u6a21\u578b\u3001\u7b97\u6cd5\u5b9e\u73b0\u6216\u6570\u636e\u96c6",
+        "\u672a\u62a5\u544a\u5b9a\u91cf\u57fa\u51c6\u3001\u5b9e\u9a8c\u9a8c\u8bc1\u6216\u91cf\u5b50\u4f18\u52bf\u8bc1\u636e",
+        "\u5e94\u7528\u8ba8\u8bba\u5bbd\u6cdb\uff0c\u7f3a\u5c11\u51dd\u805a\u6001\u6216\u79d1\u5b66\u4eea\u5668\u4efb\u52a1"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u4ec5\u6982\u8ff0\u91cf\u5b50\u8ba1\u7b97\u4e0eAI\u7684\u53cc\u5411\u7ed3\u5408\uff0c\u672a\u63d0\u51fa\u6216\u8bc4\u6d4b\u9762\u5411\u51dd\u805a\u6001\u3001\u91cf\u5b50\u6750\u6599\u6216\u7269\u7406\u5b9e\u9a8c\u7684\u5177\u4f53\u65b9\u6cd5\u3002",
+      "relevance_score": 1,
+      "study_type": "\u7efc\u8ff0",
+      "summary_zh": "\u6982\u8ff0\u91cf\u5b50\u8ba1\u7b97\u52a0\u901fAI\u53caAI\u8f85\u52a9\u91cf\u5b50\u7cfb\u7edf\u7684\u53ef\u80fd\u65b9\u5411\uff0c\u4f46\u672a\u63d0\u4f9b\u5177\u4f53\u7269\u7406\u4efb\u52a1\u3001\u65b9\u6cd5\u5b9e\u73b0\u6216\u9a8c\u8bc1\u7ed3\u679c\u3002",
+      "title_zh": "\u91cf\u5b50\u4eba\u5de5\u667a\u80fd\u7684\u673a\u9047\u3001\u6311\u6218\u3001\u5a01\u80c1\u4e0e\u8d8b\u52bf"
+    },
     "a2d68452e059e7a5003598daec63d7f38fafdab60dc0b3bec357c6ed54a72fe9": {
       "created_at": "2026-09-03T13:04:49.656354+00:00",
       "evidence_score": 4,
@@ -942,6 +967,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Pre-Reduction-Activated Carbon-Based Zinc Vanadate Nanosheet Composite with Zn\u2013O\u2013V Performance Synergy for Machine Learning-Enabled Multiplex Pesticide Detection"
+    },
+    "crossref:10.34257/ljrcst230653uk": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-05T12:00:39.488155+00:00",
+      "published": "2026-09-05",
+      "seen_at": "2026-09-05T12:00:39.488155+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Quantum Artificial Intelligence opportunities, challenges, threats, use case and future trends"
     }
   },
   "version": 2
