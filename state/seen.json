@@ -131,6 +131,31 @@
       "summary_zh": "\u4ee5\u5bf9\u79f0\u6027\u548c\u80fd\u91cf\u6700\u5c0f\u5316\u89e3\u91ca\u58f0\u5b50\u6da1\u65cb\uff0c\u5e76\u9884\u6d4b\u91cd\u6742\u8d28\u4fc3\u8fdb\u3001\u526a\u5207\u7834\u574f\u6da1\u65cb\u53ca\u4e8c\u8005\u51b3\u5b9a\u7684\u5e94\u53d8\u9608\u503c\u3002",
       "title_zh": "\u4e8c\u7ef4\u6676\u4f53\u58f0\u5b50\u6da1\u65cb\u7684\u4ea7\u751f\u4e0e\u6291\u5236"
     },
+    "242c0c86d3074b45f2179c1fd5f81b7cf6b10345482c0a8d13472a9dd87f1bbd": {
+      "created_at": "2026-09-05T11:53:21.410501+00:00",
+      "evidence_score": 1,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u77f3\u58a8\u70ef\u91cf\u5b50\u70b9",
+        "\u8367\u5149\u5149\u8c31",
+        "\u9176\u4e0e\u7eb3\u7c73\u6750\u6599\u76f8\u4e92\u4f5c\u7528"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 1,
+      "paper_id": "crossref:10.1007/s10812-026-02153-7",
+      "priority_score": 20,
+      "quality_signals": [
+        "\u9898\u540d\u660e\u786e\u7ed9\u51fa\u4e24\u79cd\u8fc7\u6c27\u5316\u7269\u9176\u53ca\u8367\u5149\u7814\u7a76\u5bf9\u8c61",
+        "\u6765\u6e90\u672a\u63d0\u4f9b\u6458\u8981\uff0c\u65e0\u6cd5\u5224\u65ad\u6d4b\u91cf\u65b9\u6cd5\u4e0e\u5b9a\u91cf\u7ed3\u679c",
+        "\u672a\u663e\u793a\u4f4e\u6e29\u3001\u62d3\u6251\u3001\u5173\u8054\u6216\u91cf\u5b50\u8f93\u8fd0\u5185\u5bb9"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u7814\u7a76\u9176\u5bf9\u77f3\u58a8\u70ef\u91cf\u5b50\u70b9\u8367\u5149\u7684\u5f71\u54cd\uff0c\u504f\u5411\u751f\u7269\u5149\u8c31\u4e0e\u4f20\u611f\uff0c\u672a\u6d89\u53ca\u4e8c\u7ef4\u91cf\u5b50\u8f93\u8fd0\u6216\u5668\u4ef6\u7269\u7406\u3002",
+      "relevance_score": 1,
+      "study_type": "\u5b9e\u9a8c",
+      "summary_zh": "\u6bd4\u8f83\u9ad3\u8fc7\u6c27\u5316\u7269\u9176\u548c\u8fa3\u6839\u8fc7\u6c27\u5316\u7269\u9176\u5bf9\u77f3\u58a8\u70ef\u91cf\u5b50\u70b9\u8367\u5149\u7279\u6027\u7684\u5f71\u54cd\u3002",
+      "title_zh": "\u9ad3\u8fc7\u6c27\u5316\u7269\u9176\u548c\u8fa3\u6839\u8fc7\u6c27\u5316\u7269\u9176\u5bf9\u77f3\u58a8\u70ef\u91cf\u5b50\u70b9\u8367\u5149\u7279\u6027\u7684\u5f71\u54cd"
+    },
     "285d7beb0609857519dbbaae1646846289fdbe406961c3226c221c361de358d4": {
       "created_at": "2026-09-01T15:02:41.903895+00:00",
       "evidence_score": 5,
@@ -657,6 +682,31 @@
       "study_type": "\u7406\u8bba",
       "summary_zh": "\u7814\u7a76Rashba\u81ea\u65cb\u8f68\u9053\u4f5c\u7528\u4e0b\u5468\u671f\u5e94\u53d8\u77f3\u58a8\u70ef\u7684\u62d3\u6251\u6027\u8d28\u53ca\u5149\u5b66\u54cd\u5e94\uff0c\u5177\u4f53\u65b9\u6cd5\u548c\u7ed3\u679c\u7f3a\u5931\u3002",
       "title_zh": "\u5468\u671f\u5e94\u53d8\u77f3\u58a8\u70ef\u7684Rashba\u6548\u5e94\u4e0e\u62d3\u6251\u5149\u5b66\u54cd\u5e94"
+    },
+    "77b6591017a201ee9048b27d4dd408885dec2572a7988c9647b85326eea8dc23": {
+      "created_at": "2026-09-05T11:53:21.410520+00:00",
+      "evidence_score": 1,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "WS2\u590d\u5408\u6750\u6599",
+        "\u9000\u706b\u5904\u7406",
+        "\u8f6f\u78c1\u6027\u80fd"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 1,
+      "paper_id": "crossref:10.1007/s11665-026-15053-w",
+      "priority_score": 20,
+      "quality_signals": [
+        "\u9898\u540d\u7ed9\u51fa\u9000\u706b\u6e29\u5ea6\u8fd9\u4e00\u660e\u786e\u5de5\u827a\u53d8\u91cf",
+        "\u6765\u6e90\u672a\u63d0\u4f9b\u6458\u8981\uff0c\u7f3a\u5c11\u78c1\u6027\u6d4b\u91cf\u65b9\u6cd5\u548c\u5b9a\u91cf\u7ed3\u679c",
+        "WS2\u4ec5\u4f5c\u4e3a\u590d\u5408\u6750\u6599\u7ec4\u5206\uff0c\u672a\u663e\u793a\u4e8c\u7ef4\u91cf\u5b50\u673a\u5236"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u8003\u5bdfFeSiAl/WS2\u590d\u5408\u6750\u6599\u7684\u9000\u706b\u4e0e\u8f6f\u78c1\u884c\u4e3a\uff0c\u672a\u4f53\u73b0\u4e8c\u7ef4WS2\u4e2d\u7684\u91cf\u5b50\u73b0\u8c61\u6216\u76f8\u5173\u5668\u4ef6\u7528\u9014\u3002",
+      "relevance_score": 1,
+      "study_type": "\u5b9e\u9a8c",
+      "summary_zh": "\u6539\u53d8\u9000\u706b\u6e29\u5ea6\u5e76\u8003\u5bdfFeSiAl/WS2\u8f6f\u78c1\u590d\u5408\u6750\u6599\u7684\u78c1\u884c\u4e3a\u3002",
+      "title_zh": "\u9000\u706b\u6e29\u5ea6\u5bf9FeSiAl/WS2\u8f6f\u78c1\u590d\u5408\u6750\u6599\u78c1\u884c\u4e3a\u7684\u5f71\u54cd"
     },
     "78042a80c6b9022910fac4b45c332b325a142c7699d4b205b6c5870e87c4069f": {
       "created_at": "2026-09-04T12:49:59.808190+00:00",
@@ -2586,6 +2636,15 @@
       "status": "skipped",
       "title": "Sulfur-vacancies-assisted enhancing the magnetism of Fe-doped MoS2/graphene heterostructures*"
     },
+    "crossref:10.1007/s10812-026-02153-7": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-05T11:53:22.588381+00:00",
+      "published": "2026-09-05",
+      "seen_at": "2026-09-05T11:53:22.588381+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Influence of Myeloperoxidase and Horseradish Peroxidase on Fluorescence Characteristics of Graphene Quantum Dots"
+    },
     "crossref:10.1007/s11468-026-03430-z": {
       "attempts": 2,
       "first_seen_at": "2026-08-15T11:16:29.811442+00:00",
@@ -2594,6 +2653,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Plasmonic Enhancement by TiO\u2082\u2013Au\u2013graphene Nanostructure in PCF-SPR Magnetic Field Sensor"
+    },
+    "crossref:10.1007/s11665-026-15053-w": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-05T11:53:22.588381+00:00",
+      "published": "2026-09-04",
+      "seen_at": "2026-09-05T11:53:22.588381+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Impact of Annealing Temperature on Magnetic Behavior of FeSiAl/WS2 Soft Magnetic Composites"
     },
     "crossref:10.1016/j.cap.2026.08.022": {
       "attempts": 1,
