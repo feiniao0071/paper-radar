@@ -87,6 +87,13 @@ Optional repository variables are shared by both feeds:
 
 Never commit webhook URLs, signing secrets, or API keys to the repository.
 
+Semantic Scholar is an optional enrichment source. Rate limits and temporary
+server errors use exponential backoff starting at ten seconds. A rejected batch
+is split to isolate an invalid identifier instead of discarding metadata for all
+other candidates. If enrichment remains unavailable, the digest continues with
+arXiv/Crossref metadata; an enrichment-only issue is logged and is not sent as a
+standalone Feishu alert when there are no recommended papers.
+
 ## First Quantum AI run
 
 1. Open the repository's **Actions** tab.

@@ -17,7 +17,7 @@ from paper_radar.feishu import FeishuClient, build_deep_read_card, build_digest_
 from paper_radar.matcher import match_paper
 from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 from paper_radar.recommender import AIRecommender, fallback_recommendation
-from paper_radar.semantic_scholar import enrich_papers
+from paper_radar.semantic_scholar import describe_error, enrich_papers
 from paper_radar.sources import fetch_all_papers
 from paper_radar.state import StateStore
 
@@ -285,8 +285,8 @@ def _enrich_candidates(
         return (
             candidates,
             (
-                "Semantic Scholar 元数据补充失败"
-                f"（{type(error).__name__}），本期使用基础来源元数据。",
+                "Semantic Scholar 附加元数据暂不可用"
+                f"（{describe_error(error)}），引用量等附加字段未补充。",
             ),
         )
 
@@ -400,6 +400,7 @@ def run(args: argparse.Namespace) -> int:
     fetch_result = fetch_all_papers(config, enrich_semantic_scholar=False)
     papers = fetch_result.papers
     notices = list(fetch_result.warnings)
+    standalone_alert_notices = list(fetch_result.warnings)
     matches: dict[str, MatchResult] = {}
     matched_papers: list[Paper] = []
     for paper in papers:
@@ -445,6 +446,7 @@ def run(args: argparse.Namespace) -> int:
         profile_name=config.profile.name,
     )
     notices.extend(evaluation_notices)
+    standalone_alert_notices.extend(evaluation_notices)
     recommendations = _calibrate_priorities(
         recommendations,
         matches,
@@ -485,7 +487,7 @@ def run(args: argparse.Namespace) -> int:
         )
         return 0
 
-    if selected or notices:
+    if selected or standalone_alert_notices:
         _wait_for_delivery_window(args.deliver_not_before)
 
     sent_ids: set[str] = set()
@@ -514,10 +516,14 @@ def run(args: argparse.Namespace) -> int:
             LOGGER.exception("Failed to send the Feishu paper digest")
     else:
         LOGGER.info("No papers met the delivery threshold; no digest was sent")
-        if notices:
+        if standalone_alert_notices:
             _send_alert(
                 f"{config.profile.name}雷达降级运行",
-                "\n".join(f"- {item}" for item in notices),
+                "\n".join(f"- {item}" for item in standalone_alert_notices),
+            )
+        elif notices:
+            LOGGER.info(
+                "Suppressed a standalone alert for optional metadata enrichment"
             )
 
     if args.resend_latest:

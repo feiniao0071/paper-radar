@@ -26,6 +26,7 @@ def test_project_configuration_loads() -> None:
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
     assert config.semantic_scholar.request_interval_seconds == 1.5
+    assert config.semantic_scholar.initial_retry_delay_seconds == 10
     assert config.semantic_scholar.max_retry_delay_seconds == 60
     assert config.run.max_papers_per_run == 10
     assert config.run.max_high_priority_per_run == 3
@@ -65,3 +66,4 @@ def test_quantum_ai_configuration_loads() -> None:
     assert config.run.deep_read_enabled is True
     assert config.run.deep_read_min_priority_score == 82
     assert config.run.max_non_preferred_papers == 3
+    assert config.semantic_scholar.initial_retry_delay_seconds == 10

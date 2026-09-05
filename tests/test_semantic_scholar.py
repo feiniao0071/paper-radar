@@ -110,6 +110,7 @@ def test_enrichment_retries_rate_limit() -> None:
         enabled=True,
         api_url="https://example.test/graph/v1",
         batch_size=100,
+        initial_retry_delay_seconds=1,
     )
     with httpx.Client(transport=httpx.MockTransport(handler)) as client:
         enriched = enrich_papers(
@@ -122,6 +123,107 @@ def test_enrichment_retries_rate_limit() -> None:
     assert attempts == 2
     assert delays == [2.5]
     assert enriched.citation_count == 7
+
+
+def test_enrichment_retries_one_bad_request_after_rate_limit() -> None:
+    now = datetime(2026, 9, 5, tzinfo=UTC)
+    paper = Paper(
+        paper_id="2609.00001",
+        title="Graphene paper",
+        authors=("Author",),
+        abstract="Abstract",
+        published=now,
+        updated=now,
+        categories=(),
+        abstract_url="https://arxiv.org/abs/2609.00001",
+        pdf_url="https://arxiv.org/pdf/2609.00001",
+    )
+    responses = [429, 400, 200]
+    delays: list[float] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        status = responses.pop(0)
+        if status == 200:
+            return httpx.Response(200, json=[{"citationCount": 9}], request=request)
+        return httpx.Response(
+            status,
+            json={"message": f"temporary HTTP {status}"},
+            request=request,
+        )
+
+    config = SemanticScholarConfig(
+        enabled=True,
+        api_url="https://example.test/graph/v1",
+        batch_size=100,
+        initial_retry_delay_seconds=10,
+    )
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        enriched = enrich_papers(
+            [paper],
+            config,
+            client=client,
+            sleep=delays.append,
+        )[0]
+
+    assert responses == []
+    assert delays == [10, 20]
+    assert enriched.citation_count == 9
+
+
+def test_enrichment_splits_bad_batch_and_skips_only_invalid_identifier(
+    caplog,
+) -> None:
+    now = datetime(2026, 9, 5, tzinfo=UTC)
+    papers = [
+        Paper(
+            paper_id=f"2609.0000{index}",
+            title=f"Graphene paper {index}",
+            authors=("Author",),
+            abstract="Abstract",
+            published=now,
+            updated=now,
+            categories=(),
+            abstract_url=f"https://arxiv.org/abs/2609.0000{index}",
+            pdf_url=f"https://arxiv.org/pdf/2609.0000{index}",
+        )
+        for index in range(2)
+    ]
+    requests: list[list[str]] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        identifiers = json.loads(request.content)["ids"]
+        requests.append(identifiers)
+        if len(identifiers) == 2:
+            return httpx.Response(
+                400,
+                json={"message": "one identifier is invalid"},
+                request=request,
+            )
+        if identifiers == ["ARXIV:2609.00000"]:
+            return httpx.Response(200, json=[{"citationCount": 5}], request=request)
+        return httpx.Response(
+            400,
+            json={"message": "invalid paper identifier"},
+            request=request,
+        )
+
+    config = SemanticScholarConfig(
+        enabled=True,
+        api_url="https://example.test/graph/v1",
+        batch_size=100,
+        request_interval_seconds=0,
+    )
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        enriched = enrich_papers(papers, config, client=client)
+
+    assert requests == [
+        ["ARXIV:2609.00000", "ARXIV:2609.00001"],
+        ["ARXIV:2609.00000"],
+        ["ARXIV:2609.00001"],
+    ]
+    assert enriched[0].citation_count == 5
+    assert enriched[1].citation_count is None
+    assert "invalid paper identifier" in caplog.text
 
 
 def test_enrichment_waits_between_batches() -> None:

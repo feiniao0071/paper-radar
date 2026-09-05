@@ -114,6 +114,68 @@ def test_run_enriches_only_ranked_candidates(tmp_path, monkeypatch) -> None:
     assert enriched_ids[-1] == "paper-05"
 
 
+def test_optional_metadata_failure_does_not_send_standalone_alert(
+    tmp_path, monkeypatch
+) -> None:
+    paper = _paper()
+    alerts = []
+    waits = []
+
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda config, **kwargs: FetchResult(papers=[paper], warnings=()),
+    )
+    monkeypatch.setattr(
+        app,
+        "match_paper",
+        lambda candidate, config: MatchResult(5, ("graphene",), ()),
+    )
+    monkeypatch.setattr(
+        app,
+        "_enrich_candidates",
+        lambda candidates, config: (
+            candidates,
+            ("Semantic Scholar 附加元数据暂不可用（HTTP 429）。",),
+        ),
+    )
+    monkeypatch.setattr(
+        app,
+        "_evaluate",
+        lambda candidates, matches, **kwargs: (
+            [
+                app.Recommendation(
+                    paper=paper,
+                    relevance_score=1,
+                    reason="not relevant",
+                    key_relevance=("graphene",),
+                    title_zh="test",
+                    summary_zh="test",
+                    used_ai=True,
+                )
+            ],
+            (),
+        ),
+    )
+    monkeypatch.setattr(app, "_feishu_client", lambda: object())
+    monkeypatch.setattr(
+        app,
+        "_send_alert",
+        lambda title, message, **kwargs: alerts.append((title, message)),
+    )
+    monkeypatch.setattr(
+        app,
+        "_wait_for_delivery_window",
+        lambda target: waits.append(target),
+    )
+
+    args = app._arguments(["--state", str(tmp_path / "seen.json")])
+
+    assert app.run(args) == 0
+    assert alerts == []
+    assert waits == []
+
+
 def test_delivery_window_waits_until_same_beijing_day() -> None:
     seconds = app._seconds_until_beijing_time(
         "19:00",

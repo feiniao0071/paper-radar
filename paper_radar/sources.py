@@ -10,7 +10,7 @@ from paper_radar.arxiv import fetch_recent_papers as fetch_arxiv_papers
 from paper_radar.config import RadarConfig
 from paper_radar.crossref import fetch_recent_papers as fetch_crossref_papers
 from paper_radar.models import Paper
-from paper_radar.semantic_scholar import enrich_papers
+from paper_radar.semantic_scholar import describe_error, enrich_papers
 
 LOGGER = logging.getLogger(__name__)
 
@@ -100,7 +100,10 @@ def fetch_all_papers(
             papers = enrich_papers(papers, config.semantic_scholar)
         except Exception as error:
             LOGGER.exception("Semantic Scholar enrichment failed")
-            warnings.append(f"Semantic Scholar 元数据补充失败：{type(error).__name__}")
+            warnings.append(
+                "Semantic Scholar 附加元数据暂不可用："
+                f"{describe_error(error)}"
+            )
 
     LOGGER.info("Aggregated %d unique paper(s) from all sources", len(papers))
     return FetchResult(papers=papers, warnings=tuple(warnings))

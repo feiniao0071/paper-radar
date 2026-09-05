@@ -38,6 +38,7 @@ class SemanticScholarConfig:
     api_url: str
     batch_size: int
     request_interval_seconds: float = 1.2
+    initial_retry_delay_seconds: float = 10.0
     max_retry_delay_seconds: float = 60.0
 
 
@@ -149,6 +150,9 @@ def load_config(path: Path) -> RadarConfig:
             request_interval_seconds=float(
                 semantic_scholar_raw.get("request_interval_seconds", 1.2)
             ),
+            initial_retry_delay_seconds=float(
+                semantic_scholar_raw.get("initial_retry_delay_seconds", 10.0)
+            ),
             max_retry_delay_seconds=float(
                 semantic_scholar_raw.get("max_retry_delay_seconds", 60.0)
             ),
@@ -224,7 +228,10 @@ def load_config(path: Path) -> RadarConfig:
         or config.crossref.lookback_days < 1
         or config.semantic_scholar.batch_size < 1
         or config.semantic_scholar.request_interval_seconds < 0
+        or config.semantic_scholar.initial_retry_delay_seconds < 1
         or config.semantic_scholar.max_retry_delay_seconds < 1
+        or config.semantic_scholar.initial_retry_delay_seconds
+        > config.semantic_scholar.max_retry_delay_seconds
         or config.matching.focus_term_weight < 1
         or config.matching.preferred_term_weight < 0
         or config.run.max_high_priority_per_run < 0
