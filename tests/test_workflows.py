@@ -17,7 +17,7 @@ def test_quantum_ai_workflow_is_isolated_from_2d_radar() -> None:
     assert 'cron: "38 5 * * *"' in workflow
     assert 'cron: "23 8 * * *"' in workflow
     assert "group: paper-radar-quantum-ai-state" in workflow
-    assert "--start-not-before 19:00" in workflow
+    assert "--start-not-before 19:08" in workflow
     assert "--max-start-wait-minutes 330" in workflow
     assert "--once-per-beijing-day" in workflow
     assert "ref: main" in workflow

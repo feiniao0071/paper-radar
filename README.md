@@ -109,12 +109,14 @@ normal manual runs.
 
 GitHub cron is a best-effort scheduler, so each profile has four staggered daily
 triggers instead of one. Delayed early triggers wait and begin fetching papers at
-19:00 Beijing time; triggers that arrive after 19:00 begin immediately. A trigger
-that arrives too early to wait safely exits, leaving the later attempts as
-fallbacks. Each profile records one successful completion per Beijing day in its
-state file, so redundant triggers do not create duplicate digests. Failed runs do
-not record completion and remain eligible for a later attempt. Manual delivery
-still runs immediately unless a timing option is passed explicitly.
+19:00 Beijing time for the 2D profile and 19:08 for Quantum AI; triggers that
+arrive after their target begin immediately. The small offset avoids making both
+profiles compete for source API rate limits. A trigger that arrives too early to
+wait safely exits, leaving the later attempts as fallbacks. Each profile records
+one successful completion per Beijing day in its state file, so redundant
+triggers do not create duplicate digests. Failed runs do not record completion
+and remain eligible for a later attempt. Manual delivery still runs immediately
+unless a timing option is passed explicitly.
 
 ## Optional AI evaluation
 
