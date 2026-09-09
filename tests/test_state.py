@@ -1,5 +1,5 @@
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 
 from paper_radar.models import Paper, Recommendation
 from paper_radar.state import StateStore
@@ -97,6 +97,18 @@ def test_ai_evaluation_cache_round_trip(tmp_path) -> None:
     assert cached.key_relevance == ("graphene",)
     assert cached.quality_signals == ("clear method",)
     assert loaded.cached_ai_evaluation(make_paper("other"), "cache-key") is None
+
+
+def test_completed_beijing_date_round_trip(tmp_path) -> None:
+    path = tmp_path / "seen.json"
+    store = StateStore(path)
+
+    store.mark_completed(date(2026, 9, 9))
+    store.save()
+
+    loaded = StateStore(path)
+    assert loaded.completed_on(date(2026, 9, 9))
+    assert not loaded.completed_on(date(2026, 9, 10))
 
 
 def test_version_one_skipped_records_migrate_to_deferred(tmp_path) -> None:

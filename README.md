@@ -107,12 +107,14 @@ standalone Feishu alert when there are no recommended papers.
 `resend_latest` leaves state unchanged. Keep it disabled for scheduled and
 normal manual runs.
 
-The 2D workflow starts daily at approximately 16:23 Beijing time. The Quantum AI
-workflow starts at approximately 16:33. Scheduled runs may finish early, but
-Feishu delivery waits until 19:00 Beijing time for a cleaner daily cadence. If
-GitHub cron starts or finishes late, the digest is sent immediately after the
-run completes. Manual delivery still sends immediately unless
-`--deliver-not-before HH:MM` is passed explicitly.
+GitHub cron is a best-effort scheduler, so each profile has four staggered daily
+triggers instead of one. Delayed early triggers wait and begin fetching papers at
+19:00 Beijing time; triggers that arrive after 19:00 begin immediately. A trigger
+that arrives too early to wait safely exits, leaving the later attempts as
+fallbacks. Each profile records one successful completion per Beijing day in its
+state file, so redundant triggers do not create duplicate digests. Failed runs do
+not record completion and remain eligible for a later attempt. Manual delivery
+still runs immediately unless a timing option is passed explicitly.
 
 ## Optional AI evaluation
 
@@ -192,7 +194,8 @@ marked `skipped`; papers that only missed a candidate or delivery limit are
 marked `deferred` and receive priority in the next run. Failed deliveries
 remain eligible for retry. Records older than the configured retention window
 are removed. Cached AI evaluations are pruned with their corresponding paper
-records.
+records. The state also stores the last successfully completed Beijing date to
+make redundant scheduled attempts idempotent.
 
 Each GitHub Actions workflow serializes runs for its own profile. State commits
 pull and push with retry so the two profiles can prepare in parallel and still

@@ -192,6 +192,78 @@ def test_delivery_window_waits_until_same_beijing_day() -> None:
     )
 
 
+def test_start_window_skips_only_triggers_beyond_wait_limit(monkeypatch) -> None:
+    sleeps = []
+    monkeypatch.setattr(app.time_module, "sleep", sleeps.append)
+    monkeypatch.setattr(app, "_seconds_until_beijing_time", lambda target: 346 * 60)
+
+    assert not app._wait_for_start_window("19:00", max_wait_minutes=345)
+    assert sleeps == []
+
+    monkeypatch.setattr(app, "_seconds_until_beijing_time", lambda target: 344 * 60)
+
+    assert app._wait_for_start_window("19:00", max_wait_minutes=345)
+    assert sleeps == [344 * 60]
+
+
+def test_once_per_day_skips_after_successful_run(tmp_path, monkeypatch) -> None:
+    run_date = datetime(2026, 9, 9, tzinfo=UTC).date()
+    state_path = tmp_path / "seen.json"
+    state = StateStore(state_path)
+    state.mark_completed(run_date)
+    state.save()
+
+    monkeypatch.setattr(app, "_beijing_date", lambda: run_date)
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("unexpected fetch")),
+    )
+    args = app._arguments(
+        ["--state", str(state_path), "--once-per-beijing-day", "--no-ai"]
+    )
+
+    assert app.run(args) == 0
+
+
+def test_empty_successful_run_records_beijing_date(tmp_path, monkeypatch) -> None:
+    run_date = datetime(2026, 9, 9, tzinfo=UTC).date()
+    state_path = tmp_path / "seen.json"
+    monkeypatch.setattr(app, "_beijing_date", lambda: run_date)
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda config, **kwargs: FetchResult(papers=[], warnings=()),
+    )
+    args = app._arguments(
+        ["--state", str(state_path), "--once-per-beijing-day", "--no-ai"]
+    )
+
+    assert app.run(args) == 0
+    assert StateStore(state_path).completed_on(run_date)
+
+
+def test_empty_degraded_run_remains_eligible_for_fallback(tmp_path, monkeypatch) -> None:
+    run_date = datetime(2026, 9, 9, tzinfo=UTC).date()
+    state_path = tmp_path / "seen.json"
+    monkeypatch.setattr(app, "_beijing_date", lambda: run_date)
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda config, **kwargs: FetchResult(
+            papers=[],
+            warnings=("arXiv is temporarily unavailable",),
+        ),
+    )
+    monkeypatch.setattr(app, "_send_alert", lambda *args, **kwargs: None)
+    args = app._arguments(
+        ["--state", str(state_path), "--once-per-beijing-day", "--no-ai"]
+    )
+
+    assert app.run(args) == 0
+    assert not StateStore(state_path).completed_on(run_date)
+
+
 def test_calibration_caps_high_priority_recommendations() -> None:
     papers = [
         Paper(

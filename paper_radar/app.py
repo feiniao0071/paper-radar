@@ -7,7 +7,7 @@ import os
 import sys
 import time as time_module
 from dataclasses import replace
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -65,6 +65,21 @@ def _arguments(argv: list[str] | None) -> argparse.Namespace:
         "--deliver-not-before",
         metavar="HH:MM",
         help="Delay Feishu delivery until this Beijing time if the run finishes early",
+    )
+    parser.add_argument(
+        "--start-not-before",
+        metavar="HH:MM",
+        help="Delay scheduled work until this Beijing time",
+    )
+    parser.add_argument(
+        "--max-start-wait-minutes",
+        type=int,
+        help="Skip an early trigger instead of waiting longer than this many minutes",
+    )
+    parser.add_argument(
+        "--once-per-beijing-day",
+        action="store_true",
+        help="Skip work after this state file has completed successfully today",
     )
     parser.add_argument("--lookback-days", type=int, help="Override the lookback window")
     parser.add_argument("--max-results", type=int, help="Override the arXiv result limit")
@@ -326,6 +341,39 @@ def _wait_for_delivery_window(target_time: str | None) -> None:
     time_module.sleep(seconds)
 
 
+def _wait_for_start_window(
+    target_time: str | None,
+    *,
+    max_wait_minutes: int | None,
+) -> bool:
+    if not target_time:
+        return True
+    if max_wait_minutes is not None and max_wait_minutes <= 0:
+        raise ValueError("--max-start-wait-minutes must be greater than zero")
+
+    seconds = _seconds_until_beijing_time(target_time)
+    if seconds <= 0:
+        return True
+    if max_wait_minutes is not None and seconds > max_wait_minutes * 60:
+        LOGGER.info(
+            "Skipping an early trigger %.0f seconds before %s Beijing time",
+            seconds,
+            target_time,
+        )
+        return False
+    LOGGER.info(
+        "Waiting %.0f second(s) to start at %s Beijing time",
+        seconds,
+        target_time,
+    )
+    time_module.sleep(seconds)
+    return True
+
+
+def _beijing_date(now: datetime | None = None) -> date:
+    return (now or datetime.now(UTC)).astimezone(BEIJING_TIMEZONE).date()
+
+
 def _print_preview(
     recommendations: list[Recommendation],
     matches: dict[str, MatchResult],
@@ -396,7 +444,18 @@ def run(args: argparse.Namespace) -> int:
             ),
         )
 
+    if not _wait_for_start_window(
+        args.start_not_before,
+        max_wait_minutes=args.max_start_wait_minutes,
+    ):
+        return 0
+
     state = StateStore(args.state)
+    run_date = _beijing_date()
+    if args.once_per_beijing_day and state.completed_on(run_date):
+        LOGGER.info("A successful run is already recorded for %s; skipping", run_date)
+        return 0
+
     fetch_result = fetch_all_papers(config, enrich_semantic_scholar=False)
     papers = fetch_result.papers
     notices = list(fetch_result.warnings)
@@ -429,8 +488,11 @@ def run(args: argparse.Namespace) -> int:
                 f"{config.profile.name}雷达降级运行",
                 "\n".join(f"- {item}" for item in notices),
             )
-        if state.migrated and not args.dry_run and not args.resend_latest:
-            state.save()
+        if not args.dry_run and not args.resend_latest:
+            if args.once_per_beijing_day and not notices:
+                state.mark_completed(run_date)
+            if state.migrated or (args.once_per_beijing_day and not notices):
+                state.save()
         return 0
 
     ranked = _rank_matches(matched_papers, matches, state)
@@ -550,6 +612,8 @@ def run(args: argparse.Namespace) -> int:
         else:
             state.mark(paper, "deferred", now=now)
     state.prune(config.run.state_retention_days, now=now)
+    if args.once_per_beijing_day and not failures:
+        state.mark_completed(run_date)
     state.save()
     return 1 if failures else 0
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -48,6 +48,12 @@ class StateStore:
 
     def should_consider(self, paper_id: str) -> bool:
         return self.status(paper_id) in {None, "deferred"}
+
+    def completed_on(self, run_date: date) -> bool:
+        return self.data.get("last_completed_beijing_date") == run_date.isoformat()
+
+    def mark_completed(self, run_date: date) -> None:
+        self.data["last_completed_beijing_date"] = run_date.isoformat()
 
     def mark(self, paper: Paper, status: str, *, now: datetime | None = None) -> None:
         timestamp = (now or datetime.now(UTC)).astimezone(UTC).isoformat()
