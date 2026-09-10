@@ -1349,6 +1349,33 @@
       "summary_zh": "\u901a\u8fc7\u539f\u5b50\u7ea7\u6a21\u62df\u63ed\u793a\u6fc0\u5b50\u591a\u6781\u6027\u51b3\u5b9a\u5c42\u95f4\u547c\u5438\u6a21\u7684\u76f8\u5e72\u6216\u538b\u7f29\u72b6\u6001\uff0c\u5e76\u9884\u6d4b\u5782\u76f4\u7535\u573a\u53ef\u5207\u6362\u4e24\u79cd\u58f0\u5b50\u6001\u3002",
       "title_zh": "\u6fc0\u5b50\u591a\u6781\u6027\u8c03\u63a7\u8303\u5fb7\u534e\u5f02\u8d28\u7ed3\u4e2d\u7684\u91cf\u5b50\u58f0\u5b50"
     },
+    "94f54df1a5715ce9e10806caab42a3cd18894a3e8b9fdd0446b7b41141c19793": {
+      "created_at": "2026-09-10T10:35:50.818604+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 4,
+      "key_relevance": [
+        "\u4e8c\u7ef4Chern\u7edd\u7f18\u4f53",
+        "\u91cf\u5b50\u53cd\u5e38\u970d\u5c14\u6548\u5e94",
+        "\u78c1\u6027\u63ba\u6742TMD",
+        "V\u63ba\u6742WSe2",
+        "\u81ea\u65cb\u8f68\u9053\u8026\u5408"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.1063/5.0343925",
+      "priority_score": 68,
+      "quality_signals": [
+        "\u63d0\u51fa\u63ba\u6742\u6001\u4e0e\u5bbf\u4e3b\u4ef7\u5e26\u6742\u5316\u4ea4\u53c9\u4ea7\u751f\u975e\u5e73\u5eb8\u80fd\u5e26\u7684\u673a\u5236",
+        "\u8ba1\u7b97\u5bf9\u8c61\u660e\u786e\u4e3aV\u63ba\u6742WSe2\u548cWS2",
+        "\u672a\u62a5\u544a\u62d3\u6251\u80fd\u9699\u3001\u5177\u4f53Chern\u6570\u3001\u78c1\u6027\u6e29\u5ea6\u6216\u5668\u4ef6\u53ef\u884c\u6027\u6570\u636e"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "V\u63ba\u6742WSe2\u548cWS2\u4e2d\u7684Chern\u80fd\u5e26\u673a\u5236\u8d34\u5408\u4e8c\u7ef4Chern\u78c1\u6027\uff0c\u4f46\u6458\u8981\u672a\u7ed9\u51fa\u80fd\u9699\u3001Chern\u6570\u6216\u78c1\u6027\u6e29\u6807\u3002",
+      "relevance_score": 2,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u8ba1\u7b97V\u63ba\u6742WSe2\u548cWS2\uff0c\u5229\u7528\u63ba\u6742\u6001\u4e0e\u5f3a\u81ea\u65cb\u8f68\u9053\u8026\u5408\u5bbf\u4e3b\u80fd\u5e26\u7684\u6742\u5316\u4ea4\u53c9\u6784\u9020\u975e\u96f6Chern\u80fd\u5e26\u3002",
+      "title_zh": "\u78c1\u6027\u5468\u671f\u63ba\u6742\u4e8c\u7ef4\u534a\u5bfc\u4f53\u4e2d\u7684Chern\u7edd\u7f18\u4f53"
+    },
     "9575490eddbd110379329e4950fbad2464726ed50d1af15a80d21649a94858b9": {
       "created_at": "2026-09-01T15:02:41.903902+00:00",
       "evidence_score": 5,
@@ -1750,6 +1777,33 @@
       "study_type": "\u5b9e\u9a8c",
       "summary_zh": "\u6d4b\u91cf\u4f4e\u6e29DyTe3\u78c1\u8f93\u8fd0\uff0c\u53d1\u73b0CDW2\u663e\u8457\u589e\u5f3a\u78c1\u963b\u5e76\u4ea7\u751f\u591a\u5e26\u975e\u7ebf\u6027Hall\u54cd\u5e94\uff0c\u800cCDW1\u65e0\u6e05\u6670\u5f02\u5e38\u3002",
       "title_zh": "\u4e8c\u7ef4DyTe3\u53cc\u91cd\u7535\u8377\u5bc6\u5ea6\u6ce2\u53ca\u5176\u78c1\u8f93\u8fd0\u6548\u5e94"
+    },
+    "c88b75c66fe9f304db9a3a71aa142ade2d8087a3372013813ad4a7902a814299": {
+      "created_at": "2026-09-10T10:35:50.818623+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 2,
+      "key_relevance": [
+        "\u91cf\u5b50\u5668\u4ef6\u754c\u9762",
+        "\u7f3a\u9677\u4e0e\u9000\u76f8\u5e72",
+        "\u4e8c\u7ef4\u6750\u6599\u5f02\u8d28\u7ed3\u6784",
+        "\u539f\u5b50\u5c3a\u5ea6\u8868\u5f81",
+        "\u6750\u6599\u52a0\u5de5\u63a7\u5236"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 2,
+      "paper_id": "2609.09371",
+      "priority_score": 47,
+      "quality_signals": [
+        "\u8de8\u8d85\u5bfc\u7535\u8def\u3001\u91cf\u5b50\u7f3a\u9677\u3001\u91cf\u5b50\u5149\u5b50\u5668\u4ef6\u548c\u4e8c\u7ef4\u5e73\u53f0\u6bd4\u8f83\u6750\u6599\u74f6\u9888",
+        "\u660e\u786e\u5f52\u7eb3\u539f\u5b50\u7ed3\u6784\u4e0e\u76f8\u5e72\u6027\u5c1a\u7f3a\u4e4f\u5b9a\u91cf\u5173\u8054",
+        "\u5c5e\u4e8e\u5bbd\u6cdb\u7efc\u8ff0\uff0c\u6458\u8981\u6ca1\u6709\u5177\u4f53\u65b0\u6d4b\u91cf\u3001\u5668\u4ef6\u7ed3\u679c\u6216\u4e8c\u7ef4\u6750\u6599\u6848\u4f8b\u6570\u636e"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u5176\u8868\u9762\u3001\u57cb\u85cf\u754c\u9762\u548c\u7f3a\u9677\u5bfc\u81f4\u9000\u76f8\u5e72\u7684\u6846\u67b6\u53ef\u8f85\u52a9\u91cf\u5b50\u5668\u4ef6\u52a0\u5de5\u5224\u65ad\uff0c\u4f46\u5185\u5bb9\u8de8\u5e73\u53f0\u4e14\u975e\u805a\u7126\u4e8c\u7ef4\u91cf\u5b50\u6750\u6599\u3002",
+      "relevance_score": 1,
+      "study_type": "\u7efc\u8ff0",
+      "summary_zh": "\u7efc\u8ff0\u591a\u7c7b\u91cf\u5b50\u5e73\u53f0\u7684\u8868\u9762\u3001\u57cb\u85cf\u754c\u9762\u548c\u7f3a\u9677\u95ee\u9898\uff0c\u6bd4\u8f83\u9000\u76f8\u5e72\u673a\u5236\u5e76\u63d0\u51fa\u539f\u5b50\u7ea7\u673a\u7406\u4e0e\u8868\u5f81\u9700\u6c42\u3002",
+      "title_zh": "\u91cf\u5b50\u4fe1\u606f\u79d1\u5b66\u4e2d\u7684\u6750\u6599\u4e0e\u754c\u9762\u6311\u6218"
     },
     "cc393f0b3888de276baed30c29e8595558dd0651382f6fab28aeddde613fc7f9": {
       "created_at": "2026-09-09T13:39:32.126725+00:00",
@@ -3382,10 +3436,10 @@
       "title": "Diffusion Quantum Monte Carlo Benchmark of Interlayer Binding and Charge Redistribution in Chemically Distinct Two-Dimensional Van Der Waals Bilayers"
     },
     "2609.05898": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-09-09T13:41:09.626837+00:00",
       "published": "2026-09-05",
-      "seen_at": "2026-09-09T13:41:09.626837+00:00",
+      "seen_at": "2026-09-10T11:00:03.833300+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Large Nernst effect in chemically derived multilayer graphene at millitesla magnetic fields"
@@ -3409,10 +3463,10 @@
       "title": "Purely Electric-Field Control of Topological Magnetism in Two-Dimensional Magnets"
     },
     "2609.06411": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-09-09T13:41:09.626837+00:00",
       "published": "2026-09-06",
-      "seen_at": "2026-09-09T13:41:09.626837+00:00",
+      "seen_at": "2026-09-10T11:00:03.833300+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Near-Field Spin Seebeck Effect"
@@ -3508,10 +3562,10 @@
       "title": "Decorated electronic kagome lattice in twisted bilayer germanene"
     },
     "2609.08807": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-09-09T13:41:09.626837+00:00",
       "published": "2026-09-08",
-      "seen_at": "2026-09-09T13:41:09.626837+00:00",
+      "seen_at": "2026-09-10T11:00:03.833300+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Contrasting roles of the superexchange and direct exchange interactions in the metal-insulator transitions of the 2D ferromagnetic $1T$-Fe$X_2$ ($X$=Cl, Br, I) monolayers"
@@ -3524,6 +3578,15 @@
       "source": "arXiv",
       "status": "deferred",
       "title": "Divergent Orbital Diamagnetism from Chiral Edge States in Chern Insulators"
+    },
+    "2609.09371": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-10T11:00:03.833300+00:00",
+      "published": "2026-09-08",
+      "seen_at": "2026-09-10T11:00:03.833300+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Materials for Quantum Information Science: Roles in the Quantum Evolution 2.0"
     },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
@@ -3866,6 +3929,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Metastable MnBi2Te4 enabled by magnetic-field-assisted synthesis"
+    },
+    "crossref:10.1063/5.0343925": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-10T11:00:03.833300+00:00",
+      "published": "2026-09-09",
+      "seen_at": "2026-09-10T11:00:03.833300+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Chern insulator in periodic magnetically doped two-dimensional semiconductors"
     },
     "crossref:10.1063/5.0344193": {
       "attempts": 1,
