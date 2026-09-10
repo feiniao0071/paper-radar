@@ -108,15 +108,16 @@ standalone Feishu alert when there are no recommended papers.
 normal manual runs.
 
 GitHub cron is a best-effort scheduler, so each profile has four staggered daily
-triggers instead of one. Delayed early triggers wait and begin fetching papers at
-19:00 Beijing time for the 2D profile and 19:08 for Quantum AI; triggers that
-arrive after their target begin immediately. The small offset avoids making both
-profiles compete for source API rate limits. A trigger that arrives too early to
-wait safely exits, leaving the later attempts as fallbacks. Each profile records
-one successful completion per Beijing day in its state file, so redundant
-triggers do not create duplicate digests. Failed runs do not record completion
-and remain eligible for a later attempt. Manual delivery still runs immediately
-unless a timing option is passed explicitly.
+triggers instead of one. Delayed early triggers wait and begin preparing the 2D
+digest at 18:30 Beijing time and the Quantum AI digest at 18:40. This offset
+avoids making both profiles compete for source API rate limits. Completed
+digests wait at a delivery gate until 19:00, so both Feishu groups receive their
+pushes together. A trigger that arrives too early to wait safely exits, leaving
+the later attempts as fallbacks. Each profile records one successful completion
+per Beijing day in its state file, so redundant triggers do not create duplicate
+digests. Failed runs do not record completion and remain eligible for a later
+attempt. Manual delivery still runs immediately unless a timing option is passed
+explicitly.
 
 ## Optional AI evaluation
 

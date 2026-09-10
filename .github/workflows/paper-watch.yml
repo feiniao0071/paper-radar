@@ -3,7 +3,7 @@ name: 2D Quantum Materials Radar
 on:
   schedule:
     # GitHub cron is best-effort, so use independent off-peak attempts. The
-    # application waits until 19:00 and records one successful run per day.
+    # application prepares before 19:00 and records one successful run per day.
     - cron: "47 0 * * *" # 08:47 Beijing; hedge against very long cron delays
     - cron: "47 4 * * *" # 12:47 Beijing; primary delayed-trigger hedge
     - cron: "32 5 * * *" # 13:32 Beijing; on-time fallback within the wait limit
@@ -79,8 +79,9 @@ jobs:
           fi
           if [[ "$EVENT_NAME" == "schedule" ]]; then
             args+=(
-              --start-not-before 19:00
+              --start-not-before 18:30
               --max-start-wait-minutes 330
+              --deliver-not-before 19:00
               --once-per-beijing-day
             )
           fi

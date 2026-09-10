@@ -44,6 +44,11 @@ def test_resend_latest_includes_seen_paper_without_changing_state(
     )
     monkeypatch.setattr(
         app,
+        "_enrich_candidates",
+        lambda candidates, config: (candidates, ()),
+    )
+    monkeypatch.setattr(
+        app,
         "_print_preview",
         lambda recommendations, matches, notices, **kwargs: previewed.extend(
             recommendations
@@ -560,6 +565,11 @@ def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) ->
         app,
         "match_paper",
         lambda candidate, config: MatchResult(3, ("graphene",), ()),
+    )
+    monkeypatch.setattr(
+        app,
+        "_enrich_candidates",
+        lambda candidates, config: (candidates, ()),
     )
     monkeypatch.setattr(app, "_feishu_client", lambda: FakeClient())
     state_path = tmp_path / "seen.json"
