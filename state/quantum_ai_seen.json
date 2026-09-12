@@ -643,6 +643,32 @@
       "summary_zh": "\u7ed3\u5408\u4e3b\u52a8\u5b66\u4e60\u7b5b\u9009\u4e0e\u68af\u5ea6\u5408\u91d1\u8d1f\u6781\u8bbe\u8ba1\uff0c\u5236\u5f97\u9ad8\u500d\u7387\u950c\u8f6f\u5305\u7535\u6c60\uff0c\u5e76\u9a8c\u8bc1\u957f\u5faa\u73af\u548c\u9ad8\u5bb9\u91cf\u4fdd\u6301\u6027\u80fd\u3002",
       "title_zh": "\u4e3b\u52a8\u5b66\u4e60\u9a71\u52a8\u7684\u9ad8\u500d\u7387\u950c\u5408\u91d1\u8d1f\u6781"
     },
+    "7abe4e9f6c565eaa41e66e4f28c607ed845edd95be2f6342af214c32068f7c64": {
+      "created_at": "2026-09-12T11:02:02.541445+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 2,
+      "key_relevance": [
+        "simulation-based inference",
+        "\u795e\u7ecf\u4f3c\u7136\u4f30\u8ba1",
+        "\u7269\u7406\u6a21\u62df\u53c2\u6570\u53cd\u6f14",
+        "Hamiltonian Monte Carlo"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.1029/2025jh001164",
+      "priority_score": 52,
+      "quality_signals": [
+        "\u7ed9\u51fa\u5148\u9a8c\u3001\u8bad\u7ec3\u96c6\u91c7\u6837\u4e0e\u6536\u655b\u8bc4\u4f30\u7684\u5b9e\u8df5\u6d41\u7a0b",
+        "\u5728Parker\u65b9\u7a0b\u5b87\u5b99\u7ebf\u8f93\u8fd0\u6a21\u578b\u4e0a\u9a8c\u8bc1\u6f5c\u53c2\u6570\u63a8\u65ad",
+        "\u6458\u8981\u672a\u63d0\u4f9b\u52a0\u901f\u6bd4\u3001\u8bef\u5dee\u6216\u57fa\u7ebf\u6bd4\u8f83\u7b49\u5b9a\u91cf\u7ed3\u679c"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u795e\u7ecf\u4f3c\u7136\u4e0eHMC\u7684\u7ec4\u5408\u53ef\u8fc1\u79fb\u5230\u6602\u8d35\u6216\u4e0d\u7a33\u5b9a\u7684\u7269\u7406\u6a21\u62df\u53c2\u6570\u53cd\u6f14\uff0c\u4f46\u5e94\u7528\u662f\u5b87\u5b99\u7ebf\u8f93\u8fd0\u800c\u975e\u51dd\u805a\u6001\u6216\u91cf\u5b50\u5b9e\u9a8c\u3002",
+      "relevance_score": 1,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u4ee5\u795e\u7ecf\u7f51\u7edc\u8fd1\u4f3c\u4f3c\u7136\u5e76\u5411HMC\u63d0\u4f9b\u68af\u5ea6\u3001\u5e73\u6ed1\u6570\u503c\u566a\u58f0\uff0c\u5728Parker\u65b9\u7a0b\u6a21\u62df\u4e2d\u5b9e\u73b0\u5b87\u5b99\u7ebf\u8f93\u8fd0\u6f5c\u53c2\u6570\u7684\u9ad8\u6548\u63a8\u65ad\u3002",
+      "title_zh": "\u7528\u4e8e\u6a21\u62df\u63a8\u65ad\u7684\u795e\u7ecf\u4ee3\u7406HMC"
+    },
     "8569ffee446dedcf628d910cc303e5ca1d2b3a9376f519d940ea43ce016668b5": {
       "created_at": "2026-09-07T14:26:31.009680+00:00",
       "evidence_score": 5,
@@ -1086,7 +1112,7 @@
       "title_zh": "\u673a\u5668\u5b66\u4e60\u52bf\u63ed\u793a\u77f3\u58a8\u70ef\u7f3a\u9677\u5904\u6c34\u89e3\u79bb"
     }
   },
-  "last_completed_beijing_date": "2026-09-11",
+  "last_completed_beijing_date": "2026-09-12",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -1780,6 +1806,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Bridging Visual Intuition and Chemical Expertise: A Virtual Collaborative Framework for Autonomous Nonadiabatic Dynamics Analysis"
+    },
+    "crossref:10.1029/2025jh001164": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-12T11:02:03.814689+00:00",
+      "published": "2026-09-12",
+      "seen_at": "2026-09-12T11:02:03.814689+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Neural Surrogate HMC: On Using Neural Likelihoods for Hamiltonian Monte Carlo in Simulation\u2010Based Inference"
     },
     "crossref:10.1038/s41524-026-02300-w": {
       "attempts": 1,
