@@ -27,6 +27,7 @@ WSL, and Docker do not need to remain online.
 7. Send one concise Chinese daily digest containing up to ten recommended papers.
 8. When a PDF-backed paper clears the strict Top 1 threshold, append one structured
    deep read covering its route, findings, advances, limitations, and lab takeaways.
+   The entire deep read is collapsed by default and expands with one click.
 9. Commit that profile's independent delivery state back to the repository.
 
 AI evaluation is optional. If it is disabled or fails, deterministic keyword

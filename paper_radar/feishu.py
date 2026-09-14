@@ -272,6 +272,7 @@ def build_deep_read_card(deep_read: DeepRead) -> dict[str, Any]:
         ]
     )
     return {
+        "schema": "2.0",
         "config": {"wide_screen_mode": True},
         "header": {
             "template": "red",
@@ -280,7 +281,32 @@ def build_deep_read_card(deep_read: DeepRead) -> dict[str, Any]:
                 "content": f"论文速读｜{_truncate(deep_read.title_zh, 90)}",
             },
         },
-        "elements": elements,
+        "body": {
+            "elements": [
+                {
+                    "tag": "collapsible_panel",
+                    "expanded": False,
+                    "header": {
+                        "title": {
+                            "tag": "plain_text",
+                            "content": "技术路线、结论与启发 · 展开全文",
+                        },
+                        "background_color": "grey",
+                        "vertical_align": "center",
+                        "icon": {
+                            "tag": "standard_icon",
+                            "token": "down-small-ccm_outlined",
+                        },
+                        "icon_position": "right",
+                        "icon_expanded_angle": -180,
+                    },
+                    "border": {"color": "grey", "corner_radius": "5px"},
+                    "vertical_spacing": "8px",
+                    "padding": "10px 10px 10px 10px",
+                    "elements": elements,
+                }
+            ]
+        },
     }
 
 

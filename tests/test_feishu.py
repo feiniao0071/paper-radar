@@ -255,7 +255,14 @@ def test_deep_read_card_contains_pdf_grounded_sections() -> None:
     card = build_deep_read_card(deep_read)
     serialized = str(card)
 
+    assert card["schema"] == "2.0"
     assert card["header"]["title"]["content"].startswith("论文速读｜")
+    assert "elements" not in card
+    panel = card["body"]["elements"][0]
+    assert panel["tag"] == "collapsible_panel"
+    assert panel["expanded"] is False
+    assert panel["header"]["icon_position"] == "right"
+    assert panel["header"]["title"]["content"].endswith("展开全文")
     assert paper.abstract_url in serialized
     assert paper.pdf_url in serialized
     assert "A. Researcher, B. Scientist" in serialized
