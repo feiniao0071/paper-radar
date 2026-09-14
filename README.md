@@ -8,14 +8,16 @@ Paper Radar runs two independent research feeds from one GitHub repository:
   scientific agents, autonomous laboratories, and quantum machine learning with
   a concrete scientific application.
 
-Both feeds query arXiv and Crossref, enrich available metadata through Semantic
-Scholar, rank matching papers, and send a Chinese digest to a dedicated Feishu
-group bot. GitHub Actions hosts the scheduled jobs, so Windows, WSL, and Docker
-do not need to remain online.
+Both feeds query arXiv and Crossref, automatically fall back to OpenAlex's arXiv
+index when the official Atom API is rate limited, enrich available metadata
+through Semantic Scholar, rank matching papers, and send a Chinese digest to a
+dedicated Feishu group bot. GitHub Actions hosts the scheduled jobs, so Windows,
+WSL, and Docker do not need to remain online.
 
 ## Pipeline
 
-1. Query the official arXiv Atom API and Crossref Works API with polite rate limits.
+1. Query the official arXiv Atom API and Crossref Works API with polite rate limits;
+   honor `Retry-After` and use OpenAlex as the automatic arXiv backup.
 2. Merge duplicate preprints and journal records by DOI and normalized title.
 3. Require both a profile-specific core term and a profile-specific focus term.
 4. Reconsider papers marked `deferred` before newly discovered papers.
@@ -76,6 +78,7 @@ Quantum AI values must come from the new group's bot.
 | `LLM_API_KEY` | No | Shared AI recommendation and Chinese summaries |
 | `LLM_BASE_URL` | No | Shared Responses-compatible API base URL |
 | `SEMANTIC_SCHOLAR_API_KEY` | No | Raises Semantic Scholar rate limits if available |
+| `OPENALEX_API_KEY` | No | Raises the limit of the automatic arXiv backup |
 
 Optional repository variables are shared by both feeds:
 
@@ -86,6 +89,12 @@ Optional repository variables are shared by both feeds:
 | `ARXIV_CONTACT` | empty | Contact email sent to arXiv and Crossref |
 
 Never commit webhook URLs, signing secrets, or API keys to the repository.
+
+The arXiv Atom API uses minute-scale exponential backoff instead of immediate
+retries. If it remains unavailable, OpenAlex supplies arXiv records and the run
+can still complete. If both paths fail, the workflow stays failed and does not
+record that Beijing day as completed, allowing the next scheduled attempt to
+retry. Source alerts are persisted and sent at most once per profile and day.
 
 Semantic Scholar is an optional enrichment source. Rate limits and temporary
 server errors use exponential backoff starting at ten seconds. A rejected batch
@@ -110,14 +119,15 @@ normal manual runs.
 GitHub cron is a best-effort scheduler, so each profile has four staggered daily
 triggers instead of one. Delayed early triggers wait and begin preparing the 2D
 digest at 18:30 Beijing time and the Quantum AI digest at 18:40. This offset
-avoids making both profiles compete for source API rate limits. Completed
-digests wait at a delivery gate until 19:00, so both Feishu groups receive their
-pushes together. A trigger that arrives too early to wait safely exits, leaving
-the later attempts as fallbacks. Each profile records one successful completion
-per Beijing day in its state file, so redundant triggers do not create duplicate
-digests. Failed runs do not record completion and remain eligible for a later
-attempt. Manual delivery still runs immediately unless a timing option is passed
-explicitly.
+avoids making both profiles compete for source API rate limits. Completed 2D
+digests wait at a delivery gate until 19:00; Quantum AI delivers at 19:08 to
+avoid Feishu application-level frequency limiting. A trigger that arrives too
+early to wait safely exits, leaving the later attempts as fallbacks. Each profile
+records one successful completion per Beijing day in its state file, so redundant
+triggers do not create duplicate digests. Failed or incomplete source runs do not
+record completion and remain eligible for a later attempt. Feishu rate limits and
+temporary server failures are retried automatically. Manual delivery still runs
+immediately unless a timing option is passed explicitly.
 
 ## Optional AI evaluation
 

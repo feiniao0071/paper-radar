@@ -417,15 +417,36 @@ def _feishu_client() -> FeishuClient | None:
     )
 
 
-def _send_alert(title: str, message: str, *, fatal: bool = False) -> None:
+def _send_alert(title: str, message: str, *, fatal: bool = False) -> bool:
     client = _feishu_client()
     if client is None:
         LOGGER.warning("Cannot send Feishu alert because FEISHU_WEBHOOK_URL is missing")
-        return
+        return False
     try:
         client.send_alert(title, message, fatal=fatal)
+        return True
     except Exception:
         LOGGER.exception("Failed to send the Feishu runtime alert")
+        return False
+
+
+def _send_alert_once(
+    state: StateStore,
+    run_date: date,
+    kind: str,
+    title: str,
+    message: str,
+    *,
+    fatal: bool = False,
+) -> bool:
+    if state.alerted_on(run_date, kind):
+        LOGGER.info("A %s alert is already recorded for %s; suppressing it", kind, run_date)
+        return True
+    if not _send_alert(title, message, fatal=fatal):
+        return False
+    state.mark_alerted(run_date, kind)
+    state.save()
+    return True
 
 
 def run(args: argparse.Namespace) -> int:
@@ -459,7 +480,8 @@ def run(args: argparse.Namespace) -> int:
     fetch_result = fetch_all_papers(config, enrich_semantic_scholar=False)
     papers = fetch_result.papers
     notices = list(fetch_result.warnings)
-    standalone_alert_notices = list(fetch_result.warnings)
+    source_failures = list(fetch_result.failures)
+    standalone_alert_notices = list(source_failures)
     matches: dict[str, MatchResult] = {}
     matched_papers: list[Paper] = []
     for paper in papers:
@@ -483,17 +505,20 @@ def run(args: argparse.Namespace) -> int:
             config.profile.name,
         )
     if not matched_papers:
-        if notices and not args.dry_run:
-            _send_alert(
+        if source_failures and not args.dry_run:
+            _send_alert_once(
+                state,
+                run_date,
+                "source_failure",
                 f"{config.profile.name}雷达降级运行",
-                "\n".join(f"- {item}" for item in notices),
+                "\n".join(f"- {item}" for item in source_failures),
             )
         if not args.dry_run and not args.resend_latest:
-            if args.once_per_beijing_day and not notices:
+            if args.once_per_beijing_day and not source_failures:
                 state.mark_completed(run_date)
-            if state.migrated or (args.once_per_beijing_day and not notices):
+            if state.migrated or (args.once_per_beijing_day and not source_failures):
                 state.save()
-        return 0
+        return 1 if source_failures else 0
 
     ranked = _rank_matches(matched_papers, matches, state)
     candidates = ranked[: config.run.ai_candidate_limit]
@@ -547,13 +572,13 @@ def run(args: argparse.Namespace) -> int:
             digest_title=config.profile.digest_title,
             digest_intro=config.profile.digest_intro,
         )
-        return 0
+        return 1 if source_failures else 0
 
     if selected or standalone_alert_notices:
         _wait_for_delivery_window(args.deliver_not_before)
 
     sent_ids: set[str] = set()
-    failures = 0
+    failures = int(bool(source_failures))
     if selected:
         try:
             client.send_digest(
@@ -564,6 +589,8 @@ def run(args: argparse.Namespace) -> int:
                 digest_intro=config.profile.digest_intro,
             )
             sent_ids.update(item.paper.paper_id for item in selected)
+            if source_failures:
+                state.mark_alerted(run_date, "source_failure")
             LOGGER.info("Sent a Feishu digest containing %d paper(s)", len(selected))
             if deep_read is not None:
                 try:
@@ -579,7 +606,13 @@ def run(args: argparse.Namespace) -> int:
     else:
         LOGGER.info("No papers met the delivery threshold; no digest was sent")
         if standalone_alert_notices:
-            _send_alert(
+            alert_kind = (
+                "source_failure" if source_failures else "evaluation_failure"
+            )
+            _send_alert_once(
+                state,
+                run_date,
+                alert_kind,
                 f"{config.profile.name}雷达降级运行",
                 "\n".join(f"- {item}" for item in standalone_alert_notices),
             )

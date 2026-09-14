@@ -34,6 +34,7 @@ class StateStore:
         if data.get("version") != CURRENT_VERSION:
             raise ValueError(f"Unsupported or malformed state file: {self.path}")
         data.setdefault("ai_evaluations", {})
+        data.setdefault("last_alerted_beijing_date", {})
         return data
 
     def contains(self, paper_id: str) -> bool:
@@ -54,6 +55,15 @@ class StateStore:
 
     def mark_completed(self, run_date: date) -> None:
         self.data["last_completed_beijing_date"] = run_date.isoformat()
+
+    def alerted_on(self, run_date: date, kind: str) -> bool:
+        alerts = self.data.get("last_alerted_beijing_date", {})
+        return isinstance(alerts, dict) and alerts.get(kind) == run_date.isoformat()
+
+    def mark_alerted(self, run_date: date, kind: str) -> None:
+        self.data.setdefault("last_alerted_beijing_date", {})[kind] = (
+            run_date.isoformat()
+        )
 
     def mark(self, paper: Paper, status: str, *, now: datetime | None = None) -> None:
         timestamp = (now or datetime.now(UTC)).astimezone(UTC).isoformat()

@@ -41,6 +41,7 @@ jobs:
       FEISHU_SIGNING_SECRET: ${{ secrets.QUANTUM_AI_FEISHU_SIGNING_SECRET }}
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
       LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+      OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
       SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
       LLM_MODEL: ${{ vars.LLM_MODEL || 'gpt-5.6-sol' }}
       LLM_REASONING_EFFORT: ${{ vars.LLM_REASONING_EFFORT || 'low' }}
@@ -84,7 +85,7 @@ jobs:
             args+=(
               --start-not-before 18:40
               --max-start-wait-minutes 330
-              --deliver-not-before 19:00
+              --deliver-not-before 19:08
               --once-per-beijing-day
             )
           fi

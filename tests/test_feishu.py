@@ -1,6 +1,9 @@
 from datetime import UTC, datetime
 
+import httpx
+
 from paper_radar.feishu import (
+    FeishuClient,
     build_alert_card,
     build_card,
     build_deep_read_card,
@@ -269,3 +272,29 @@ def test_alert_card_uses_fatal_template() -> None:
     card = build_alert_card("论文雷达运行失败", "请检查日志", fatal=True)
     assert card["header"]["template"] == "red"
     assert "请检查日志" in card["elements"][0]["text"]["content"]
+
+
+def test_client_retries_feishu_frequency_limit(monkeypatch) -> None:
+    responses = [
+        {"code": 11232, "msg": "frequency limited"},
+        {"code": 0, "msg": "success"},
+    ]
+    calls = []
+    sleeps = []
+
+    def fake_post(url, *, json, timeout):
+        calls.append((url, json, timeout))
+        request = httpx.Request("POST", url)
+        return httpx.Response(200, json=responses.pop(0), request=request)
+
+    monkeypatch.setattr("paper_radar.feishu.httpx.post", fake_post)
+    monkeypatch.setattr("paper_radar.feishu.time.sleep", sleeps.append)
+
+    client = FeishuClient(
+        "https://example.test/webhook",
+        retry_delays=(0.25,),
+    )
+    client.send_alert("test", "retry")
+
+    assert len(calls) == 2
+    assert sleeps == [0.25]

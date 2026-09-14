@@ -10,6 +10,9 @@ arxiv:
   max_results: 75
   lookback_days: 8
   query_batch_size: 5
+  retry_attempts: 4
+  initial_retry_delay_seconds: 30
+  max_retry_delay_seconds: 180
   query_terms:
     - large language model condensed matter
     - large language model physics
@@ -54,6 +57,13 @@ arxiv:
     - machine learning electronic structure
     - machine learning quantum transport
     - machine learned interatomic potential
+
+openalex:
+  enabled: true
+  api_url: https://api.openalex.org/works
+  max_results_per_query: 100
+  query_batch_size: 5
+  request_interval_seconds: 1
 
 crossref:
   enabled: true

@@ -21,6 +21,18 @@ class ArxivConfig:
     lookback_days: int
     query_batch_size: int
     query_terms: tuple[str, ...]
+    retry_attempts: int = 4
+    initial_retry_delay_seconds: float = 30.0
+    max_retry_delay_seconds: float = 180.0
+
+
+@dataclass(frozen=True, slots=True)
+class OpenAlexConfig:
+    enabled: bool
+    api_url: str
+    max_results_per_query: int
+    query_batch_size: int
+    request_interval_seconds: float
 
 
 @dataclass(frozen=True, slots=True)
@@ -74,6 +86,7 @@ class RunConfig:
 class RadarConfig:
     profile: ProfileConfig
     arxiv: ArxivConfig
+    openalex: OpenAlexConfig
     crossref: CrossrefConfig
     semantic_scholar: SemanticScholarConfig
     matching: MatchingConfig
@@ -101,6 +114,7 @@ def load_config(path: Path) -> RadarConfig:
 
     profile_raw = _mapping(raw.get("profile", {}), "profile")
     arxiv_raw = _mapping(raw.get("arxiv"), "arxiv")
+    openalex_raw = _mapping(raw.get("openalex", {}), "openalex")
     crossref_raw = _mapping(raw.get("crossref", {}), "crossref")
     semantic_scholar_raw = _mapping(
         raw.get("semantic_scholar", {}), "semantic_scholar"
@@ -126,6 +140,26 @@ def load_config(path: Path) -> RadarConfig:
             lookback_days=int(arxiv_raw["lookback_days"]),
             query_batch_size=int(arxiv_raw.get("query_batch_size", 6)),
             query_terms=_strings(arxiv_raw.get("query_terms"), "arxiv.query_terms"),
+            retry_attempts=int(arxiv_raw.get("retry_attempts", 4)),
+            initial_retry_delay_seconds=float(
+                arxiv_raw.get("initial_retry_delay_seconds", 30.0)
+            ),
+            max_retry_delay_seconds=float(
+                arxiv_raw.get("max_retry_delay_seconds", 180.0)
+            ),
+        ),
+        openalex=OpenAlexConfig(
+            enabled=bool(openalex_raw.get("enabled", True)),
+            api_url=str(
+                openalex_raw.get("api_url", "https://api.openalex.org/works")
+            ),
+            max_results_per_query=int(
+                openalex_raw.get("max_results_per_query", 100)
+            ),
+            query_batch_size=int(openalex_raw.get("query_batch_size", 5)),
+            request_interval_seconds=float(
+                openalex_raw.get("request_interval_seconds", 1.0)
+            ),
         ),
         crossref=CrossrefConfig(
             enabled=bool(crossref_raw.get("enabled", False)),
@@ -219,6 +253,10 @@ def load_config(path: Path) -> RadarConfig:
         config.arxiv.max_results < 1
         or config.arxiv.lookback_days < 1
         or config.arxiv.query_batch_size < 1
+        or config.arxiv.retry_attempts < 1
+        or config.arxiv.initial_retry_delay_seconds < 1
+        or config.arxiv.max_retry_delay_seconds
+        < config.arxiv.initial_retry_delay_seconds
     ):
         raise ValueError("arxiv limits must be positive")
     if not 1 <= config.run.minimum_ai_relevance <= 3:
@@ -226,6 +264,10 @@ def load_config(path: Path) -> RadarConfig:
     if (
         config.crossref.max_results_per_query < 1
         or config.crossref.lookback_days < 1
+        or config.openalex.max_results_per_query < 1
+        or config.openalex.max_results_per_query > 100
+        or config.openalex.query_batch_size < 1
+        or config.openalex.request_interval_seconds < 0
         or config.semantic_scholar.batch_size < 1
         or config.semantic_scholar.request_interval_seconds < 0
         or config.semantic_scholar.initial_retry_delay_seconds < 1

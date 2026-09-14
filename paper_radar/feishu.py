@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import base64
+import contextlib
 import hashlib
 import hmac
+import logging
 import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -14,6 +16,7 @@ import httpx
 from paper_radar.models import DeepRead, MatchResult, Recommendation
 
 BEIJING_TIMEZONE = ZoneInfo("Asia/Shanghai")
+LOGGER = logging.getLogger(__name__)
 
 
 def build_signature(secret: str, timestamp: int) -> str:
@@ -302,6 +305,7 @@ class FeishuClient:
     webhook_url: str
     signing_secret: str = ""
     timeout: float = 30.0
+    retry_delays: tuple[float, ...] = (10.0, 30.0, 60.0)
 
     def _send_card(self, card: dict[str, Any]) -> None:
         payload: dict[str, Any] = {
@@ -313,13 +317,50 @@ class FeishuClient:
             payload["timestamp"] = str(timestamp)
             payload["sign"] = build_signature(self.signing_secret, timestamp)
 
-        response = httpx.post(self.webhook_url, json=payload, timeout=self.timeout)
-        response.raise_for_status()
-        body = response.json()
-        code = body.get("code", body.get("StatusCode", 0))
-        if code not in {0, "0", None}:
-            message = body.get("msg", body.get("StatusMessage", "unknown Feishu error"))
-            raise RuntimeError(f"Feishu rejected the message: {code} {message}")
+        for attempt in range(len(self.retry_delays) + 1):
+            response: httpx.Response | None = None
+            try:
+                response = httpx.post(
+                    self.webhook_url,
+                    json=payload,
+                    timeout=self.timeout,
+                )
+                response.raise_for_status()
+                body = response.json()
+                code = body.get("code", body.get("StatusCode", 0))
+                if code in {0, "0", None}:
+                    return
+                message = body.get(
+                    "msg", body.get("StatusMessage", "unknown Feishu error")
+                )
+                if str(code) != "11232" or attempt == len(self.retry_delays):
+                    raise RuntimeError(
+                        f"Feishu rejected the message: {code} {message}"
+                    )
+            except (httpx.RequestError, httpx.HTTPStatusError) as error:
+                retryable = not isinstance(error, httpx.HTTPStatusError) or (
+                    error.response.status_code == 429
+                    or error.response.status_code >= 500
+                )
+                if not retryable or attempt == len(self.retry_delays):
+                    raise
+
+            delay = self.retry_delays[attempt]
+            retry_after = (
+                response.headers.get("Retry-After", "").strip()
+                if response is not None
+                else ""
+            )
+            with contextlib.suppress(ValueError):
+                delay = max(delay, float(retry_after))
+            LOGGER.warning(
+                "Feishu delivery was rate limited or temporarily unavailable; "
+                "retrying in %.0f second(s) (%d/%d)",
+                delay,
+                attempt + 1,
+                len(self.retry_delays),
+            )
+            time.sleep(delay)
 
     def send(self, recommendation: Recommendation, match: MatchResult) -> None:
         self._send_card(build_card(recommendation, match))

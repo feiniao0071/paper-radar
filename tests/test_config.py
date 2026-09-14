@@ -23,10 +23,15 @@ def test_project_configuration_loads() -> None:
     assert "twisted MoTe2 fractional Chern" in config.arxiv.query_terms
     assert "2D quantum criticality" in config.arxiv.query_terms
     assert config.arxiv.query_batch_size == 6
+    assert config.arxiv.retry_attempts == 4
+    assert config.arxiv.initial_retry_delay_seconds == 30
+    assert config.openalex.enabled is True
+    assert config.openalex.query_batch_size == 5
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
     assert config.semantic_scholar.request_interval_seconds == 1.5
     assert config.semantic_scholar.initial_retry_delay_seconds == 10
+    assert config.openalex.enabled is True
     assert config.semantic_scholar.max_retry_delay_seconds == 60
     assert config.run.max_papers_per_run == 10
     assert config.run.max_high_priority_per_run == 3

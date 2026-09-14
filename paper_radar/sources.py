@@ -10,6 +10,7 @@ from paper_radar.arxiv import fetch_recent_papers as fetch_arxiv_papers
 from paper_radar.config import RadarConfig
 from paper_radar.crossref import fetch_recent_papers as fetch_crossref_papers
 from paper_radar.models import Paper
+from paper_radar.openalex import fetch_recent_arxiv_papers as fetch_openalex_arxiv_papers
 from paper_radar.semantic_scholar import describe_error, enrich_papers
 
 LOGGER = logging.getLogger(__name__)
@@ -19,6 +20,7 @@ LOGGER = logging.getLogger(__name__)
 class FetchResult:
     papers: list[Paper]
     warnings: tuple[str, ...]
+    failures: tuple[str, ...] = ()
 
 
 def _title_key(title: str) -> str:
@@ -72,6 +74,7 @@ def fetch_all_papers(
 ) -> FetchResult:
     papers: list[Paper] = []
     warnings: list[str] = []
+    failures: list[str] = []
     successful_sources = 0
 
     try:
@@ -80,7 +83,28 @@ def fetch_all_papers(
         successful_sources += 1
     except Exception as error:
         LOGGER.exception("arXiv source failed")
-        warnings.append(f"arXiv 数据源失败：{type(error).__name__}")
+        if config.openalex.enabled:
+            try:
+                fallback_papers = fetch_openalex_arxiv_papers(
+                    config.openalex,
+                    config.arxiv,
+                    now=now,
+                )
+                papers.extend(fallback_papers)
+                successful_sources += 1
+                warnings.append("arXiv 官方接口限流，已自动切换 OpenAlex 备份数据。")
+            except Exception as fallback_error:
+                LOGGER.exception("OpenAlex arXiv fallback failed")
+                message = (
+                    "arXiv 及 OpenAlex 备份数据源均失败："
+                    f"{type(error).__name__} / {type(fallback_error).__name__}"
+                )
+                warnings.append(message)
+                failures.append(message)
+        else:
+            message = f"arXiv 数据源失败：{type(error).__name__}"
+            warnings.append(message)
+            failures.append(message)
 
     if config.crossref.enabled:
         try:
@@ -89,7 +113,9 @@ def fetch_all_papers(
             successful_sources += 1
         except Exception as error:
             LOGGER.exception("Crossref source failed")
-            warnings.append(f"Crossref 数据源失败：{type(error).__name__}")
+            message = f"Crossref 数据源失败：{type(error).__name__}"
+            warnings.append(message)
+            failures.append(message)
 
     if successful_sources == 0:
         raise RuntimeError("All configured paper sources failed")
@@ -106,4 +132,8 @@ def fetch_all_papers(
             )
 
     LOGGER.info("Aggregated %d unique paper(s) from all sources", len(papers))
-    return FetchResult(papers=papers, warnings=tuple(warnings))
+    return FetchResult(
+        papers=papers,
+        warnings=tuple(warnings),
+        failures=tuple(failures),
+    )

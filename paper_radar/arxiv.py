@@ -6,6 +6,7 @@ import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import UTC, datetime, timedelta
+from email.utils import parsedate_to_datetime
 
 import httpx
 
@@ -91,6 +92,28 @@ def parse_feed(xml_text: str) -> list[Paper]:
     return papers
 
 
+def _retry_after_seconds(response: httpx.Response | None) -> float | None:
+    if response is None:
+        return None
+    value = response.headers.get("Retry-After", "").strip()
+    if not value:
+        return None
+    try:
+        return max(float(value), 0.0)
+    except ValueError:
+        try:
+            retry_at = parsedate_to_datetime(value).astimezone(UTC)
+        except (TypeError, ValueError):
+            return None
+        return max((retry_at - datetime.now(UTC)).total_seconds(), 0.0)
+
+
+def _should_retry(error: Exception) -> bool:
+    if not isinstance(error, httpx.HTTPStatusError):
+        return True
+    return error.response.status_code == 429 or error.response.status_code >= 500
+
+
 def fetch_recent_papers(
     config: ArxivConfig,
     *,
@@ -121,18 +144,35 @@ def fetch_recent_papers(
                 "sortBy": "submittedDate",
                 "sortOrder": "descending",
             }
-            for attempt in range(3):
+            for attempt in range(config.retry_attempts):
                 try:
                     response = http_client.get(config.api_url, params=params)
                     response.raise_for_status()
                     for paper in parse_feed(response.text):
                         papers_by_id[paper.paper_id] = paper
                     break
-                except (httpx.HTTPError, ET.ParseError):
-                    if attempt == 2:
+                except (httpx.HTTPError, ET.ParseError) as error:
+                    if attempt == config.retry_attempts - 1 or not _should_retry(error):
                         raise
-                    delay = 2**attempt
-                    LOGGER.warning("arXiv request failed; retrying in %d second(s)", delay)
+                    response = (
+                        error.response
+                        if isinstance(error, httpx.HTTPStatusError)
+                        else None
+                    )
+                    retry_after = _retry_after_seconds(response) or 0.0
+                    delay = max(
+                        min(
+                            config.initial_retry_delay_seconds * (2**attempt),
+                            config.max_retry_delay_seconds,
+                        ),
+                        retry_after,
+                    )
+                    LOGGER.warning(
+                        "arXiv request failed; retrying in %.0f second(s) (%d/%d)",
+                        delay,
+                        attempt + 1,
+                        config.retry_attempts,
+                    )
                     time.sleep(delay)
             if batch_index < len(term_batches) - 1:
                 time.sleep(3)

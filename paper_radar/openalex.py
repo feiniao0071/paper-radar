@@ -1,0 +1,184 @@
+from __future__ import annotations
+
+import logging
+import os
+import re
+import time
+from datetime import UTC, datetime, timedelta
+from typing import Any
+
+import httpx
+
+from paper_radar.config import ArxivConfig, OpenAlexConfig
+from paper_radar.models import Paper
+
+LOGGER = logging.getLogger(__name__)
+ARXIV_SOURCE_ID = "S4306400194"
+ARXIV_ID_PATTERN = re.compile(r"(?:abs/|arxiv[.:])([a-z-]+/\d{7}|\d{4}\.\d{4,5})(?:v\d+)?", re.I)
+
+
+def _batches(terms: tuple[str, ...], batch_size: int) -> list[tuple[str, ...]]:
+    return [terms[index : index + batch_size] for index in range(0, len(terms), batch_size)]
+
+
+def _abstract(value: Any) -> str:
+    if not isinstance(value, dict):
+        return ""
+    positioned_words: list[tuple[int, str]] = []
+    for word, positions in value.items():
+        if not isinstance(positions, list):
+            continue
+        for position in positions:
+            if isinstance(position, int):
+                positioned_words.append((position, str(word)))
+    positioned_words.sort()
+    return " ".join(word for _, word in positioned_words)
+
+
+def _arxiv_id(work: dict[str, Any]) -> str:
+    location = work.get("primary_location")
+    if not isinstance(location, dict):
+        location = {}
+    candidates = [
+        location.get("landing_page_url"),
+        location.get("id"),
+        work.get("doi"),
+    ]
+    for candidate in candidates:
+        match = ARXIV_ID_PATTERN.search(str(candidate or ""))
+        if match:
+            return match.group(1)
+    return ""
+
+
+def parse_work(work: dict[str, Any]) -> Paper | None:
+    paper_id = _arxiv_id(work)
+    title = str(work.get("title") or work.get("display_name") or "").strip()
+    published_value = str(work.get("publication_date") or "").strip()
+    if not paper_id or not title or not published_value:
+        return None
+    try:
+        published = datetime.fromisoformat(published_value).replace(tzinfo=UTC)
+    except ValueError:
+        return None
+
+    authors = []
+    for authorship in work.get("authorships") or []:
+        if not isinstance(authorship, dict):
+            continue
+        author = authorship.get("author")
+        if not isinstance(author, dict):
+            author = {}
+        name = str(author.get("display_name") or authorship.get("raw_author_name") or "").strip()
+        if name:
+            authors.append(name)
+
+    location = work.get("primary_location")
+    if not isinstance(location, dict):
+        location = {}
+    abstract_url = str(location.get("landing_page_url") or f"https://arxiv.org/abs/{paper_id}")
+    pdf_url = str(location.get("pdf_url") or f"https://arxiv.org/pdf/{paper_id}")
+    raw_doi = str(work.get("doi") or "").lower().removeprefix("https://doi.org/")
+    doi = "" if raw_doi.startswith("10.48550/arxiv.") else raw_doi
+
+    return Paper(
+        paper_id=paper_id,
+        title=title,
+        authors=tuple(authors),
+        abstract=_abstract(work.get("abstract_inverted_index")),
+        published=published,
+        updated=published,
+        categories=(),
+        abstract_url=abstract_url,
+        pdf_url=pdf_url,
+        source="arXiv via OpenAlex",
+        doi=doi,
+        venue="arXiv",
+        publication_types=("preprint",),
+    )
+
+
+def fetch_recent_arxiv_papers(
+    config: OpenAlexConfig,
+    arxiv_config: ArxivConfig,
+    *,
+    now: datetime | None = None,
+    client: httpx.Client | None = None,
+) -> list[Paper]:
+    current_time = (now or datetime.now(UTC)).astimezone(UTC)
+    start_date = (current_time - timedelta(days=arxiv_config.lookback_days)).date()
+    end_date = current_time.date()
+    contact = os.getenv("ARXIV_CONTACT", "").strip()
+    api_key = os.getenv("OPENALEX_API_KEY", "").strip()
+    user_agent = "paper-radar/0.2"
+    if contact:
+        user_agent += f" ({contact})"
+
+    owns_client = client is None
+    http_client = client or httpx.Client(
+        timeout=45,
+        follow_redirects=True,
+        headers={"User-Agent": user_agent},
+    )
+    try:
+        papers_by_id: dict[str, Paper] = {}
+        term_batches = _batches(arxiv_config.query_terms, config.query_batch_size)
+        for batch_index, terms in enumerate(term_batches):
+            search_terms = "|".join(term.replace("|", " ") for term in terms)
+            filters = (
+                f"from_publication_date:{start_date},"
+                f"to_publication_date:{end_date},"
+                f"primary_location.source.id:{ARXIV_SOURCE_ID},"
+                f"title_and_abstract.search:{search_terms}"
+            )
+            params = {
+                "filter": filters,
+                "per-page": config.max_results_per_query,
+                "sort": "publication_date:desc",
+                "select": (
+                    "id,doi,title,display_name,publication_date,primary_location,"
+                    "authorships,abstract_inverted_index"
+                ),
+            }
+            if contact:
+                params["mailto"] = contact
+            if api_key:
+                params["api_key"] = api_key
+
+            for attempt in range(3):
+                try:
+                    response = http_client.get(config.api_url, params=params)
+                    response.raise_for_status()
+                    body = response.json()
+                    for work in body.get("results", []):
+                        if not isinstance(work, dict):
+                            continue
+                        paper = parse_work(work)
+                        if paper is not None:
+                            papers_by_id[paper.paper_id] = paper
+                    break
+                except (httpx.HTTPError, ValueError) as error:
+                    retryable = not isinstance(error, httpx.HTTPStatusError) or (
+                        error.response.status_code == 429
+                        or error.response.status_code >= 500
+                    )
+                    if attempt == 2 or not retryable:
+                        raise
+                    delay = 10 * (3**attempt)
+                    LOGGER.warning(
+                        "OpenAlex request failed; retrying in %d second(s) (%d/3)",
+                        delay,
+                        attempt + 1,
+                    )
+                    time.sleep(delay)
+            if batch_index < len(term_batches) - 1:
+                time.sleep(config.request_interval_seconds)
+
+        papers = sorted(
+            papers_by_id.values(), key=lambda paper: paper.published, reverse=True
+        )
+        LOGGER.info("Fetched %d arXiv paper(s) through OpenAlex fallback", len(papers))
+        return papers
+    finally:
+        if owns_client:
+            http_client.close()

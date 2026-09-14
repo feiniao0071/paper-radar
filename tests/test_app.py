@@ -258,6 +258,7 @@ def test_empty_degraded_run_remains_eligible_for_fallback(tmp_path, monkeypatch)
         lambda config, **kwargs: FetchResult(
             papers=[],
             warnings=("arXiv is temporarily unavailable",),
+            failures=("arXiv is temporarily unavailable",),
         ),
     )
     monkeypatch.setattr(app, "_send_alert", lambda *args, **kwargs: None)
@@ -265,7 +266,85 @@ def test_empty_degraded_run_remains_eligible_for_fallback(tmp_path, monkeypatch)
         ["--state", str(state_path), "--once-per-beijing-day", "--no-ai"]
     )
 
-    assert app.run(args) == 0
+    assert app.run(args) == 1
+    assert not StateStore(state_path).completed_on(run_date)
+
+
+def test_repeated_degraded_run_sends_only_one_daily_alert(tmp_path, monkeypatch) -> None:
+    run_date = datetime(2026, 9, 9, tzinfo=UTC).date()
+    state_path = tmp_path / "seen.json"
+    alerts = []
+    warning = "arXiv and its fallback are unavailable"
+
+    monkeypatch.setattr(app, "_beijing_date", lambda: run_date)
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda config, **kwargs: FetchResult(
+            papers=[],
+            warnings=(warning,),
+            failures=(warning,),
+        ),
+    )
+    monkeypatch.setattr(
+        app,
+        "_send_alert",
+        lambda *args, **kwargs: alerts.append(args) or True,
+    )
+    args = app._arguments(
+        ["--state", str(state_path), "--once-per-beijing-day", "--no-ai"]
+    )
+
+    assert app.run(args) == 1
+    assert app.run(args) == 1
+    assert len(alerts) == 1
+
+
+def test_degraded_run_with_candidates_is_not_recorded_as_complete(
+    tmp_path, monkeypatch
+) -> None:
+    run_date = datetime(2026, 9, 9, tzinfo=UTC).date()
+    state_path = tmp_path / "seen.json"
+    paper = _paper()
+    warning = "arXiv and its fallback are unavailable"
+
+    monkeypatch.setattr(app, "_beijing_date", lambda: run_date)
+    monkeypatch.setattr(
+        app,
+        "fetch_all_papers",
+        lambda config, **kwargs: FetchResult(
+            papers=[paper],
+            warnings=(warning,),
+            failures=(warning,),
+        ),
+    )
+    monkeypatch.setattr(
+        app,
+        "match_paper",
+        lambda candidate, config: MatchResult(5, ("graphene",), ()),
+    )
+    monkeypatch.setattr(
+        app,
+        "_enrich_candidates",
+        lambda candidates, config: (candidates, ()),
+    )
+    monkeypatch.setattr(
+        app,
+        "_print_preview",
+        lambda recommendations, matches, notices, **kwargs: None,
+    )
+
+    args = app._arguments(
+        [
+            "--state",
+            str(state_path),
+            "--once-per-beijing-day",
+            "--dry-run",
+            "--no-ai",
+        ]
+    )
+
+    assert app.run(args) == 1
     assert not StateStore(state_path).completed_on(run_date)
 
 

@@ -65,3 +65,39 @@ def test_fetch_batches_queries_and_deduplicates(monkeypatch) -> None:
     assert len(requests) == 2
     assert len(papers) == 1
     assert papers[0].paper_id == "2608.01234"
+
+
+def test_fetch_honors_retry_after_for_rate_limits(monkeypatch) -> None:
+    attempts = 0
+    sleeps = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            return httpx.Response(
+                429,
+                headers={"Retry-After": "75"},
+                request=request,
+            )
+        return httpx.Response(200, text=FEED, request=request)
+
+    monkeypatch.setattr("paper_radar.arxiv.time.sleep", sleeps.append)
+    config = ArxivConfig(
+        api_url="https://example.test/api/query",
+        max_results=10,
+        lookback_days=8,
+        query_batch_size=1,
+        query_terms=("graphene",),
+    )
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        papers = fetch_recent_papers(
+            config,
+            now=datetime(2026, 8, 14, tzinfo=UTC),
+            client=client,
+        )
+
+    assert len(papers) == 1
+    assert attempts == 2
+    assert sleeps == [75]

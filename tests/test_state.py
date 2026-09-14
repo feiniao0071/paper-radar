@@ -111,6 +111,19 @@ def test_completed_beijing_date_round_trip(tmp_path) -> None:
     assert not loaded.completed_on(date(2026, 9, 10))
 
 
+def test_alert_date_round_trip_is_scoped_by_kind(tmp_path) -> None:
+    path = tmp_path / "seen.json"
+    store = StateStore(path)
+
+    store.mark_alerted(date(2026, 9, 9), "source_failure")
+    store.save()
+
+    loaded = StateStore(path)
+    assert loaded.alerted_on(date(2026, 9, 9), "source_failure")
+    assert not loaded.alerted_on(date(2026, 9, 10), "source_failure")
+    assert not loaded.alerted_on(date(2026, 9, 9), "delivery_failure")
+
+
 def test_version_one_skipped_records_migrate_to_deferred(tmp_path) -> None:
     path = tmp_path / "seen.json"
     path.write_text(
