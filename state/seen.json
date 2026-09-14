@@ -188,6 +188,33 @@
       "summary_zh": "\u7528\u5ba4\u6e29nano-ARPES\u89c2\u6d4bCVD\u751f\u957f\u5806\u53e0\u7684\u8fd1\u9b54\u89d2\u53cc\u5c42\u77f3\u58a8\u70ef\u5e73\u5e26\uff0c\u5e76\u8bc4\u4f30\u7574\u533a\u8f93\u8fd0\u517c\u5bb9\u6027\u3002",
       "title_zh": "\u8fd1\u9b54\u89d2CVD\u626d\u8f6c\u53cc\u5c42\u77f3\u58a8\u70ef\u5e73\u5e26\u7684\u76f4\u63a5\u89c2\u6d4b"
     },
+    "0ea78dcb441113ac3e1c179b7d7336296203ca2bf0a8be07332089a62c9a8468": {
+      "created_at": "2026-09-14T11:47:40.279969+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 4,
+      "key_relevance": [
+        "\u83ab\u5c14\u5f02\u8d28\u7ed3\u6784\u8868\u5f81",
+        "\u626d\u89d2\u4e0e\u5e94\u53d8\u53cd\u6f14",
+        "\u7535\u5b50\u80fd\u8c31\u7ea6\u675f",
+        "\u5f39\u6027\u80fd\u7ea6\u675f",
+        "\u4e09\u89d2\u83ab\u5c14\u56fe\u6837"
+      ],
+      "method_value_score": 5,
+      "novelty_score": 4,
+      "paper_id": "2609.09611",
+      "priority_score": 84,
+      "quality_signals": [
+        "\u6307\u51fa\u4ec5\u51ed\u83ab\u5c14\u6ce2\u957f\u65e0\u6cd5\u552f\u4e00\u786e\u5b9a\u626d\u89d2\u548c\u5e94\u53d8",
+        "\u5f15\u5165\u6700\u5c0f\u5f39\u6027\u80fd\u4e0e\u7535\u5b50\u80fd\u8c31\u7ea6\u675f\u6d88\u9664\u914d\u7f6e\u6b67\u4e49",
+        "\u7ed9\u51fa\u9ad8\u5e94\u53d8\u4e0b\u526a\u5207\u6784\u578b\u66f4\u6709\u5229\u53ca\u4e09\u89d2\u83ab\u5c14\u56fe\u6837\u5b9e\u4f8b"
+      ],
+      "reading_action": "\u7cbe\u8bfb",
+      "reason": "\u8be5\u6846\u67b6\u53ef\u4ece\u539f\u5b50\u6216\u83ab\u5c14\u56fe\u50cf\u53cd\u6f14\u626d\u89d2\u4e0e\u5e94\u53d8\uff0c\u76f4\u63a5\u670d\u52a1\u626d\u8f6c\u5668\u4ef6\u6807\u5b9a\u3001\u8c31\u5b66\u89e3\u91ca\u548c\u6837\u54c1\u8d28\u91cf\u8bca\u65ad\u3002",
+      "relevance_score": 3,
+      "study_type": "\u7406\u8bba",
+      "summary_zh": "\u5efa\u7acb\u9002\u7528\u4e8e\u539f\u5b50\u7ea7\u6216\u83ab\u5c14\u7ea7\u56fe\u50cf\u7684\u626d\u89d2\u2014\u5e94\u53d8\u53cd\u6f14\u6846\u67b6\uff0c\u5e76\u4ee5\u5f39\u6027\u80fd\u548c\u7535\u5b50\u80fd\u8c31\u7ea6\u675f\u7b5b\u9009\u6700\u53ef\u80fd\u6784\u578b\u3002",
+      "title_zh": "\u83ab\u5c14\u5f02\u8d28\u7ed3\u6784\u4e2d\u7684\u626d\u89d2\u4e0e\u5e94\u53d8\u8bc6\u522b"
+    },
     "134f8165cc3e7cc9c5b3d3d9b20255c43a64522fcb3a2406998a1e295baf5024": {
       "created_at": "2026-09-09T13:39:32.126700+00:00",
       "evidence_score": 3,
@@ -1112,6 +1139,32 @@
       "study_type": "\u7406\u8bba",
       "summary_zh": "\u4ee5\u5e7f\u4e49\u7c07\u5173\u8054\u5c55\u5f00\u8ba1\u7b97hBN\u787c\u7a7a\u4f4dHahn\u56de\u6ce2\uff0c\u91cf\u5316\u5c42\u6570\u3001\u78c1\u573a\u3001\u5806\u579b\u548c\u53d6\u5411\u5bf9\u76f8\u5e72\u65f6\u95f4\u7684\u5f71\u54cd\u3002",
       "title_zh": "\u901a\u8fc7hBN\u5c42\u6570\u8c03\u63a7\u787c\u7a7a\u4f4d\u91cf\u5b50\u6bd4\u7279\u76f8\u5e72\u6027"
+    },
+    "5b60308e330c4abded936b290b5d997f627303b87993330bfe79be1dea2c0afe": {
+      "created_at": "2026-09-14T11:47:40.279973+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u626d\u8f6c\u8303\u5fb7\u74e6\u8033\u65af\u754c\u9762",
+        "\u8fb9\u7f18\u8bf1\u5bfc\u6469\u64e6\u5404\u5411\u5f02\u6027",
+        "\u8d85\u6da6\u6ed1\u5668\u4ef6",
+        "\u754c\u9762\u673a\u68b0\u5de5\u7a0b"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 4,
+      "paper_id": "2609.08063",
+      "priority_score": 45,
+      "quality_signals": [
+        "\u63d0\u51fa\u8fb9\u7f18\u80fd\u91cf\u6da8\u843d\u7edf\u4e00\u63cf\u8ff0\u6709\u9650\u5c3a\u5bf8\u6ed1\u5757\u7684\u6ed1\u52a8\u52bf\u5792",
+        "\u9884\u6d4b\u56fa\u5b9a\u626d\u89d2\u548c\u6ed1\u52a8\u65b9\u5411\u4e0b\u4ecd\u5b58\u5728\u8fb9\u7f18\u53d6\u5411\u5bfc\u81f4\u7684\u6469\u64e6\u5404\u5411\u5f02\u6027",
+        "\u6458\u8981\u672a\u7ed9\u51fa\u6750\u6599\u4f53\u7cfb\u3001\u6570\u503c\u5e45\u5ea6\u6216\u5b9e\u9a8c\u9a8c\u8bc1"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u7814\u7a76\u91cd\u70b9\u662f\u626d\u8f6c\u5c42\u72b6\u754c\u9762\u7684\u6469\u64e6\u4e0e\u8d85\u6da6\u6ed1\uff0c\u800c\u975e\u83ab\u5c14\u91cf\u5b50\u6001\uff1b\u4ec5\u53ef\u80fd\u95f4\u63a5\u8f85\u52a9\u8f6c\u79fb\u548c\u754c\u9762\u673a\u68b0\u8bbe\u8ba1\u3002",
+      "relevance_score": 1,
+      "study_type": "\u7406\u8bba",
+      "summary_zh": "\u4ee5\u5b8c\u6574\u83ab\u5c14\u5355\u5143\u80fd\u91cf\u4e0d\u53d8\u6027\u548c\u8fb9\u7f18\u7834\u7f3a\u5bf9\u79f0\u6027\u6784\u5efa\u6469\u64e6\u7406\u8bba\uff0c\u9884\u6d4b\u8fb9\u7f18\u53d6\u5411\u51b3\u5b9a\u5404\u5411\u5f02\u6027\u6807\u5ea6\u5e76\u63d0\u51fa\u5206\u7ea7\u8fb9\u7f18\u8c03\u63a7\u3002",
+      "title_zh": "\u626d\u8f6c\u5c42\u72b6\u754c\u9762\u7684\u8fb9\u7f18\u80fd\u91cf\u6da8\u843d\u4e0e\u6469\u64e6\u6807\u5ea6"
     },
     "610a3a30e613832384817c30a503bc54a117c1f87cea7e4e9f27b3b82be44ec9": {
       "created_at": "2026-09-09T13:39:32.126723+00:00",
@@ -2150,6 +2203,33 @@
       "summary_zh": "\u7528SU(4) Chern-Simons\u590d\u5408\u8d39\u7c73\u5b50\u53d8\u5206\u6001\u6bd4\u8f83\u4e0d\u540c\u6781\u5316\u6247\u533a\u80fd\u91cf\uff0c\u7b5b\u9009\u5076\u5206\u6bcd\u586b\u5145\u4e0b\u7684\u591a\u5206\u91cf\u5173\u8054\u6db2\u4f53\u3002",
       "title_zh": "\u5355\u5c42\u77f3\u58a8\u70ef\u5076\u5206\u6bcd\u91cf\u5b50\u970d\u5c14\u6001\u7684\u8c37\u6781\u5316\u9009\u62e9"
     },
+    "c69cc864ec6519c8aa27fdcf2495d6bc09a3286921ccaac5acaff879051a6eb7": {
+      "created_at": "2026-09-14T11:47:40.279945+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 4,
+      "key_relevance": [
+        "\u4e8c\u7ef4\u8303\u5fb7\u534e\u53cd\u94c1\u78c1\u4f53",
+        "\u81ea\u65cb-\u58f0\u5b50-\u7535\u5b50\u8026\u5408",
+        "CrPS4/In2Se3\u5f02\u8d28\u7ed3",
+        "\u53d8\u6e29\u62c9\u66fc\u4e0e\u4f4e\u6e29\u8f93\u8fd0",
+        "\u754c\u9762\u78c1\u5173\u8054\u4f20\u9012"
+      ],
+      "method_value_score": 4,
+      "novelty_score": 4,
+      "paper_id": "2609.11203",
+      "priority_score": 83,
+      "quality_signals": [
+        "\u62c9\u66fc\u6d4b\u5f97\u81ea\u65cb-\u58f0\u5b50\u8026\u5408\u4eceTN\u7ea638 K\u5ef6\u7eed\u81f3T*\u7ea6120 K",
+        "\u5149\u81f4\u53d1\u5149\u3001\u8f93\u8fd0\u548c\u5149\u7535\u54cd\u5e94\u5728T*\u9644\u8fd1\u5448\u4e00\u81f4\u5f02\u5e38",
+        "\u5f02\u8d28\u7ed3\u4e2dIn2Se3\u6676\u683c\u52a8\u529b\u5b66\u968fCrPS4\u78c1\u5f02\u5e38\u663e\u8457\u6539\u53d8"
+      ],
+      "reading_action": "\u7cbe\u8bfb",
+      "reason": "CrPS4\u7684\u53d8\u6e29\u62c9\u66fc\u3001\u8f93\u8fd0\u53ca\u5f02\u8d28\u7ed3\u5b9e\u9a8c\u53ef\u5e2e\u52a9\u89e3\u6790\u4e8c\u7ef4\u53cd\u94c1\u78c1\u4f53\u4e2d\u77ed\u7a0b\u78c1\u5173\u8054\u4e0e\u754c\u9762\u6676\u683c\u54cd\u5e94\u3002",
+      "relevance_score": 3,
+      "study_type": "\u5b9e\u9a8c",
+      "summary_zh": "\u7ed3\u5408\u53d8\u6e29\u62c9\u66fc\u3001\u5149\u81f4\u53d1\u5149\u3001\u8f93\u8fd0\u548c\u5f02\u8d28\u7ed3\u6d4b\u91cf\uff0c\u8bc6\u522bCrPS4\u5728\u7ea6120 K\u524d\u6301\u7eed\u7684\u77ed\u7a0b\u78c1\u5173\u8054\u8026\u5408\u53ca\u754c\u9762\u54cd\u5e94\u3002",
+      "title_zh": "CrPS4\u4e2d\u9ad8\u4e8e\u5948\u5c14\u6e29\u5ea6\u7684\u81ea\u65cb\u2014\u6676\u683c\u2014\u7535\u5b50\u8026\u5408"
+    },
     "c88b75c66fe9f304db9a3a71aa142ade2d8087a3372013813ad4a7902a814299": {
       "created_at": "2026-09-10T10:35:50.818623+00:00",
       "evidence_score": 3,
@@ -2549,6 +2629,31 @@
       "summary_zh": "\u4ee5\u7b2c\u4e00\u6027\u539f\u7406\u548c\u5404\u5411\u5f02\u6027Migdal-Eliashberg\u7406\u8bba\u9884\u6d4b\u56db\u5c42Kagome\u787c\u70ef\u5177\u6709102 K\u8d85\u5bfc\u53ca\u9762\u5916\u914d\u5bf9\u901a\u9053\u3002",
       "title_zh": "\u56db\u5c42Kagome\u787c\u70ef\u7684\u9ad8\u6e29\u5143\u7d20\u8d85\u5bfc\u9884\u6d4b"
     },
+    "f0851e7b5fcfd16a6af676485793018f97401a16cabcc581814defef95ad57e0": {
+      "created_at": "2026-09-14T11:47:40.279963+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u5c42\u72b6GaSe",
+        "DFT-D2\u5c42\u95f4\u4f5c\u7528",
+        "\u5265\u79bb\u80fd\u53c2\u8003\u57fa\u51c6"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 2,
+      "paper_id": "2609.10301",
+      "priority_score": 34,
+      "quality_signals": [
+        "\u7ed9\u51fa\u6676\u683c\u5e38\u6570\u7ea61.3%\u7684\u5b9e\u9a8c\u504f\u5dee\u53ca1.12 eV\u76f4\u63a5\u5e26\u9699",
+        "\u660e\u786e\u6307\u51faDFT-D2\u9ad8\u4f30\u5c42\u95f4\u6676\u683c\u5e38\u6570c",
+        "\u4e8c\u7ef4\u548c\u81ea\u65cb\u7535\u5b50\u5b66\u4ec5\u4f5c\u4e3a\u672a\u6765\u65b9\u5411\uff0c\u7f3a\u5c11\u5177\u4f53\u91cf\u5b50\u673a\u5236"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u4ec5\u5efa\u7acb\u4f53\u76f8GaSe\u5e38\u89c4DFT\u57fa\u51c6\uff0c\u672a\u7814\u7a76\u4e8c\u7ef4\u91cf\u5b50\u6001\u3001\u5173\u8054\u673a\u5236\u6216\u53ef\u76f4\u63a5\u6307\u5bfc\u91cf\u5b50\u5668\u4ef6\u7684\u89c2\u6d4b\u91cf\u3002",
+      "relevance_score": 1,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u91c7\u7528GGA-PBE\u4e0eDFT-D2\u4f18\u5316\u4f53\u76f8\u03b2(2H)-GaSe\uff0c\u5f97\u52301.12 eV\u76f4\u63a5\u5e26\u9699\u5e76\u8bc4\u4f30\u5176\u4f5c\u4e3a\u5355\u5c42\u4e0e\u5265\u79bb\u8ba1\u7b97\u57fa\u51c6\u7684\u9002\u7528\u6027\u3002",
+      "title_zh": "\u4f53\u76f8\u03b2(2H)-GaSe\u7684\u8303\u5fb7\u74e6\u8033\u65af\u4fee\u6b63DFT\u7814\u7a76"
+    },
     "f3c82d2d0f0ec5704bd402ea06c3a3eec9654160dd5f11d0ee9d279117593263": {
       "created_at": "2026-09-10T11:06:25.375211+00:00",
       "evidence_score": 4,
@@ -2605,6 +2710,7 @@
       "title_zh": "\u7535\u52bf\u5de5\u7a0b\u6062\u590dMnBi2Te4\u8868\u9762\u78c1\u9699"
     }
   },
+  "last_alerted_beijing_date": {},
   "last_completed_beijing_date": "2026-09-13",
   "papers": {
     "2608.06309": {
@@ -4005,6 +4111,15 @@
       "status": "sent",
       "title": "Non-Hermitian reconstruction of hybridized hyperbolic shear polaritons"
     },
+    "2609.08063": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "published": "2026-09-08",
+      "seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "skipped",
+      "title": "Edge energy fluctuation: A unified theory of friction scaling laws in twisted layered material interfaces"
+    },
     "2609.08104": {
       "attempts": 1,
       "first_seen_at": "2026-09-09T13:41:09.626837+00:00",
@@ -4086,6 +4201,15 @@
       "status": "sent",
       "title": "Intrinsic (valley) thermal Hall conductivity of phonons in graphene for integer quantum Hall phases"
     },
+    "2609.09611": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "published": "2026-09-09",
+      "seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "sent",
+      "title": "Twist and strain identification in moir\u00e9 heterostructures"
+    },
     "2609.09730": {
       "attempts": 1,
       "first_seen_at": "2026-09-10T11:08:20.212591+00:00",
@@ -4103,6 +4227,15 @@
       "source": "arXiv",
       "status": "sent",
       "title": "Dimensional Control of Excitonic Interactions in Exfoliated 2D Molecular Crystals"
+    },
+    "2609.10301": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "published": "2026-09-09",
+      "seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "skipped",
+      "title": "Structural and Electronic Properties of Bulk $\u03b2$(2H)-GaSe from First-Principles DFT Calculations with van der Waals Corrections"
     },
     "2609.10411": {
       "attempts": 1,
@@ -4130,6 +4263,15 @@
       "source": "arXiv",
       "status": "sent",
       "title": "Controlling topology in flux-mismatched Hofstadter bilayers"
+    },
+    "2609.11203": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "published": "2026-09-10",
+      "seen_at": "2026-09-14T11:49:23.229308+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "sent",
+      "title": "Interplay of spin-lattice and electronic coupling far above Neel ordering in 2D antiferromagnetic CrPS4 and its interface manifestation"
     },
     "2609.11732": {
       "attempts": 1,
