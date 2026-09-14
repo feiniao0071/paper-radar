@@ -50,8 +50,11 @@ openalex:
   enabled: true
   api_url: https://api.openalex.org/works
   max_results_per_query: 100
-  query_batch_size: 5
+  query_batch_size: 50
   request_interval_seconds: 1
+  retry_attempts: 4
+  initial_retry_delay_seconds: 30
+  max_retry_delay_seconds: 180
 
 crossref:
   enabled: true

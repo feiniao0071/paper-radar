@@ -92,10 +92,11 @@ Optional repository variables are shared by both feeds:
 Never commit webhook URLs, signing secrets, or API keys to the repository.
 
 The arXiv Atom API uses minute-scale exponential backoff instead of immediate
-retries. If it remains unavailable, OpenAlex supplies arXiv records and the run
-can still complete. If both paths fail, the workflow stays failed and does not
-record that Beijing day as completed, allowing the next scheduled attempt to
-retry. Source alerts are persisted and sent at most once per profile and day.
+retries. If it remains unavailable, OpenAlex supplies arXiv records with one
+combined OR query per profile and the same `Retry-After`-aware backoff. If both
+paths fail, the workflow stays failed and does not record that Beijing day as
+completed, allowing the next scheduled attempt to retry. Source alerts are
+persisted and sent at most once per profile and day.
 
 Semantic Scholar is an optional enrichment source. Rate limits and temporary
 server errors use exponential backoff starting at ten seconds. A rejected batch
@@ -142,7 +143,8 @@ papers are not re-evaluated unless the prompt or inputs change. Each completed
 model response logs token usage when the relay returns usage metadata. At most
 three papers per digest can retain the `3/3` label.
 
-The optional deep read is stricter: it requires a successful AI evaluation,
+The optional deep read is restricted to a directly accessible arXiv PDF and
+requires a successful AI evaluation,
 `3/3` priority, a composite score of at least 82, method value of at least 4/5,
 abstract evidence of at least 3/5, and a distinct PDF URL. Only the highest
 qualifying paper is processed. PDF or relay failures skip the deep read without

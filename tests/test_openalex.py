@@ -74,3 +74,47 @@ def test_fetch_batches_queries_and_deduplicates(monkeypatch) -> None:
     assert len(papers) == 1
     assert papers[0].paper_id == "2609.09422"
     assert "primary_location.source.id%3AS4306400194" in str(requests[0].url)
+
+
+def test_fetch_retries_rate_limit_and_honors_retry_after(monkeypatch) -> None:
+    attempts = 0
+    sleeps = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            return httpx.Response(
+                429,
+                headers={"Retry-After": "75"},
+                request=request,
+            )
+        return httpx.Response(200, json={"results": [WORK]}, request=request)
+
+    monkeypatch.setattr("paper_radar.openalex.time.sleep", sleeps.append)
+    openalex_config = OpenAlexConfig(
+        enabled=True,
+        api_url="https://example.test/works",
+        max_results_per_query=100,
+        query_batch_size=50,
+        request_interval_seconds=1,
+    )
+    arxiv_config = ArxivConfig(
+        api_url="https://example.test/api/query",
+        max_results=75,
+        lookback_days=8,
+        query_batch_size=6,
+        query_terms=("graphene", "quantum transport"),
+    )
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        papers = fetch_recent_arxiv_papers(
+            openalex_config,
+            arxiv_config,
+            now=datetime(2026, 9, 14, tzinfo=UTC),
+            client=client,
+        )
+
+    assert attempts == 2
+    assert sleeps == [75]
+    assert [paper.paper_id for paper in papers] == ["2609.09422"]

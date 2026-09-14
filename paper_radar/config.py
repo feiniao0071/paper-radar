@@ -33,6 +33,9 @@ class OpenAlexConfig:
     max_results_per_query: int
     query_batch_size: int
     request_interval_seconds: float
+    retry_attempts: int = 4
+    initial_retry_delay_seconds: float = 30.0
+    max_retry_delay_seconds: float = 180.0
 
 
 @dataclass(frozen=True, slots=True)
@@ -156,9 +159,16 @@ def load_config(path: Path) -> RadarConfig:
             max_results_per_query=int(
                 openalex_raw.get("max_results_per_query", 100)
             ),
-            query_batch_size=int(openalex_raw.get("query_batch_size", 5)),
+            query_batch_size=int(openalex_raw.get("query_batch_size", 50)),
             request_interval_seconds=float(
                 openalex_raw.get("request_interval_seconds", 1.0)
+            ),
+            retry_attempts=int(openalex_raw.get("retry_attempts", 4)),
+            initial_retry_delay_seconds=float(
+                openalex_raw.get("initial_retry_delay_seconds", 30.0)
+            ),
+            max_retry_delay_seconds=float(
+                openalex_raw.get("max_retry_delay_seconds", 180.0)
             ),
         ),
         crossref=CrossrefConfig(
@@ -268,6 +278,10 @@ def load_config(path: Path) -> RadarConfig:
         or config.openalex.max_results_per_query > 100
         or config.openalex.query_batch_size < 1
         or config.openalex.request_interval_seconds < 0
+        or config.openalex.retry_attempts < 1
+        or config.openalex.initial_retry_delay_seconds < 1
+        or config.openalex.max_retry_delay_seconds
+        < config.openalex.initial_retry_delay_seconds
         or config.semantic_scholar.batch_size < 1
         or config.semantic_scholar.request_interval_seconds < 0
         or config.semantic_scholar.initial_retry_delay_seconds < 1

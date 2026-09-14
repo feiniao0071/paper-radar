@@ -5,6 +5,7 @@ import os
 import re
 import time
 from datetime import UTC, datetime, timedelta
+from email.utils import parsedate_to_datetime
 from typing import Any
 
 import httpx
@@ -19,6 +20,28 @@ ARXIV_ID_PATTERN = re.compile(r"(?:abs/|arxiv[.:])([a-z-]+/\d{7}|\d{4}\.\d{4,5})
 
 def _batches(terms: tuple[str, ...], batch_size: int) -> list[tuple[str, ...]]:
     return [terms[index : index + batch_size] for index in range(0, len(terms), batch_size)]
+
+
+def _retry_after_seconds(response: httpx.Response | None) -> float | None:
+    if response is None:
+        return None
+    value = response.headers.get("Retry-After", "").strip()
+    if not value:
+        return None
+    try:
+        return max(float(value), 0.0)
+    except ValueError:
+        try:
+            retry_at = parsedate_to_datetime(value).astimezone(UTC)
+        except (TypeError, ValueError):
+            return None
+        return max((retry_at - datetime.now(UTC)).total_seconds(), 0.0)
+
+
+def _should_retry(error: Exception) -> bool:
+    if not isinstance(error, httpx.HTTPStatusError):
+        return True
+    return error.response.status_code == 429 or error.response.status_code >= 500
 
 
 def _abstract(value: Any) -> str:
@@ -145,7 +168,7 @@ def fetch_recent_arxiv_papers(
             if api_key:
                 params["api_key"] = api_key
 
-            for attempt in range(3):
+            for attempt in range(config.retry_attempts):
                 try:
                     response = http_client.get(config.api_url, params=params)
                     response.raise_for_status()
@@ -158,17 +181,26 @@ def fetch_recent_arxiv_papers(
                             papers_by_id[paper.paper_id] = paper
                     break
                 except (httpx.HTTPError, ValueError) as error:
-                    retryable = not isinstance(error, httpx.HTTPStatusError) or (
-                        error.response.status_code == 429
-                        or error.response.status_code >= 500
-                    )
-                    if attempt == 2 or not retryable:
+                    if attempt == config.retry_attempts - 1 or not _should_retry(error):
                         raise
-                    delay = 10 * (3**attempt)
+                    response = (
+                        error.response
+                        if isinstance(error, httpx.HTTPStatusError)
+                        else None
+                    )
+                    retry_after = _retry_after_seconds(response) or 0.0
+                    delay = max(
+                        min(
+                            config.initial_retry_delay_seconds * (2**attempt),
+                            config.max_retry_delay_seconds,
+                        ),
+                        retry_after,
+                    )
                     LOGGER.warning(
-                        "OpenAlex request failed; retrying in %d second(s) (%d/3)",
+                        "OpenAlex request failed; retrying in %.0f second(s) (%d/%d)",
                         delay,
                         attempt + 1,
+                        config.retry_attempts,
                     )
                     time.sleep(delay)
             if batch_index < len(term_batches) - 1:

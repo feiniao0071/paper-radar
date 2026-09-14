@@ -88,4 +88,7 @@ def test_failed_arxiv_and_fallback_are_reported_as_incomplete(monkeypatch) -> No
 
     assert result.papers == [crossref_paper]
     assert result.failures == result.warnings
-    assert "arXiv 及 OpenAlex 备份数据源均失败" in result.failures[0]
+    assert result.failures == (
+        "arXiv 官方接口和 OpenAlex 备份暂时不可用，本次结果仅来自其他可用数据源；"
+        "系统会在后续计划任务中自动补查。",
+    )

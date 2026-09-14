@@ -93,11 +93,11 @@ def fetch_all_papers(
                 papers.extend(fallback_papers)
                 successful_sources += 1
                 warnings.append("arXiv 官方接口限流，已自动切换 OpenAlex 备份数据。")
-            except Exception as fallback_error:
+            except Exception:
                 LOGGER.exception("OpenAlex arXiv fallback failed")
                 message = (
-                    "arXiv 及 OpenAlex 备份数据源均失败："
-                    f"{type(error).__name__} / {type(fallback_error).__name__}"
+                    "arXiv 官方接口和 OpenAlex 备份暂时不可用，本次结果仅来自"
+                    "其他可用数据源；系统会在后续计划任务中自动补查。"
                 )
                 warnings.append(message)
                 failures.append(message)

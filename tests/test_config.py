@@ -26,7 +26,10 @@ def test_project_configuration_loads() -> None:
     assert config.arxiv.retry_attempts == 4
     assert config.arxiv.initial_retry_delay_seconds == 30
     assert config.openalex.enabled is True
-    assert config.openalex.query_batch_size == 5
+    assert config.openalex.query_batch_size == 50
+    assert config.openalex.retry_attempts == 4
+    assert config.openalex.initial_retry_delay_seconds == 30
+    assert config.openalex.max_retry_delay_seconds == 180
     assert config.crossref.enabled is True
     assert config.semantic_scholar.enabled is True
     assert config.semantic_scholar.request_interval_seconds == 1.5
@@ -72,3 +75,5 @@ def test_quantum_ai_configuration_loads() -> None:
     assert config.run.deep_read_min_priority_score == 82
     assert config.run.max_non_preferred_papers == 3
     assert config.semantic_scholar.initial_retry_delay_seconds == 10
+    assert config.openalex.query_batch_size == 50
+    assert config.openalex.retry_attempts == 4

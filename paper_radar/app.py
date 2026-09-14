@@ -10,6 +10,7 @@ from dataclasses import replace
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 from paper_radar.config import RadarConfig, load_config
@@ -253,11 +254,17 @@ def _select_deep_read_candidate(
             and item.priority_score >= minimum_priority_score
             and item.method_value_score >= 4
             and item.evidence_score >= 3
-            and bool(item.paper.pdf_url)
-            and item.paper.pdf_url != item.paper.abstract_url
+            and _is_reliable_deep_read_pdf(item.paper)
         ),
         None,
     )
+
+
+def _is_reliable_deep_read_pdf(paper: Paper) -> bool:
+    if not paper.source.startswith("arXiv") or not paper.pdf_url:
+        return False
+    pdf_host = (urlsplit(paper.pdf_url).hostname or "").lower()
+    return pdf_host in {"arxiv.org", "export.arxiv.org"}
 
 
 def _generate_deep_read(

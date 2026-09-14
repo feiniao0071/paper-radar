@@ -1,3 +1,4 @@
+from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 
 from paper_radar import app
@@ -533,6 +534,40 @@ def test_deep_read_candidate_requires_inspiring_ai_evaluation() -> None:
         )
         is None
     )
+
+
+def test_deep_read_skips_publisher_pdf_for_next_arxiv_candidate() -> None:
+    publisher_paper = replace(
+        _paper(),
+        paper_id="publisher",
+        source="Crossref",
+        abstract_url="https://pubs.acs.org/doi/10.1021/example",
+        pdf_url="https://pubs.acs.org/doi/pdf/10.1021/example",
+    )
+    arxiv_paper = replace(_paper(), paper_id="arxiv")
+
+    def recommendation(paper: Paper) -> app.Recommendation:
+        return app.Recommendation(
+            paper=paper,
+            relevance_score=3,
+            reason="高度相关",
+            key_relevance=("石墨烯",),
+            title_zh="启发性论文",
+            summary_zh="摘要",
+            used_ai=True,
+            priority_score=84,
+            method_value_score=4,
+            evidence_score=3,
+        )
+
+    selected = app._select_deep_read_candidate(
+        [recommendation(publisher_paper), recommendation(arxiv_paper)],
+        enabled=True,
+        minimum_priority_score=82,
+    )
+
+    assert selected is not None
+    assert selected.paper is arxiv_paper
 
 
 def test_evaluate_reuses_cached_ai_recommendations(tmp_path) -> None:
