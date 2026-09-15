@@ -215,4 +215,6 @@ make redundant scheduled attempts idempotent.
 
 Each GitHub Actions workflow serializes runs for its own profile. State commits
 pull and push with retry so the two profiles can prepare in parallel and still
-land their independent state files safely.
+land their independent state files safely. State-free manual previews use an
+isolated concurrency group, so a scheduled run waiting for its delivery window
+does not block or get cancelled by a dry run.

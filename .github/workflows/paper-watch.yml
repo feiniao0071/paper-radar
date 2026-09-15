@@ -30,7 +30,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: paper-radar-2d-state
+  group: paper-radar-2d-${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && github.run_id || 'state' }}
   cancel-in-progress: false
 
 jobs:

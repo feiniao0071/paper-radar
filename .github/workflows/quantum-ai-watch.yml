@@ -29,7 +29,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: paper-radar-quantum-ai-state
+  group: paper-radar-quantum-ai-${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && github.run_id || 'state' }}
   cancel-in-progress: false
 
 jobs:
