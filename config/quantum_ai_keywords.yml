@@ -10,7 +10,8 @@ arxiv:
   max_results: 75
   lookback_days: 8
   query_batch_size: 5
-  retry_attempts: 4
+  # OpenAlex is the reliable fallback; do not spend minutes retrying arXiv 429s.
+  retry_attempts: 1
   initial_retry_delay_seconds: 30
   max_retry_delay_seconds: 180
   query_terms:
@@ -339,15 +340,8 @@ matching:
     - magnetic imaging
     - photonic materials
     - metamaterials
-    - quantum computing
-    - quantum circuit
-    - quantum circuits
-    - quantum state
-    - quantum states
     - quantum many-body
     - Hamiltonian
-    - qubit
-    - qubits
     - scientific reasoning
     - scientific benchmark
     - STEM benchmark

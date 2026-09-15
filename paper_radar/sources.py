@@ -82,7 +82,10 @@ def fetch_all_papers(
         papers.extend(arxiv_papers)
         successful_sources += 1
     except Exception as error:
-        LOGGER.exception("arXiv source failed")
+        LOGGER.warning(
+            "arXiv source unavailable; trying OpenAlex fallback (%s)",
+            type(error).__name__,
+        )
         if config.openalex.enabled:
             try:
                 fallback_papers = fetch_openalex_arxiv_papers(

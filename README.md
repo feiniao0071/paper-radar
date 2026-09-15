@@ -17,7 +17,7 @@ WSL, and Docker do not need to remain online.
 ## Pipeline
 
 1. Query the official arXiv Atom API and Crossref Works API with polite rate limits;
-   honor `Retry-After` and use OpenAlex as the automatic arXiv backup.
+   switch promptly to OpenAlex when arXiv is unavailable or rate limited.
 2. Merge duplicate preprints and journal records by DOI and normalized title.
 3. Require both a profile-specific core term and a profile-specific focus term.
 4. Reconsider papers marked `deferred` before newly discovered papers.
@@ -91,12 +91,12 @@ Optional repository variables are shared by both feeds:
 
 Never commit webhook URLs, signing secrets, or API keys to the repository.
 
-The arXiv Atom API uses minute-scale exponential backoff instead of immediate
-retries. If it remains unavailable, OpenAlex supplies arXiv records with one
-combined OR query per profile and the same `Retry-After`-aware backoff. If both
-paths fail, the workflow stays failed and does not record that Beijing day as
-completed, allowing the next scheduled attempt to retry. Source alerts are
-persisted and sent at most once per profile and day.
+The arXiv Atom API gets one attempt because GitHub-hosted runners are frequently
+rate limited there. On failure, OpenAlex promptly supplies arXiv records with one
+combined OR query per profile and `Retry-After`-aware backoff. If both paths fail,
+the workflow stays failed and does not record that Beijing day as completed,
+allowing the next scheduled attempt to retry. Source alerts are persisted and
+sent at most once per profile and day.
 
 Semantic Scholar is an optional enrichment source. Rate limits and temporary
 server errors use exponential backoff starting at ten seconds. A rejected batch

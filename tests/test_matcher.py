@@ -182,6 +182,15 @@ def test_quantum_ai_rejects_generic_ai_without_materials_or_quantum_science() ->
     assert match_paper(paper, quantum_ai_config()) is None
 
 
+def test_quantum_ai_rejects_generic_quantum_classifier() -> None:
+    paper = make_paper(
+        "Certifying adversarial robustness of quantum classifiers",
+        "A quantum neural network runs on an eight-qubit quantum circuit.",
+    )
+
+    assert match_paper(paper, quantum_ai_config()) is None
+
+
 def test_quantum_ai_rejects_materials_paper_without_ai_method() -> None:
     paper = make_paper(
         "Density functional theory of a topological material",

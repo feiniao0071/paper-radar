@@ -23,7 +23,7 @@ def test_project_configuration_loads() -> None:
     assert "twisted MoTe2 fractional Chern" in config.arxiv.query_terms
     assert "2D quantum criticality" in config.arxiv.query_terms
     assert config.arxiv.query_batch_size == 6
-    assert config.arxiv.retry_attempts == 4
+    assert config.arxiv.retry_attempts == 1
     assert config.arxiv.initial_retry_delay_seconds == 30
     assert config.openalex.enabled is True
     assert config.openalex.query_batch_size == 50
@@ -69,6 +69,9 @@ def test_quantum_ai_configuration_loads() -> None:
     assert "large language model condensed matter" in config.arxiv.query_terms
     assert "large language model quantum materials" in config.crossref.query_terms
     assert "machine learning materials discovery" not in config.arxiv.query_terms
+    assert "quantum computing" not in config.matching.focus_terms
+    assert "qubit" not in config.matching.focus_terms
+    assert config.arxiv.retry_attempts == 1
     assert config.matching.require_core_term is True
     assert config.matching.require_focus_term is True
     assert config.run.deep_read_enabled is True
