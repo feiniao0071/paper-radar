@@ -1683,6 +1683,32 @@
       "summary_zh": "\u5229\u7528MLIP\u5c40\u57df\u6027\u7a00\u758f\u8ba1\u7b97\u9ad8\u9636\u5bfc\u6570\uff0c\u5e76\u622a\u65ad\u8fdc\u7a0b\u5c0fHessian\u9879\uff0c\u5728\u5927\u578b\u591a\u5b54\u6750\u6599\u4e0a\u5b9e\u73b0\u6570\u91cf\u7ea7\u52a0\u901f\u4e14\u4fdd\u6301\u89c2\u6d4b\u91cf\u3002",
       "title_zh": "\u673a\u5668\u5b66\u4e60\u52bf\u7684\u622a\u65ad\u7a00\u758f\u81ea\u52a8\u5fae\u5206"
     },
+    "e907b56ba2b7b260771772dae22d6d864e6dd9127047719306bb7131d4c79252": {
+      "created_at": "2026-09-20T10:41:54.989480+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "\u673a\u5668\u5b66\u4e60\u5f15\u5bfc\u7684\u5668\u4ef6\u5236\u7a0b\u4f18\u5316",
+        "\u591a\u6307\u6807\u534f\u540c\u4f18\u5316",
+        "\u67d4\u6027\u78b3\u7eb3\u7c73\u7ba1\u8584\u819c\u6676\u4f53\u7ba1",
+        "\u7535\u8def\u7ea7\u5b9e\u9a8c\u9a8c\u8bc1"
+      ],
+      "method_value_score": 4,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.26599/nr.2026.94909009",
+      "priority_score": 70,
+      "quality_signals": [
+        "\u4f7f\u752880\u79cd\u914d\u65b9\u3001\u903e800\u4e2a\u5668\u4ef6\u8bad\u7ec3\u5e76\u8bc4\u4f30\u6a21\u578b",
+        "\u4ee5\u53cd\u76f8\u5668\u3001\u73af\u5f62\u632f\u8361\u5668\u3001\u903b\u8f91\u95e8\u548c\u5168\u52a0\u5668\u8fdb\u884c\u591a\u5c42\u7ea7\u5b9e\u9a8c\u9a8c\u8bc1",
+        "\u6458\u8981\u672a\u62a5\u544a\u72ec\u7acb\u6d4b\u8bd5\u96c6\u3001\u4ea4\u53c9\u9a8c\u8bc1\u6216\u4e0e\u5176\u4ed6\u4f18\u5316\u65b9\u6cd5\u7684\u6bd4\u8f83"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "\u51b3\u7b56\u6811\u5c06\u591a\u9879\u6676\u4f53\u7ba1\u6307\u6807\u6620\u5c04\u5230\u5236\u7a0b\u914d\u65b9\uff0c\u53ef\u542f\u53d1\u91cf\u5b50\u5668\u4ef6 fabrication \u7684\u591a\u76ee\u6807\u5b9e\u9a8c\u4f18\u5316\uff0c\u4f46\u4e0d\u6d89\u53ca\u5927\u6a21\u578b\u6216\u79d1\u7814\u667a\u80fd\u4f53\u3002",
+      "relevance_score": 2,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u7528\u51b3\u7b56\u6811\u8054\u5408\u4f18\u5316CNT-TFT\u5236\u7a0b\u4e0e\u591a\u9879\u5668\u4ef6\u6307\u6807\uff0c\u5e76\u5b9e\u9a8c\u5b9e\u73b02 V\u53cd\u76f8\u5668\u300160 kHz\u73af\u632f\u53ca\u7ea7\u8054\u903b\u8f91\u7535\u8def\u3002",
+      "title_zh": "\u673a\u5668\u5b66\u4e60\u5f15\u5bfc\u7684\u67d4\u6027\u78b3\u7eb3\u7c73\u7ba1\u6676\u4f53\u7ba1\u5236\u7a0b\u534f\u540c\u4f18\u5316"
+    },
     "effa7f991b6cbcc438fafb2a7ac80335ea90caec84a3d04cd2a6528aac6e0100": {
       "created_at": "2026-09-11T10:42:15.343853+00:00",
       "evidence_score": 2,
@@ -1842,7 +1868,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-19",
+  "last_completed_beijing_date": "2026-09-20",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2878,6 +2904,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Assessment of in-line spectroscopy and CNNs for CDW fine fraction classification"
+    },
+    "crossref:10.26599/nr.2026.94909009": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-20T11:08:01.905217+00:00",
+      "published": "2026-09-20",
+      "seen_at": "2026-09-20T11:08:01.905217+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Machine learning-guided process co-optimization of flexible carbon nanotube thin-film transistors for low-voltage digital logic circuits"
     },
     "crossref:10.3389/fchbi.2026.1894245": {
       "attempts": 1,
