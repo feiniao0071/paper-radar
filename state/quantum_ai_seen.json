@@ -958,6 +958,32 @@
       "summary_zh": "\u6bd4\u8f83\u4e09\u79cdUMLIP\u53caGAFF\u9884\u5f1b\u8c6b\u5bf9\u9ad8\u80fd\u5206\u5b50\u6676\u4f53\u4f18\u5316\u7684\u5f71\u54cd\uff0c\u53d1\u73b0\u9884\u5f1b\u8c6b\u53ef\u51cf\u5c11\u5931\u8d25\uff0cMACE-OFF\u7efc\u5408\u8868\u73b0\u8f83\u4f73\u3002",
       "title_zh": "\u9ad8\u80fd\u5206\u5b50\u6676\u4f53\u7ed3\u6784\u9884\u6d4b\u7684\u901a\u7528\u673a\u5668\u5b66\u4e60\u529b\u573a\u57fa\u51c6"
     },
+    "65f176fe3bf9127db0fd4b6f083a0ce0ca7afcf45959405804e5a8583a9bd46b": {
+      "created_at": "2026-09-22T10:49:20.089500+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "\u70b9\u7f3a\u9677\u6a21\u62df",
+        "\u673a\u5668\u5b66\u4e60\u539f\u5b50\u95f4\u52bf",
+        "\u5c0f\u6837\u672cDFT\u8bad\u7ec3",
+        "\u5e26\u7535\u7f3a\u9677\u6709\u9650\u5c3a\u5bf8\u6548\u5e94"
+      ],
+      "method_value_score": 4,
+      "novelty_score": 4,
+      "paper_id": "2609.24293",
+      "priority_score": 75,
+      "quality_signals": [
+        "\u4ec5\u7528\u56db\u6b21DFT\u7ed3\u6784\u5f1b\u8c6b\u6784\u5efa\u8bad\u7ec3\u96c6",
+        "\u5728GaN\u3001SiO2\u548cCu2ZnSnS4\u4e0a\u8de8\u8d85\u80de\u5c3a\u5bf8\u9a8c\u8bc1",
+        "\u8d85\u8fc7200\u539f\u5b50\u8d85\u80de\u7684\u5f62\u6210\u80fd\u8bef\u5dee\u591a\u6570\u5c0f\u4e8e0.3 eV"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "\u9762\u5411\u56fa\u4f53\u70b9\u7f3a\u9677\u63d0\u51fa\u4f4e\u6210\u672cMLIP\u8bad\u7ec3\u6d41\u7a0b\uff0c\u53ef\u7528\u4e8e\u538b\u7f29\u7f3a\u9677\u80fd\u4e0e\u7ed3\u6784\u5f1b\u8c6b\u6240\u9700\u7684DFT\u6570\u636e\u6210\u672c\u3002",
+      "relevance_score": 2,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u4ee5\u5c0f\u8d85\u80de\u548c\u56db\u6b21DFT\u5f1b\u8c6b\u8bad\u7ec3\u7f3a\u9677\u4e13\u7528MLIP\uff0c\u5728\u4e09\u7c7b\u56fa\u4f53\u4e2d\u9884\u6d4b\u5927\u8d85\u80de\u7f3a\u9677\u80fd\uff0c\u8bef\u5dee\u591a\u6570\u4f4e\u4e8e0.3 eV\u3002",
+      "title_zh": "\u9762\u5411\u70b9\u7f3a\u9677\u7684\u5c0f\u8d85\u80de\u5c0f\u6570\u636eMLIP\u8bad\u7ec3\u7b56\u7565"
+    },
     "661e2e62cc8b2b02988e16a2311237b0e524e98d73fbe35a967bf904bdb646c7": {
       "created_at": "2026-09-21T10:42:06.579409+00:00",
       "evidence_score": 4,
@@ -1448,6 +1474,31 @@
       "summary_zh": "\u4ee3\u7406\u6846\u67b6\u751f\u6210\u53ef\u8bc1\u4f2a\u7684\u7269\u7406\u5931\u6548\u5047\u8bbe\u5e76\u5206\u7ea7\u6a21\u62df\uff0c\u53d1\u73b0MACE-MPA-0\u542bO/F\u5438\u9644\u4f53\u7cfb\u7684\u7cfb\u7edf\u6027\u80fd\u91cf\u5f02\u5e38\u3002",
       "title_zh": "MLIP Detective\uff1a\u4e3b\u52a8\u53d1\u73b0\u673a\u5668\u5b66\u4e60\u52bf\u5931\u6548\u6a21\u5f0f"
     },
+    "aa81dd5b24eb110ff24eb693a3be14325a9de97944f448dd6f8d5502c2788bec": {
+      "created_at": "2026-09-22T10:49:20.089477+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "AI\u5de5\u5177\u7d20\u517b\u8bc4\u4f30",
+        "\u8d1f\u8d23\u4efb\u4f7f\u7528AI",
+        "\u6559\u80b2\u6750\u6599\u751f\u6210"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 2,
+      "paper_id": "crossref:10.70849/ijsci03092634916",
+      "priority_score": 31,
+      "quality_signals": [
+        "\u91c7\u752846\u540d\u6559\u5e08\u7684\u6df7\u5408\u65b9\u6cd5\u7814\u7a76",
+        "\u8986\u76d6\u53ef\u9760\u6027\u3001\u4f26\u7406\u4e0e\u6559\u5b66\u9002\u5207\u6027\u7b49\u8bc4\u4ef7\u7ef4\u5ea6",
+        "\u6458\u8981\u672a\u62a5\u544a\u91cf\u5316\u6548\u5e94\u3001\u5bf9\u7167\u7ec4\u6216\u957f\u671f\u8ffd\u8e2a\u7ed3\u679c"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u7814\u7a76\u5bf9\u8c61\u662f\u6559\u5e08AI\u7d20\u517b\u4e0e\u6559\u80b2\u5b9e\u8df5\uff0c\u672a\u6d89\u53ca\u7269\u7406\u7814\u7a76\u4ee3\u7406\u3001\u91cf\u5b50\u6750\u6599\u6216\u5b9e\u9a8c\u4eea\u5668\u5de5\u4f5c\u6d41\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u901a\u8fc746\u540d\u6559\u5e08\u7684\u8bfe\u7a0b\u5b9e\u8df5\u5206\u6790AI\u7d20\u517b\uff0c\u53d1\u73b0\u6301\u7eed\u4f7f\u7528\u6709\u52a9\u4e8e\u63d0\u5347\u5de5\u5177\u719f\u6089\u5ea6\u53ca\u6559\u5b66\u3001\u53ef\u9760\u6027\u4e0e\u4f26\u7406\u5224\u65ad\u3002",
+      "title_zh": "AI\u7d20\u517b\u4e0e\u6559\u5e08\u6570\u5b57\u80fd\u529b"
+    },
     "af073ad66e48a76cd17b1309e98497235539691fa60344ab2e5efba4e5af7326": {
       "created_at": "2026-09-18T10:42:27.684932+00:00",
       "evidence_score": 5,
@@ -1628,6 +1679,32 @@
       "study_type": "\u6df7\u5408",
       "summary_zh": "\u4ee5\u54cd\u5e94\u9762\u5b9e\u9a8c\u6bd4\u8f83\u4e24\u79cd\u51b7\u5374\u6db2\u52a0\u5de5\u94dd\u9502\u5408\u91d1\u7684\u6548\u679c\uff0c\u5e76\u7528\u968f\u673a\u68ee\u6797\u9a8c\u8bc1\u8868\u9762\u7c97\u7cd9\u5ea6\u548c\u70ed\u5f71\u54cd\u533a\u6570\u636e\u3002",
       "title_zh": "\u53ef\u964d\u89e3\u51b7\u5374\u6db2\u52a0\u5de5\u94dd\u9502\u5408\u91d1\u7684\u5b9e\u9a8c\u4e0e\u673a\u5668\u5b66\u4e60\u6bd4\u8f83"
+    },
+    "ca0fe48ce537cba1b41b0dd62af8c38caf781609a7a54ee73547d7692b09b73e": {
+      "created_at": "2026-09-22T10:49:20.089506+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u7b49\u53d8\u673a\u5668\u5b66\u4e60\u52bf",
+        "\u8fb9\u4e2d\u5fc3\u56fe\u8868\u793a",
+        "\u957f\u7a0b\u9759\u7535\u5efa\u6a21",
+        "\u7ea2\u5916\u5149\u8c31\u9884\u6d4b"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 4,
+      "paper_id": "2609.23134",
+      "priority_score": 48,
+      "quality_signals": [
+        "\u5728MD22\u4e0eSPICE-MACE-OFF\u4e0a\u62a5\u544a\u7cbe\u5ea6\u2014\u6210\u672c\u8868\u73b0",
+        "\u4ee5\u6f5c\u5728Ewald\u6c42\u548c\u52a0\u5165\u957f\u7a0b\u9759\u7535\u4f5c\u7528",
+        "\u9a8c\u8bc1\u5076\u6781\u77e9\u548c\u6db2\u6001\u6c34\u7ea2\u5916\u5149\u8c31\uff0c\u4f46\u7f3a\u5c11\u51dd\u805a\u6001\u6750\u6599\u4efb\u52a1"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u63d0\u51fa\u9ad8\u6548\u7b49\u53d8MLIP\u67b6\u6784\uff0c\u4f46\u9a8c\u8bc1\u96c6\u4e2d\u4e8e\u5206\u5b50\u57fa\u51c6\u548c\u6db2\u6001\u6c34\uff0c\u672a\u5c55\u793a\u91cf\u5b50\u6750\u6599\u6216\u51dd\u805a\u6001\u95ee\u9898\u7684\u76f4\u63a5\u4ef7\u503c\u3002",
+      "relevance_score": 1,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u4ee5O(2)\u7b49\u53d8\u8fb9\u8868\u793a\u6784\u5efaECENet\uff0c\u5e76\u7ed3\u5408\u6f5c\u5728Ewald\u6c42\u548c\uff0c\u5728\u5206\u5b50\u57fa\u51c6\u53ca\u6db2\u6001\u6c34\u5076\u6781\u77e9\u548c\u7ea2\u5916\u5149\u8c31\u4e0a\u9a8c\u8bc1\u3002",
+      "title_zh": "ECENet\uff1a\u8fb9\u7c07\u5c55\u5f00\u7ebf\u56fe\u795e\u7ecf\u7f51\u7edc"
     },
     "cc2928e1cb34c89220b579899b25aa55dfe6440442664671eb0e2a1f322a2468": {
       "created_at": "2026-09-09T13:34:50.554432+00:00",
@@ -1971,7 +2048,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-21",
+  "last_completed_beijing_date": "2026-09-22",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2675,6 +2752,24 @@
       "status": "sent",
       "title": "cboamd: A Machine Learning Molecular Dynamics Framework for Vibrational Strong Coupling"
     },
+    "2609.23134": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "published": "2026-09-19",
+      "seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "ECENet: An Edge Cluster Expansion Line-Graph Neural Network"
+    },
+    "2609.24293": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "published": "2026-09-21",
+      "seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Small-supercell and Small-dataset Training Strategy of Machine Learning Interatomic Potentials for Point Defects"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -3142,6 +3237,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Solving the FitzHugh-Nagumo Equation Using Physics-Informed Neural Networks (PINNs) and Deep Galerkin Methods"
+    },
+    "crossref:10.70849/ijsci03092634916": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "published": "2026-09-22",
+      "seen_at": "2026-09-22T11:08:00.955362+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "AI Literacy and Teachers Digital Competencies"
     }
   },
   "version": 2
