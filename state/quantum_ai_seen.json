@@ -856,6 +856,31 @@
       "summary_zh": "\u4ee5AniSOAP\u548c\u5bf9\u79f0\u9002\u914dMACE-CG\u5efa\u6a21\u7c97\u7c92\u5316\u5206\u5b50\u7684\u51e0\u4f55\u4e0e\u65b9\u5411\u6027\uff0c\u5728\u591a\u79cd\u4f53\u7cfb\u4e0a\u6539\u5584\u80fd\u91cf\u3001\u529b\u548c\u529b\u77e9\u9884\u6d4b\u3002",
       "title_zh": "\u5c06\u51e0\u4f55\u4e0e\u65b9\u5411\u6027\u7eb3\u5165\u7c97\u7c92\u5316\u673a\u5668\u5b66\u4e60\u52bf\u7684\u901a\u7528\u65b9\u6cd5"
     },
+    "5cd99ab49601e908640a34391a02fac2050c5c433391e230e38ba8df175fcc5c": {
+      "created_at": "2026-09-23T10:44:27.157827+00:00",
+      "evidence_score": 1,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u4fbf\u643a\u5f0fRaman spectroscopy",
+        "\u673a\u5668\u5b66\u4e60\u5149\u8c31\u5206\u7c7b",
+        "\u751f\u7269\u533b\u5b66\u8bca\u65ad\uff08\u8d85\u51fa\u8303\u56f4\uff09"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 1,
+      "paper_id": "crossref:10.1007/s00216-026-06823-5",
+      "priority_score": 20,
+      "quality_signals": [
+        "\u6765\u6e90\u672a\u63d0\u4f9b\u6458\u8981\uff0c\u65e0\u6cd5\u5224\u65ad\u6a21\u578b\u3001\u6837\u672c\u89c4\u6a21\u4e0e\u9a8c\u8bc1\u8bbe\u8ba1",
+        "\u6807\u9898\u58f0\u79f0\u533a\u5206\u80bf\u7624\u53ca\u8bc4\u4f30\u6cbb\u7597\u540e\u65e0\u75c5\u72b6\u6001\uff0c\u4f46\u65e0\u5b9a\u91cf\u6027\u80fd",
+        "\u7f3a\u5c11\u5916\u90e8\u9a8c\u8bc1\u3001\u57fa\u7ebf\u6bd4\u8f83\u53ca\u6570\u636e\u6cc4\u6f0f\u63a7\u5236\u4fe1\u606f"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u9762\u5411\u5375\u5de2\u80bf\u7624\u8840\u6e05\u8bca\u65ad\uff0c\u5c5e\u4e8e\u660e\u786e\u6392\u9664\u7684\u751f\u7269\u533b\u5b66\u76ee\u6807\uff1b\u4fbf\u643a\u62c9\u66fc\u4e0e\u673a\u5668\u5b66\u4e60\u4e0d\u6784\u6210\u91cf\u5b50\u6750\u6599\u6216\u7269\u7406\u5b9e\u9a8c\u65b9\u6cd5\u8d21\u732e\u3002",
+      "relevance_score": 1,
+      "study_type": "\u5b9e\u9a8c",
+      "summary_zh": "\u5229\u7528\u4fbf\u643a\u62c9\u66fc\u5149\u8c31\u548c\u673a\u5668\u5b66\u4e60\u5206\u6790\u8840\u6e05\uff0c\u4ee5\u533a\u5206\u5375\u5de2\u80bf\u7624\u5e76\u8bc4\u4f30\u6cbb\u7597\u540e\u65e0\u75c5\u72b6\u6001\uff1b\u672a\u63d0\u4f9b\u9a8c\u8bc1\u7ed3\u679c\u3002",
+      "title_zh": "\u4fbf\u643a\u62c9\u66fc\u4e0e\u673a\u5668\u5b66\u4e60\u5feb\u901f\u533a\u5206\u5375\u5de2\u80bf\u7624"
+    },
     "5e6d559f7fe4e8e6d52834c947b716e445fc18c33488df59e7616a54b2d693dd": {
       "created_at": "2026-09-08T13:06:55.352281+00:00",
       "evidence_score": 4,
@@ -2048,7 +2073,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-22",
+  "last_completed_beijing_date": "2026-09-23",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2814,6 +2839,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Machine Learning\u2010Driven Alloy Anode Accompanied by Interfacial Kinetic Compensation Design Toward High\u2010Rate Zinc Pouch Cells"
+    },
+    "crossref:10.1007/s00216-026-06823-5": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-23T10:44:27.157920+00:00",
+      "published": "2026-09-23",
+      "seen_at": "2026-09-23T10:44:27.157920+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Rapid serum-based differentiation of ovarian tumors and assessment of post-treatment disease-free status using portable Raman spectroscopy and machine learning"
     },
     "crossref:10.1007/s00339-026-10204-1": {
       "attempts": 1,
