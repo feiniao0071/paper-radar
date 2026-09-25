@@ -154,6 +154,58 @@
       "summary_zh": "\u7ed3\u5408\u8d1d\u53f6\u65af\u673a\u5668\u5b66\u4e60\u4e0e\u53d7\u9650\u968f\u673a\u6e38\u8d70\uff0c\u5728\u8c31\u4eea\u4e0a\u539f\u4f4d\u4f18\u5316DNP\u8109\u51b2\uff0c\u5e76\u5728\u4e24\u7c7b\u81ea\u7531\u57fa\u6837\u54c1\u4e2d\u5bf9\u7167\u8ba1\u7b97\u65b9\u6848\u9a8c\u8bc1\u3002",
       "title_zh": "\u5b9e\u9a8c\u5728\u73af\u5b66\u4e60\u4f18\u5316\u8109\u51b2\u52a8\u6001\u6838\u6781\u5316"
     },
+    "103f428db632267ee08507dc0e3c0adc932257efdbbc28b407d01d9e40ae6a2e": {
+      "created_at": "2026-09-25T10:41:53.166926+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "GBR\u5206\u5b50\u6027\u8d28\u9884\u6d4b",
+        "DFT\u8f85\u52a9\u5019\u9009\u7b5b\u9009",
+        "\u8f6f\u5305\u7535\u6c60\u5b9e\u9a8c\u9a8c\u8bc1",
+        "\u754c\u9762\u673a\u7406\u8868\u5f81"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.1021/acs.jpclett.6c02511",
+      "priority_score": 46,
+      "quality_signals": [
+        "\u7ed9\u51fa\u5bb9\u91cf\u4fdd\u6301\u7387\u753124.71%\u5347\u81f382.73%\u7684\u5b9a\u91cf\u7ed3\u679c",
+        "\u57284.85 V\u300145 \u00b0C\u8f6f\u5305\u7535\u6c60\u4e2d\u5b8c\u6210\u5b9e\u9a8c\u9a8c\u8bc1",
+        "\u6458\u8981\u672a\u62a5\u544aGBR\u57fa\u7ebf\u6bd4\u8f83\u3001\u6570\u636e\u89c4\u6a21\u6216\u4e0d\u786e\u5b9a\u6027"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u9762\u5411\u7535\u6c60\u7535\u89e3\u6db2\u6dfb\u52a0\u5242\u7684\u5e38\u89c4GBR\u7b5b\u9009\uff0c\u4e0d\u5c5e\u4e8e\u5927\u6a21\u578b\u4e3b\u7ebf\uff1b\u5176DFT\u2014\u5b9e\u9a8c\u9a8c\u8bc1\u6d41\u7a0b\u4ec5\u6709\u9650\u8fc1\u79fb\u5230\u6750\u6599\u7b5b\u9009\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u4ee5GBR\u9884\u6d4bHOMO\u5e76\u7ed3\u5408DFT\u7b5b\u51faBDTT\uff1b\u8f6f\u5305\u7535\u6c60\u5b9e\u9a8c\u663e\u793a\u5bb9\u91cf\u4fdd\u6301\u7387\u753124.71%\u63d0\u9ad8\u81f382.73%\u3002",
+      "title_zh": "\u673a\u5668\u5b66\u4e60\u7b5b\u9009\u9ad8\u538b\u9502\u7535\u6c60\u542b\u786b\u6dfb\u52a0\u5242"
+    },
+    "11599b75e120fd929cdfbc38ae98bd2124aaafdcc9142797197bc2cf047fb084": {
+      "created_at": "2026-09-25T10:41:53.166944+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u53cd\u5e94\u6784\u578b\u4e3b\u52a8\u91c7\u6837",
+        "\u5e76\u53d1\u5b66\u4e60\u6570\u636e\u751f\u6210",
+        "MLIP\u52a8\u529b\u5b66\u53ef\u9760\u6027\u8bc4\u6d4b",
+        "\u79bbMEP\u8f68\u8ff9\u57fa\u51c6"
+      ],
+      "method_value_score": 2,
+      "novelty_score": 4,
+      "paper_id": "2609.29105",
+      "priority_score": 51,
+      "quality_signals": [
+        "\u53d1\u5e03180\u4e07DFT\u6807\u6ce8\u6784\u578b\u7684OpenRxn26\u6570\u636e\u96c6",
+        "\u5728\u79bbMEP\u8f68\u8ff9\u4e0a\u4e0e\u591a\u79cdMLIP\u8fdb\u884c\u5916\u90e8\u6bd4\u8f83",
+        "DPA3_rxn\u8fbe\u52301.0 kcal/mol\u80fd\u91cf\u8bef\u5dee\uff0c\u4f46\u8303\u56f4\u9650\u4e8e\u6c14\u76f8\u4e2d\u6027\u5355\u5206\u5b50\u53cd\u5e94"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u9488\u5bf9\u6c14\u76f8\u6709\u673a\u53cd\u5e94MLIP\u8bad\u7ec3\u6570\u636e\uff0c\u504f\u79bb\u51dd\u805a\u6001\u4e0e\u91cf\u5b50\u6750\u6599\uff1b\u5176\u53cd\u5e94\u6784\u578b\u91c7\u6837\u548c\u52a8\u529b\u5b66\u57fa\u51c6\u53ef\u6709\u9650\u501f\u9274\u3002",
+      "relevance_score": 1,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u4ee5\u5c40\u57dfRMSD\u5143\u52a8\u529b\u5b66\u548c\u5e76\u53d1\u5b66\u4e60\u6784\u5efaOpenRxn26\uff0c\u8bad\u7ec3DPA3_rxn\u5e76\u5728\u79bbMEP\u8f68\u8ff9\u8fbe\u52301.0 kcal/mol\u8bef\u5dee\u3002",
+      "title_zh": "\u9762\u5411\u53cd\u5e94\u8bad\u7ec3\u6570\u636e\u7684\u7cfb\u7edf\u65e0\u5173\u5143\u52a8\u529b\u5b66\u7b56\u7565"
+    },
     "1293ef8a1830c25b2234c4cfb0e0d6d69843219ab5bb52a1243862b271827203": {
       "created_at": "2026-09-02T11:22:11.888653+00:00",
       "evidence_score": 3,
@@ -2148,7 +2200,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-24",
+  "last_completed_beijing_date": "2026-09-25",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2888,6 +2940,15 @@
       "status": "skipped",
       "title": "SoLiD26: A First Principles Solid-Liquid Interface Dataset for Machine-learned Interatomic Potentials"
     },
+    "2609.29105": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-25T10:41:53.167045+00:00",
+      "published": "2026-09-24",
+      "seen_at": "2026-09-25T10:41:53.167045+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "A System-Independent Metadynamics Strategy for Reactive Training Data: Application to Gas-Phase Organic Reactions"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -3040,6 +3101,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Prediction of Glass Transition Temperatures for Organic Electronic Materials"
+    },
+    "crossref:10.1021/acs.jpclett.6c02511": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-25T10:41:53.167045+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-25T10:41:53.167045+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Screening \u201cCathode-Stable and Anode-Reactive\u201d Sulfur-Based Additives for LiNi0.5Mn1.5O4||Graphite Pouch Cells via a Machine Learning Approach"
     },
     "crossref:10.1021/acsami.6c10769": {
       "attempts": 1,
