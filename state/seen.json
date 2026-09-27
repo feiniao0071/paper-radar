@@ -5084,7 +5084,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-26",
+  "last_completed_beijing_date": "2026-09-27",
   "papers": {
     "2608.06309": {
       "published": "2026-08-06",
@@ -7141,6 +7141,15 @@
       "status": "sent",
       "title": "Accelerated Discovery of Topological Spin Phase Diagrams in CrSBr Magnets Via High\u2010Throughput Optimization"
     },
+    "crossref:10.1002/adfm.78719": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Steering Chiral Exciton Emission With All Van Der Waals Nonlocal Phase Gradient Metasurfaces"
+    },
     "crossref:10.1002/adma.74842": {
       "attempts": 1,
       "first_seen_at": "2026-08-29T14:10:25.788893+00:00",
@@ -7492,6 +7501,15 @@
       "status": "sent",
       "title": "Interface-Driven Evolution of Interlayer and Hybrid Excitons in CVD-Grown Large-Area MoS2/WS2 Vertical Heterostructures"
     },
+    "crossref:10.1021/acsanm.6c03640": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "DFT Study of Triaxial Magnetic Anisotropy and Strain-Induced Easy-Axis Switching in Ferromagnetic CrTe3 Monolayer for Spintronic Applications"
+    },
     "crossref:10.1021/acsnano.6c10508": {
       "attempts": 1,
       "first_seen_at": "2026-08-20T05:11:29.672285+00:00",
@@ -7572,6 +7590,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Suppressed excitonic effects enable high mobility and high-yield photoconductivity in a pyridine-coordinated two-dimensional polymer crystal"
+    },
+    "crossref:10.1038/s41467-026-77967-2": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-27T11:00:01.572168+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Efficient transport kinetics of indirect excitons in van der Waals heterostructure"
     },
     "crossref:10.1038/s41467-026-77986-z": {
       "attempts": 1,
