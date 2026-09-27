@@ -2200,7 +2200,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-26",
+  "last_completed_beijing_date": "2026-09-27",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -3120,6 +3120,15 @@
       "status": "skipped",
       "title": "Smartphone AI-Enabled Lateral Flow Immunoassay Platform Using Advanced Quantum Dots for Intelligent Quantitative Diagnostics"
     },
+    "crossref:10.1021/acsanm.6c03161": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-27T11:08:01.661756+00:00",
+      "published": "2026-09-27",
+      "seen_at": "2026-09-27T11:08:01.661756+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Au-Nanostructure Decorated MoS2 Field-Effect Transistors for Enhanced Sensing and Discrimination of Volatile Organic Compounds"
+    },
     "crossref:10.1021/acscatal.6c04886": {
       "attempts": 1,
       "first_seen_at": "2026-09-14T11:00:03.030925+00:00",
@@ -3182,6 +3191,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Multiscale modelling of ferroelectrics using a physics-informed neural network driven by molecular dynamics data: parameter identification and field reconstruction"
+    },
+    "crossref:10.1038/s41524-026-02319-z": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-27T11:08:01.661756+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-27T11:08:01.661756+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Molecular modelling of high-entropy alloys: from quantum to atomistic, and machine learning"
     },
     "crossref:10.1038/s41598-026-67691-8": {
       "attempts": 1,
