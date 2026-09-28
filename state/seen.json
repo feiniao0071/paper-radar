@@ -5084,7 +5084,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-27",
+  "last_completed_beijing_date": "2026-09-28",
   "papers": {
     "2608.06309": {
       "published": "2026-08-06",
@@ -7105,6 +7105,60 @@
       "status": "sent",
       "title": "Incipient superconductivity and tunable Chern insulators in twisted Bernal bilayer-trilayer graphene"
     },
+    "2609.30365": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-24",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Repulsion-Driven $p - i p$ Superconductivity in a Single Valley Revealed by DMRG"
+    },
+    "2609.30430": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-24",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Engineering nonlinear spin-orbit torque driven by intra-band transport in MoSe$_2$/CrI$_3$ and WSe$_2$/CrI$_3$ van der Waals heterostructures"
+    },
+    "2609.30788": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Observation of the electronic Pomeranchuk effect in generalized Wigner crystals of twisted MoS$_2$"
+    },
+    "2609.31015": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Binary magnetism and directional magnon transport in alkali-doped CrI$_3$"
+    },
+    "2609.31203": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Orbital photoinduced Faraday effect in a lattice of conducting disks"
+    },
+    "2609.31581": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Emergent frustrated magnetism in strain-patterned graphene"
+    },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
       "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
@@ -7293,6 +7347,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Orthogonally Polarized Excitons Under Quasi\u2010One\u2010Dimensional Moir\u00e9 Confinement"
+    },
+    "crossref:10.1007/s00220-026-05736-9": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-27",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Many-Body Ground State Manifold of Flat Band Interacting Hamiltonian for Magic Angle Twisted Bilayer Graphene"
     },
     "crossref:10.1007/s00339-026-10113-3": {
       "attempts": 1,
@@ -7491,6 +7554,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Enhancing Zeolite X\u2212Polyamide Compatibility in Thin-Film Nanocomposite Forward Osmosis Membranes via Decoration with N-Doped Graphene Quantum Dots"
+    },
+    "crossref:10.1021/acsami.6c09943": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-28T11:00:01.724250+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Low-Threshold Lasing of Interlayer Excitons in Freestanding TMD Heterostructures"
     },
     "crossref:10.1021/acsami.6c10448": {
       "attempts": 1,
