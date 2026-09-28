@@ -2200,7 +2200,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-27",
+  "last_completed_beijing_date": "2026-09-28",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2949,6 +2949,24 @@
       "status": "skipped",
       "title": "A System-Independent Metadynamics Strategy for Reactive Training Data: Application to Gas-Phase Organic Reactions"
     },
+    "2609.30621": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "published": "2026-09-24",
+      "seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Assessing the Transferability of General-Purpose MachineLearning Interatomic Potentials for Heterogeneous Catalysis with HetCat26"
+    },
+    "2609.30852": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Energetically Driven Structure Matching for Autonomous Total X-ray Scattering Experiments"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -3047,6 +3065,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Machine learning-assisted prediction of cesium adsorption using metal\u2013organic frameworks/reduced graphene oxide composite"
+    },
+    "crossref:10.1007/s42250-026-01861-z": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Quantum Dot-Assisted Fluorescence Detection of Metronidazole in Food Matrices Using DOE and Machine Learning Approaches"
     },
     "crossref:10.1007/s43939-026-00967-y": {
       "attempts": 1,
@@ -3443,6 +3470,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Harness Engineered LLM Agents for Material Science: A Case Study on Perovskite Materials with Machine Learning and Materials Project"
+    },
+    "crossref:10.53941/sce.2026.100011": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-28T11:08:01.460281+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Screening High-Efficiency Deep Eutectic Solvents for Oxidative-Extractive Desulfurization via a Machine Learning Framework to Analyze Intermolecular Interactions"
     },
     "crossref:10.59232/air-v4i2p101": {
       "attempts": 1,
