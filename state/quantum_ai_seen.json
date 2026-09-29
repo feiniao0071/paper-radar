@@ -2200,7 +2200,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-28",
+  "last_completed_beijing_date": "2026-09-29",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -2967,6 +2967,51 @@
       "status": "sent",
       "title": "Energetically Driven Structure Matching for Autonomous Total X-ray Scattering Experiments"
     },
+    "2609.31895": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "The Young-E(3) Tensor Product Decomposition for Rotation and Permutation Equivariant Cluster Expansions"
+    },
+    "2609.32894": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Composition-Driven Metal-to-Semiconductor Transition and Enhanced Phonon Transport in B-C substituted Clathrate"
+    },
+    "2609.33823": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-27",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "Democratizing Atomistic Simulation Workflows for the AI Era with the Quantum Accelerator"
+    },
+    "2609.35099": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "E3J: An Efficient and Open-Source Backend for Euclidean Equivariant Operations on GPU and TPU"
+    },
+    "2609.35346": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Machine-learning-guided exploration of domain walls in the hybrid improper ferroelectric Ca3Ti2O7"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -3228,6 +3273,15 @@
       "status": "sent",
       "title": "Molecular modelling of high-entropy alloys: from quantum to atomistic, and machine learning"
     },
+    "crossref:10.1038/s41524-026-02346-w": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Predicting moir\u00e9 physics from local proximity effects in van der Waals heterostructures"
+    },
     "crossref:10.1038/s41598-026-67691-8": {
       "attempts": 1,
       "first_seen_at": "2026-08-30T15:20:39.048253+00:00",
@@ -3308,6 +3362,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Adaptive neural quantum states: a recurrent neural network perspective"
+    },
+    "crossref:10.1093/jas/skag272.195": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-29T11:08:00.975861+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "149. Segmentation guided deep learning for sperm morphology classification in bull breeding soundness examinations."
     },
     "crossref:10.1126/sciadv.aea4216": {
       "attempts": 1,
