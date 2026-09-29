@@ -5084,7 +5084,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-28",
+  "last_completed_beijing_date": "2026-09-29",
   "papers": {
     "2608.06309": {
       "published": "2026-08-06",
@@ -7159,6 +7159,78 @@
       "status": "sent",
       "title": "Emergent frustrated magnetism in strain-patterned graphene"
     },
+    "2609.31839": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Zoology of chiral superconductors in Chern bands"
+    },
+    "2609.31846": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-25",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Read-Rezayi fractional Chern insulators in modulated Bernal graphene"
+    },
+    "2609.32392": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-26",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Electrically switchable one-dimensional quadrupolar excitons in lateral double heterojunctions"
+    },
+    "2609.34104": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "(Sub)nanoscale Visualization of Reconstruction-Driven Moir\u00e9 Exciton Localization and Delocalization"
+    },
+    "2609.34536": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Magneto-optical Kerr spectroscopy of exciton Rydberg states in a magnetic van der Waals heterostructure"
+    },
+    "2609.34544": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Probing hydrodynamics in graphene and quark matter via Seebeck coefficient"
+    },
+    "2609.35125": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Capacitance sensing in bilayer graphene with gate reflectometry"
+    },
+    "2609.35556": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Ultra-high vacuum Raman platform for in situ characterization of graphene nanoribbons"
+    },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
       "first_seen_at": "2026-08-25T11:19:13.357361+00:00",
@@ -7212,6 +7284,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Fabrication of High Magnetic Susceptibility Nano\u2010FeS 2 via Electronic Reconstruction Induced by Alternating Magnetic Field"
+    },
+    "crossref:10.1002/adma.75194": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Topological Hall Effect Induced by Chiral Spin Textures at the Ferroelectric/Ferromagnetic Interface"
     },
     "crossref:10.1002/advs.77160": {
       "attempts": 1,
@@ -7474,6 +7555,15 @@
       "status": "skipped",
       "title": "Substrate-tunable non-topological edge states in Bi2Se3 thin film strip"
     },
+    "crossref:10.1021/acs.jpcc.6c04953": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Spatially Confined Liquid-Precursor CVD Enables Direct Growth of WS2/MoS2 Twisted Heterostructures"
+    },
     "crossref:10.1021/acs.nanolett.6c01845": {
       "attempts": 1,
       "first_seen_at": "2026-09-25T11:00:14.702381+00:00",
@@ -7581,6 +7671,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "DFT Study of Triaxial Magnetic Anisotropy and Strain-Induced Easy-Axis Switching in Ferromagnetic CrTe3 Monolayer for Spintronic Applications"
+    },
+    "crossref:10.1021/acsnano.6c08594": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Termination-Dependent Surface States and Magnetic Fingerprints of Chiral Helimagnet Cr1/3TaS2"
     },
     "crossref:10.1021/acsnano.6c10508": {
       "attempts": 1,
@@ -7789,6 +7888,15 @@
       "status": "sent",
       "title": "Universal topological magnetoresistance probed in Fe3GeTe2 at skyrmion state"
     },
+    "crossref:10.1063/5.0346443": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Symmetry-resolved separation of topological surface and bulk conductivity in Bi2Se3 using a hybrid plasmonic racetrack resonator"
+    },
     "crossref:10.1063/5.0353608": {
       "attempts": 2,
       "first_seen_at": "2026-09-16T11:00:03.627185+00:00",
@@ -7797,6 +7905,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Propagation of exciton polaritons in a 1D photonic crystal-WS2 system"
+    },
+    "crossref:10.1063/5.0354203": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Transport of indirect excitons and exciton mediated spin transport in a van der Waals heterostructure in magnetic fields"
     },
     "crossref:10.1073/pnas.2616584123": {
       "attempts": 3,
