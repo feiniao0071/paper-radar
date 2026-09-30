@@ -5084,7 +5084,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-29",
+  "last_completed_beijing_date": "2026-09-30",
   "papers": {
     "2608.06309": {
       "published": "2026-08-06",
@@ -7205,10 +7205,10 @@
       "title": "Magneto-optical Kerr spectroscopy of exciton Rydberg states in a magnetic van der Waals heterostructure"
     },
     "2609.34544": {
-      "attempts": 1,
+      "attempts": 2,
       "first_seen_at": "2026-09-29T11:00:02.007845+00:00",
       "published": "2026-09-28",
-      "seen_at": "2026-09-29T11:00:02.007845+00:00",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
       "source": "arXiv",
       "status": "deferred",
       "title": "Probing hydrodynamics in graphene and quark matter via Seebeck coefficient"
@@ -7230,6 +7230,96 @@
       "source": "arXiv",
       "status": "sent",
       "title": "Ultra-high vacuum Raman platform for in situ characterization of graphene nanoribbons"
+    },
+    "2609.36356": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-28",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "deferred",
+      "title": "Artificial versus Natural Atoms: The uncanny capability of the many-body Schr\u00f6dinger equation to produce emergent behavior"
+    },
+    "2609.36703": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Interlayer coupling between twisted graphenes through atomically-precise barriers"
+    },
+    "2609.37010": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Spin separation of Dirac electrons by twisted and vector optical beams"
+    },
+    "2609.37303": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Vapor phase growth and characterization of van der Waals BiSbTeSe platelets on semiconducting MoS2"
+    },
+    "2609.37406": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Topological Hall Effect Induced by Chiral Spin Textures at the Ferroelectric/Ferromagnetic Interface"
+    },
+    "2609.37418": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Nonlinear optical responses of semiconducting graphene nanoribbons: Strong constraint from a hidden symmetry"
+    },
+    "2609.37547": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Screening of Coulomb Interactions in MoS2 Nanoribbons: Enhanced Coulomb interactions, Antiscreening, and Edge Magnetism"
+    },
+    "2609.38033": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Interlayer dark excitons in a van der Waals heterostructure"
+    },
+    "2609.38045": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Interlayer Fermi Polarons in Bilayer MoTe$_2$"
+    },
+    "2609.38102": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Spatially dispersive photogalvanic effects as a probe of quantum geometric tensor"
     },
     "crossref:10.1002/adfm.77866": {
       "attempts": 1,
@@ -8005,6 +8095,15 @@
       "status": "skipped",
       "title": "Edge passivation engineering of zigzag b010 gallenene nanoribbons: a first-principles investigation of electronic structure and quantum transport properties"
     },
+    "crossref:10.1088/1674-1056/aeae1f": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-30",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "Crossref",
+      "status": "sent",
+      "title": "Direct Imaging of the Defect-Mediated Magnetic Phase Transition in a Topological Superlattice MnSb 6 Te 10"
+    },
     "crossref:10.1088/2040-8986/ae9c52": {
       "attempts": 1,
       "first_seen_at": "2026-08-21T11:20:39.754120+00:00",
@@ -8148,6 +8247,15 @@
       "source": "Crossref",
       "status": "sent",
       "title": "Tuning correlated states of twisted mono-bilayer graphene with proximity-induced spin-orbit coupling"
+    },
+    "crossref:10.1103/yfl3-2p2c": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:00:03.128860+00:00",
+      "source": "Crossref",
+      "status": "deferred",
+      "title": "Electronic properties and topological aspects of graphene nanohelicoids"
     },
     "crossref:10.1103/zsxf-4qr1": {
       "attempts": 1,
