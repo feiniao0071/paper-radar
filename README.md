@@ -218,3 +218,23 @@ pull and push with retry so the two profiles can prepare in parallel and still
 land their independent state files safely. State-free manual previews use an
 isolated concurrency group, so a scheduled run waiting for its delivery window
 does not block or get cancelled by a dry run.
+
+## AI outage recovery
+
+Transient AI errors (connection/stream transport failures, HTTP 408/409/429 and
+5xx) are retried with 30, 60, 120 and 240 second delays. Numeric Retry-After
+headers are honored up to 300 seconds. SDK retries are disabled to keep this
+budget bounded. Authentication failures are not retried. A server outage does
+not trigger another complete retry cycle in JSON fallback mode.
+
+When AI evaluation remains unavailable, normal runs return a failure status,
+retain papers as deferred, preserve valid AI caches, and leave the day
+incomplete so a later scheduled run can retry. No keyword-only digest is sent
+in this case, and an outage alert is deduplicated per Beijing day. Explicit
+`--no-ai` still permits keyword-only delivery. Dry runs and resend previews do
+not write recovery state. Previously sent papers remain deduplicated; this
+change does not automatically resend historical degraded digests.
+
+This handles temporary outages, but a sustained provider outage can still delay
+the digest. Inspect Actions logs for authentication, quota or prolonged service
+errors instead of assuming that retrying can fix them.

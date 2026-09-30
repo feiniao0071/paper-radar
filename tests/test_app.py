@@ -697,3 +697,50 @@ def test_delivery_limit_marks_remaining_paper_deferred(tmp_path, monkeypatch) ->
     assert state.status(newer.paper_id) == "sent"
     assert state.status(older.paper_id) == "deferred"
     assert state.should_consider(older.paper_id)
+
+
+def test_ai_failure_defers_then_recovers_without_duplicate_delivery(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    from paper_radar.models import Recommendation
+
+    paper = _paper()
+    state_path = tmp_path / 'state.json'
+    run_date = datetime(2026, 9, 30, tzinfo=UTC).date()
+    sent = []
+    alerts = []
+    failing = True
+
+    def evaluate(*args, **kwargs):
+        if failing:
+            raise RuntimeError('temporary outage')
+        return [Recommendation(paper=paper, relevance_score=3, reason='相关',
+                               key_relevance=(), title_zh='石墨烯输运', summary_zh='研究量子输运。',
+                               used_ai=True)]
+
+    recommender = SimpleNamespace(evaluate=evaluate,
+                                  evaluation_cache_key=lambda *a, **kw: 'cache')
+    monkeypatch.setattr(app, '_beijing_date', lambda: run_date)
+    monkeypatch.setattr(app, 'fetch_all_papers',
+                        lambda *a, **kw: FetchResult(papers=[paper], warnings=()))
+    monkeypatch.setattr(app, 'match_paper', lambda *a: MatchResult(5, ('graphene',), ()))
+    monkeypatch.setattr(app, '_enrich_candidates', lambda ps, c: (ps, ()))
+    monkeypatch.setattr(app.AIRecommender, 'from_environment', lambda p: recommender)
+    monkeypatch.setattr(app, '_send_alert', lambda *a, **kw: alerts.append(a) or True)
+    monkeypatch.setattr(app, '_feishu_client', lambda: SimpleNamespace(
+        send_digest=lambda *a, **kw: sent.append(a)))
+    monkeypatch.setattr(app, '_generate_deep_read', lambda *a, **kw: None)
+    args = app._arguments(['--state', str(state_path), '--once-per-beijing-day'])
+    assert app.run(args) == 1
+    assert app.run(args) == 1
+    state = StateStore(state_path)
+    assert state.status(paper.paper_id) == 'deferred'
+    assert not state.completed_on(run_date)
+    assert len(alerts) == 1
+    assert not sent
+    failing = False
+    assert app.run(args) == 0
+    assert StateStore(state_path).completed_on(run_date)
+    assert StateStore(state_path).status(paper.paper_id) == 'sent'
+    assert app.run(args) == 0
+    assert len(sent) == 1

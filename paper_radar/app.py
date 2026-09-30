@@ -539,6 +539,21 @@ def run(args: argparse.Namespace) -> int:
         state=state,
         profile_name=config.profile.name,
     )
+    # Explicit --no-ai remains supported. Unplanned AI degradation must not
+    # consume candidates or mark a day complete; scheduled runs can recover.
+    if not args.no_ai and evaluation_notices:
+        LOGGER.error("AI evaluation unavailable; retaining candidates for a later run")
+        if not args.dry_run and not args.resend_latest:
+            for paper in matched_papers:
+                state.mark(paper, "deferred")
+            state.save()
+            _send_alert_once(
+                state, run_date, "evaluation_failure",
+                f"{config.profile.name}AI 评估暂缓",
+                "AI 评估暂未完成，论文已保留待重试；本次不发送关键词兜底日报。"
+                "请查看 Actions 日志；后续定时任务会再次尝试。",
+            )
+        return 1
     notices.extend(evaluation_notices)
     standalone_alert_notices.extend(evaluation_notices)
     recommendations = _calibrate_priorities(

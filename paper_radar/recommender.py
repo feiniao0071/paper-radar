@@ -5,14 +5,26 @@ import json
 import logging
 import os
 import re
+import time
 from pathlib import Path
 from typing import Any
 
-from openai import OpenAI
+import httpx
+from openai import APIConnectionError, APIStatusError, OpenAI
 
 from paper_radar.models import DeepRead, MatchResult, Paper, Recommendation
 
 LOGGER = logging.getLogger(__name__)
+
+def _transient_error(error: Exception) -> bool:
+    return (
+        isinstance(error, (APIConnectionError, httpx.TransportError))
+        or isinstance(error, APIStatusError)
+        and (error.status_code in {408, 409, 429} or error.status_code >= 500)
+        or isinstance(error, RuntimeError)
+        and str(error).startswith("AI response was not completed: stream ended early")
+    )
+
 
 RECOMMENDATION_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -241,7 +253,7 @@ class AIRecommender:
         reasoning_effort: str,
         prompt_path: Path,
     ) -> None:
-        client_kwargs: dict[str, Any] = {"api_key": api_key, "timeout": 120.0}
+        client_kwargs: dict[str, Any] = {"api_key": api_key, "timeout": 120.0, "max_retries": 0}
         if base_url:
             client_kwargs["base_url"] = base_url.rstrip("/")
         self.client = OpenAI(**client_kwargs)
@@ -262,7 +274,30 @@ class AIRecommender:
             prompt_path=prompt_path,
         )
 
-    def _request_content(
+    def _request_content(self, *args: Any, **kwargs: Any) -> str:
+        # Own the retry budget, including interrupted streams; SDK retries are disabled.
+        delays = (30, 60, 120, 240)
+        for attempt in range(len(delays) + 1):
+            try:
+                return self._request_content_once(*args, **kwargs)
+            except Exception as error:
+                if not _transient_error(error) or attempt == len(delays):
+                    raise
+                delay = delays[attempt]
+                if isinstance(error, APIStatusError):
+                    try:
+                        retry_after = float(error.response.headers.get("retry-after", "0"))
+                        delay = max(delay, min(retry_after, 300))
+                    except ValueError:
+                        pass
+                LOGGER.warning(
+                    "Temporary AI failure (%s); retrying in %ss (%s/%s)",
+                    type(error).__name__, delay, attempt + 1, len(delays),
+                )
+                time.sleep(delay)
+        raise AssertionError("unreachable")
+
+    def _request_content_once(
         self,
         content: list[dict[str, Any]],
         *,
@@ -447,6 +482,9 @@ class AIRecommender:
             output_text = self._request(prompt, structured=True)
             recommendations = self._parse_recommendations(output_text, papers)
         except Exception as error:
+            if (_transient_error(error) or isinstance(error, APIConnectionError)
+                    or isinstance(error, APIStatusError) and error.status_code not in {400, 422}):
+                raise
             LOGGER.warning("Structured AI evaluation failed; retrying with JSON mode: %s", error)
             fallback_prompt = (
                 prompt

@@ -335,3 +335,99 @@ def test_priority_requires_direct_fit_and_actionable_value() -> None:
     assert calculate_priority(5, 4, 4, 4) == (3, 88)
     assert calculate_priority(4, 3, 3, 3) == (2, 68)
     assert calculate_priority(2, 5, 5, 5) == (1, 76)
+
+
+def test_transient_failure_waits_then_recovers(monkeypatch):
+    import httpx
+    from openai import InternalServerError
+
+    recommender = make_recommender()
+    calls = []
+    sleeps = []
+    error = InternalServerError('unavailable', response=httpx.Response(
+        503, request=httpx.Request('POST', 'https://example.com/responses')), body=None)
+
+    def request(*args, **kwargs):
+        calls.append(1)
+        if len(calls) < 3:
+            raise error
+        return 'ok'
+
+    monkeypatch.setattr(recommender, '_request_content_once', request)
+    monkeypatch.setattr('paper_radar.recommender.time.sleep', sleeps.append)
+    assert recommender._request_content([], schema=None, schema_name='test',
+                                        max_output_tokens=100) == 'ok'
+    assert sleeps == [30, 60]
+
+
+def test_exhausted_503_does_not_restart_budget_in_json_mode(monkeypatch):
+    import httpx
+    from openai import InternalServerError
+
+    recommender = make_recommender()
+    calls = []
+    sleeps = []
+    error = InternalServerError('unavailable', response=httpx.Response(
+        503, request=httpx.Request('POST', 'https://example.com/responses')), body=None)
+
+    def request(*args, **kwargs):
+        calls.append(1)
+        raise error
+
+    monkeypatch.setattr(recommender, '_request_content_once', request)
+    monkeypatch.setattr('paper_radar.recommender.time.sleep', sleeps.append)
+    with pytest.raises(InternalServerError):
+        recommender.evaluate([make_paper()], {})
+    assert len(calls) == 5
+    assert sleeps == [30, 60, 120, 240]
+
+
+def test_auth_failure_is_not_retried(monkeypatch):
+    import httpx
+    from openai import AuthenticationError
+
+    recommender = make_recommender()
+    calls = []
+    error = AuthenticationError('bad key', response=httpx.Response(
+        401, request=httpx.Request('POST', 'https://example.com/responses')), body=None)
+
+    def request(*args, **kwargs):
+        calls.append(1)
+        raise error
+
+    monkeypatch.setattr(recommender, '_request_content_once', request)
+    monkeypatch.setattr('paper_radar.recommender.time.sleep',
+                        lambda _: pytest.fail('must not sleep'))
+    with pytest.raises(AuthenticationError):
+        recommender.evaluate([make_paper()], {})
+    assert len(calls) == 1
+
+
+def test_interrupted_stream_restarts_with_fresh_output(monkeypatch):
+    import httpx
+
+    recommender = make_recommender()
+    calls = []
+    sleeps = []
+
+    class InterruptedStream(FakeStream):
+        def __iter__(self):
+            yield SimpleNamespace(type='response.output_text.delta', delta='partial')
+            raise httpx.ReadError('connection dropped')
+
+    def create(**kwargs):
+        calls.append(1)
+        if len(calls) == 1:
+            return InterruptedStream([])
+        return FakeStream([
+            SimpleNamespace(type='response.output_text.delta', delta='{"ok":true}'),
+            SimpleNamespace(type='response.completed', response=SimpleNamespace(
+                status='completed', output_text='{"ok":true}')),
+        ])
+
+    recommender.client = SimpleNamespace(responses=SimpleNamespace(create=create))
+    monkeypatch.setattr('paper_radar.recommender.time.sleep', sleeps.append)
+    result = recommender._request_content([], schema=None, schema_name='test',
+                                          max_output_tokens=100)
+    assert result == '{"ok":true}'
+    assert sleeps == [30]
