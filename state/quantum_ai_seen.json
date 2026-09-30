@@ -25,6 +25,29 @@
       "summary_zh": "\u8bc4\u8ff0\u70ed\u8fd0\u52a8\u3001\u65e0\u5e8f\u3001\u5c40\u57df\u7535\u8377\u3001\u7f3a\u9677\u548c\u754c\u9762\u5bf9\u534a\u5bfc\u4f53\u8ba1\u7b97\u7684\u5f71\u54cd\uff0c\u5e76\u8ba8\u8bbaMLIP\u4e3a\u7535\u5b50\u7ed3\u6784\u8ba1\u7b97\u91c7\u6837\u6784\u578b\u3002",
       "title_zh": "\u590d\u6742\u534a\u5bfc\u4f53\u7684\u73b0\u5b9e\u539f\u5b50\u5c3a\u5ea6\u5efa\u6a21"
     },
+    "0133f920e76096ecd247489813fdfbfb9fcb6673f4400d6c7d044a398dc1c074": {
+      "created_at": "2026-09-30T10:48:37.917109+00:00",
+      "evidence_score": 1,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u5438\u9644\u6027\u80fd\u673a\u5668\u5b66\u4e60",
+        "DFT\u4e0e\u591a\u5c3a\u5ea6\u6a21\u62df"
+      ],
+      "method_value_score": 1,
+      "novelty_score": 1,
+      "paper_id": "crossref:10.1007/s11696-026-05684-7",
+      "priority_score": 20,
+      "quality_signals": [
+        "\u672a\u63d0\u4f9b\u6458\u8981\uff0c\u65e0\u6cd5\u6838\u5b9e\u673a\u5668\u5b66\u4e60\u65b9\u6cd5\u53ca\u9a8c\u8bc1\u7ed3\u679c",
+        "\u6807\u9898\u5217\u51fa\u6a21\u62df\u4e0e\u5b9e\u9a8c\uff0c\u4f46\u672a\u63d0\u4f9b\u57fa\u7ebf\u6216\u5b9a\u91cf\u6027\u80fd"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u76ee\u6807\u662f\u6d3b\u6027\u70ad\u53bb\u9664\u6c61\u67d3\u7269\uff0c\u5c5e\u4e8e\u5e38\u89c4\u5438\u9644\u6750\u6599\u5e94\u7528\uff1b\u73b0\u6709\u4fe1\u606f\u672a\u663e\u793a\u53ef\u8fc1\u79fb\u81f3\u91cf\u5b50\u6750\u6599\u5efa\u6a21\u6216\u7269\u7406\u5b9e\u9a8c\u667a\u80fd\u4f53\u7684\u5177\u4f53\u65b9\u6cd5\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u6807\u9898\u8868\u660e\u7ed3\u5408DFT\u3001\u8499\u7279\u5361\u6d1b\u3001\u5206\u5b50\u52a8\u529b\u5b66\u3001\u673a\u5668\u5b66\u4e60\u4e0e\u5b9e\u9a8c\u7814\u7a76\u6d3b\u5316\u68d5\u6988\u4ec1\u58f3\u70ad\u53bb\u9664\u53cc\u915aA\uff1b\u672a\u63d0\u4f9b\u6458\u8981\u53ca\u9a8c\u8bc1\u7ed3\u679c\u3002",
+      "title_zh": "\u7ed3\u5408\u591a\u5c3a\u5ea6\u6a21\u62df\u3001\u673a\u5668\u5b66\u4e60\u4e0e\u5b9e\u9a8c\u7814\u7a76\u6d3b\u5316\u68d5\u6988\u4ec1\u58f3\u70ad\u53bb\u9664\u53cc\u915aA"
+    },
     "018838a03fbeff47d72682388f976490228fb2b1b8b12dd39e80fe21bd81d822": {
       "created_at": "2026-09-19T10:45:30.451362+00:00",
       "evidence_score": 1,
@@ -1884,6 +1907,57 @@
       "summary_zh": "\u4e3a\u65f6\u95f4\u4f9d\u8d56NQS\u5f15\u5165\u63d2\u503c\u91c7\u6837\u3001\u6784\u578b\u2014\u65f6\u95f4\u8054\u5408\u91c7\u6837\u548cKrylov\u63d0\u8bae\uff0c\u5728\u4e8c\u7ef4Ising\u6a21\u578b\u4e0a\u51c6\u786e\u4f20\u64ad\u6781\u5c16\u5cf0\u521d\u6001\u3002",
       "title_zh": "\u7528\u65f6\u95f4\u4f9d\u8d56\u795e\u7ecf\u91cf\u5b50\u6001\u4f20\u64ad\u7a00\u758f\u652f\u6491\u6001"
     },
+    "d02598c0492f398d19b23d4263e7d27f1682784dd80a59ebd5fa5868f7d3fb41": {
+      "created_at": "2026-09-30T10:48:37.917139+00:00",
+      "evidence_score": 3,
+      "group_fit_score": 1,
+      "key_relevance": [
+        "\u57fa\u7840\u6a21\u578b\u8d44\u683c\u5224\u636e",
+        "\u5c11\u6837\u672c\u8fc1\u79fb\u4e0e\u5206\u5e03\u5916\u6cdb\u5316",
+        "\u6570\u636e\u8d28\u91cf\u4e0e\u7269\u7406\u5148\u9a8c"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "2609.37550",
+      "priority_score": 44,
+      "quality_signals": [
+        "\u63d0\u51fa\u901a\u7528\u6027\u3001\u8fc1\u79fb\u6027\u548c\u5206\u5e03\u5916\u6cdb\u5316\u4e09\u9879\u53ef\u68c0\u9a8c\u6807\u51c6",
+        "\u6458\u8981\u672a\u7ed9\u51fa\u5b9a\u91cf\u57fa\u51c6\u3001\u6a21\u578b\u6e05\u5355\u6216\u8bc4\u4f30\u534f\u8bae",
+        "\u8bc4\u8ff0\u6db5\u76d6\u751f\u7269\u5206\u5b50\u7ed3\u6784\u9884\u6d4b\uff0c\u672a\u5c55\u793a\u51dd\u805a\u6001\u4e13\u95e8\u4efb\u52a1"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u4e09\u9879\u5224\u636e\u53ef\u7528\u4e8e\u5ba1\u67e5\u539f\u5b50\u6a21\u578b\u662f\u5426\u5177\u6709\u8de8\u4efb\u52a1\u8fc1\u79fb\u80fd\u529b\uff0c\u4f46\u8bc4\u8ff0\u5305\u542b\u751f\u7269\u5206\u5b50\u5e94\u7528\uff0c\u672a\u63d0\u4f9b\u9762\u5411\u91cf\u5b50\u6750\u6599\u6216\u7269\u7406\u5b9e\u9a8c\u7684\u4e25\u683c\u8bc4\u6d4b\u3002",
+      "relevance_score": 1,
+      "study_type": "\u7efc\u8ff0",
+      "summary_zh": "\u4ee5\u901a\u7528\u6027\u3001\u8fc1\u79fb\u6027\u548c\u5206\u5e03\u5916\u6cdb\u5316\u8bc4\u5ba1\u5206\u5b50\u57fa\u7840\u6a21\u578b\uff0c\u8ba4\u4e3a\u73b0\u6709\u65b9\u6cd5\u5747\u672a\u5b8c\u5168\u6ee1\u8db3\u4e09\u9879\u6807\u51c6\uff0c\u5e76\u5f3a\u8c03\u6570\u636e\u8d28\u91cf\u4e0e\u5148\u9a8c\u77e5\u8bc6\u7684\u4f5c\u7528\u3002",
+      "title_zh": "\u73b0\u6709\u5206\u5b50\u57fa\u7840\u6a21\u578b\u7a76\u7adf\u6709\u591a\u201c\u57fa\u7840\u201d\uff1f"
+    },
+    "d236913d9371b13d3ffc0f33b69e2cba813a0d321509b149de504ae77d49a82e": {
+      "created_at": "2026-09-30T10:48:37.917133+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "\u795e\u7ecf\u91cf\u5b50\u6001\u4e0e\u5f3a\u5173\u8054\u591a\u4f53\u8ba1\u7b97",
+        "\u94dc\u6c27\u5316\u7269\u4e0e\u954d\u6c27\u5316\u7269\u7684Emery\u6a21\u578b",
+        "\u76f8\u4e92\u4f5c\u7528Wannier\u51fd\u6570\u964d\u7ef4",
+        "\u5bc6\u5ea6\u8f85\u52a9\u8dc3\u8fc1\u4e0e\u7c92\u5b50\u2013\u7a7a\u7a74\u4e0d\u5bf9\u79f0"
+      ],
+      "method_value_score": 5,
+      "novelty_score": 5,
+      "paper_id": "2609.38150",
+      "priority_score": 84,
+      "quality_signals": [
+        "\u5728\u5bbd\u5ea6\u4e3a\u4e8c\u7684\u51e0\u4f55\u4e0a\u4e0e\u77e9\u9635\u4e58\u79ef\u6001\u8fdb\u884c\u57fa\u51c6\u6bd4\u8f83",
+        "\u4e8c\u7ef4\u8ba1\u7b97\u6269\u5c55\u81f310\u00d710\u6676\u80de\u3001300\u4e2a\u4f4d\u70b9",
+        "\u8de8\u7535\u8377\u8f6c\u79fb\u4e0eHubbard\u2013Mott\u533a\u95f4\u626b\u63cf\uff0c\u8bc6\u522b\u5bc6\u5ea6\u8f85\u52a9\u8dc3\u8fc1\u7684\u4e3b\u5bfc\u4f5c\u7528"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "HFDS\u6c42\u89e3\u4e0e\u76f8\u4e92\u4f5c\u7528Wannier\u964d\u7ef4\u53ef\u76f4\u63a5\u7528\u4e8e\u5f3a\u5173\u8054\u591a\u5e26\u6a21\u578b\u53ca\u6709\u6548\u54c8\u5bc6\u987f\u91cf\u6784\u5efa\uff1b\u5c5e\u4e8e\u9ad8\u4ef7\u503c\u795e\u7ecf\u91cf\u5b50\u6001\u8865\u5145\u9879\uff0c\u672a\u6d89\u53ca\u5927\u6a21\u578b\u6216\u7814\u7a76\u667a\u80fd\u4f53\u3002",
+      "relevance_score": 2,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u7528HFDS\u795e\u7ecf\u91cf\u5b50\u6001\u6c42\u89e3\u94dc\u6c27\u5316\u7269\u548c\u954d\u6c27\u5316\u7269\u7684\u4e09\u5e26Emery\u6a21\u578b\uff0c\u7ecf\u77e9\u9635\u4e58\u79ef\u6001\u5bf9\u7167\u6269\u5c55\u81f3300\u4e2a\u4f4d\u70b9\uff1b\u964d\u7ef4\u53d1\u73b0\u5bc6\u5ea6\u8f85\u52a9\u8dc3\u8fc1\u4e3b\u5bfc\u7c92\u5b50\u2013\u7a7a\u7a74\u4e0d\u5bf9\u79f0\u3002",
+      "title_zh": "\u57fa\u4e8e\u795e\u7ecf\u91cf\u5b50\u6001\u7684\u94dc\u6c27\u5316\u7269\u4e0e\u954d\u6c27\u5316\u7269\u4e09\u5e26Emery\u6a21\u578b\u964d\u7ef4"
+    },
     "d5e63a97d7ceb583facbd97ab8178f1c3a8c9cf87952611ca17366183e1f8cf4": {
       "created_at": "2026-09-07T14:26:31.009704+00:00",
       "evidence_score": 3,
@@ -2200,7 +2274,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-09-29",
+  "last_completed_beijing_date": "2026-09-30",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -3012,6 +3086,24 @@
       "status": "sent",
       "title": "Machine-learning-guided exploration of domain walls in the hybrid improper ferroelectric Ca3Ti2O7"
     },
+    "2609.37550": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "source": "arXiv",
+      "status": "skipped",
+      "title": "How 'Foundational' Are Current Molecular Foundation Models?"
+    },
+    "2609.38150": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "published": "2026-09-29",
+      "seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "source": "arXiv",
+      "status": "sent",
+      "title": "Neural-quantum-state based downfolding of the three-band Emery model for cuprates and nickelates"
+    },
     "crossref:10.1002/adfm.77894": {
       "attempts": 1,
       "first_seen_at": "2026-08-23T11:33:55.222111+00:00",
@@ -3092,6 +3184,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Raman spectroscopy integrated with deep learning for rapid and sensitive detection of edible oil adulteration"
+    },
+    "crossref:10.1007/s11696-026-05684-7": {
+      "attempts": 1,
+      "first_seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "published": "2026-09-30",
+      "seen_at": "2026-09-30T11:08:02.016168+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "From electronic structure to adsorption performance: a multiscale DFT, Monte Carlo, molecular dynamics, machine learning, and experimental investigation of bisphenol A removal by NaOH-activated palm kernel shell carbon"
     },
     "crossref:10.1007/s11831-026-10681-w": {
       "attempts": 1,
