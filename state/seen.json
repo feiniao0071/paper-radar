@@ -109,6 +109,32 @@
       "summary_zh": "\u4ee5WSe2\u6fc0\u5b50\u5149\u8c31\u63a2\u6d4bNb3Cl8\u5173\u8054Mott\u9699\uff0c\u89c2\u5bdfRydberg\u6fc0\u5b50\u7684\u5c42\u95f4\u6781\u5316\u5b50\u5206\u652f\u53ca\u78c1\u573a\u8bf1\u5bfc\u8c37\u9009\u62e9\u8026\u5408\u3002",
       "title_zh": "\u6fc0\u5b50\u63a2\u6d4b\u8303\u5fb7\u534e\u5e73\u5e26Mottness"
     },
+    "0830a45729eaee3a54b5569a06435bae077976c24569aeda7de3297c952c7391": {
+      "created_at": "2026-10-04T10:31:35.386743+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 3,
+      "key_relevance": [
+        "Fe3GeTe2\u4f53\u76f8\u78c1\u5e8f",
+        "\u4e09\u7ef4Ising\u94c1\u78c1\u6027",
+        "\u78c1\u7574\u51bb\u7ed3",
+        "\u03bcSR\u4e0e\u78c1\u5f3a\u6d4b\u91cf"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "2609.39806",
+      "priority_score": 63,
+      "quality_signals": [
+        "\u7ed3\u5408\u78c1\u5f3a\u6d4b\u91cf\u4e0e\u03bcSR\u68c0\u9a8c\u4f53\u76f8\u78c1\u5e8f",
+        "\u7ed9\u51fa2\u81f3220 K\u8303\u56f4\u5185\u7684\u4e09\u7ef4Ising\u578b\u94c1\u78c1\u6027\u7ed3\u8bba",
+        "170 K\u5f02\u5e38\u7684\u78c1\u7574\u51bb\u7ed3\u89e3\u91ca\u4ecd\u5e26\u63a8\u65ad\u6027\u8d28"
+      ],
+      "reading_action": "\u901f\u8bfb",
+      "reason": "\u53ef\u4e3a\u7ec4\u5185Fe3GeTe2\u5f02\u8d28\u7ed3\u78c1\u6027\u8868\u5f81\u63d0\u4f9b\u4f53\u76f8\u57fa\u7ebf\uff0c\u5e2e\u52a9\u533a\u5206\u78c1\u7574\u51bb\u7ed3\u4e0e\u53cd\u94c1\u78c1\u8f6c\u53d8\uff1b\u672a\u76f4\u63a5\u9a8c\u8bc1\u8584\u5c42\u6216\u6805\u63a7\u6761\u4ef6\u4e0b\u7684\u78c1\u5e8f\u3002",
+      "relevance_score": 2,
+      "study_type": "\u5b9e\u9a8c",
+      "summary_zh": "\u7ed3\u5408\u78c1\u5f3a\u6d4b\u91cf\u4e0e\u03bcSR\uff0c\u786e\u5b9a\u4f53\u76f8Fe3GeTe2\u57282\u81f3220 K\u5448\u4e09\u7ef4Ising\u578b\u94c1\u78c1\u6027\uff0c\u5e76\u5c06170 K\u5f02\u5e38\u89e3\u91ca\u4e3a\u53ef\u80fd\u7684\u78c1\u7574\u51bb\u7ed3\u3002",
+      "title_zh": "\u03bcSR\u6d4b\u91cf\u63ed\u793a\u4f53\u76f8Fe3GeTe2\u7684\u4e09\u7ef4Ising\u94c1\u78c1\u6027"
+    },
     "0833bf5b73dc16947a98bf7d07ac0d01220575bba9620a925dc539118d2b2f96": {
       "created_at": "2026-09-15T10:37:23.923299+00:00",
       "evidence_score": 4,
@@ -4673,6 +4699,32 @@
       "summary_zh": "\u6d4b\u91cf\u4f4e\u6e29DyTe3\u78c1\u8f93\u8fd0\uff0c\u53d1\u73b0CDW2\u663e\u8457\u589e\u5f3a\u78c1\u963b\u5e76\u4ea7\u751f\u591a\u5e26\u975e\u7ebf\u6027Hall\u54cd\u5e94\uff0c\u800cCDW1\u65e0\u6e05\u6670\u5f02\u5e38\u3002",
       "title_zh": "\u4e8c\u7ef4DyTe3\u53cc\u91cd\u7535\u8377\u5bc6\u5ea6\u6ce2\u53ca\u5176\u78c1\u8f93\u8fd0\u6548\u5e94"
     },
+    "c3620e44bdbf43b8785778d0173912d04e753b943253070a0433131353abdc5b": {
+      "created_at": "2026-10-04T10:31:35.386719+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 4,
+      "key_relevance": [
+        "CrSBr\u5c42\u95f4\u81ea\u65cb\u5173\u8054",
+        "\u53cc\u78c1\u632f\u5b50\u62c9\u66fc\u5149\u8c31",
+        "\u6fc0\u5b50\u5171\u632f\u589e\u5f3a",
+        "\u8303\u5fb7\u534e\u53cd\u94c1\u78c1\u4f53"
+      ],
+      "method_value_score": 5,
+      "novelty_score": 5,
+      "paper_id": "2609.38825",
+      "priority_score": 92,
+      "quality_signals": [
+        "\u53cc\u78c1\u632f\u5b50\u4fe1\u53f7\u4ec5\u5728\u53cd\u94c1\u78c1\u6001\u51fa\u73b0\uff0c\u78c1\u573a\u8bf1\u5bfc\u94c1\u78c1\u6001\u540e\u6d88\u5931",
+        "\u5b9e\u9a8c\u4e0e\u65e0\u62df\u5408\u53c2\u6570\u7684\u5fae\u89c2\u81ea\u65cb\u6ce2\u6a21\u578b\u4e00\u81f4",
+        "\u6fc0\u5b50\u5171\u632f\u4f7f\u4fe1\u53f7\u589e\u5f3a\u7ea6\u5341\u500d\uff1b\u626d\u8f6c\u53cc\u5c42\u5e94\u7528\u5c1a\u5c5e\u5c55\u671b"
+      ],
+      "reading_action": "\u7cbe\u8bfb",
+      "reason": "\u53ef\u6307\u5bfc\u7ec4\u5185\u8303\u5fb7\u534e\u78c1\u4f53\u7684\u504f\u78c1\u573a\u62c9\u66fc\u6d4b\u91cf\u53ca\u6fc0\u5b50\u5171\u632f\u9009\u9891\uff0c\u7528\u4e8e\u63d0\u53d6\u5c42\u95f4\u81ea\u65cb\u5173\u8054\uff1b\u5bf9\u626d\u8f6c\u78c1\u4f53\u548c\u8fd1\u90bb\u5f02\u8d28\u7ed3\u7684\u9002\u7528\u6027\u4ecd\u5f85\u9a8c\u8bc1\u3002",
+      "relevance_score": 3,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u5229\u7528CrSBr\u53cc\u78c1\u632f\u5b50\u62c9\u66fc\u6563\u5c04\u76f4\u63a5\u63a2\u6d4b\u5c42\u95f4\u81ea\u65cb\u5173\u8054\uff0c\u4e0e\u65e0\u62df\u5408\u53c2\u6570\u81ea\u65cb\u6ce2\u6a21\u578b\u4e00\u81f4\uff1b\u6fc0\u5b50\u5171\u632f\u4f7f\u4fe1\u53f7\u589e\u5f3a\u7ea6\u5341\u500d\u3002",
+      "title_zh": "\u5c42\u95f4\u81ea\u65cb\u5173\u8054\u7684\u5149\u5b66\u89c2\u6d4b"
+    },
     "c4b7eee4845df6cd8a3eb849adfe67e41c41aa8b1aced4425aa73011bb70505d": {
       "created_at": "2026-09-12T10:33:46.670913+00:00",
       "evidence_score": 3,
@@ -5915,7 +5967,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-10-03",
+  "last_completed_beijing_date": "2026-10-04",
   "papers": {
     "2608.06309": {
       "published": "2026-08-06",
@@ -8179,6 +8231,15 @@
       "status": "sent",
       "title": "An Approximate Method for Modeling Plasmons on Graphene with Time- and Space-dependent Properties"
     },
+    "2609.38825": {
+      "attempts": 1,
+      "first_seen_at": "2026-10-04T11:00:13.577344+00:00",
+      "published": "2026-09-30",
+      "seen_at": "2026-10-04T11:00:13.577344+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "sent",
+      "title": "Optical observation of interlayer spin correlation"
+    },
     "2609.39094": {
       "attempts": 1,
       "first_seen_at": "2026-10-01T11:00:15.390973+00:00",
@@ -8232,6 +8293,15 @@
       "source": "arXiv",
       "status": "sent",
       "title": "Topological Fermi-polaron Polaritons with Electrically Invertible Topology"
+    },
+    "2609.39806": {
+      "attempts": 1,
+      "first_seen_at": "2026-10-04T11:00:13.577344+00:00",
+      "published": "2026-09-30",
+      "seen_at": "2026-10-04T11:00:13.577344+00:00",
+      "source": "arXiv via OpenAlex",
+      "status": "sent",
+      "title": "$\u03bc$SR measurements of 3D Ising ferromagnetism in bulk Fe$_3$GeTe$_2$ crystals"
     },
     "2609.39817": {
       "attempts": 1,
