@@ -644,6 +644,31 @@
       "summary_zh": "\u4ee5\u603b\u52a8\u91cf\u7cbe\u786e\u672c\u5f81\u6001TorFormer\u6c42\u89e3\u4e8c\u7ef4\u7535\u5b50\u6c14\uff0c\u65e0\u76d1\u7763\u63cf\u8ff0\u8d39\u7c73\u6db2\u4f53\u548cWigner crystal\uff0c\u5e76\u4ee5\u66f4\u5c11\u8bad\u7ec3\u6b65\u964d\u4f4e\u53d8\u5206\u80fd\u91cf\u3002",
       "title_zh": "\u5e73\u79fb\u7b49\u53d8\u8d39\u7c73\u795e\u7ecf\u7f51\u7edc\u7684\u5feb\u901f\u5927\u5c3a\u5ea6\u91cf\u5b50\u6001\u6c42\u89e3"
     },
+    "30aee52a9086165d40665e66b954d6e0da43115045673a30b0465b52bf5b989b": {
+      "created_at": "2026-10-04T10:42:01.789470+00:00",
+      "evidence_score": 5,
+      "group_fit_score": 2,
+      "key_relevance": [
+        "\u534a\u5bfc\u4f53\u5149\u4f0f\u5668\u4ef6\u9006\u5411\u8bbe\u8ba1",
+        "SCAPS\u4ee3\u7406\u6a21\u578b\u4e0e\u4eff\u771f\u56de\u9a8c",
+        "\u5e26\u9699\u7559\u51fa\u6cdb\u5316\u8bc4\u4f30"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 2,
+      "paper_id": "crossref:10.1038/s41598-026-73752-9",
+      "priority_score": 53,
+      "quality_signals": [
+        "2925\u7ec4\u4eff\u771f\u6570\u636e\uff0c\u5e76\u4ee51000\u7ec4\u5e26\u9699\u7559\u51fa\u914d\u7f6e\u68c0\u9a8c\u6cdb\u5316",
+        "50\u7ec4\u5019\u9009\u7ecfSCAPS\u56de\u9a8c\uff0cMAE\u4e3a0.4147\u4e2a\u767e\u5206\u70b9",
+        "\u6700\u4f18\u6548\u7387\u4ec5\u6bd4\u539f\u59cb\u7f51\u683c\u63d0\u9ad80.1008\u4e2a\u767e\u5206\u70b9\uff0c\u4e14\u65e0\u5b9e\u9a8c\u9a8c\u8bc1"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u5e26\u9699\u7559\u51fa\u6d4b\u8bd5\u548c\u5019\u9009\u4eff\u771f\u56de\u9a8c\u53ef\u7528\u4e8e\u5668\u4ef6\u4ee3\u7406\u6a21\u578b\u7684\u9a8c\u8bc1\u8bbe\u8ba1\uff1b\u4f46\u91c7\u7528\u5e38\u89c4\u56de\u5f52\u6a21\u578b\uff0c\u672a\u6d89\u53ca\u5927\u6a21\u578b\u6216\u91cf\u5b50\u6750\u6599\u7814\u7a76\u4ee3\u7406\u3002",
+      "relevance_score": 1,
+      "study_type": "\u8ba1\u7b97",
+      "summary_zh": "\u7528\u68af\u5ea6\u63d0\u5347\u4ee3\u7406SCAPS\u6a21\u62df\uff0c\u9006\u5411\u8bbe\u8ba1\u91cf\u5b50\u70b9\u592a\u9633\u80fd\u7535\u6c60\uff1b50\u7ec4\u5019\u9009\u7ecf\u4eff\u771f\u56de\u9a8c\uff0c\u6700\u9ad8\u6548\u738721.2588%\uff0c\u5e26\u9699\u7559\u51fa\u6d4b\u8bd5\u663e\u793a\u6cdb\u5316\u53d7\u9650\u3002",
+      "title_zh": "\u57fa\u4e8e\u673a\u5668\u5b66\u4e60\u4ee3\u7406\u4e0eSCAPS\u56de\u9a8c\u7684\u91cf\u5b50\u70b9\u592a\u9633\u80fd\u7535\u6c60\u9006\u5411\u8bbe\u8ba1"
+    },
     "30fe352782f127407593a12eb4a8a12004ba2461f959023681ea076cd5710dde": {
       "created_at": "2026-09-17T10:43:08.721502+00:00",
       "evidence_score": 5,
@@ -1982,6 +2007,31 @@
       "summary_zh": "Harness\u5c06LLM\u63d0\u6848\u8f6c\u4e3a\u53ef\u9a8c\u8bc1\u5de5\u5177\u52a8\u4f5c\uff0c\u8fde\u63a5Materials Project\u4e0e\u56de\u5f52\u6a21\u578b\uff1b\u9499\u949b\u77ff\u5e26\u9699\u5b9e\u9a8c\u663e\u793a\u5b50\u7c7b\u8bad\u7ec3\u6536\u76ca\u4f9d\u6a21\u578b\u800c\u5f02\u3002",
       "title_zh": "\u9762\u5411\u9499\u949b\u77ff\u7814\u7a76\u7684\u53ef\u9a8c\u8bc1LLM\u4ee3\u7406Harness"
     },
+    "a26b3e7776c518a44edbc9c0af8370bf074bdf5aacc7a3e3121db8c1c86b1506": {
+      "created_at": "2026-10-04T10:42:01.789496+00:00",
+      "evidence_score": 4,
+      "group_fit_score": 2,
+      "key_relevance": [
+        "\u7ed3\u6784\u5149\u4e09\u7ef4\u8868\u9762\u6d4b\u91cf",
+        "MAT\u6761\u7eb9\u56fe\u50cf\u4fee\u590d",
+        "\u9ad8\u53cd\u5c04\u91d1\u5c5e\u8868\u5f81"
+      ],
+      "method_value_score": 3,
+      "novelty_score": 3,
+      "paper_id": "crossref:10.1088/1361-6501/aeafc1",
+      "priority_score": 55,
+      "quality_signals": [
+        "\u5728\u9ad8\u53cd\u5c04\u94dd\u5408\u91d1\u677f\u4e0a\u5b8c\u6210\u5b9e\u9a8c\u9a8c\u8bc1",
+        "\u6d4b\u91cf\u7cfb\u7edf\u6821\u51c6\u7cbe\u5ea6\u4e3a0.01\u6beb\u7c73\uff0c\u62a5\u544a\u70b9\u4e91\u5e73\u5747\u589e\u957f\u73873.92%",
+        "\u6458\u8981\u672a\u7ed9\u51fa\u4fee\u590d\u540e\u4e09\u7ef4\u8bef\u5dee\u3001\u5bf9\u7167\u57fa\u7ebf\u6216\u6d88\u878d\u7ed3\u679c"
+      ],
+      "reading_action": "\u6536\u85cf",
+      "reason": "\u66dd\u5149\u8c03\u8282\u4e0e\u6761\u7eb9\u4fee\u590d\u6d41\u7a0b\u53ef\u8fc1\u79fb\u5230\u53cd\u5149\u6837\u54c1\u7684\u5149\u5b66\u8868\u5f81\uff0c\u4f46\u9700\u9a8c\u8bc1\u4fee\u590d\u540e\u7684\u51e0\u4f55\u7cbe\u5ea6\uff1b\u672a\u5c55\u793a\u5927\u6a21\u578b\u63a8\u7406\u6216\u81ea\u4e3b\u4eea\u5668\u63a7\u5236\u3002",
+      "relevance_score": 1,
+      "study_type": "\u6df7\u5408",
+      "summary_zh": "\u7ed3\u5408\u81ea\u9002\u5e94\u5149\u5708\u3001Retinex\u4e0eMAT\u6df1\u5ea6\u5b66\u4e60\u4fee\u590d\u955c\u9762\u53cd\u5c04\u9020\u6210\u7684\u7ed3\u6784\u5149\u6761\u7eb9\u7f3a\u5931\uff1b\u94dd\u5408\u91d1\u677f\u5b9e\u9a8c\u62a5\u544a\u70b9\u4e91\u5e73\u5747\u589e\u957f\u73873.92%\u3002",
+      "title_zh": "\u7ed3\u5408Retinex\u4e0eMAT\u4fee\u590d\u7684\u955c\u9762\u7ed3\u6784\u5149\u4e09\u7ef4\u6d4b\u91cf\u53cd\u5c04\u6291\u5236"
+    },
     "a2d68452e059e7a5003598daec63d7f38fafdab60dc0b3bec357c6ed54a72fe9": {
       "created_at": "2026-09-03T13:04:49.656354+00:00",
       "evidence_score": 4,
@@ -2964,7 +3014,7 @@
     }
   },
   "last_alerted_beijing_date": {},
-  "last_completed_beijing_date": "2026-10-03",
+  "last_completed_beijing_date": "2026-10-04",
   "papers": {
     "2608.06895": {
       "attempts": 1,
@@ -4334,6 +4384,15 @@
       "status": "skipped",
       "title": "Machine learning-based prediction of bead geometry in AZ31 magnesium alloy using robotic cold metal transfer WAAM"
     },
+    "crossref:10.1038/s41598-026-73752-9": {
+      "attempts": 1,
+      "first_seen_at": "2026-10-04T10:42:01.789629+00:00",
+      "published": "2026-10-03",
+      "seen_at": "2026-10-04T10:42:01.789629+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Physics-grounded machine learning for inverse design of TiO2/CuInGaS2/rGO\u2013CuxS quantum-dot solar cells using surrogate modeling and SCAPS-based validation"
+    },
     "crossref:10.1038/s42004-026-02145-w": {
       "attempts": 1,
       "first_seen_at": "2026-09-15T11:08:02.554989+00:00",
@@ -4360,6 +4419,15 @@
       "source": "Crossref",
       "status": "skipped",
       "title": "Power system\u2010oriented extreme weather scenario identification: Hybrid classical\u2010quantum learning"
+    },
+    "crossref:10.1088/1361-6501/aeafc1": {
+      "attempts": 1,
+      "first_seen_at": "2026-10-04T10:42:01.789629+00:00",
+      "published": "2026-10-03",
+      "seen_at": "2026-10-04T10:42:01.789629+00:00",
+      "source": "Crossref",
+      "status": "skipped",
+      "title": "Large-Area Reflection Suppression for Structured-Light Three-Dimensional Reconstruction of Specular Surfaces"
     },
     "crossref:10.1088/1674-1056/aea3dc": {
       "attempts": 1,
